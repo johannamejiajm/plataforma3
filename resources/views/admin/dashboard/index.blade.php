@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Administracion de Eventos')
+@section('title', 'Panel General')
 
 @section('content')
     <!--  Header Start -->
@@ -67,10 +67,10 @@
           <div class="row">
 
             <div class="col-12 p-3">
-                <h1>Eventos</h1>
+                <h1>Panel General</h1>
             </div>
 
-            <div class="col-12">
+          {{--   <div class="col-12">
               <div class="card">
                 <div class="card-body">
                   <div class="d-md-flex align-items-center">
@@ -209,7 +209,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> --}}
 
           </div>
           <div class="py-6 px-6 text-center">

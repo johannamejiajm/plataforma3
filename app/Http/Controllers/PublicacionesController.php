@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Publicaciones;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class PublicacionesController extends Controller
 {
+
+    public function dashboard()
+    {
+        return view('admin.dashboard.index');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -14,7 +21,7 @@ class PublicacionesController extends Controller
     {
         //
 
-        /* dd(ltrim($request->getPathInfo(), '/')); */
+        dd(ltrim($request->getPathInfo(), '/'));
 
         $typePublic = ltrim($request->getPathInfo(), '/');
 

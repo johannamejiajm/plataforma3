@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Spatie\Permission\Models\Role;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -28,7 +29,21 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        /* return redirect()->intended(route('dashboard', absolute: false)); */
+
+        return redirect()->intended($this->redirectPath());
+    }
+
+     /**
+     * Define la redirección después del login.
+     */
+    protected function redirectPath()
+    {
+        if (Auth::user()->hasRole('admin')) {
+            return route('admin.dashboard'); // Redirige a admin si tiene el rol
+        }
+
+        return route('login'); // Redirige a usuarios normales
     }
 
     /**

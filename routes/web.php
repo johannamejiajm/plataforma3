@@ -12,9 +12,19 @@ Route::get('/admin', function () {
     return view('admin/plantilla/plantilla');
 });
 
-Route::resource('/eventos', PublicacionesController::class);
-Route::resource('/noticias', PublicacionesController::class);
-Route::resource('/historias', PublicacionesController::class);
+Route::middleware(['auth'])->group(function () {
+Route::get('/admin/dashboard', [PublicacionesController::class, 'dashboard'])->name('admin.dashboard');
+
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+
+    Route::resource('/admin/eventos', PublicacionesController::class);
+    Route::resource('/admin/noticias', PublicacionesController::class);
+    Route::resource('/admin/historias', PublicacionesController::class);
+});
+
+
 
 /* Route::get('/dashboard', function () {
     return view('dashboard');
