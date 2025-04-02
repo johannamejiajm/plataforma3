@@ -10,9 +10,16 @@ class PublicacionesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+
+        /* dd(ltrim($request->getPathInfo(), '/')); */
+
+        $typePublic = ltrim($request->getPathInfo(), '/');
+
+        $path = 'admin.' . $typePublic .'.index';
+        return view($path);
     }
 
     /**
