@@ -12,13 +12,9 @@ Route::get('/admin', function () {
     return view('admin/plantilla/plantilla');
 });
 
+
 Route::middleware(['auth'])->group(function () {
-Route::get('/admin/dashboard', [PublicacionesController::class, 'dashboard'])->name('admin.dashboard');
-
-});
-
-Route::middleware(['auth', 'role:admin'])->group(function () {
-
+    Route::get('/admin/dashboard', [PublicacionesController::class, 'dashboard'])->name('admin.dashboard');
     Route::resource('/admin/eventos', PublicacionesController::class);
     Route::resource('/admin/noticias', PublicacionesController::class);
     Route::resource('/admin/historias', PublicacionesController::class);
@@ -35,5 +31,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+
 
 require __DIR__.'/auth.php';

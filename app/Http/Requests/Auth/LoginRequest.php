@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use Spatie\Permission\Models\Role;
+
 
 class LoginRequest extends FormRequest
 {
@@ -50,13 +50,6 @@ class LoginRequest extends FormRequest
             ]);
         }
 
-         // Verificar si el usuario tiene el rol de "admin" (usando Spatie)
-            if (! Auth::user()->hasRole('admin')) {
-                Auth::logout();
-                throw ValidationException::withMessages([
-                    'email' => 'No tienes permisos para acceder.',
-                ]);
-            }
 
         RateLimiter::clear($this->throttleKey());
     }

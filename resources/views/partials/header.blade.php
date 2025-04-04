@@ -43,7 +43,12 @@
               <i class="ti ti-list-check fs-6"></i>
               <p class="mb-0 fs-3">My Task</p>
             </a>
-            <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+            <form method="POST" action="{{ route('logout') }}" class="d-block mx-3 mt-2">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-outline-primary  d-block w-100">Cerrar Sesion</button>
+            </form>
+
           </div>
         </div>
       </div>

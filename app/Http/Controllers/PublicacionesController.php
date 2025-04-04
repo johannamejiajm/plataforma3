@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Publicaciones;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
+use Illuminate\Support\Str;
+
 
 class PublicacionesController extends Controller
 {
@@ -21,11 +22,13 @@ class PublicacionesController extends Controller
     {
         //
 
-        dd(ltrim($request->getPathInfo(), '/'));
+       /*  dd(ltrim($request->getPathInfo(), '/admin')); */
 
-        $typePublic = ltrim($request->getPathInfo(), '/');
+       $typePublic =    Str::after($request->getPathInfo(), '/admin/');
 
         $path = 'admin.' . $typePublic .'.index';
+
+        /* dd($path); */
         return view($path);
     }
 
