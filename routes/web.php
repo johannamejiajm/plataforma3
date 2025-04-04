@@ -2,11 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicacionesController;
+use App\Http\Controllers\QuienessomosController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('publico/plantilla/plantilla');
-});
+})->name('inicio');
 /* Route::get('/admin', function () {
     return view('admin/vistas/publicaciones/publicaciones');
 }); */
@@ -21,9 +22,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-    Route::get('/publicaciones', [PublicacionesController::class, 'index'])->name('publicaciones.index');
-    Route::get('/editpublicaciones/{id}/edit', [PublicacionesController::class, 'edit'])->name('publicaciones.edit');
-    Route::put('/publicaciones/{id}', [PublicacionesController::class, 'update'])->name('publicaciones.update');
+    Route::get('/quienessomos', [QuienessomosController::class, 'index'])->name('quienessomos.index');
+    Route::get('/editquienessomos/{id}/edit', [QuienessomosController::class, 'edit'])->name('quienessomos.edit');
+    Route::put('/quienessomos/{id}', [QuienessomosController::class, 'update'])->name('quienessomos.update');
 
 
 

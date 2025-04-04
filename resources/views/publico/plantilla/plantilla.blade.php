@@ -8,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Favicon icon-->
-  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+  <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png') }}" />
 
   <!-- Core Css -->
-  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <link rel="stylesheet" href="{{ asset('assets/css/styles.css')  }}" />
 
-  <title>Flexy Bootstrap Admin</title>
+  @yield('titulo')
   <!-- Owl Carousel  -->
-  <link rel="stylesheet" href="../assets/libs/owl.carousel/dist/assets/owl.carousel.min.css" />
+  <link rel="stylesheet" href="{{ asset('assets/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
@@ -42,10 +42,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 gap-xl-7 gap-8 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Inicio</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('inicio') }}">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Quienes somos</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('quienessomos.index') }}">Quienes somos</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary d-flex gap-2" href="#">Historia
@@ -184,10 +184,15 @@
         <div class="row align-items-end mb-3">
           <div class="col-lg-6">
             <div class="d-flex justify-content-center align-items-center gap-9">
+
+             
             </div>
           </div>
          
         </div>
+
+
+       
         
       </div>
     </Section>
@@ -196,7 +201,7 @@
     <!-- ------------------------------------- -->
 
   </div>
-
+  @yield('contenido')
   <!-- ------------------------------------- -->
   <!-- Footer Start -->
   <!-- ------------------------------------- -->
