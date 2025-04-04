@@ -25,6 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/editpublicaciones/{id}/edit', [PublicacionesController::class, 'edit'])->name('publicaciones.edit');
     Route::put('/publicaciones/{id}', [PublicacionesController::class, 'update'])->name('publicaciones.update');
 
+    Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
+
 
 
 require __DIR__.'/auth.php';
