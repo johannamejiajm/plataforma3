@@ -25,9 +25,9 @@
 
             <!-- Page Heading -->
 
-            @include('partials.header')  {{-- Incluir el header --}}
+            @include('admin.plantilla.partials.header')  {{-- Incluir el header --}}
 
-            @include('partials.sidebar')
+            @include('admin.plantilla.partials.sidebar')
 
 
             <!-- Page Content -->
@@ -36,11 +36,12 @@
             </div>
 
 
-            @includeIf('partials.footer')  {{-- Incluir el footer --}}
+            @includeIf('admin.plantilla.partials.footer')  {{-- Incluir el footer --}}
 
 
 
         </div>
-        @include('partials.script')
+        @include('admin.plantilla.partials.script')
+        @yield('scripts')
     </body>
 </html>

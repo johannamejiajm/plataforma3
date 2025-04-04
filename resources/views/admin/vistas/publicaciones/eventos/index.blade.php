@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('admin.plantilla.layout')
 
 @section('title', 'Administracion de Eventos')
 
@@ -67,7 +67,7 @@
           <div class="row">
 
             <div class="col-12 p-3">
-                <h1>Eventos</h1>
+                <h1 class="text-center">Eventos</h1>
             </div>
 
             <div class="col-12">
@@ -80,15 +80,9 @@
                         Gestionar Eventos
                       </p>
                     </div>
-                    <div class="ms-auto mt-3 mt-md-0">
-                      <select class="form-select theme-select border-0" aria-label="Default select example">
-                        <option value="1">March 2025</option>
-                        <option value="2">March 2025</option>
-                        <option value="3">March 2025</option>
-                      </select>
-                    </div>
+
                   </div>
-                  <div class="table-responsive mt-4">
+                 {{--  <div class="table-responsive mt-4">
                     <table class="table mb-0 text-nowrap varient-table align-middle fs-3">
                       <thead>
                         <tr>
@@ -206,7 +200,26 @@
                         </tr>
                       </tbody>
                     </table>
-                  </div>
+                  </div> --}}
+
+
+                  <div class="table-responsive mt-4">
+                    <table class="table table-striped table-bordered w-100" id="tablaPublicaciones">
+                        <thead>
+                            <tr>
+                                <th class="px-0 text-muted text-center">Titulo</th>
+                                <th class="px-0 text-muted text-center">Contenido</th>
+                                <th class="px-0 text-muted text-center">Fecha y Hora Incio</th>
+                                <th class="px-0 text-muted text-center">Fecha y Hora Final</th>
+                                <th class="px-0 text-muted text-center">Estado</th>
+                                <th class="px-0 text-muted text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Cargado vía AJAX -->
+                        </tbody>
+                    </table>
+                </div>
                 </div>
               </div>
             </div>
@@ -217,4 +230,93 @@
           </div>
         </div>
       </div>
+@endsection
+
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function() {
+        const tabla = $('#tablaPublicaciones').DataTable({
+            ajax: '{{ route("publicaciones.data") }}',
+            columns: [
+                { data: 'titulo' },
+                { data: 'contenido' },
+                { data: 'fecha_inicial' },
+                { data: 'fecha_final' },
+                {
+                    data: 'estado',
+                    render: function(data) {
+                        let clase = data === 'Activo' ? 'bg-success' : 'bg-danger';
+                        return `<span class="badge ${clase}">${data}</span>`;
+                    }
+                },
+                {
+                    data: 'id',
+                    orderable: false,
+                    searchable: false,
+                    render: function(data) {
+
+
+                        return `
+                            <div class="d-flex gap-2 justify-content-end">
+                                <a href="/admin/publicaciones/${data}/edit" class="btn btn-sm btn-warning text-white">
+                                    <i class="ti ti-pencil"></i>
+                                </a>
+                                <button class="btn btn-sm btn-danger btn-eliminar" data-id="${data}">
+                                    <i class="ti ti-trash"></i>
+                                </button>
+                            </div>
+                        `;
+                    }
+                }
+            ],
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
+            }
+        });
+
+        // Evento con SweetAlert2
+        $('#tablaPublicaciones').on('click', '.btn-eliminar', function() {
+            const id = $(this).data('id');
+
+            Swal.fire({
+                title: '¿Quieres Cambiar el Estado?',
+                text: "Esta acción cambiara para que no se muestre.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, Cambialo',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `{{ route('eventos.destroy', ':id') }}`.replace(':id', id),
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(response) {
+                            tabla.ajax.reload();
+                            Swal.fire(
+                            '¡Actualizado!',
+                            `El estado fue cambiado a "${response.nuevo_estado}".`,
+                            'success'
+                            );
+                        },
+                        error: function() {
+                            Swal.fire(
+                                'Error',
+                                'No se pudo eliminar la publicación.',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            });
+        });
+    });
+    </script>
+
+
 @endsection

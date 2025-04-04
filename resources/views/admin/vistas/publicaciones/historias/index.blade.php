@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('admin.plantilla.layout')
 
 @section('title', 'Administracion de Historias')
 

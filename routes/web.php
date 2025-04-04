@@ -12,12 +12,18 @@ Route::get('/', function () {
     return view('admin/vistas/publicaciones/publicaciones');
 }); */
 
+Route::get('/api/admin/eventos', [PublicacionesController::class, 'data'])->name('publicaciones.data');
+
 
 Route::middleware(['auth'])->group(function () {
+
+
+
     Route::get('/admin/dashboard', [PublicacionesController::class, 'dashboard'])->name('admin.dashboard');
     Route::resource('/admin/eventos', PublicacionesController::class);
     Route::resource('/admin/noticias', PublicacionesController::class);
     Route::resource('/admin/historias', PublicacionesController::class);
+
 });
 
 
