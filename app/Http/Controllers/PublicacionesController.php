@@ -10,10 +10,17 @@ class PublicacionesController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+
+
+   
     public function index()
     {
-        $publicaciones = Publicaciones::all();
-        return view('admin/vistas/publicaciones/publicaciones', compact('publicaciones'));
+       //$publicaciones = Publicaciones::all();
+        //return view('admin/vistas/publicaciones/publicaciones', compact('publicaciones'));
+        $historia = Publicaciones::all();
+        return view('publico.vistas.publicaciones.historia', compact('historia'));
+
     }
 
     /**
@@ -21,7 +28,7 @@ class PublicacionesController extends Controller
      */
     public function create()
     {
-        //
+        //return view('clientes/create');
     }
 
     /**
@@ -48,6 +55,8 @@ class PublicacionesController extends Controller
 
        $publicacion = Publicaciones::find($id);
        return view("admin/vistas/publicaciones/editpublicaciones", compact('publicacion'));
+
+       
     }
 
     /**
