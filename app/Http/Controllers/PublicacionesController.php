@@ -12,7 +12,8 @@ class PublicacionesController extends Controller
      */
     public function index()
     {
-        //
+        $publicaciones = Publicaciones::all();
+        return view('admin/vistas/publicaciones/publicaciones', compact('publicaciones'));
     }
 
     /**
@@ -42,17 +43,28 @@ class PublicacionesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Publicaciones $publicaciones)
+    public function edit(Publicaciones $publicaciones, $id)
     {
-        //
+
+       $publicacion = Publicaciones::find($id);
+       return view("admin/vistas/publicaciones/editpublicaciones", compact('publicacion'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Publicaciones $publicaciones)
+    public function update(Request $request, Publicaciones $publicaciones, $id)
     {
-        //
+        $publicacionActualizar = Publicaciones::find($id);
+        $publicacionActualizar->titulo = $request->inputtitulo;
+        $publicacionActualizar->contenido = $request->inputcontenido;
+        $publicacionActualizar->fechainicial = $request->inputfechainicial;
+        $publicacionActualizar->fechafinal = $request->inputfechafinal;
+        $publicacionActualizar->estado = $request->inputestado;
+        $publicacionActualizar->save();
+
+        return redirect('publicaciones');
+
     }
 
     /**
