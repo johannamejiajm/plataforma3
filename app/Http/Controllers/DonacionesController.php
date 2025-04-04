@@ -12,7 +12,8 @@ class DonacionesController extends Controller
      */
     public function index()
     {
-        //
+        $donaciones = donaciones::all();
+        return view('publico/vistas/donaciones/index', compact('donaciones'));
     }
 
     /**

@@ -1,10 +1,14 @@
-@extends('admin.plantilla.plantilla')
+@extends('publico.plantilla.plantilla')
 @section('script')
-    <script>
+<title>Donaciones</title>
+
+<script>
         $(document).ready(function() {
             let tabladonaciones = new DataTable('#tabladonaciones', {
                 responsive: true
             });
         });
     </script>
+
 @endsection
+
