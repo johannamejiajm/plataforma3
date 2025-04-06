@@ -47,13 +47,9 @@ class PublicacionesController extends Controller
      */
     public function index(Request $request)
     {
-        //
-
-
-       /* $publicaciones = Publicaciones::all(); */
-
-
-
+        //$publicaciones = Publicaciones::all();
+        //return view('admin/vistas/publicaciones/publicaciones', compact('publicaciones'));
+      
         $typePublic =    Str::after($request->getPathInfo(), '/admin/');
 
         $path = 'admin.vistas.publicaciones.' . $typePublic .'.index';
@@ -61,8 +57,18 @@ class PublicacionesController extends Controller
         /* dd($path); */
         return view($path);
 
-        /* return view('admin/vistas/publicaciones/publicaciones', compact('publicaciones')); */
     }
+             
+  
+    public function indexinicio()
+    {
+        $inicio = Publicaciones::all();
+        return view('publico.vistas.publicaciones.inicio', compact('inicio'));
+    }
+ 
+
+    }
+
 
     /**
      * Show the form for creating a new resource.
