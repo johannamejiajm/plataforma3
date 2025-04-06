@@ -12,8 +12,10 @@ class DonacionesController extends Controller
      */
     public function index()
     {
-        //
+        $donaciones = Donaciones::all();
+        return view('admin/vistas/donaciones/donaciones', compact('donaciones'));
     }
+    
 
     /**
      * Show the form for creating a new resource.

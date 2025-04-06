@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\PublicacionesController;
@@ -38,9 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-    Route::get('/publicaciones', [PublicacionesController::class, 'index'])->name('publicaciones.index');
-    Route::get('/editpublicaciones/{id}/edit', [PublicacionesController::class, 'edit'])->name('publicaciones.edit');
-    Route::put('/publicaciones/{id}', [PublicacionesController::class, 'update'])->name('publicaciones.update');
+    Route::get('/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
+    Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
+    Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
 
 
 
