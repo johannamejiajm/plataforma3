@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\ProfileController;
+
 use App\Http\Controllers\PublicacionesController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,9 +13,25 @@ Route::get('/', function () {
     return view('admin/vistas/publicaciones/publicaciones');
 }); */
 
-Route::get('/dashboard', function () {
+Route::get('/api/admin/eventos', [PublicacionesController::class, 'data'])->name('publicaciones.data');
+
+
+Route::middleware(['auth'])->group(function () {
+
+
+
+    Route::get('/admin/dashboard', [PublicacionesController::class, 'dashboard'])->name('admin.dashboard');
+    Route::resource('/admin/eventos', PublicacionesController::class);
+    Route::resource('/admin/noticias', PublicacionesController::class);
+    Route::resource('/admin/historias', PublicacionesController::class);
+
+});
+
+
+
+/* Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard'); */
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -21,9 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-    Route::get('/publicaciones', [PublicacionesController::class, 'index'])->name('publicaciones.index');
-    Route::get('/editpublicaciones/{id}/edit', [PublicacionesController::class, 'edit'])->name('publicaciones.edit');
-    Route::put('/publicaciones/{id}', [PublicacionesController::class, 'update'])->name('publicaciones.update');
+    Route::get('/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
+    Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
+    Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
 
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
 
