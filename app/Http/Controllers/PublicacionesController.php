@@ -65,10 +65,6 @@ class PublicacionesController extends Controller
         $inicio = Publicaciones::all();
         return view('publico.vistas.publicaciones.inicio', compact('inicio'));
     }
- 
-
-    }
-
 
     /**
      * Show the form for creating a new resource.

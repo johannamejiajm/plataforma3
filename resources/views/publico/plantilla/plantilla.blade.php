@@ -17,6 +17,7 @@
   <!-- Owl Carousel  -->
   <link rel="stylesheet" href="{{ asset('assets/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  @yield('links')
 </head>
 
 <body>
@@ -61,7 +62,7 @@
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Inscripciones</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Artistas</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('artistas.index') }}">Artistas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Donaciones</a>
@@ -124,7 +125,7 @@
         </li>
 
         <li class="mb-1">
-          <a href=".#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+          <a href="#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
             Inscripciones
           </a>
         </li>
@@ -198,6 +199,7 @@
   </div>
 
   @yield('tituloprincipal')
+
 
   @yield('contenido')
   <!-- ------------------------------------- -->
