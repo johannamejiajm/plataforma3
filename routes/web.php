@@ -22,9 +22,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-    Route::get('/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
+    Route::get('/donaciones', [DonacionesController::class, 'indexdonacion'])->name('donaciones.index');
     Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
     Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
+    Route::post('/donaciones', [DonacionesController::class,'store'])->name('donaciones.store');
 
 
 
