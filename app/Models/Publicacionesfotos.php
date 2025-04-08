@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Publicacionfotos extends Model
+class Publicionesfoto extends Model
 {
     //
 }
