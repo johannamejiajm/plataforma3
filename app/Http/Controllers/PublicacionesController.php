@@ -64,6 +64,17 @@ class PublicacionesController extends Controller
     {
         $inicio = Publicaciones::all();
         return view('publico.vistas.publicaciones.inicio', compact('inicio'));
+
+
+    }
+   
+    public function indexhistoria()
+    {
+       //$publicaciones = Publicaciones::all();
+        //return view('admin/vistas/publicaciones/publicaciones', compact('publicaciones'));
+        $historia = Publicaciones::all();
+        return view('publico.vistas.publicaciones.historia', compact('historia'));
+
     }
 
     /**
@@ -71,7 +82,7 @@ class PublicacionesController extends Controller
      */
     public function create()
     {
-        //
+        //return view('clientes/create');
     }
 
     /**
@@ -98,6 +109,8 @@ class PublicacionesController extends Controller
 
        $publicacion = Publicaciones::find($id);
        return view("admin/vistas/publicaciones/editpublicaciones", compact('publicacion'));
+
+       
     }
 
     /**

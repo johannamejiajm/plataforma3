@@ -50,6 +50,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
 
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
+    Route::get('vistas/publicaciones/historia', [PublicacionesController::class, 'index'])->name('historia.index');
+
+
+
 
 
 require __DIR__.'/auth.php';
