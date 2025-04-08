@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtistasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicacionesController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/publicaciones', [PublicacionesController::class, 'index'])->name('publicaciones.index');
     Route::get('/editpublicaciones/{id}/edit', [PublicacionesController::class, 'edit'])->name('publicaciones.edit');
     Route::put('/publicaciones/{id}', [PublicacionesController::class, 'update'])->name('publicaciones.update');
+
+
+    Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
+Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
+
+Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
+
+   
+   
 
 
 

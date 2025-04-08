@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Evento extends Model
 {
-    //
+    public function artistas()
+    {
+        return $this->hasMany(Artistas::class, 'idevento', 'id');
+    }
 }
