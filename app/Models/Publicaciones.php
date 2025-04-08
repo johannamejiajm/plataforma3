@@ -9,6 +9,16 @@ class Publicaciones extends Model
     protected $table = "publicaciones";
 
     protected $fillable =[
-        'titulo','contenido','imagen','fechainicial','fechafinal','estado'
+       'idtipo', 'iduser',  'titulo', 'contenido','imagen','fechainicial','fechafinal','estado'
     ];
+
+
+
+    public function usuario() {
+        return $this->belongsTo(User::class, 'iduser');
+    }
+
+    public function tipo() {
+        return $this->belongsTo(Tipopublicaciones::class, 'idtipo');
+    }
 }

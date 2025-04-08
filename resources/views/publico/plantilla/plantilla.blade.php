@@ -11,12 +11,17 @@
   <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png') }}" />
 
   <!-- Core Css -->
+<<<<<<< HEAD
   <link rel="stylesheet" href="{{ asset('assets/css/styles.css')  }}" />
+=======
+  <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}" />
+>>>>>>> 3ebe4846d320d8c6a99103fd9398f89f74c4e21e
 
   @yield('titulo')
   <!-- Owl Carousel  -->
   <link rel="stylesheet" href="{{ asset('assets/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  @yield('links')
 </head>
 
 <body>
@@ -24,7 +29,7 @@
 
   <!-- Preloader -->
   <div class="preloader">
-    <img src="../assets/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
+    <img src="{{ asset('assets/images/logos/favicon.png') }}" alt="loader" class="lds-ripple img-fluid" />
   </div>
    <!-- ------------------------------------- -->
   <!-- Header Start -->
@@ -42,7 +47,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 gap-xl-7 gap-8 mb-lg-0">
             <li class="nav-item">
+<<<<<<< HEAD
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('inicio') }}">Inicio</a>
+=======
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('vistaspublicacionesinicio.index') }}">Inicio</a>
+>>>>>>> 3ebe4846d320d8c6a99103fd9398f89f74c4e21e
             </li>
             <li class="nav-item">
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('quienessomos.index') }}">Quienes somos</a>
@@ -61,7 +70,7 @@
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Inscripciones</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Artistas</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('artistas.index') }}">Artistas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Donaciones</a>
@@ -124,7 +133,7 @@
         </li>
 
         <li class="mb-1">
-          <a href=".#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+          <a href="#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
             Inscripciones
           </a>
         </li>
@@ -201,6 +210,13 @@
     <!-- ------------------------------------- -->
 
   </div>
+<<<<<<< HEAD
+=======
+
+  @yield('tituloprincipal')
+
+
+>>>>>>> 3ebe4846d320d8c6a99103fd9398f89f74c4e21e
   @yield('contenido')
   <!-- ------------------------------------- -->
   <!-- Footer Start -->
@@ -227,7 +243,11 @@
     <i class="ti ti-arrow-up fs-7"></i>
   </a>
 
+<<<<<<< HEAD
   <script src="{{ asset('assets/js/vendor.min.js')}}"></script>
+=======
+  <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
+>>>>>>> 3ebe4846d320d8c6a99103fd9398f89f74c4e21e
   <!-- Import Js Files -->
   <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('assets/libs/simplebar/dist/simplebar.min.js') }}"></script>
