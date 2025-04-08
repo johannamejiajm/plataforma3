@@ -227,17 +227,17 @@
     <i class="ti ti-arrow-up fs-7"></i>
   </a>
 
-  <script src="../assets/js/vendor.min.js"></script>
+  <script src="{{ asset('assets/js/vendor.min.js')}}"></script>
   <!-- Import Js Files -->
-  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
-  <script src="../assets/js/theme/app.init.js"></script>
-  <script src="../assets/js/theme/theme.js"></script>
-  <script src="../assets/js/theme/app.min.js"></script>
+  <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/simplebar/dist/simplebar.min.js') }}"></script>
+  <script src="{{ asset('assets/js/theme/app.init.js') }}"></script>
+  <script src="{{ asset('assets/js/theme/theme.js') }}"></script>
+  <script src="{{ asset('assets/js/theme/app.min.js') }}"></script>
 
   <!-- solar icons -->
-  <script src="../assets/libs/owl.carousel/dist/owl.carousel.min.js"></script>
-  <script src="../assets/js/frontend-landingpage/homepage.js"></script>
+  <script src="{{ asset('assets/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
+  <script src="{{ asset('assets/js/frontend-landingpage/homepage.js') }}"></script>
 </body>
 
 </html>
