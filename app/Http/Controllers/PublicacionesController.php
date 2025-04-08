@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PublicacionRequest;
 use App\Models\Publicaciones;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\Tipopublicaciones;
+
 
 
 class PublicacionesController extends Controller
@@ -49,17 +52,18 @@ class PublicacionesController extends Controller
     {
         //$publicaciones = Publicaciones::all();
         //return view('admin/vistas/publicaciones/publicaciones', compact('publicaciones'));
-      
+
         $typePublic =    Str::after($request->getPathInfo(), '/admin/');
 
         $path = 'admin.vistas.publicaciones.' . $typePublic .'.index';
 
+        /* dd(auth()->user()->id); */
         /* dd($path); */
         return view($path);
 
     }
-             
-  
+
+
     public function indexinicio()
     {
         $inicio = Publicaciones::all();
@@ -80,6 +84,61 @@ class PublicacionesController extends Controller
     public function store(Request $request)
     {
         //
+        $errors = $request->validate([
+            'titulo' => 'required|string',
+            'contenido' => 'required|string',
+            'idtipo' => 'required|exists:tipopublicaciones,id',
+            'fechainicial' => 'required|date',
+            'fechafinal' => 'required|date|after_or_equal:fechainicial',
+            'estado' => 'required|in:0,1',
+            'imagenes.*' => 'image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+
+        /* if(!empty($errors)) {
+            return response()->json(['errors' => $errors], 422);
+        } */
+
+
+        /* $data = $request->validated(); */
+
+
+
+        DB::beginTransaction();
+    try {
+        $publicacion = Publicaciones::create([
+            'titulo' => $request->titulo,
+            'contenido' => $request->contenido,
+            'idtipo' => $request->idtipo,
+            'iduser' => auth()->user()->id,
+            'fechainicial' => $request->fechainicial,
+            'fechafinal' => $request->fechafinal,
+            'estado' => $request->estado
+        ]);
+
+        if ($request->hasFile('imagenes')) {
+            foreach ($request->file('imagenes') as $imagen) {
+                $extension = $imagen->getClientOriginalExtension();
+                $nombreHash = Str::uuid() . '.' . $extension;
+
+                // Guarda en storage/app/public/publicacionfotos
+                $ruta = $imagen->storeAs('publicaciones/eventos', $nombreHash, 'public');
+
+                DB::table('publicacionfotos')->insert([
+                    'idpublicaciones' => $publicacion->id,
+                    'imagen' => 'storage/publicaciones/eventos/' . $nombreHash, // Para usarlo fácilmente en las vistas
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            }
+        }
+
+        DB::commit();
+        return response()->json(['success' => true]);
+    } catch (\Exception $e) {
+        DB::rollback();
+        return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+    }
     }
 
     /**

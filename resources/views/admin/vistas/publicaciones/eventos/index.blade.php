@@ -70,6 +70,12 @@
                 <h1 class="text-center">Eventos</h1>
             </div>
 
+            <div class="col-12 mb-4">
+                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalCrearEvento">
+                    <i class="ti ti-plus"></i> Nuevo Evento
+                </button>
+            </div>
+
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
@@ -203,6 +209,8 @@
                   </div> --}}
 
 
+
+
                   <div class="table-responsive mt-4">
                     <table class="table table-striped table-bordered w-100" id="tablaPublicaciones">
                         <thead>
@@ -230,6 +238,65 @@
           </div>
         </div>
       </div>
+
+      <div class="modal fade" id="modalCrearEvento" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content p-4">
+            <form id="formCrearEvento"  enctype="multipart/form-data">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Crear Nuevo Evento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+              </div>
+              <div class="modal-body row g-3">
+
+                <input type="hidden" name="idtipo" value="2"> <!-- Ajusta el valor dinámicamente si es necesario -->
+
+                <div class="col-md-6">
+                  <label for="titulo" class="form-label">Título</label>
+                  <input type="text" class="form-control" name="titulo" >
+
+                </div>
+
+                <div class="col-md-6">
+                  <label for="estado" class="form-label">Estado</label>
+                  <select name="estado" class="form-select" >
+                    <option value="" selected disabled>--Seleccione--</option>
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                  </select>
+                </div>
+
+                <div class="col-12">
+                  <label for="contenido" class="form-label">Contenido</label>
+                  <textarea class="form-control" name="contenido" rows="3" ></textarea>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="fechainicial" class="form-label">Fecha y hora inicial</label>
+                  <input type="datetime-local" class="form-control" name="fechainicial" >
+                </div>
+
+                <div class="col-md-6">
+                  <label for="fechafinal" class="form-label">Fecha y hora final</label>
+                  <input type="datetime-local" class="form-control" name="fechafinal" >
+                </div>
+
+                <div class="col-12">
+                  <label for="imagenes" class="form-label">Imágenes (máx. 5)</label>
+                  <input type="file" name="imagenes[]" class="form-control" accept="image/*" multiple >
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+
 @endsection
 
 @section('scripts')
@@ -316,6 +383,74 @@
             });
         });
     });
+
+    $('#formCrearEvento').submit(function(e) {
+    e.preventDefault();
+
+    const form = $(this)[0];
+
+    const formData = new FormData(form);
+
+    Swal.fire({
+        title: 'Creando evento...',
+        didOpen: () => Swal.showLoading(),
+        allowOutsideClick: false
+    });
+
+    $.ajax({
+        url: '{{ route('eventos.store') }}',
+        method: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(res) {
+            console.log(res)
+            $('#modalCrearEvento').modal('hide');
+            $('#formCrearEvento')[0].reset();
+            $('#tablaPublicaciones').DataTable().ajax.reload();
+
+            Swal.fire('¡Éxito!', 'El evento ha sido creado correctamente.', 'success');
+        },
+        error: function(err) {
+            let errores = err.responseJSON.errors;
+
+        // Limpia clases y mensajes anteriores
+        $('#formCrearEvento .form-control, #formCrearEvento .form-select, #formCrearEvento textarea').removeClass('is-invalid');
+        $('#formCrearEvento .invalid-feedback').remove();
+
+        // Variable para fallback general
+        let mensajeGeneral = '';
+
+        // Recorremos los errores para mostrarlos
+        for (const campo in errores) {
+        const input = $(`[name="${campo}"]`);
+
+        // Agregamos clase de error
+        input.addClass('is-invalid');
+
+        // Mostramos mensaje debajo del input
+        if (input.length > 0) {
+        const mensaje = `<div class="invalid-feedback">${errores[campo][0]}</div>`;
+        input.after(mensaje);
+        }
+
+        // También acumulamos para el mensaje general (por si quieres mostrar en SweetAlert2 también)
+        mensajeGeneral += `<p><strong>${campo}:</strong> ${errores[campo][0]}</p>`;
+        }
+
+        Swal.fire({
+            title: 'Errores de validación',
+            html: mensajeGeneral,
+            icon: 'error'
+        });
+        }
+
+    });
+});
+
     </script>
 
 
