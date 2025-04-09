@@ -65,131 +65,30 @@
         <div class="container-fluid">
           <!--  Row 1 -->
           <div class="row">
-            <div class="col-lg-8">
-              <div class="card w-100">
-                <div class="card-body">
-                  <div class="d-md-flex align-items-center">
-                    <div>
-                      <h4 class="card-title">Sales Overview</h4>
-                      <p class="card-subtitle">
-                        Ample admin Vs Pixel admin
-                      </p>
-                    </div>
-                    <div class="ms-auto">
-                      <ul class="list-unstyled mb-0">
-                        <li class="list-inline-item text-primary">
-                          <span class="round-8 text-bg-primary rounded-circle me-1 d-inline-block"></span>
-                          Ample
-                        </li>
-                        <li class="list-inline-item text-info">
-                          <span class="round-8 text-bg-info rounded-circle me-1 d-inline-block"></span>
-                          Pixel Admin
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div id="sales-overview" class="mt-4 mx-n6"></div>
-                </div>
-              </div>
+
+            <div class="col-12 p-3">
+                <h1 class="text-center">Historias</h1>
             </div>
-            <div class="col-lg-4">
-              <div class="card overflow-hidden">
-                <div class="card-body pb-0">
-                  <div class="d-flex align-items-start">
-                    <div>
-                      <h4 class="card-title">Weekly Stats</h4>
-                      <p class="card-subtitle">Average sales</p>
-                    </div>
-                    <div class="ms-auto">
-                      <div class="dropdown">
-                        <a href="javascript:void(0)" class="text-muted" id="year1-dropdown" data-bs-toggle="dropdown"
-                          aria-expanded="false">
-                          <i class="ti ti-dots fs-7"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="year1-dropdown">
-                          <li>
-                            <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mt-4 pb-3 d-flex align-items-center">
-                    <span class="btn btn-primary rounded-circle round-48 hstack justify-content-center">
-                      <i class="ti ti-shopping-cart fs-6"></i>
-                    </span>
-                    <div class="ms-3">
-                      <h5 class="mb-0 fw-bolder fs-4">Top Sales</h5>
-                      <span class="text-muted fs-3">Johnathan Doe</span>
-                    </div>
-                    <div class="ms-auto">
-                      <span class="badge bg-secondary-subtle text-muted">+68%</span>
-                    </div>
-                  </div>
-                  <div class="py-3 d-flex align-items-center">
-                    <span class="btn btn-warning rounded-circle round-48 hstack justify-content-center">
-                      <i class="ti ti-star fs-6"></i>
-                    </span>
-                    <div class="ms-3">
-                      <h5 class="mb-0 fw-bolder fs-4">Best Seller</h5>
-                      <span class="text-muted fs-3">MaterialPro Admin</span>
-                    </div>
-                    <div class="ms-auto">
-                      <span class="badge bg-secondary-subtle text-muted">+68%</span>
-                    </div>
-                  </div>
-                  <div class="py-3 d-flex align-items-center">
-                    <span class="btn btn-success rounded-circle round-48 hstack justify-content-center">
-                      <i class="ti ti-message-dots fs-6"></i>
-                    </span>
-                    <div class="ms-3">
-                      <h5 class="mb-0 fw-bolder fs-4">Most Commented</h5>
-                      <span class="text-muted fs-3">Ample Admin</span>
-                    </div>
-                    <div class="ms-auto">
-                      <span class="badge bg-secondary-subtle text-muted">+68%</span>
-                    </div>
-                  </div>
-                  <div class="pt-3 mb-7 d-flex align-items-center">
-                    <span class="btn btn-secondary rounded-circle round-48 hstack justify-content-center">
-                      <i class="ti ti-diamond fs-6"></i>
-                    </span>
-                    <div class="ms-3">
-                      <h5 class="mb-0 fw-bolder fs-4">Top Budgets</h5>
-                      <span class="text-muted fs-3">Sunil Joshi</span>
-                    </div>
-                    <div class="ms-auto">
-                      <span class="badge bg-secondary-subtle text-muted">+15%</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
+            <div class="col-12 mb-4">
+                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalCrearHistoria">
+                    <i class="ti ti-plus"></i> Nuevo Historia
+                </button>
             </div>
+
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
                   <div class="d-md-flex align-items-center">
                     <div>
-                      <h4 class="card-title">Products Performance</h4>
+                      <h4 class="card-title">Listado de Historias</h4>
                       <p class="card-subtitle">
-                        Ample Admin Vs Pixel Admin
+                        Gestionar Historias
                       </p>
                     </div>
-                    <div class="ms-auto mt-3 mt-md-0">
-                      <select class="form-select theme-select border-0" aria-label="Default select example">
-                        <option value="1">March 2025</option>
-                        <option value="2">March 2025</option>
-                        <option value="3">March 2025</option>
-                      </select>
-                    </div>
+
                   </div>
-                  <div class="table-responsive mt-4">
+                 {{--  <div class="table-responsive mt-4">
                     <table class="table mb-0 text-nowrap varient-table align-middle fs-3">
                       <thead>
                         <tr>
@@ -307,243 +206,252 @@
                         </tr>
                       </tbody>
                     </table>
-                  </div>
+                  </div> --}}
+
+
+
+
+                  <div class="table-responsive mt-4">
+                    <table class="table table-striped table-bordered w-100" id="tablaPublicacionesHistoria">
+                        <thead>
+                            <tr>
+                                <th class="px-0 text-muted text-center">Titulo</th>
+                                <th class="px-0 text-muted text-center">Contenido</th>
+                                <th class="px-0 text-muted text-center">Fecha y Hora Incio</th>
+                                <th class="px-0 text-muted text-center">Fecha y Hora Final</th>
+                                <th class="px-0 text-muted text-center">Estado</th>
+                                <th class="px-0 text-muted text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Cargado vía AJAX -->
+                        </tbody>
+                    </table>
+                </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-6">
-              <!-- Card -->
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title mb-0">Recent Comments</h4>
-                </div>
-                <div class="comment-widgets scrollable mb-2 common-widget" style="height: 465px" data-simplebar="">
-                  <!-- Comment Row -->
-                  <div class="d-flex flex-row comment-row border-bottom p-3 gap-3">
-                    <div>
-                      <span><img src="../assets/images/profile/user-3.jpg" class="rounded-circle" alt="user"
-                          width="50" /></span>
-                    </div>
-                    <div class="comment-text w-100">
-                      <h6 class="fw-medium">James Anderson</h6>
-                      <p class="mb-1 fs-2 text-muted">
-                        Lorem Ipsum is simply dummy text of the printing and
-                        type etting industry
-                      </p>
-                      <div class="comment-footer mt-2">
-                        <div class="d-flex align-items-center">
-                          <span class="
-                              badge
-                              bg-info-subtle
-                              text-info
 
-                            ">Pending</span>
-                          <span class="action-icons">
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-edit fs-5"></i></a>
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-check fs-5"></i></a>
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-heart fs-5"></i></a>
-                          </span>
-                        </div>
-                        <span class="
-                            text-muted
-                            ms-auto
-                            fw-normal
-                            fs-2
-                            d-block
-                            mt-2
-                            text-end
-                          ">April 14, 2025</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Comment Row -->
-                  <div class="d-flex flex-row comment-row border-bottom active p-3 gap-3">
-                    <div>
-                      <span><img src="../assets/images/profile/user-5.jpg" class="rounded-circle" alt="user"
-                          width="50" /></span>
-                    </div>
-                    <div class="comment-text active w-100">
-                      <h6 class="fw-medium">Michael Jorden</h6>
-                      <p class="mb-1 fs-2 text-muted">
-                        Lorem Ipsum is simply dummy text of the printing and
-                        type setting industry.
-                      </p>
-                      <div class="comment-footer mt-2">
-                        <div class="d-flex align-items-center">
-                          <span class="
-                              badge
-                              bg-success-subtle
-                              text-success
-
-                            ">Approved</span>
-                          <span class="action-icons active">
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-edit fs-5"></i></a>
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-circle-x fs-5"></i></a>
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-heart text-danger fs-5"></i></a>
-                          </span>
-                        </div>
-                        <span class="
-                            text-muted
-                            ms-auto
-                            fw-normal
-                            fs-2
-                            text-end
-                            mt-2
-                            d-block
-                          ">April 14, 2025</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Comment Row -->
-                  <div class="d-flex flex-row comment-row border-bottom p-3 gap-3">
-                    <div>
-                      <span><img src="../assets/images/profile/user-6.jpg" class="rounded-circle" alt="user"
-                          width="50" /></span>
-                    </div>
-                    <div class="comment-text w-100">
-                      <h6 class="fw-medium">Johnathan Doeting</h6>
-                      <p class="mb-1 fs-2 text-muted">
-                        Lorem Ipsum is simply dummy text of the printing and
-                        type setting industry.
-                      </p>
-                      <div class="comment-footer mt-2">
-                        <div class="d-flex align-items-center">
-                          <span class="
-                              badge
-                              bg-danger-subtle
-                              text-danger
-
-                            ">Rejected</span>
-                          <span class="action-icons">
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-edit fs-5"></i></a>
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-check fs-5"></i></a>
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-heart fs-5"></i></a>
-                          </span>
-                        </div>
-                        <span class="
-                            text-muted
-                            ms-auto
-                            fw-normal
-                            fs-2
-                            d-block
-                            mt-2
-                            text-end
-                          ">April 14, 2025</span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Comment Row -->
-                  <div class="d-flex flex-row comment-row p-3 gap-3">
-                    <div>
-                      <span><img src="../assets/images/profile/user-4.jpg" class="rounded-circle" alt="user"
-                          width="50" /></span>
-                    </div>
-                    <div class="comment-text w-100">
-                      <h6 class="fw-medium">James Anderson</h6>
-                      <p class="mb-1 fs-2 text-muted">
-                        Lorem Ipsum is simply dummy text of the printing and
-                        type setting industry.
-                      </p>
-                      <div class="comment-footer mt-2">
-                        <div class="d-flex align-items-center">
-                          <span class="
-                              badge
-                              bg-info-subtle
-                              text-info
-
-                            ">Pending</span>
-                          <span class="action-icons">
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-edit fs-5"></i></a>
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-check fs-5"></i></a>
-                            <a href="javascript:void(0)" class="ps-3"><i class="ti ti-heart fs-5"></i></a>
-                          </span>
-                        </div>
-                        <span class="
-                            text-muted
-                            ms-auto
-                            fw-normal
-                            fs-2
-                            d-block
-                            text-end
-                            mt-2
-                          ">April 14, 2025</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex align-items-center">
-                    <h4 class="card-title mb-0">Weather Report</h4>
-                    <select class="form-select w-auto ms-auto">
-                      <option selected="">Today</option>
-                      <option value="1">Weekly</option>
-                    </select>
-                  </div>
-                  <div class="d-flex align-items-center flex-row mt-4">
-                    <div class="p-2 display-5 text-primary">
-                      <i class="ti ti-cloud-snow"></i>
-                      <span>73<sup>°</sup></span>
-                    </div>
-                    <div class="p-2">
-                      <h3 class="mb-0">Saturday</h3>
-                      <small>Ahmedabad, India</small>
-                    </div>
-                  </div>
-                  <table class="table table-borderless">
-                    <tbody>
-                      <tr>
-                        <td>Wind</td>
-                        <td class="fw-medium">ESE 17 mph</td>
-                      </tr>
-                      <tr>
-                        <td>Humidity</td>
-                        <td class="fw-medium">83%</td>
-                      </tr>
-                      <tr>
-                        <td>Pressure</td>
-                        <td class="fw-medium">28.56 in</td>
-                      </tr>
-                      <tr>
-                        <td>Cloud Cover</td>
-                        <td class="fw-medium">78%</td>
-                      </tr>
-                      <tr>
-                        <td>Ceiling</td>
-                        <td class="fw-medium">25760 ft</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <hr />
-                  <ul class="list-unstyled row text-center city-weather-days mb-0">
-                    <li class="col">
-                      <i class="ti ti-sun-high fs-4"></i><span>09:30</span>
-                      <h3 class="mb-0 fs-6 lh-base">70<sup>°</sup></h3>
-                    </li>
-                    <li class="col">
-                      <i class="ti ti-cloud fs-4"></i><span>11:30</span>
-                      <h3 class="mb-0 fs-6 lh-base">72<sup>°</sup></h3>
-                    </li>
-                    <li class="col">
-                      <i class="ti ti-cloud-rain fs-4"></i><span>13:30</span>
-                      <h3 class="mb-0 fs-6 lh-base">75<sup>°</sup></h3>
-                    </li>
-                    <li class="col">
-                      <i class="ti ti-cloud-snow fs-4"></i><span>15:30</span>
-                      <h3 class="mb-0 fs-6 lh-base">76<sup>°</sup></h3>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
           </div>
           <div class="py-6 px-6 text-center">
             <p class="mb-0 fs-4">Design and Developed by Juan Castro</p>
           </div>
         </div>
       </div>
+
+      <div class="modal fade" id="modalCrearHistoria" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content p-4">
+            <form id="formCrearHistoria"  enctype="multipart/form-data">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Crear Nueva Historia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+              </div>
+              <div class="modal-body row g-3">
+
+                <input type="hidden" name="idtipo" value="3"> <!-- Ajusta el valor dinámicamente si es necesario -->
+
+                <div class="col-md-6">
+                  <label for="titulo" class="form-label">Título</label>
+                  <input type="text" class="form-control" name="titulo" >
+
+                </div>
+
+                <div class="col-md-6">
+                  <label for="estado" class="form-label">Estado</label>
+                  <select name="estado" class="form-select" >
+                    <option value="" selected disabled>--Seleccione--</option>
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                  </select>
+                </div>
+
+                <div class="col-12">
+                  <label for="contenido" class="form-label">Contenido</label>
+                  <textarea class="form-control" name="contenido" rows="3" ></textarea>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="fechainicial" class="form-label">Fecha y hora inicial</label>
+                  <input type="datetime-local" class="form-control" name="fechainicial" >
+                </div>
+
+                <div class="col-md-6">
+                  <label for="fechafinal" class="form-label">Fecha y hora final</label>
+                  <input type="datetime-local" class="form-control" name="fechafinal" >
+                </div>
+
+                <div class="col-12">
+                  <label for="imagenes" class="form-label">Imágenes (máx. 5)</label>
+                  <input type="file" name="imagenes[]" class="form-control" accept="image/*" multiple >
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+
 @endsection
 
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function() {
+        const tabla = $('#tablaPublicacionesHistoria').DataTable({
+            ajax: '{{ route("publicaciones.historias") }}',
+            columns: [
+                { data: 'titulo' },
+                { data: 'contenido' },
+                { data: 'fecha_inicial' },
+                { data: 'fecha_final' },
+                {
+                    data: 'estado',
+                    render: function(data) {
+                        let clase = data === 'Activo' ? 'bg-success' : 'bg-danger';
+                        return `<span class="badge ${clase}">${data}</span>`;
+                    }
+                },
+                {
+                    data: 'id',
+                    orderable: false,
+                    searchable: false,
+                    render: function(data) {
+
+
+                        return `
+                            <div class="d-flex gap-2 justify-content-end">
+                                <a href="/admin/publicaciones/${data}/edit" class="btn btn-sm btn-warning text-white">
+                                    <i class="ti ti-pencil"></i>
+                                </a>
+                                <button class="btn btn-sm btn-danger btn-eliminar" data-id="${data}">
+                                    <i class="ti ti-trash"></i>
+                                </button>
+                            </div>
+                        `;
+                    }
+                }
+            ],
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
+            }
+        });
+
+        // Evento con SweetAlert2
+        $('#tablaPublicacionesHistoria').on('click', '.btn-eliminar', function() {
+            const id = $(this).data('id');
+
+            Swal.fire({
+                title: '¿Quieres Cambiar el Estado Historia?',
+                text: "Esta acción cambiara para que no se muestre.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, Cambialo',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `{{ route('historias.destroy', ':id') }}`.replace(':id', id),
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(response) {
+                            tabla.ajax.reload();
+                            Swal.fire(
+                            '¡Actualizado!',
+                            `El estado de la Historia fue cambiado a "${response.nuevo_estado}".`,
+                            'success'
+                            );
+                        },
+                        error: function() {
+                            Swal.fire(
+                                'Error',
+                                'No se pudo eliminar la publicación de Historia.',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+    $('#formCrearHistoria').submit(function(e) {
+    e.preventDefault();
+
+    const form = $(this)[0];
+
+    const formData = new FormData(form);
+
+    Swal.fire({
+        title: 'Creando evento...',
+        didOpen: () => Swal.showLoading(),
+        allowOutsideClick: false
+    });
+
+    $.ajax({
+        url: '{{ route('historias.store') }}',
+        method: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(res) {
+            console.log(res)
+            $('#modalCrearHistoria').modal('hide');
+            $('#formCrearHistoria')[0].reset();
+            $('#tablaPublicacionesHistoria').DataTable().ajax.reload();
+
+            Swal.fire('¡Éxito!', 'La Historia ha sido creada correctamente.', 'success');
+        },
+        error: function(err) {
+            let errores = err.responseJSON.errors;
+
+        // Limpia clases y mensajes anteriores
+        $('#formCrearHistoria .form-control, #formCrearHistoria .form-select, #formCrearHistoria textarea').removeClass('is-invalid');
+        $('#formCrearHistoria .invalid-feedback').remove();
+
+        // Variable para fallback general
+        let mensajeGeneral = '';
+
+        // Recorremos los errores para mostrarlos
+        for (const campo in errores) {
+        const input = $(`[name="${campo}"]`);
+
+        // Agregamos clase de error
+        input.addClass('is-invalid');
+
+        // Mostramos mensaje debajo del input
+        if (input.length > 0) {
+        const mensaje = `<div class="invalid-feedback">${errores[campo][0]}</div>`;
+        input.after(mensaje);
+        }
+
+        // También acumulamos para el mensaje general (por si quieres mostrar en SweetAlert2 también)
+        mensajeGeneral += `<p><strong>${campo}:</strong> ${errores[campo][0]}</p>`;
+        }
+
+        Swal.fire({
+            title: 'Errores de validación',
+            html: mensajeGeneral,
+            icon: 'error'
+        });
+        }
+
+    });
+});
+
+    </script>
+
+
+@endsection

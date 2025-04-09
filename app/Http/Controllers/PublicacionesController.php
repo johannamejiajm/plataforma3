@@ -84,6 +84,8 @@ class PublicacionesController extends Controller
     public function store(Request $request)
     {
         //
+
+        $typePublic = Str::after($request->getPathInfo(), '/admin/');
         $errors = $request->validate([
             'titulo' => 'required|string',
             'contenido' => 'required|string',
@@ -122,11 +124,11 @@ class PublicacionesController extends Controller
                 $nombreHash = Str::uuid() . '.' . $extension;
 
                 // Guarda en storage/app/public/publicacionfotos
-                $ruta = $imagen->storeAs('publicaciones/eventos', $nombreHash, 'public');
+                $ruta = $imagen->storeAs('publicaciones/' . $typePublic, $nombreHash, 'public');
 
                 DB::table('publicacionfotos')->insert([
                     'idpublicaciones' => $publicacion->id,
-                    'imagen' => 'storage/publicaciones/eventos/' . $nombreHash, // Para usarlo fácilmente en las vistas
+                    'imagen' => 'storage/publicaciones/' . $typePublic . "/" . $nombreHash, // Para usarlo fácilmente en las vistas
                     'created_at' => now(),
                     'updated_at' => now()
                 ]);

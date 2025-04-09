@@ -304,7 +304,7 @@
 <script>
     $(document).ready(function() {
         const tabla = $('#tablaPublicaciones').DataTable({
-            ajax: '{{ route("publicaciones.data") }}',
+            ajax: '{{ route("publicaciones.eventos") }}',
             columns: [
                 { data: 'titulo' },
                 { data: 'contenido' },
