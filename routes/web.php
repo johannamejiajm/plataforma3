@@ -1,19 +1,13 @@
 <?php
 
-<<<<<<< HEAD
 use App\Http\Controllers\InformacioninstitucionalController;
-=======
 use App\Http\Controllers\DonacionesController;
->>>>>>> 3ebe4846d320d8c6a99103fd9398f89f74c4e21e
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\PublicacionesController;
-<<<<<<< HEAD
 
 
-=======
 use App\Http\Controllers\ArtistasController;
->>>>>>> 3ebe4846d320d8c6a99103fd9398f89f74c4e21e
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -49,12 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-<<<<<<< HEAD
     Route::get('/quienessomos', [InformacioninstitucionalController::class, 'index'])->name('quienessomos.index');
     Route::get('/editquienessomos/{id}/edit', [InformacioninstitucionalController::class, 'edit'])->name('quienessomos.edit');
     Route::put('/quienessomos/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
-=======
->>>>>>> 3ebe4846d320d8c6a99103fd9398f89f74c4e21e
 
     Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
