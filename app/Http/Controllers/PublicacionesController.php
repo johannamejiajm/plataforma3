@@ -149,6 +149,23 @@ class PublicacionesController extends Controller
     public function show(Publicaciones $publicaciones)
     {
         //
+        $publicaciones->load('fotos');
+
+        return response()->json([
+            'id' => $publicaciones->id,
+            'idtipo' => $publicaciones->idtipo,
+            'titulo' => $publicaciones->titulo,
+            'contenido' => $publicaciones->contenido,
+            'fechainicial' => $publicaciones->fechainicial ? Carbon::parse($publicaciones->fechainicial)->format('Y-m-d\TH:i') : null,
+            'fechafinal' => $publicaciones->fechafinal ? Carbon::parse($publicaciones->fechafinal)->format('Y-m-d\TH:i') : null,
+            'estado' => $publicaciones->estado,
+            'imagenes' => $publicaciones->fotos->map(function ($foto) {
+                return [
+                    'id' => $foto->id,
+                    'ruta' => $foto->imagen
+                ];
+            }),
+        ]);
     }
 
     /**
@@ -164,9 +181,9 @@ class PublicacionesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Publicaciones $publicaciones, $id)
+    public function update(Request $request, Publicaciones $publicaciones)
     {
-        $publicacionActualizar = Publicaciones::find($id);
+      /*   $publicacionActualizar = Publicaciones::find($id);
         $publicacionActualizar->titulo = $request->inputtitulo;
         $publicacionActualizar->contenido = $request->inputcontenido;
         $publicacionActualizar->fechainicial = $request->inputfechainicial;
@@ -174,7 +191,79 @@ class PublicacionesController extends Controller
         $publicacionActualizar->estado = $request->inputestado;
         $publicacionActualizar->save();
 
-        return redirect('publicaciones');
+        return redirect('publicaciones'); */
+
+        // Validar datos del formulario
+
+    $errors = $request->validate([
+        'titulo' => 'required|string|max:255',
+        'contenido' => 'required|string',
+        'idtipo' => 'required|exists:tipopublicaciones,id',
+        'fechainicial' => 'required|date',
+        'fechafinal' => 'required|date|after_or_equal:fechainicial',
+        'estado' => 'required|in:0,1',
+        'imagenes.*' => 'image|mimes:jpeg,png,jpg|max:2048'
+    ]);
+
+     $typePublic = Str::after($request->getPathInfo(), '/admin/');
+
+     DB::beginTransaction();
+
+     try {
+         // Actualizar los datos principales
+         $publicaciones->update([
+             'titulo' => $request->titulo,
+             'idtipo' => $request->idtipo,
+             'contenido' => $request->contenido,
+             'fechainicial' => $request->fechainicial,
+             'fechafinal' => $request->fechafinal,
+             'estado' => $request->estado
+         ]);
+
+
+
+            // Guardar nuevas imágenes
+            if ($request->hasFile('imagenes')) {
+
+                // Eliminar imágenes anteriores
+            $imagenesAnteriores = DB::table('publicacionfotos')
+            ->where('idpublicaciones', $publicaciones->id)
+            ->get();
+
+            foreach ($imagenesAnteriores as $img) {
+                $rutaFisica = public_path($img->imagen);
+                if (file_exists($rutaFisica)) {
+                    unlink($rutaFisica); // Elimina del sistema de archivos
+                }
+            }
+
+            // Elimina los registros de la base de datos
+             DB::table('publicacionfotos')
+                ->where('idpublicaciones', $publicaciones->id)
+                ->delete();
+
+             foreach ($request->file('imagenes') as $imagen) {
+                 $extension = $imagen->getClientOriginalExtension();
+                 $nombreHash = Str::uuid() . '.' . $extension;
+
+                 $ruta = $imagen->storeAs('publicaciones/' . $typePublic, $nombreHash, 'public');
+
+                 DB::table('publicacionfotos')->insert([
+                     'idpublicaciones' => $publicaciones->id,
+                     'imagen' => 'storage/publicaciones/' . $typePublic . '/' . $nombreHash,
+                     'created_at' => now(),
+                     'updated_at' => now()
+                 ]);
+             }
+         }
+
+         DB::commit();
+         return response()->json(['success' => true, 'message' => 'Evento actualizado correctamente.']);
+
+     } catch (\Exception $e) {
+         DB::rollBack();
+         return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+     }
 
     }
 

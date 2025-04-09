@@ -88,128 +88,6 @@
                     </div>
 
                   </div>
-                 {{--  <div class="table-responsive mt-4">
-                    <table class="table mb-0 text-nowrap varient-table align-middle fs-3">
-                      <thead>
-                        <tr>
-                          <th scope="col" class="px-0 text-muted">
-                            Assigned
-                          </th>
-                          <th scope="col" class="px-0 text-muted">Name</th>
-                          <th scope="col" class="px-0 text-muted">
-                            Priority
-                          </th>
-                          <th scope="col" class="px-0 text-muted text-end">
-                            Budget
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td class="px-0">
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/profile/user-3.jpg" class="rounded-circle" width="40"
-                                alt="flexy" />
-                              <div class="ms-3">
-                                <h6 class="mb-0 fw-bolder">Sunil Joshi</h6>
-                                <span class="text-muted">Web Designer</span>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="px-0">Elite Admin</td>
-                          <td class="px-0">
-                            <span class="badge bg-info">Low</span>
-                          </td>
-                          <td class="px-0 text-dark fw-medium text-end">
-                            $3.9K
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="px-0">
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/profile/user-5.jpg" class="rounded-circle" width="40"
-                                alt="flexy" />
-                              <div class="ms-3">
-                                <h6 class="mb-0 fw-bolder">
-                                  Andrew McDownland
-                                </h6>
-                                <span class="text-muted">Project Manager</span>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="px-0">Real Homes WP Theme</td>
-                          <td class="px-0">
-                            <span class="badge text-bg-primary">Medium</span>
-                          </td>
-                          <td class="px-0 text-dark fw-medium text-end">
-                            $24.5K
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="px-0">
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/profile/user-6.jpg" class="rounded-circle" width="40"
-                                alt="flexy" />
-                              <div class="ms-3">
-                                <h6 class="mb-0 fw-bolder">
-                                  Christopher Jamil
-                                </h6>
-                                <span class="text-muted">SEO Manager</span>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="px-0">MedicalPro WP Theme</td>
-                          <td class="px-0">
-                            <span class="badge bg-warning">Hight</span>
-                          </td>
-                          <td class="px-0 text-dark fw-medium text-end">
-                            $12.8K
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="px-0">
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/profile/user-7.jpg" class="rounded-circle" width="40"
-                                alt="flexy" />
-                              <div class="ms-3">
-                                <h6 class="mb-0 fw-bolder">Nirav Joshi</h6>
-                                <span class="text-muted">Frontend Engineer</span>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="px-0">Hosting Press HTML</td>
-                          <td class="px-0">
-                            <span class="badge bg-danger">Low</span>
-                          </td>
-                          <td class="px-0 text-dark fw-medium text-end">
-                            $2.4K
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="px-0">
-                            <div class="d-flex align-items-center">
-                              <img src="../assets/images/profile/user-8.jpg" class="rounded-circle" width="40"
-                                alt="flexy" />
-                              <div class="ms-3">
-                                <h6 class="mb-0 fw-bolder">Micheal Doe</h6>
-                                <span class="text-muted">Content Writer</span>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="px-0">Helping Hands WP Theme</td>
-                          <td class="px-0">
-                            <span class="badge bg-success">Low</span>
-                          </td>
-                          <td class="px-0 text-dark fw-medium text-end">
-                            $9.3K
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div> --}}
-
-
-
 
                   <div class="table-responsive mt-4">
                     <table class="table table-striped table-bordered w-100" id="tablaPublicacionesHistoria">
@@ -295,6 +173,66 @@
         </div>
       </div>
 
+      <div class="modal fade" id="modalEditarHistoria" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content p-4">
+            <form id="formEditarHistoria" enctype="multipart/form-data">
+              <input type="hidden" name="id" id="editar_id">
+              <div class="modal-header">
+                <h5 class="modal-title">Editar Evento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+              </div>
+              <div class="modal-body row g-3">
+                <input type="hidden" name="idtipo" value="3"> <!-- Ajusta el valor dinámicamente si es necesario -->
+
+                <div class="col-md-6">
+                  <label for="editar_titulo" class="form-label">Título</label>
+                  <input type="text" class="form-control" name="titulo" id="editar_titulo">
+                </div>
+
+                <div class="col-md-6">
+                  <label for="editar_estado" class="form-label">Estado</label>
+                  <select name="estado" class="form-select" id="editar_estado">
+                    <option value="" selected disabled>--Seleccione--</option>
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                  </select>
+                </div>
+
+                <div class="col-12">
+                  <label for="editar_contenido" class="form-label">Contenido</label>
+                  <textarea class="form-control" name="contenido" rows="3" id="editar_contenido"></textarea>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="editar_fechainicial" class="form-label">Fecha y hora inicial</label>
+                  <input type="datetime-local" class="form-control" name="fechainicial" id="editar_fechainicial">
+                </div>
+
+                <div class="col-md-6">
+                  <label for="editar_fechafinal" class="form-label">Fecha y hora final</label>
+                  <input type="datetime-local" class="form-control" name="fechafinal" id="editar_fechafinal">
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label">Imágenes actuales:</label>
+                  <div id="imagenes_actuales" class="d-flex gap-2 flex-wrap"></div>
+                </div>
+
+                <div class="col-12">
+                  <label for="editar_imagenes" class="form-label">Reemplazar Imágenes (máx. 5)</label>
+                  <input type="file" name="imagenes[]" class="form-control" accept="image/*" multiple id="editar_imagenes">
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Actualizar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
 
 
 @endsection
@@ -326,9 +264,9 @@
 
                         return `
                             <div class="d-flex gap-2 justify-content-end">
-                                <a href="/admin/publicaciones/${data}/edit" class="btn btn-sm btn-warning text-white">
+                                <button class="btn btn-sm btn-warning text-white btn-editar" data-id="${data}">
                                     <i class="ti ti-pencil"></i>
-                                </a>
+                                </button>
                                 <button class="btn btn-sm btn-danger btn-eliminar" data-id="${data}">
                                     <i class="ti ti-trash"></i>
                                 </button>
@@ -392,7 +330,7 @@
     const formData = new FormData(form);
 
     Swal.fire({
-        title: 'Creando evento...',
+        title: 'Creando Hstoria...',
         didOpen: () => Swal.showLoading(),
         allowOutsideClick: false
     });
@@ -450,6 +388,112 @@
 
     });
 });
+
+
+$('#tablaPublicacionesHistoria').on('click', '.btn-editar', function() {
+    const id = $(this).data('id');
+
+    $.get(`{{ route('historias.show', ':id') }}`.replace(':id', id), function(data) {
+
+        $('#formEditarHistoria .form-control, #formEditarHistoria .form-select, #formEditarHistoria textarea').removeClass('is-invalid');
+        $('#formEditarHistoria .invalid-feedback').remove();
+
+        $('#editar_id').val(data.id).trigger('change');
+        $('#editar_id').attr('value', data.id);
+
+        $('#editar_titulo').val(data.titulo).trigger('change');
+        $('#editar_titulo').attr('value', data.titulo);
+
+        $('#editar_contenido').val(data.contenido).trigger('change');
+        $('#editar_contenido').attr('value', data.contenido);
+
+        $('#editar_fechainicial').val(data.fechainicial).trigger('change');
+        $('#editar_fechainicial').attr('value', data.fechainicial);
+
+        $('#editar_fechafinal').val(data.fechafinal).trigger('change');
+        $('#editar_fechafinal').attr('value', data.fechafinal);
+
+        $('#editar_estado').val(data.estado).trigger('change');
+        $('#editar_estado').attr('value', data.estado);
+
+        // Limpiar y mostrar imágenes actuales
+        const contenedor = $('#imagenes_actuales');
+        contenedor.empty();
+        data.imagenes.forEach(img => {
+            contenedor.append(`
+                <div class="position-relative">
+                    <img src="/${img.ruta}" class="img-thumbnail" style="width: 100px; height: 100px;">
+                </div>
+            `);
+        });
+
+        $('#modalEditarHistoria').modal('show');
+    });
+});
+
+$('#formEditarHistoria').submit(function(e) {
+    e.preventDefault();
+
+    const id = $('#editar_id').val();
+    const form = $(this)[0];
+    const formData = new FormData(form);
+
+    Swal.fire({
+        title: 'Actualizando evento...',
+        didOpen: () => Swal.showLoading(),
+        allowOutsideClick: false
+    });
+
+    $.ajax({
+        url: `{{ route('historias.update', ':id') }}`.replace(':id', id),
+        method: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            'X-HTTP-Method-Override': 'PUT' // Laravel espera PUT para update
+        },
+        success: function(res) {
+            $('#modalEditarHistoria').modal('hide');
+            $('#formEditarHistoria')[0].reset();
+            $('#tablaPublicacionesHistoria').DataTable().ajax.reload();
+
+            Swal.fire('¡Actualizado!', 'La Historia ha sido modificado correctamente.', 'success');
+        },
+        error: function(err) {
+            let errores = err.responseJSON.errors;
+
+            // Limpia clases y mensajes anteriores
+            $('#formEditarHistoria .form-control, #formEditarHistoria .form-select, #formEditarHistoria textarea').removeClass('is-invalid');
+            $('#formEditarHistoria .invalid-feedback').remove();
+
+            // Variable para fallback general
+            let mensajeGeneral = '';
+
+            // Recorremos los errores para mostrarlos
+            for (const campo in errores) {
+                const input = $(`#formEditarHistoria [name="${campo}"]`);
+
+                input.addClass('is-invalid');
+
+                if (input.length > 0) {
+                    const mensaje = `<div class="invalid-feedback">${errores[campo][0]}</div>`;
+                    input.after(mensaje);
+                }
+
+                mensajeGeneral += `<p><strong>${campo}:</strong> ${errores[campo][0]}</p>`;
+            }
+
+            Swal.fire({
+                title: 'Errores de validación',
+                html: mensajeGeneral,
+                icon: 'error'
+            });
+        }
+    });
+});
+
 
     </script>
 
