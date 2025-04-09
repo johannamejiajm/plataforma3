@@ -205,7 +205,8 @@ class PublicacionesController extends Controller
         'imagenes.*' => 'image|mimes:jpeg,png,jpg|max:2048'
     ]);
 
-     $typePublic = Str::after($request->getPathInfo(), '/admin/');
+    /*  $typePublic = Str::after($request->getPathInfo(), '/admin/'); */
+        $typePublic = $request->segment(2);
 
      DB::beginTransaction();
 
