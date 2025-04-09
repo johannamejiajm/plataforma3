@@ -65,21 +65,14 @@
   <div class="container">
     <h2>Misión</h2>
     <p>
-      Somos una Fundación que implementa un modelo de intervención 
-      integral para promover la educación deportiva de calidad con apoyo 
-      privado, para niños y niñas en comunidades menos favorecidas, 
-      desplazadas y en situación de vulnerabilidad en el municipio. 
-      La escuela es vista como un centro de desarrollo comunitario.
+    Somos una Fundación que implementa un modelo de intervención integral para promover la educación Deportiva de calidad con apoyo privado, para niños y niñas en comunidades menos favorecidas desplazadas y en situación de vulnerabilidad en el municipio, donde la escuela es vista como un centro de desarrollo comunitario
     </p>
   </div>
 
   <div class="container">
     <h2>Visión</h2>
     <p>
-      Para el 2020 la fundación PACHO’S CLUB debe ser reconocida 
-      como una de las principales entidades sociales de la región Cesar 
-      que promueva la distribución y utilización de fondos para caridad 
-      con el solo propósito de contribuir al espíritu comunitario.
+    Para el 2029 la fundación PACHO’S CLUB debe ser reconocida como una de las principales entidades sociales de la región Cesar que promueva la distribución y utilización de fondos para caridad con el sólo propósito de contribuir el espíritu comunitario.
     </p>
   </div>
 
@@ -87,10 +80,12 @@
     <h2>Valores</h2>
     <ul>
       <li>Solidaridad</li>
-      <li>Compromiso</li>
+      <li>Compromiso Social</li>
+      <li>Equidad</li>
       <li>Transparencia</li>
-      <li>Innovación</li>
-      <li>Empatía</li>
+      <li>Espiritu Comunitario</li>
+      <li>Educacion Transformadora</li>
+      <li>Innovacion Social</li>
     </ul>
   </div>
 @endsection
