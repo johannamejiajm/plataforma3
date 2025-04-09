@@ -1,238 +1,383 @@
+@extends('publico.plantilla.plantilla')
+
+@section('title')
+  Historia
+@endsection
+
+
+@section('tituloprincipal')
+  <H1 class="text-center">Historia de PACHO'S CLUB</H1>
+@endsection
+
+@section('contenido')
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-bs-theme="light" data-color-theme="Blue_Theme" data-layout="vertical">
-
+<html lang="es">
 <head>
-  <!-- Required meta tags -->
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Favicon icon-->
-  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
-
-  <!-- Core Css -->
-  <link rel="stylesheet" href="../assets/css/styles.css" />
-
-  <title>Flexy Bootstrap Admin</title>
-  <!-- Owl Carousel  -->
-  <link rel="stylesheet" href="../assets/libs/owl.carousel/dist/assets/owl.carousel.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8">
+  <title>Historia - Administración Deportiva</title>
+  <link rel="stylesheet" href="estilos.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-
-
-  <!-- Preloader -->
-  <div class="preloader">
-    <img src="../assets/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
-  </div>
-   <!-- ------------------------------------- -->
-  <!-- Header Start -->
-  <!-- ------------------------------------- -->
-  <header class="header-fp p-0 w-100">
-    <nav class="navbar navbar-expand-lg bg-primary-subtle py-2 py-lg-10">
-      <div class="custom-container d-flex align-items-center justify-content-between">
-        <a href="../main/frontend-landingpage.html" class="text-nowrap logo-img">
-          <img src="../assets/images/logos/dark-logo.svg" class="dark-logo" alt="Logo-Dark" />
-          <img src="../assets/images/logos/light-logo.svg" class="light-logo" alt="Logo-light" />
-        </a>
-        <button class="navbar-toggler border-0 p-0 shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mx-auto mb-2 gap-xl-7 gap-8 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Quienes somos</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary d-flex gap-2" href="#">Historia
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Publicaciones</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Eventos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Inscripciones</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Artistas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Donaciones</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Contacto</a>
-            </li>
-          </ul>
-          <div>
-            <a href="#" class="btn btn-primary py-8 px-9">Admin</a>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
-  <!-- ------------------------------------- -->
-  <!-- Header End -->
-  <!-- ------------------------------------- -->
-
-  <!-- ------------------------------------- -->
-  <!-- Responsive Sidebar Start -->
-  <!-- ------------------------------------- -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-header">
-      <a href="#">
-        <img src="../assets/images/logos/dark-logo.svg" alt="Logo-light" />
-      </a>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <ul class="list-unstyled ps-0">
-        <li class="mb-1">
-          <a href="#" class="px-0 fs-4 d-block text-dark link-primary w-100 py-2">
-            Inicio
-          </a>
-        </li>
-
-        <li class="mb-1">
-          <a href="#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
-            Quienes Somos
-          </a>
-        </li>
-
-        <li class="mb-1">
-          <a href="#" class="px-0 fs-4 d-flex align-items-center justify-content-start gap-2 w-100 py-2 text-dark link-primary">
-            Historia
-          </a>
-        </li>
-
-        <li class="mb-1">
-          <a href="#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
-            Publicaciones
-          </a>
-        </li>
-
-        <li class="mb-1">
-          <a href="#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
-            Eventos
-          </a>
-        </li>
-
-        <li class="mb-1">
-          <a href=".#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
-            Inscripciones
-          </a>
-        </li>
-        <li class="mb-1">
-          <a href=".#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
-            Artistas
-          </a>
-        </li>
-        <li class="mb-1">
-          <a href=".#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
-            Donación
-          </a>
-        </li>
-        <li class="mb-1">
-          <a href=".#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
-            Contacto
-          </a>
-        </li>
-        <li class="mt-3">
-          <a href="#" class="btn btn-primary w-100">Admin</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <!-- ------------------------------------- -->
-  <!-- Responsive Sidebar End -->
-  <!-- ------------------------------------- -->
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body pt-0">
-          <iframe width="100%" height="500" src="https://www.youtube.com/embed/wJkl3P5HnZw?si=n4EJ7JztrSZ3gWsc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
+  
+  <div class="hero">
+    <div class="overlay">
+      <h1>Historia de la Administración Deportiva</h1>
     </div>
   </div>
 
-  <div class="main-wrapper overflow-hidden">
-    <!-- ------------------------------------- -->
-    <!-- banner Start -->
-    <!-- ------------------------------------- -->
-    <Section class="bg-primary-subtle pt-7 py-lg-0 py-7">
-      <div class="custom-container">
-        <div class="row justify-content-center pt-lg-5 mb-4">
-          <div class="col-lg-8">
-            <h1 class="text-link-color fw-bolder text-center fs-13 mb-0 pt-lg-2">
-              PACHOS CLUB
-            </h1>
-            <br> <h2 class="text-center text-primary fw-bolder fs-10 mb-0 pt-lg-2">FUNDACIÓN</h2>
-          </div>
-        </div>
-        <div class="row align-items-end mb-3">
-          <div class="col-lg-6">
-            <div class="d-flex justify-content-center align-items-center gap-9">
+  <div class="contenedor">
+    <div class="contenido">
+      <h2>Historia sec 1</h2>
+      <p>
+        La administración deportiva ha existido como actividad desde la época de los pobladores primitivos, pasando por la organización de las olimpiadas de los antiguos griegos, hasta la administración moderna de organizaciones y empresas deportivas del siglo XXI, lo que muestra la importancia que ha tenido el deporte y las actividades físicas desde la prehistoria del hombre.
+      </p>
+      <p>
+        Sin embargo, en esta época, la administración deportiva no se desarrollaba tan rápido como las administraciones de otras ramas económicas como agricultura, ganadería, pesca y otros sectores de producción industrial, tal vez, porque las prácticas deportivas y de esparcimiento las relacionaban con finalidades caritativas para el ocio o eran solo pasatiempos y no la administración con trabajo y productividad.
+      </p>
+      <p>
+        Gumbertich, 2006, dice que desde las olimpiadas de 1984, en Los Ángeles, y la de 1988, en Seúl se marcó un claro giro hacia una nueva realidad económica de las olimpiadas y los demás deportes de competición. Es así como nace la idea de relacionar a la administración deportiva con el trabajo y la economía.
+      </p>
+      <p>
+        Los roles de los Administradores Deportivos cada vez más vienen evolucionando paralelamente al crecimiento de los eventos deportivos, clubes, ligas, federaciones, organismos internacionales y empresas del sector, lo que obliga a una formación más profesionalizada y especializada.
+      </p>
+    </div>
+    <div class="contenedor">
+      <h2 class="text-center mb-4">Galería de Imágenes</h2>
+
+        <div id="carruselImagenes" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/Imagen10.jpg')}}" class="d-block w-100" alt="Imagen 1">
+            </div>
+            <div class="carousel-item">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/Imagen11.jpg')}}" class="d-block w-100" alt="Imagen 2">
+            </div>
+            <div class="carousel-item">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen15.jpg')}}" class="d-block w-100" alt="Imagen 3">
             </div>
           </div>
-         
-        </div>
-        
-      </div>
-    </Section>
-    <!-- ------------------------------------- -->
-    <!-- banner End -->
-    <!-- ------------------------------------- -->
-
-  </div>
-
-  <!-- ------------------------------------- -->
-  <!-- Footer Start -->
-  <!-- ------------------------------------- -->
-  <footer>
-    <div class="container-fluid">
-      <div class="d-flex justify-content-between py-7 flex-md-nowrap flex-wrap gap-sm-0 gap-3">
-        <div class="d-flex gap-3 align-items-center">
-          <img src="../assets/images/logos/favicon.png" alt="icon">
-          <p class="fs-4 mb-0">All rights reserved by flexy. </p>
-        </div>
-        <div>
-          <p class="mb-0">Produced by <a target="_blank" href="https://www.wrappixel.com/" class="text-primary link-primary">Wrappixel</a>.</p>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carruselImagenes" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carruselImagenes" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
         </div>
       </div>
     </div>
-  </footer>
-  <!-- ------------------------------------- -->
-  <!-- Footer End -->
-  <!-- ------------------------------------- -->
+  </div>
 
-  <!-- Scroll Top -->
-  <a href="javascript:void(0)" class="top-btn btn btn-primary d-flex align-items-center justify-content-center round-54 p-0 rounded-circle">
-    <i class="ti ti-arrow-up fs-7"></i>
-  </a>
+ 
 
-  <script src="../assets/js/vendor.min.js"></script>
-  <!-- Import Js Files -->
-  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
-  <script src="../assets/js/theme/app.init.js"></script>
-  <script src="../assets/js/theme/theme.js"></script>
-  <script src="../assets/js/theme/app.min.js"></script>
+  
+  <div class="contenedor">
+    <div class="contenido">
+      <h2>Historia sec 2 Celebración Día del Niño </h2>
+      <p>
+        La administración deportiva ha existido como actividad desde la época de los pobladores primitivos, pasando por la organización de las olimpiadas de los antiguos griegos, hasta la administración moderna de organizaciones y empresas deportivas del siglo XXI, lo que muestra la importancia que ha tenido el deporte y las actividades físicas desde la prehistoria del hombre.
+      </p>
+      <p>
+        Sin embargo, en esta época, la administración deportiva no se desarrollaba tan rápido como las administraciones de otras ramas económicas como agricultura, ganadería, pesca y otros sectores de producción industrial, tal vez, porque las prácticas deportivas y de esparcimiento las relacionaban con finalidades caritativas para el ocio o eran solo pasatiempos y no la administración con trabajo y productividad.
+      </p>
+      <p>
+        Gumbertich, 2006, dice que desde las olimpiadas de 1984, en Los Ángeles, y la de 1988, en Seúl se marcó un claro giro hacia una nueva realidad económica de las olimpiadas y los demás deportes de competición. Es así como nace la idea de relacionar a la administración deportiva con el trabajo y la economía.
+      </p>
+      <p>
+        Los roles de los Administradores Deportivos cada vez más vienen evolucionando paralelamente al crecimiento de los eventos deportivos, clubes, ligas, federaciones, organismos internacionales y empresas del sector, lo que obliga a una formación más profesionalizada y especializada.
+      </p>
+    </div>
 
-  <!-- solar icons -->
-  <script src="../assets/libs/owl.carousel/dist/owl.carousel.min.js"></script>
-  <script src="../assets/js/frontend-landingpage/homepage.js"></script>
+    <div class="contenedor">
+      <h2 class="text-center mb-4">Galería de Imágenes</h2>
+
+        <div id="carruselImagenes2" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/Imagen6.jpg')}}" class="d-block w-100" alt="Imagen 4">
+            </div>
+            <div class="carousel-item">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen14.jpg')}}" class="d-block w-100" alt="Imagen 5">
+            </div>
+            <div class="carousel-item">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen15.jpg')}}" class="d-block w-100" alt="Imagen 6">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carruselImagenes2" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carruselImagenes2" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="contenedor">
+    <div class="contenido">
+      <h2>Historia sec 3 Apoyo a los Abuelos del Ancianito </h2>
+      <p>
+        La administración deportiva ha existido como actividad desde la época de los pobladores primitivos, pasando por la organización de las olimpiadas de los antiguos griegos, hasta la administración moderna de organizaciones y empresas deportivas del siglo XXI, lo que muestra la importancia que ha tenido el deporte y las actividades físicas desde la prehistoria del hombre.
+      </p>
+      <p>
+        Sin embargo, en esta época, la administración deportiva no se desarrollaba tan rápido como las administraciones de otras ramas económicas como agricultura, ganadería, pesca y otros sectores de producción industrial, tal vez, porque las prácticas deportivas y de esparcimiento las relacionaban con finalidades caritativas para el ocio o eran solo pasatiempos y no la administración con trabajo y productividad.
+      </p>
+      <p>
+        Gumbertich, 2006, dice que desde las olimpiadas de 1984, en Los Ángeles, y la de 1988, en Seúl se marcó un claro giro hacia una nueva realidad económica de las olimpiadas y los demás deportes de competición. Es así como nace la idea de relacionar a la administración deportiva con el trabajo y la economía.
+      </p>
+      <p>
+        Los roles de los Administradores Deportivos cada vez más vienen evolucionando paralelamente al crecimiento de los eventos deportivos, clubes, ligas, federaciones, organismos internacionales y empresas del sector, lo que obliga a una formación más profesionalizada y especializada.
+      </p>
+    </div>
+    <div class="contenedor">
+      <h2 class="text-center mb-4">Galería de Imágenes</h2>
+
+        <div id="carruselImagenes3" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen13.jpg')}}" class="d-block w-100" alt="Imagen 1">
+            </div>
+            <div class="carousel-item">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen14.jpg')}}" class="d-block w-100" alt="Imagen 2">
+            </div>
+            <div class="carousel-item">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen15.jpg')}}" class="d-block w-100" alt="Imagen 3">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carruselImagenes3" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carruselImagenes3" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+
+  <div class="contenedor">
+    <div class="contenido">
+      <h2>Historia sec 4 Apoyo a los Artistas de la Región </h2>
+      <p>
+        La administración deportiva ha existido como actividad desde la época de los pobladores primitivos, pasando por la organización de las olimpiadas de los antiguos griegos, hasta la administración moderna de organizaciones y empresas deportivas del siglo XXI, lo que muestra la importancia que ha tenido el deporte y las actividades físicas desde la prehistoria del hombre.
+      </p>
+      <p>
+        Sin embargo, en esta época, la administración deportiva no se desarrollaba tan rápido como las administraciones de otras ramas económicas como agricultura, ganadería, pesca y otros sectores de producción industrial, tal vez, porque las prácticas deportivas y de esparcimiento las relacionaban con finalidades caritativas para el ocio o eran solo pasatiempos y no la administración con trabajo y productividad.
+      </p>
+      <p>
+        Gumbertich, 2006, dice que desde las olimpiadas de 1984, en Los Ángeles, y la de 1988, en Seúl se marcó un claro giro hacia una nueva realidad económica de las olimpiadas y los demás deportes de competición. Es así como nace la idea de relacionar a la administración deportiva con el trabajo y la economía.
+      </p>
+      <p>
+        Los roles de los Administradores Deportivos cada vez más vienen evolucionando paralelamente al crecimiento de los eventos deportivos, clubes, ligas, federaciones, organismos internacionales y empresas del sector, lo que obliga a una formación más profesionalizada y especializada.
+      </p>
+    
+    </div>
+    <div class="contenedor">
+      <h2 class="text-center mb-4">Galería de Imágenes</h2>
+
+        <div id="carruselImagenes4" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen13.jpg')}}" class="d-block w-100" alt="Imagen 1">
+            </div>
+            <div class="carousel-item">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen14.jpg')}}" class="d-block w-100" alt="Imagen 2">
+            </div>
+            <div class="carousel-item">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen15.jpg')}}" class="d-block w-100" alt="Imagen 3">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carruselImagenes4" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carruselImagenes4" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  
+    
+ 
+    
+  
+  <div class="contenedor">
+    <div class="contenido">
+      
+      <h2>Historia sec 5 Apoyo al deporte con campeonatos a la Niñez</h2>
+      <p>
+        La administración deportiva ha existido como actividad desde la época de los pobladores primitivos, pasando por la organización de las olimpiadas de los antiguos griegos, hasta la administración moderna de organizaciones y empresas deportivas del siglo XXI, lo que muestra la importancia que ha tenido el deporte y las actividades físicas desde la prehistoria del hombre.
+      </p>
+      <p>
+        Sin embargo, en esta época, la administración deportiva no se desarrollaba tan rápido como las administraciones de otras ramas económicas como agricultura, ganadería, pesca y otros sectores de producción industrial, tal vez, porque las prácticas deportivas y de esparcimiento las relacionaban con finalidades caritativas para el ocio o eran solo pasatiempos y no la administración con trabajo y productividad.
+      </p>
+      <p>
+        Gumbertich, 2006, dice que desde las olimpiadas de 1984, en Los Ángeles, y la de 1988, en Seúl se marcó un claro giro hacia una nueva realidad económica de las olimpiadas y los demás deportes de competición. Es así como nace la idea de relacionar a la administración deportiva con el trabajo y la economía.
+      </p>
+      <p>
+        Los roles de los Administradores Deportivos cada vez más vienen evolucionando paralelamente al crecimiento de los eventos deportivos, clubes, ligas, federaciones, organismos internacionales y empresas del sector, lo que obliga a una formación más profesionalizada y especializada.
+      </p>
+    </div>
+    <div class="contenedor">
+      <h2 class="text-center mb-4">Galería de Imágenes</h2>
+
+        <div id="carruselImagenes5" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen13.jpg')}}" class="d-block w-100" alt="Imagen 1">
+            </div>
+            <div class="carousel-item">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen14.jpg')}}" class="d-block w-100" alt="Imagen 2">
+            </div>
+            <div class="carousel-item">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen15.jpg')}}" class="d-block w-100" alt="Imagen 3">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carruselImagenes5" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carruselImagenes5" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="contenedor">
+    <div class="contenido">
+      <h2>Historia sec 6 Celebración de la Navidad con la niñez </h2>
+      <p>
+        La administración deportiva ha existido como actividad desde la época de los pobladores primitivos, pasando por la organización de las olimpiadas de los antiguos griegos, hasta la administración moderna de organizaciones y empresas deportivas del siglo XXI, lo que muestra la importancia que ha tenido el deporte y las actividades físicas desde la prehistoria del hombre.
+      </p>
+      <p>
+        Sin embargo, en esta época, la administración deportiva no se desarrollaba tan rápido como las administraciones de otras ramas económicas como agricultura, ganadería, pesca y otros sectores de producción industrial, tal vez, porque las prácticas deportivas y de esparcimiento las relacionaban con finalidades caritativas para el ocio o eran solo pasatiempos y no la administración con trabajo y productividad.
+      </p>
+      <p>
+        Gumbertich, 2006, dice que desde las olimpiadas de 1984, en Los Ángeles, y la de 1988, en Seúl se marcó un claro giro hacia una nueva realidad económica de las olimpiadas y los demás deportes de competición. Es así como nace la idea de relacionar a la administración deportiva con el trabajo y la economía.
+      </p>
+      <p>
+        Los roles de los Administradores Deportivos cada vez más vienen evolucionando paralelamente al crecimiento de los eventos deportivos, clubes, ligas, federaciones, organismos internacionales y empresas del sector, lo que obliga a una formación más profesionalizada y especializada.
+      </p>
+    </div>
+
+    <div class="contenedor">
+      <h2 class="text-center mb-4">Galería de Imágenes</h2>
+
+        <div id="carruselImagenes6" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen13.jpg')}}" class="d-block w-100" alt="Imagen 1">
+            </div>
+            <div class="carousel-item">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen14.jpg')}}" class="d-block w-100" alt="Imagen 2">
+            </div>
+            <div class="carousel-item">
+              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen15.jpg')}}" class="d-block w-100" alt="Imagen 3">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carruselImagenes6" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carruselImagenes6" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
 </body>
-
 </html>
+
+
+<style>
+  /* estilos.css */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f5f5f5;
+  color: #333;
+}
+
+
+
+.hero {
+  background-image: url("{{ asset('assets/images/imageneshistoria/IMG MAQUETACION/im1.jpeg')}}"); /* Cambia por la ruta correcta */
+  background-attachment: fixed;     /* Clave para el efecto parallax */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+
+.hero .overlay {
+  background: rgba(0, 0, 0, 0.6);
+  width: 200%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero h1 {
+  color: #fff;
+  font-size: 36px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.contenedor {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+p {
+  line-height: 1.8;
+  text-align: justify;
+  margin-bottom: 20px;
+}
+
+</style>
+
+
+@endsection
