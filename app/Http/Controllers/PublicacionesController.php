@@ -51,7 +51,6 @@ class PublicacionesController extends Controller
         //return view('admin/vistas/publicaciones/publicaciones', compact('publicaciones'));
       
         $typePublic =    Str::after($request->getPathInfo(), '/admin/');
-
         $path = 'admin.vistas.publicaciones.' . $typePublic .'.index';
 
         /* dd($path); */
@@ -63,10 +62,7 @@ class PublicacionesController extends Controller
     public function indexinicio()
     {
         $inicio = Publicaciones::all();
-        return view('publico.vistas.publicaciones.inicio', compact('inicio'));
-    }
- 
-
+        return view('publico/vistas/publicaciones/inicio', compact('inicio'));
     }
 
 

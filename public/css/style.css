@@ -1,0 +1,122 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ffffff, #f3f3f3);
+    color: #222;
+  }
+
+  /* Navegación */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #002868; /* azul */
+    padding: 1rem 2rem;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: perspective(800px) rotateX(2deg);
+  }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+  }
+
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+  }
+
+  .hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) perspective(1000px) rotateY(5deg);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Carrusel destacado */
+  .carousel-destacado {
+    padding: 3rem 1rem;
+    background: #d71a28; /* rojo */
+    color: white;
+    text-align: center;
+  }
+
+  .carousel-destacado img {
+    border-radius: 12px;
+    transform: perspective(900px) rotateY(3deg);
+    transition: transform 0.4s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .carousel-destacado img:hover {
+    transform: scale(1.05) perspective(900px) rotateY(0deg);
+  }
+
+  /* Secciones */
+  section {
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .gallery-container img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: perspective(800px) rotateY(-5deg);
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-container img:hover {
+    transform: perspective(800px) rotateY(0deg) scale(1.05);
+  }
+
+  /* Contacto */
+  .contact-content {
+    background-color: #ffffff;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 1rem;
+    width: 90%;
+    margin: auto;
+  }
+
+  .contact-content h2 {
+    color: #002868;
+  }
+
+  /* Footer */
+  footer {
+    background-color: #002868;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }

@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
     Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
 
-    Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
+    Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
 
 
 

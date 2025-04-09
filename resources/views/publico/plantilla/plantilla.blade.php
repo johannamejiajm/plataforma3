@@ -26,7 +26,7 @@
   <div class="preloader">
     <img src="{{ asset('assets/images/logos/favicon.png') }}" alt="loader" class="lds-ripple img-fluid" />
   </div>
-   <!-- ------------------------------------- -->
+  <!-- ------------------------------------- -->
   <!-- Header Start -->
   <!-- ------------------------------------- -->
   <header class="header-fp p-0 w-100">
@@ -42,7 +42,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 gap-xl-7 gap-8 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('vistaspublicacionesinicio.index') }}">Inicio</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('inicio.index') }}">Inicio</a>
             </li>
             <li class="nav-item">
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Quienes somos</a>
@@ -178,7 +178,8 @@
             <h1 class="text-link-color fw-bolder text-center fs-13 mb-0 pt-lg-2">
               PACHOS CLUB
             </h1>
-            <br> <h2 class="text-center text-primary fw-bolder fs-10 mb-0 pt-lg-2">FUNDACIÓN</h2>
+            <br>
+            <h2 class="text-center text-primary fw-bolder fs-10 mb-0 pt-lg-2">FUNDACIÓN</h2>
           </div>
         </div>
         <div class="row align-items-end mb-3">
@@ -186,9 +187,9 @@
             <div class="d-flex justify-content-center align-items-center gap-9">
             </div>
           </div>
-         
+
         </div>
-        
+
       </div>
     </Section>
     <!-- ------------------------------------- -->
@@ -197,9 +198,27 @@
 
   </div>
 
+  <!-- ------------------------------------- -->
+  <!-- Header Start -->
+  <!-- ------------------------------------- -->
   @yield('tituloprincipal')
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <!-- ------------------------------------- -->
+  <!-- Header End -->
+  <!-- ------------------------------------- -->
 
+  <!-- ------------------------------------- -->
+  <!-- Main Start -->
+  <!-- ------------------------------------- -->
   @yield('contenido')
+
+
+
+  <!-- ------------------------------------- -->
+  <!-- Main End -->
+  <!-- ------------------------------------- -->
+
+
   <!-- ------------------------------------- -->
   <!-- Footer Start -->
   <!-- ------------------------------------- -->
@@ -208,7 +227,7 @@
       <div class="d-flex justify-content-between py-7 flex-md-nowrap flex-wrap gap-sm-0 gap-3">
         <div class="d-flex gap-3 align-items-center">
           <img src="../assets/images/logos/favicon.png" alt="icon">
-          <p class="fs-4 mb-0">All rights reserved by flexy. </p>
+          <p class="fs-4 mb-0">Fundacion Pachos Club. </p>
         </div>
         <div>
           <p class="mb-0">Produced by <a target="_blank" href="https://www.wrappixel.com/" class="text-primary link-primary">Wrappixel</a>.</p>
@@ -236,6 +255,7 @@
   <!-- solar icons -->
   <script src="{{ asset('assets/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
   <script src="{{ asset('assets/js/frontend-landingpage/homepage.js') }}"></script>
+  <script src="{{ asset('js/inicio.js') }}"></script>
 </body>
 
 </html>
