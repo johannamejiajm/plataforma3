@@ -43,6 +43,7 @@ class ArtistasController extends Controller
      */
     public function cambiarEstado(Request $request, $id)
     {
+
         $artista = Artistas::findOrFail($id);
 
         $nuevoEstado = $artista->estado == '1' ? '0' : '1';
@@ -50,6 +51,10 @@ class ArtistasController extends Controller
         $artista->save();
 
         return redirect()->route('artistas.index')->with('success', 'El estado del artista ha sido actualizado.');
+
+        //$artistas = artistas::all();
+        //return view('publico/vistas/artistas/inscripciones', compact('artistas'));
+
     }
 
     /**
@@ -65,12 +70,23 @@ class ArtistasController extends Controller
      */
     public function store(Request $request)
     {
-        //
 
+        // Crear el nuevo artista con la relación al evento
+        $artista = artistas::create([
+            'idevento' => $request->idevento,
+            'nidentidad' => $request->nidentidad,
+            'nombre' => $request->nombre,
+            'email' => $request->email,
+            'telefono' => $request->telefono,
+            'foto' => $fotoPath,
+            'descripcion' => $request->descripcion,
+            'fecharegistro' => $request->fecharegistro,
+            'estado' => $request->estado,
+        ]);
 
-    
+        // Redirigir o enviar una respuesta
+        return redirect()->route('artistas.create')->with('success', 'Artista creado correctamente.');
     }
-
     /**
      * Display the specified resource.
      */
@@ -84,7 +100,8 @@ class ArtistasController extends Controller
      */
     public function edit(Artistas $artistas)
     {
-        //
+        $artistas = Artistas::find($id);
+        return view("admin/vistas/artistas/editartistas", compact('artistas'));
     }
 
     /**

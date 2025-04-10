@@ -4,12 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Artistas extends Model
+class artistas extends Model
 {
-    
-
     protected $table = 'artistas';
-
     protected $fillable = [
         'idevento',
         'nidentidad',
@@ -21,12 +18,9 @@ class Artistas extends Model
         'fecharegistro',
         'estado',
     ];
-
-
-   
-    public function eventos()
+    // Relación con la tabla eventos (un artista pertenece a un evento)
+    public function evento()
     {
-        return $this->belongsTo(Evento::class, 'idevento', 'id');
+        return $this->belongsTo(eventos::class, 'idevento');
     }
-
 }
