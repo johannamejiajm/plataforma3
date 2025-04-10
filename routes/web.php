@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtistasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicacionesController;
 use Illuminate\Support\Facades\Route;
@@ -21,9 +22,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-    Route::get('/publicaciones', [PublicacionesController::class, 'index'])->name('publicaciones.index');
-    Route::get('/editpublicaciones/{id}/edit', [PublicacionesController::class, 'edit'])->name('publicaciones.edit');
-    Route::put('/publicaciones/{id}', [PublicacionesController::class, 'update'])->name('publicaciones.update');
+
+
+Route::get('/artistas/activos', [ArtistasController::class, 'listarArtistasActivos'])->name('artistas.activos');
+
+
+Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
+Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
+Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
+
+   
+
 
 
 

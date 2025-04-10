@@ -61,7 +61,7 @@
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Inscripciones</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Artistas</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('artistas.index') }}">Artistas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Donaciones</a>
