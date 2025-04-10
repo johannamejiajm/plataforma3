@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtistasController;
 use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\ProfileController;
 
@@ -50,6 +51,15 @@ Route::middleware('auth')->group(function () {
     Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
 
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
+
+    Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
+Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
+
+Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
+
+   
+   
+
 
 
 require __DIR__.'/auth.php';
