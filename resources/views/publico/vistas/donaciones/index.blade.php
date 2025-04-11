@@ -25,7 +25,7 @@
                                 </div>
                             @endif
 
-                            <form  id = 'enviodonante'>
+                            <form  id ='enviodonante'>
                                
                                 <div class="mb-3">
                                     <label for="fecha" class="form-label">Fecha</label>
@@ -60,7 +60,7 @@
 
                                 <input type="hidden" name="idtipo" value="3">
                                 <div class="d-grid">
-                                    <button type="submit" id ='guardardonante' class="btn btn-primary btn-lg">Registrar Donación</button>
+                                    <button type="submit" id='guardardonante' class="btn btn-primary btn-lg">Registrar Donación</button>
                                 </div>
                             </form>
                         </div>

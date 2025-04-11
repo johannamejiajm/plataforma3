@@ -1,10 +1,10 @@
-@extends('publico.script.donaciones.donacionesscript')
+@extends('publico.plantilla.plantilla')
 @section('script')
     <script>
         $(document).ready(function() {
             $("#guardardonante").on('click', function(e){
                 e.preventDefault();
-                
+                var idtipo =$("#idtipo").val();
                 var fecha = $("#fecha").val();
                 var donante = $("#donante").val();
                 var contacto = $("#contacto").val();               
@@ -15,7 +15,8 @@
                     method: "POST",
                     url: "/donaciones",
                     data: {
-                        "__token": "{{ csrf_token() }}",                     
+                        "_token":"{{ csrf_token() }}",                     
+                        idtipo,
                         fecha,
                         donante,
                         contacto,
@@ -33,9 +34,9 @@
                         confirmButtonText: 'Cool'
                     });
                     $("#idmodal").modal("show");
-                    var numeroWhatsApp = '573168262761'; // Número en formato internacional sin "+" ni espacios
-                    var mensaje = encodeURIComponent("Hola, Quiero Hacer una Donacion... " + nombre + " ha sido registrado exitosamente en la plataforma.");
-                    var url = https://wa.me/${numeroWhatsApp}?text=${mensaje};
+                    var numeroWhatsApp = '573118883105'; // Número en formato internacional sin "+" ni espacios
+                    var mensaje = encodeURIComponent(" Hola, soy "  + donante + " y Quiero Hacer una Donacion " );
+                    var url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
                     window.location.href = url;
                 });
             });

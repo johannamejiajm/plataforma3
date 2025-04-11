@@ -234,7 +234,7 @@
   <!-- solar icons -->
   <script src="../assets/libs/owl.carousel/dist/owl.carousel.min.js"></script>
   <script src="../assets/js/frontend-landingpage/homepage.js"></script>
-  <script src="<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>"
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   @yield('script')
 
   

@@ -8,12 +8,12 @@ class Donaciones extends Model
 {
     protected $table = 'donaciones';
     protected $fillable = [
-        'idtipo',
+     'idtipo',
      'fecha',
      'donante',
-     'contaco',
+     'contacto',
      'donacion',
      'soporte',
-     
+     'estado'
     ];
 }

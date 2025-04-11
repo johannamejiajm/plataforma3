@@ -59,19 +59,22 @@ class DonacionesController extends Controller
         // return redirect()->route('donaciones.store')->with('success', 'Donación registrada correctamente.');
     
 
-        dd('gggg');
+       
+        
         $donaciones = Donaciones::create([
-            'idtipo'=>3,
+            'idtipo'=>2,
             'fecha'=>$request->fecha,
             'donante'=>$request->donante,
             'contacto'=>$request->contacto,
             'donacion'=>$request->donacion,
             'soporte'=>$request->soporte,
-            'estado'=>3,
+            'estado'=>2,
+            
         ]);
+       
         $respuesta = array(
             'mensaje'   =>"donacion registrada",
-            'estado'    =>3,
+            'estado'    =>2,
         ) ;
         return response()->json($respuesta);
     }

@@ -32,18 +32,18 @@ class DonacionesSeeder extends Seeder
                 'contacto' => 'ana@example.com',
                 'donacion' => '500 USD',
                 'soporte' => 'Cheque',
-                'estado' => '0', // Estado denegado
+                'estado' => '2', // Estado denegado
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
             [
-                'idtipo' => 3, // Esto corresponde a 'pendiente' en la tabla tipodonaciones
+                'idtipo' => 0, // Esto corresponde a 'pendiente' en la tabla tipodonaciones
                 'fecha' => $now,
                 'donante' => 'Carlos López',
                 'contacto' => 'carlos@example.com',
                 'donacion' => '250 USD',
                 'soporte' => 'Efectivo',
-                'estado' => '1', // Estado aprobado
+                'estado' => '0', // Estado aprobado
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
