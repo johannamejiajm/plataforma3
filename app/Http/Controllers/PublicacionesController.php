@@ -12,6 +12,9 @@ use App\Models\Tipopublicaciones;
 class PublicacionesController extends Controller
 {
 
+    public function admincontactos(){
+        return view('admin.vistas.publicaciones.contactos.index');
+    }
     public function dashboard()
     {
         return view('admin.dashboard.index');
@@ -64,6 +67,12 @@ class PublicacionesController extends Controller
     {
         $inicio = Publicaciones::all();
         return view('publico.vistas.publicaciones.inicio', compact('inicio'));
+    }
+
+    public function indexcontactos()
+    {
+        //$inicio = Publicaciones::all();
+        return view('publico/vistas/publicaciones/contacto');
     }
 
     /**

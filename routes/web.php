@@ -49,7 +49,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
     Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
 
-    Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
+    
 
+    Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
+    Route::get('/contactos', [PublicacionesController::class, 'indexcontactos'])->name('contantos.indexcontactos');
+    Route::get('/admin/contactos', [PublicacionesController::class, 'admincontactos'])->name('admin.contactos');
 
 require __DIR__.'/auth.php';
