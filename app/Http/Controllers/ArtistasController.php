@@ -21,53 +21,62 @@ class ArtistasController extends Controller
      */
     public function create()
     {
-        //
+        // ... (tu lógica para mostrar el formulario de creación)
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    { // Validar los datos del formulario
-        $request->validate([
-            'idevento' => 'required|exists:eventos,id',
-            'nidentidad' => 'required|string|max:50',
-            'nombre' => 'required|string|max:100',
-            'email' => 'required|email|max:150',
-            'telefono' => 'required|string|max:20',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
-            'descripcion' => 'nullable|string|max:2000',
-            'fecharegistro' => 'required|date',
-            'estado' => 'required|string|max:45',
-        ]);
-        if ($request->hasFile('foto')) {
-            $fotoPath = $request->file('foto')->store('artistas', 'public');
-        } else {
-            $fotoPath = null;
-        }
+    {
+        // Validar los datos del formulario (sin idevento)
+        // $request->validate([
 
-        // Crear el nuevo artista con la relación al evento
+        //     'identidad' => 'required|string|max:50',
+        //     'nombre' => 'required|string|max:100',
+        //     'email' => 'required|email|max:150',
+        //     'telefono' => 'required|string|max:20',
+        //     'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        //     'descripcion' => 'nullable|string|max:2000',
+        //     'fecharegistro' => 'required|date',
+        // ]);
+
+        // // Subir la imagen si está presente
+        // if ($request->hasFile('foto')) {
+        //     $fotoPath = $request->file('foto')->store('artistas', 'public');
+        // } else {
+        //     $fotoPath = null; // Si no se sube foto, se pone como null
+        // }
+
+        // Crear el nuevo artista en la base de datos
         $artista = artistas::create([
-            'idevento' => $request->idevento,
-            'nidentidad' => $request->nidentidad,
+            'idevento' => 1, // Asignar idevento directamente aquí
+            'identidad' => $request->identidad,
             'nombre' => $request->nombre,
             'email' => $request->email,
             'telefono' => $request->telefono,
-            'foto' => $fotoPath,
+            'imagen' => 1, // O $fotoPath si quieres guardar la ruta
             'descripcion' => $request->descripcion,
             'fecharegistro' => $request->fecharegistro,
-            'estado' => $request->estado,
+            'estado' => 1,
         ]);
 
-        // Redirigir o enviar una respuesta
+        $respuesta = array(
+            'mensaje' => "inscripcion exitosa",
+            "estado" => 1,
+        );
+
+        // return response()->json($respuesta);
+        // Redirigir a la página de crear artista con un mensaje de éxito
         return redirect()->route('artistas.create')->with('success', 'Artista creado correctamente.');
-}
+    }
+
     /**
      * Display the specified resource.
      */
     public function show(Artistas $artistas)
     {
-        //
+        // ...
     }
 
     /**
@@ -75,8 +84,7 @@ class ArtistasController extends Controller
      */
     public function edit(Artistas $artistas)
     {
-        $artistas = Artistas::find($id);
-        return view("admin/vistas/artistas/editartistas", compact('artistas'));
+        // ...
     }
 
     /**
@@ -84,7 +92,7 @@ class ArtistasController extends Controller
      */
     public function update(Request $request, Artistas $artistas)
     {
-        //
+        // ...
     }
 
     /**
@@ -92,6 +100,6 @@ class ArtistasController extends Controller
      */
     public function destroy(Artistas $artistas)
     {
-        //
+        // ...
     }
 }

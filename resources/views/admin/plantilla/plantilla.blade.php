@@ -166,6 +166,7 @@
   <script src="https://cdn.datatables.net/responsive/3.0.4/js/dataTables.responsive.min.js"></script>
   @yield('scriptadicionales')
   @yield('script')
+  
 
 </body>
 

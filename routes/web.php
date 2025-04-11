@@ -23,11 +23,14 @@ Route::middleware('auth')->group(function () {
 });
 
     Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
-    Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
-    Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
+    Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('artistas.edit');
+    Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('artistas.update');
 
-    
+    // Route::put('/Artistas/{id}', [ArtistasController::class, 'store'])->name('Artistas.store');
 
+    // Ruta para mostrar el formulario (asumo que ya existe)
+    Route::get('/artistas/crear', [ArtistasController::class, 'create'])->name('artistas.create');
+    Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
 
 
 require __DIR__.'/auth.php';

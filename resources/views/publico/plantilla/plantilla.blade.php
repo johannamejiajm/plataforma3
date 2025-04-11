@@ -31,6 +31,8 @@
   <!-- Header Start -->
   <!-- ------------------------------------- -->
   <header class="header-fp p-0 w-100">
+
+  
     <nav class="navbar navbar-expand-lg bg-primary-subtle py-2 py-lg-10">
       <div class="custom-container d-flex align-items-center justify-content-between">
         <a href="../main/frontend-landingpage.html" class="text-nowrap logo-img">
@@ -238,6 +240,11 @@
   <!-- solar icons -->
   <script src="../assets/libs/owl.carousel/dist/owl.carousel.min.js"></script>
   <script src="../assets/js/frontend-landingpage/homepage.js"></script>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  @yield('script')
 </body>
 
 </html>

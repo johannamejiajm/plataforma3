@@ -2,7 +2,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            let tablaPublicaciones = new DataTable('#tablaartistas', {
+            let tablaArtistas = new DataTable('#tablaartistas', {
                 responsive: true
             });
         });

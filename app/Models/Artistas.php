@@ -8,10 +8,12 @@ class artistas extends Model
 {
 
 
-    protected $table = 'artistas'; // Especifica el nombre de la tabla
+    protected $table = 'artistas';
+    
+    // Especifica el nombre de la tabla
 
     protected $fillable =[
-        'titulo','contenido','imagen','fechainicial','fechafinal','estado'
+        'idevento','identidad','nombre','email','telefono','imagen', 'descripcion', 'fecharegistro', 'estado'
     ];
 
     // Relación con la tabla eventos (un artista pertenece a un evento)
