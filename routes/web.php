@@ -46,9 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/artistas/activos', [ArtistasController::class, 'listarArtistasActivos'])->name('artistas.activos');
 
 
-    Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
-    Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
-    Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
+
 
    
 
