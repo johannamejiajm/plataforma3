@@ -1,14 +1,11 @@
 <?php
 
 use App\Http\Controllers\ArtistasController;
-<<<<<<< HEAD
-=======
+
 use App\Http\Controllers\DonacionesController;
->>>>>>> 3cfcd0e6f3e974487b2da20c45ac1dc1a4e8d082
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\PublicacionesController;
-use App\Http\Controllers\ArtistasController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -45,18 +42,16 @@ Route::middleware('auth')->group(function () {
 });
 
 
-<<<<<<< HEAD
 
-Route::get('/artistas/activos', [ArtistasController::class, 'listarArtistasActivos'])->name('artistas.activos');
+    Route::get('/artistas/activos', [ArtistasController::class, 'listarArtistasActivos'])->name('artistas.activos');
 
 
-Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
-Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
-Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
+    Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
+    Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
+    Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
 
    
 
-=======
     Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
     Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
@@ -68,13 +63,12 @@ Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artis
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
 
     Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
-Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
+    Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
 
-Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
+    Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
 
    
    
->>>>>>> 3cfcd0e6f3e974487b2da20c45ac1dc1a4e8d082
 
 
 
