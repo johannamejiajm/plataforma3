@@ -32,7 +32,7 @@ class DonacionSeeder extends Seeder
                 'updated_at' => $now,
             ],
             [
-                'idtipo' => 2, // Esto corresponde a 'denegado' en la tabla tipodonaciones
+                'idtipo' => 0, // Esto corresponde a 'denegado' en la tabla tipodonaciones
                 'fecha' => $now,
                 'donante' => 'Ana Gómez',
                 'contacto' => 'ana@example.com',
@@ -43,13 +43,13 @@ class DonacionSeeder extends Seeder
                 'updated_at' => $now,
             ],
             [
-                'idtipo' => 3, // Esto corresponde a 'pendiente' en la tabla tipodonaciones
+                'idtipo' => 2, // Esto corresponde a 'pendiente' en la tabla tipodonaciones
                 'fecha' => $now,
                 'donante' => 'Carlos López',
                 'contacto' => 'carlos@example.com',
                 'donacion' => '250 USD',
                 'soporte' => 'Efectivo',
-                'estado' => '1', // Estado aprobado
+                'estado' => '2', // Estado aprobado
                 'created_at' => $now,
                 'updated_at' => $now,
             ],

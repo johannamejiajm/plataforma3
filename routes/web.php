@@ -47,7 +47,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
     Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
-    Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
+    Route::put('/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');   
+
 
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
 
