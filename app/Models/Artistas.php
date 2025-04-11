@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class artistas extends Model
 {
 
-   protected $fillable=['nombre'];
 
     protected $table = 'artistas';
     protected $fillable = [
