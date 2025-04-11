@@ -20,7 +20,7 @@ class ArtistasController extends Controller
 
         return view('publico/vistas/artistas/listar_artistas', ['artistas' => $artistasActivos]);
     }
-    public function index()
+    public function active()
     {
         return view('publico/vistas/artistas/index');
     }
@@ -96,7 +96,7 @@ class ArtistasController extends Controller
         return redirect()->route('artistas.create')->with('success','Artistas registrados exitosamente');
     }
 
- public function crearArtistas(Request $request) {
+public function crearArtistas(Request $request) {
 
         // Crear el nuevo artista con la relación al evento
         $artista = artistas::create([
