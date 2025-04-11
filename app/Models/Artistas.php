@@ -25,5 +25,4 @@ class artistas extends Model
     {
         return $this->belongsTo(eventos::class, 'idevento');
     }
-
 }

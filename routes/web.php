@@ -43,31 +43,41 @@ Route::middleware('auth')->group(function () {
 
 
 
-    Route::get('/artistas/activos', [ArtistasController::class, 'listarArtistasActivos'])->name('artistas.activos');
 
 
 
 
-   
-
-    Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
-    Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
-    Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
-
-    Route::get('/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
-    Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
-    Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
-
-    Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
-
-    Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
-    Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
-
-    Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
-
-   
-   
 
 
 
-require __DIR__.'/auth.php';
+Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
+Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
+Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
+Route::get('/artistas/activos', [ArtistasController::class, 'listarArtistasActivos'])->name('artistas.activos');
+
+
+
+
+
+Route::get('/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
+Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
+Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
+
+
+
+
+Route::get('/vistas/publicaciones/inicio', [PublicacionesController::class, 'indexinicio'])->name('vistaspublicacionesinicio.index');
+Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
+
+
+
+
+Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
+Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
+
+
+
+
+
+
+require __DIR__ . '/auth.php';

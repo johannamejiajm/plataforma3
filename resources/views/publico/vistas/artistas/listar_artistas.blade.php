@@ -1,31 +1,32 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends('publico.plantilla.plantilla')
+@section('titulo')
+<title>
+    Artistas
+</title>
+@endsection
+@section('tituloprincipal')
+<h1>Artistas Activos</h1>
+@endsection
+@section('contenido')
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Artistas Activos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" 
-        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" 
-        crossorigin="anonymous">
+    
     <style>
-        body {
-            background-color:rgb(24, 75, 230);
-            font-family: 'Arial', sans-serif;
-        }
+      
         h1 {
             text-align: center;
             margin-bottom: 30px;
-            color: #2d3748;
+            color:rgb(9, 83, 231);
         }
         .card {
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background-color:rgb(206, 186, 186);
+            background-color:rgb(53, 22, 226);
         }
         .card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 20px rgb(14, 0, 0);
         }
         .card-img-top {
             border-top-left-radius: 10px;
@@ -48,10 +49,10 @@
         .card-body h5 {
             font-size: 18px;
             font-weight: bold;
-            color: #2b2d42;
+            color:rgb(255, 255, 255);
         }
         .card-body p {
-            color: #6c757d;
+            color:rgb(248, 242, 242);
         }
         .container {
             max-width: 1200px;
@@ -64,14 +65,7 @@
             text-align: center;
             padding: 10px;
         }
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #004085;
-        }
+  
         .card-body ul {
             padding-left: 15px;
         }
@@ -82,7 +76,7 @@
 </head>
 <body class="p-4">
     <div class="container">
-        <h1>Artistas Activos</h1>
+ 
 
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
@@ -118,4 +112,9 @@
             integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" 
             crossorigin="anonymous"></script>
 </body>
-</html>
+
+@endsection
+
+
+
+
