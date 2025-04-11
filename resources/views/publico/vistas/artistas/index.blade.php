@@ -1,4 +1,4 @@
-@extends('admin.plantilla.plantilla')
+@extends('admin.artistas.artistasscript')
 @section('script')
     <script>
         $(document).ready(function() {

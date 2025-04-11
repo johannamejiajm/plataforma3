@@ -8,15 +8,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Favicon icon-->
-  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+  <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png') }}" />
 
   <!-- Core Css -->
-  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}" />
 
-  <title>Flexy Bootstrap Admin</title>
+  @yield('titulo')
   <!-- Owl Carousel  -->
-  <link rel="stylesheet" href="../assets/libs/owl.carousel/dist/assets/owl.carousel.min.css" />
+  <link rel="stylesheet" href="{{ asset('assets/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  @yield('links')
 </head>
 
 <body>
@@ -24,7 +25,7 @@
 
   <!-- Preloader -->
   <div class="preloader">
-    <img src="../assets/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
+    <img src="{{ asset('assets/images/logos/favicon.png') }}" alt="loader" class="lds-ripple img-fluid" />
   </div>
    <!-- ------------------------------------- -->
   <!-- Header Start -->
@@ -42,7 +43,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 gap-xl-7 gap-8 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Inicio</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('vistaspublicacionesinicio.index') }}">Inicio</a>
             </li>
             <li class="nav-item">
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Quienes somos</a>
@@ -124,7 +125,7 @@
         </li>
 
         <li class="mb-1">
-          <a href=".#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+          <a href="#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
             Inscripciones
           </a>
         </li>
@@ -197,6 +198,10 @@
 
   </div>
 
+  @yield('tituloprincipal')
+
+
+  @yield('contenido')
   <!-- ------------------------------------- -->
   <!-- Footer Start -->
   <!-- ------------------------------------- -->
@@ -222,17 +227,17 @@
     <i class="ti ti-arrow-up fs-7"></i>
   </a>
 
-  <script src="../assets/js/vendor.min.js"></script>
+  <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
   <!-- Import Js Files -->
-  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
-  <script src="../assets/js/theme/app.init.js"></script>
-  <script src="../assets/js/theme/theme.js"></script>
-  <script src="../assets/js/theme/app.min.js"></script>
+  <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/simplebar/dist/simplebar.min.js') }}"></script>
+  <script src="{{ asset('assets/js/theme/app.init.js') }}"></script>
+  <script src="{{ asset('assets/js/theme/theme.js') }}"></script>
+  <script src="{{ asset('assets/js/theme/app.min.js') }}"></script>
 
   <!-- solar icons -->
-  <script src="../assets/libs/owl.carousel/dist/owl.carousel.min.js"></script>
-  <script src="../assets/js/frontend-landingpage/homepage.js"></script>
+  <script src="{{ asset('assets/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
+  <script src="{{ asset('assets/js/frontend-landingpage/homepage.js') }}"></script>
 </body>
 
 </html>
