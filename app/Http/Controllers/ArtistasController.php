@@ -8,7 +8,7 @@ use Symfony\Contracts\Service\Attribute\Required;
 
 class ArtistasController extends Controller
 {
-<<<<<<< HEAD
+
     /**
      * Display a listing of the resource.
      */
@@ -23,7 +23,7 @@ class ArtistasController extends Controller
     public function index()
     {
         return view('publico/vistas/artistas/index');
-=======
+    }
    
     public function index()
     {
@@ -72,7 +72,6 @@ class ArtistasController extends Controller
         //$artistas = artistas::all();
         //return view('publico/vistas/artistas/inscripciones', compact('artistas'));
 
->>>>>>> 3cfcd0e6f3e974487b2da20c45ac1dc1a4e8d082
     }
 
     /**
@@ -88,7 +87,7 @@ class ArtistasController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
+
         $request->validate([
             'nombre'=>'Required|string|max:255'
         ]);
@@ -96,8 +95,8 @@ class ArtistasController extends Controller
 
         return redirect()->route('artistas.create')->with('success','Artistas registrados exitosamente');
     }
-=======
->>>>>>> 3cfcd0e6f3e974487b2da20c45ac1dc1a4e8d082
+
+ public function crearArtistas(Request $request) {
 
         // Crear el nuevo artista con la relación al evento
         $artista = artistas::create([
@@ -106,7 +105,7 @@ class ArtistasController extends Controller
             'nombre' => $request->nombre,
             'email' => $request->email,
             'telefono' => $request->telefono,
-            'foto' => $fotoPath,
+            //'foto' => $fotoPath,
             'descripcion' => $request->descripcion,
             'fecharegistro' => $request->fecharegistro,
             'estado' => $request->estado,
