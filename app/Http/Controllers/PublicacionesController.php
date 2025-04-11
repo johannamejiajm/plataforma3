@@ -15,6 +15,11 @@ class PublicacionesController extends Controller
         $publicaciones = Publicaciones::all();
         return view('admin/vistas/publicaciones/publicaciones', compact('publicaciones'));
     }
+    public function indexpublicaciones()
+    {
+        $publicaciones = Publicaciones::all();
+        return view('publico/vistas/publicaciones/publicaciones', compact('publicaciones'));
+    }
 
     /**
      * Show the form for creating a new resource.

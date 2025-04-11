@@ -25,6 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/editpublicaciones/{id}/edit', [PublicacionesController::class, 'edit'])->name('publicaciones.edit');
     Route::put('/publicaciones/{id}', [PublicacionesController::class, 'update'])->name('publicaciones.update');
 
+    Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
+
 
 
 require __DIR__.'/auth.php';
