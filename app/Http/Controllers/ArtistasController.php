@@ -127,7 +127,7 @@ public function crearArtistas(Request $request) {
      */
     public function edit(Artistas $artistas)
     {
-        $artistas = Artistas::find($id);
+        $artistas = Artistas::find($artistas->id);
         return view("admin/vistas/artistas/editartistas", compact('artistas'));
     }
 
