@@ -78,6 +78,36 @@
     nav ul li a:hover {
         color: var(--primary-color);
     }
+    
+    .hero {
+        background-color: var(--primary-color); /* Puedes mantener esto como color de respaldo */
+        background-image: url('https://i.redd.it/c3uhsgo1vx541.jpg');
+        background-size: cover; /* Para que la imagen cubra todo el contenedor */
+        background-position: center; /* Para centrar la imagen */
+        background-repeat: no-repeat;
+        color: var(--white);
+        padding: 80px 0; /* Aumenté el padding para dar más espacio */
+        text-align: center;
+        position: relative;
+    }
+
+    /* Opcional: Añadir un overlay oscuro para mejorar la legibilidad del texto */
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Color negro semi-transparente */
+        z-index: 1;
+    }
+
+    /* Asegurar que el contenido esté por encima del overlay */
+    .hero .container {
+        position: relative;
+        z-index: 2;
+    }
 
     .hero {
         background-color: var(--primary-color);
