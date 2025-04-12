@@ -77,6 +77,8 @@ class DonacionesController extends Controller
             'estado'    =>2,
         ) ;
         return response()->json($respuesta);
+
+        
     }
     
 

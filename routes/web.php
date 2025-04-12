@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DonacionesController;
+use App\Http\Controllers\DonacionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicacionesController;
 use Illuminate\Support\Facades\Route;
@@ -22,11 +23,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-    Route::get('/donaciones', [DonacionesController::class, 'indexdonacion'])->name('donaciones.index');
-    Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
-    Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
-    Route::post('/donaciones', [DonacionesController::class,'store'])->name('donaciones.store');
+Route::get('/donaciones', [DonacionesController::class, 'indexdonacion'])->name('donaciones.index');
+Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
+Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
+Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaciones.store');
 
 
 
-require __DIR__.'/auth.php';
+
+
+require __DIR__ . '/auth.php';
