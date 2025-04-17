@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('contacto');
             $table->string('donacion');
             $table->string('soporte');
-            $table->enum('estado',[1,0]);
+            $table->enum('estado',[0,1,2]);
             $table->timestamps();
             $table->foreign('idtipo')->references('id')->on('tipodonaciones');
         });

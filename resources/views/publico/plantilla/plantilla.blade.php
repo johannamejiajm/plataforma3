@@ -11,12 +11,14 @@
   <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png') }}" />
 
   <!-- Core Css -->
-  <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/styles.css')  }}" />
 
-  @yield('titulo')
+
+ @yield('titulo')
   <!-- Owl Carousel  -->
   <link rel="stylesheet" href="{{ asset('assets/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  @yield('links')
 </head>
 
 <body>
@@ -45,7 +47,7 @@
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('inicio.index') }}">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Quienes somos</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('quienessomos.index') }}">Quienes somos</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary d-flex gap-2" href="#">Historia
@@ -61,7 +63,7 @@
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Inscripciones</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Artistas</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('artistas.index') }}">Artistas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Donaciones</a>
@@ -71,7 +73,7 @@
             </li>
           </ul>
           <div>
-            <a href="#" class="btn btn-primary py-8 px-9">Admin</a>
+            <a href="{{ route('donaciones.index') }}"class="btn btn-primary py-8 px-9">Admin</a>
           </div>
         </div>
       </div>
@@ -112,7 +114,7 @@
         </li>
 
         <li class="mb-1">
-          <a href="#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+          <a href="{{ Route('publicaciones.index') }}" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary" >
             Publicaciones
           </a>
         </li>
@@ -124,7 +126,7 @@
         </li>
 
         <li class="mb-1">
-          <a href=".#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+          <a href="#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
             Inscripciones
           </a>
         </li>
@@ -185,6 +187,8 @@
         <div class="row align-items-end mb-3">
           <div class="col-lg-6">
             <div class="d-flex justify-content-center align-items-center gap-9">
+
+             
             </div>
           </div>
 
@@ -210,10 +214,8 @@
   <!-- ------------------------------------- -->
   <!-- Main Start -->
   <!-- ------------------------------------- -->
+
   @yield('contenido')
-
-
-
   <!-- ------------------------------------- -->
   <!-- Main End -->
   <!-- ------------------------------------- -->
@@ -244,7 +246,8 @@
     <i class="ti ti-arrow-up fs-7"></i>
   </a>
 
-  <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
+  <script src="{{ asset('assets/js/vendor.min.js')}}"></script>
+
   <!-- Import Js Files -->
   <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('assets/libs/simplebar/dist/simplebar.min.js') }}"></script>

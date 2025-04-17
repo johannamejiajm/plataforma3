@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
+use App\Models\Publicaciones;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,5 +22,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        Route::model('evento', Publicaciones::class);
+        Route::model('historia', Publicaciones::class);
+        Route::model('noticia', Publicaciones::class);
     }
 }
