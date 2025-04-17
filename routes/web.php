@@ -61,7 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');   
 
 
-    Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
+    Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
 
     Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
 Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
