@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class eventos extends Model
 {
-
-
     protected $table = 'eventos'; // Especifica el nombre de la tabla
 
     protected $fillable = [
@@ -21,4 +19,5 @@ class eventos extends Model
     public function artistas(): HasMany
     {
         return $this->hasMany(Artistas::class, 'idevento');
-    }}
+    }
+}

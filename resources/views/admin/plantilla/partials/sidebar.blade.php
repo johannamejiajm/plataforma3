@@ -28,10 +28,30 @@
                 </span>
                 <span class="hide-menu">Publicaciones</span>
               </div>
-              <span class="hide-menu badge text-bg-secondary fs-1 py-1 me-10">Pro</span>
+
             </a>
             <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('eventos.index') }}" aria-expanded="false">
+                      <i class="ti ti-circle"></i>
+                      <span class="hide-menu">Eventos</span>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('historias.index') }}" aria-expanded="false">
+                      <i class="ti ti-circle"></i>
+                      <span class="hide-menu">Historias</span>
+                    </a>
+                  </li>
+
+                  <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('noticias.index') }}" aria-expanded="false">
+                      <i class="ti ti-circle"></i>
+                      <span class="hide-menu">Noticias</span>
+                    </a>
+                  </li>
+          {{--       <li class="sidebar-item">
                     <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)" aria-expanded="false">
                       <div class="d-flex align-items-center gap-3">
                         <span class="d-flex">
@@ -143,7 +163,7 @@
                         </a>
                       </li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         </li>
 

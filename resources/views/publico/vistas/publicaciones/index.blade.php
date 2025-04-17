@@ -1,8 +1,8 @@
-@extends('admin.plantilla.plantilla')
+@extends('admin.publicaciones.publicacionesscript')
 @section('script')
     <script>
         $(document).ready(function() {
-            let tablaPublicaciones = new DataTable('#tablaartistas', {
+            let tablaPublicaciones = new DataTable('#tablapublicaciones', {
                 responsive: true
             });
         });
