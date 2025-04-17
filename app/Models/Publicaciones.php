@@ -7,9 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Publicaciones extends Model
 {
     protected $table = "publicaciones";
-
+  
     protected $fillable =[
-       'idtipo', 'iduser',  'titulo', 'contenido','imagen','fechainicial','fechafinal','estado'
+        'idtipo', 
+        'iduser', 
+        'titulo',
+        'contenido',
+        'imagen',
+        'fechainicial',
+        'fechafinal',
+        'estado'
     ];
 
 

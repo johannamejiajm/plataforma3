@@ -64,6 +64,8 @@ Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('art
    
    
 
+    Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
+
 
 
 require __DIR__.'/auth.php';
