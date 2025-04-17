@@ -11,7 +11,8 @@
   <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png') }}" />
 
   <!-- Core Css -->
-  <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/css/styles.css')  }}" />
+
 
  @yield('titulo')
   <!-- Owl Carousel  -->
@@ -43,10 +44,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 gap-xl-7 gap-8 mb-lg-0">
             <li class="nav-item">
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('inicio') }}">Inicio</a>
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('vistaspublicacionesinicio.index') }}">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Quienes somos</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('quienessomos.index') }}">Quienes somos</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary d-flex gap-2" href="#">Historia
@@ -185,10 +187,15 @@
         <div class="row align-items-end mb-3">
           <div class="col-lg-6">
             <div class="d-flex justify-content-center align-items-center gap-9">
+
+             
             </div>
           </div>
          
         </div>
+
+
+       
         
       </div>
     </Section>
@@ -227,7 +234,8 @@
     <i class="ti ti-arrow-up fs-7"></i>
   </a>
 
-  <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
+  <script src="{{ asset('assets/js/vendor.min.js')}}"></script>
+
   <!-- Import Js Files -->
   <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('assets/libs/simplebar/dist/simplebar.min.js') }}"></script>

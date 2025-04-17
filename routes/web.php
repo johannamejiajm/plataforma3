@@ -1,16 +1,20 @@
 <?php
 
+
+use App\Http\Controllers\InformacioninstitucionalController;
 use App\Http\Controllers\ArtistasController;
 use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\PublicacionesController;
+
+
 use App\Http\Controllers\ArtistasController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('publico/plantilla/plantilla');
-});
+})->name('inicio');
 /* Route::get('/admin', function () {
     return view('admin/vistas/publicaciones/publicaciones');
 }); */
@@ -44,6 +48,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+    Route::get('/quienessomos', [InformacioninstitucionalController::class, 'index'])->name('quienessomos.index');
+    Route::get('/editquienessomos/{id}/edit', [InformacioninstitucionalController::class, 'edit'])->name('quienessomos.edit');
+    Route::put('/quienessomos/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
 
     Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
