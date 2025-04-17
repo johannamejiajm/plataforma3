@@ -21,4 +21,9 @@ class Publicaciones extends Model
     public function tipo() {
         return $this->belongsTo(Tipopublicaciones::class, 'idtipo');
     }
+
+    public function fotos()
+    {
+        return $this->hasMany(Publicacionfotos::class, 'idpublicaciones');
+    }
 }

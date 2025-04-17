@@ -15,11 +15,14 @@ Route::get('/', function () {
     return view('admin/vistas/publicaciones/publicaciones');
 }); */
 
-Route::get('/api/admin/eventos', [PublicacionesController::class, 'data'])->name('publicaciones.data');
 
 
 Route::middleware(['auth'])->group(function () {
 
+
+    Route::get('/api/admin/eventos', [PublicacionesController::class, 'data'])->name('publicaciones.eventos');
+    Route::get('/api/admin/historias', [PublicacionesController::class, 'data'])->name('publicaciones.historias');
+    Route::get('/api/admin/noticias', [PublicacionesController::class, 'data'])->name('publicaciones.noticias');
 
 
     Route::get('/admin/dashboard', [PublicacionesController::class, 'dashboard'])->name('admin.dashboard');
