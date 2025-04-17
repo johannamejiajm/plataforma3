@@ -37,6 +37,36 @@ class DonacionesController extends Controller
         return view('admin/vistas/donaciones/donaciones', compact('donaciones', 'estado'));
     }
 
+    public function updateEstado(Request $request, $id)
+    {
+        $donacion = Donaciones::findOrFail($id);
+    
+        $estado = $request->estado;
+    
+        $donacion->estado = $estado;
+    
+        // Asignar tipo de donación basado en estado
+        switch ($estado) {
+            case 1: // Aprobado
+                $donacion->idtipo = 1;
+                break;
+            case 2: // Denegado
+                $donacion->idtipo = 2;
+                break;
+            default: // Pendiente u otros
+                $donacion->idtipo = 0;
+                break;
+        }
+    
+        $donacion->save();
+    
+        return redirect()->route('donaciones.index')->with('success', 'Donación actualizada.');
+    }
+    
+    
+    
+
+
     
 
     /**
