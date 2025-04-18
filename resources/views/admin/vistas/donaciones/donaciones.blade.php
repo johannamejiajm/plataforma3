@@ -1,3 +1,13 @@
+<!-- @extends('admin.plantilla.plantilla')
+@section('script')
+    <script>
+        $(document).ready(function() {
+            let tabladonaciones = new DataTable('#tabladonaciones', {
+                responsive: true
+            });
+        });
+    </script>
+@endsection -->
 @extends('admin.script.donaciones.donacionesscript')
 @section('titulo')
     <title>Donaciones</title>

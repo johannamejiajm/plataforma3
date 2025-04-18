@@ -66,7 +66,7 @@
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('artistas.index') }}">Artistas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Donaciones</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('donaciones.index') }}">Donaciones</a>
             </li>
             <li class="nav-item">
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Contacto</a>
@@ -131,12 +131,12 @@
           </a>
         </li>
         <li class="mb-1">
-          <a href=".#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+          <a href="." class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
             Artistas
           </a>
         </li>
         <li class="mb-1">
-          <a href=".#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+          <a href=".donaciones" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
             Donación
           </a>
         </li>
@@ -256,8 +256,10 @@
   <script src="{{ asset('assets/js/theme/app.min.js') }}"></script>
 
   <!-- solar icons -->
-  <script src="{{ asset('assets/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
-  <script src="{{ asset('assets/js/frontend-landingpage/homepage.js') }}"></script>
+  <script src="../assets/libs/owl.carousel/dist/owl.carousel.min.js"></script>
+  <script src="../assets/js/frontend-landingpage/homepage.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  @yield('script')
   <script src="{{ asset('js/inicio.js') }}"></script>
 </body>
 

@@ -2,7 +2,8 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            let tablaPublicaciones = new DataTable('#tabladonaciones', {
+
+            let tabladonaciones = new DataTable('#tabladonaciones', {
                 responsive: true
             });
         });
@@ -22,6 +23,5 @@
         botonesSeleccionados.style.display = 'block';
     }
         });
-        
     </script>
 @endsection

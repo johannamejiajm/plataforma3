@@ -1,14 +1,12 @@
 <?php
 
 
+
 use App\Http\Controllers\InformacioninstitucionalController;
 use App\Http\Controllers\ArtistasController;
 use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\ProfileController;
-
 use App\Http\Controllers\PublicacionesController;
-
-
 use App\Http\Controllers\ArtistasController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,9 +46,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+    Route::get('/donaciones', [DonacionesController::class, 'indexdonacion'])->name('donaciones.index');
+    Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaciones.store');
+
     Route::get('/quienessomos', [InformacioninstitucionalController::class, 'index'])->name('quienessomos.index');
     Route::get('/editquienessomos/{id}/edit', [InformacioninstitucionalController::class, 'edit'])->name('quienessomos.edit');
     Route::put('/quienessomos/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
+
 
     Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
@@ -75,4 +78,6 @@ Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('art
 
 
 
-require __DIR__.'/auth.php';
+
+
+require __DIR__ . '/auth.php';
