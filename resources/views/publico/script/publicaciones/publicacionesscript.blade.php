@@ -1,0 +1,2 @@
+@extends('publico.plantilla.plantilla')
+
