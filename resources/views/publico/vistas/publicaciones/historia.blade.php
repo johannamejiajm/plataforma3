@@ -6,19 +6,17 @@
 
 
 @section('tituloprincipal')
-  <H1 class="text-center">Historia de PACHO'S CLUB</H1>
-@endsection
-
-@section('contenido')
-<!DOCTYPE html>
-<html lang="es">
-<head>
+  
+  <head>
   <meta charset="UTF-8">
+  <H1 class="text-center">Historia de PACHO'S CLUB</H1>
   <title>Historia - Administración Deportiva</title>
   <link rel="stylesheet" href="estilos.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+@endsection
+
+@section('contenido')
   
   <div class="hero">
     <div class="overlay">
@@ -305,9 +303,6 @@
       </div>
     </div>
   </div>
-
-  
-</body>
 </html>
 
 
