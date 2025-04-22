@@ -4,9 +4,6 @@
 
 @endsection
 @section('contenido')
-
-
-   
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-md-6">
@@ -26,7 +23,7 @@
                             @endif
 
                             <form  id ='enviodonante'>
-                               
+
                                 <div class="mb-3">
                                     <label for="fecha" class="form-label">Fecha</label>
                                     <input type="date" class="form-control" id="fecha" name="fecha"
@@ -68,7 +65,7 @@
                 </div>
             </div>
         </div>
-   
+
 
 
 
@@ -85,7 +82,7 @@
                                 <p class="mb-0">La donación ha sido registrada correctamente. ¡Gracias!</p>
                             </div>
                             <div class="d-grid gap-2">
-                                
+
                                 <a href="/" class="btn btn-secondary">Volver al inicio</a>
                             </div>
                         </div>
@@ -93,10 +90,10 @@
                 </div>
             </div>
         </div>
-    
+
 @endsession
 
-        
-      
+
+
 
 @endsection
