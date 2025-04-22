@@ -15,6 +15,9 @@ use App\Models\Tipopublicaciones;
 class PublicacionesController extends Controller
 {
 
+    public function admincontactos(){
+        return view('admin.vistas.publicaciones.contactos.index');
+    }
     public function dashboard()
     {
         return view('admin.dashboard.index');
@@ -66,7 +69,18 @@ class PublicacionesController extends Controller
     public function indexinicio()
     {
         $inicio = Publicaciones::all();
-        return view('publico/vistas/publicaciones/inicio', compact('inicio'));
+        return view('publico.vistas.publicaciones.inicio', compact('inicio'));
+
+
+    }
+   
+    public function indexhistoria()
+    {
+       //$publicaciones = Publicaciones::all();
+        //return view('admin/vistas/publicaciones/publicaciones', compact('publicaciones'));
+        $historia = Publicaciones::all();
+        return view('publico.vistas.publicaciones.historia', compact('historia'));
+      
     }
     public function indexpublicaciones()
     {
@@ -74,12 +88,18 @@ class PublicacionesController extends Controller
         return view('publico/vistas/publicaciones/publicaciones', compact('publicaciones'));
     }
 
+    public function indexcontactos()
+    {
+        //$inicio = Publicaciones::all();
+        return view('publico/vistas/publicaciones/contacto');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        //return view('clientes/create');
     }
 
     /**
@@ -180,6 +200,8 @@ class PublicacionesController extends Controller
 
        $publicacion = Publicaciones::find($id);
        return view("admin/vistas/publicaciones/editpublicaciones", compact('publicacion'));
+
+       
     }
 
     /**

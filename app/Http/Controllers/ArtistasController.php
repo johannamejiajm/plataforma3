@@ -4,9 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Artistas;
 use Illuminate\Http\Request;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class ArtistasController extends Controller
 {
+
+    /**
+     * Display a listing of the resource.
+     */
+
+
+     public function listarArtistasActivos()
+    {
+        $artistasActivos = Artistas::where('estado', '1')->get(); // Assuming '1' represents active
+
+        return view('publico/vistas/artistas/listar_artistas', ['artistas' => $artistasActivos]);
+    }
+    public function active()
+    {
+        return view('publico/vistas/artistas/index');
+    }
    
     public function index()
     {
@@ -62,7 +79,7 @@ class ArtistasController extends Controller
      */
     public function create()
     {
-        //
+        return view('artistas.create');
     }
 
     /**
@@ -71,6 +88,16 @@ class ArtistasController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'nombre'=>'Required|string|max:255'
+        ]);
+        Artistas::create($request->all());
+
+        return redirect()->route('artistas.create')->with('success','Artistas registrados exitosamente');
+    }
+
+public function crearArtistas(Request $request) {
+
         // Crear el nuevo artista con la relación al evento
         $artista = artistas::create([
             'idevento' => $request->idevento,
@@ -78,7 +105,7 @@ class ArtistasController extends Controller
             'nombre' => $request->nombre,
             'email' => $request->email,
             'telefono' => $request->telefono,
-            'foto' => $fotoPath,
+            //'foto' => $fotoPath,
             'descripcion' => $request->descripcion,
             'fecharegistro' => $request->fecharegistro,
             'estado' => $request->estado,
@@ -100,7 +127,7 @@ class ArtistasController extends Controller
      */
     public function edit(Artistas $artistas)
     {
-        $artistas = Artistas::find($id);
+        $artistas = Artistas::find($artistas->id);
         return view("admin/vistas/artistas/editartistas", compact('artistas'));
     }
 

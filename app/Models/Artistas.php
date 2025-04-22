@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class artistas extends Model
 {
+
+
     protected $table = 'artistas';
     protected $fillable = [
         'idevento',
@@ -13,7 +15,7 @@ class artistas extends Model
         'nombre',
         'email',
         'telefono',
-        'foto',
+        'imagen',
         'descripcion',
         'fecharegistro',
         'estado',
