@@ -50,7 +50,7 @@
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('quienessomos.index') }}">Quienes somos</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary d-flex gap-2" href="#">Historia
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary d-flex gap-2" href="{{ route('historia.index') }}">Historia
               </a>
             </li>
             <li class="nav-item">
@@ -63,7 +63,7 @@
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Inscripciones</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('artistas.activos') }}">Artistas</a>
+            <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('artistas.activos') }}">Artistas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('donaciones.index') }}">Donaciones</a>
@@ -108,7 +108,7 @@
         </li>
 
         <li class="mb-1">
-          <a href="#" class="px-0 fs-4 d-flex align-items-center justify-content-start gap-2 w-100 py-2 text-dark link-primary">
+          <a href="" class="px-0 fs-4 d-flex align-items-center justify-content-start gap-2 w-100 py-2 text-dark link-primary">
             Historia
           </a>
         </li>

@@ -79,12 +79,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
 
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
+
+    Route::get('vistas/publicaciones/historia', [PublicacionesController::class, 'index'])->name('historia.index');
+
+
     Route::get('/contactos', [PublicacionesController::class, 'indexcontactos'])->name('contantos.indexcontactos');
     Route::get('/admin/contactos', [PublicacionesController::class, 'admincontactos'])->name('admin.contactos');
 
     Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
     Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
-
 
     Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
 require __DIR__ . '/auth.php';
