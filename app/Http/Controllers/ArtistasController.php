@@ -4,16 +4,74 @@ namespace App\Http\Controllers;
 
 use App\Models\Artistas;
 use Illuminate\Http\Request;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class ArtistasController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
+
+
+     public function listarArtistasActivos()
+    {
+        $artistasActivos = Artistas::where('estado', '1')->get(); // Assuming '1' represents active
+
+        return view('publico/vistas/artistas/listar_artistas', ['artistas' => $artistasActivos]);
+    }
+    public function active()
+    {
+        return view('publico/vistas/artistas/index');
+    }
+   
     public function index()
     {
-        $artistas = artistas::all();
-        return view('publico/vistas/artistas/inscripciones', compact('artistas'));
+        $artistas = Artistas::all();
+        $artistas = Artistas::leftJoin('eventos', 'artistas.idevento', '=', 'eventos.id')
+            ->select(
+                'artistas.id as artista_id',
+                'artistas.idevento',
+                'eventos.evento as nombre_evento',
+                'artistas.identidad',
+                'artistas.nombre as nombre_artista',
+                'artistas.email',
+                'artistas.telefono',
+                'artistas.imagen',
+                'artistas.descripcion',
+                'artistas.fecharegistro',
+                'artistas.estado as estado_artista',
+                'artistas.created_at as artista_creado_en',
+                'artistas.updated_at as artista_actualizado_en'
+            )
+            ->get();
+
+        return view('admin/vistas/artistas.index', compact('artistas'));
+      
+    }
+    
+   
+    /**
+     * Activa o desactiva un artista.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function cambiarEstado(Request $request, $id)
+    {
+
+        $artista = Artistas::findOrFail($id);
+
+        $nuevoEstado = $artista->estado == '1' ? '0' : '1';
+        $artista->estado = $nuevoEstado;
+        $artista->save();
+
+        return redirect()->route('artistas.index')->with('success', 'El estado del artista ha sido actualizado.');
+
+        //$artistas = artistas::all();
+        //return view('publico/vistas/artistas/inscripciones', compact('artistas'));
+
     }
 
     /**
@@ -21,30 +79,24 @@ class ArtistasController extends Controller
      */
     public function create()
     {
-        //
+        return view('artistas.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    { // Validar los datos del formulario
+    {
+
         $request->validate([
-            'idevento' => 'required|exists:eventos,id',
-            'nidentidad' => 'required|string|max:50',
-            'nombre' => 'required|string|max:100',
-            'email' => 'required|email|max:150',
-            'telefono' => 'required|string|max:20',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
-            'descripcion' => 'nullable|string|max:2000',
-            'fecharegistro' => 'required|date',
-            'estado' => 'required|string|max:45',
+            'nombre'=>'Required|string|max:255'
         ]);
-        if ($request->hasFile('foto')) {
-            $fotoPath = $request->file('foto')->store('artistas', 'public');
-        } else {
-            $fotoPath = null;
-        }
+        Artistas::create($request->all());
+
+        return redirect()->route('artistas.create')->with('success','Artistas registrados exitosamente');
+    }
+
+public function crearArtistas(Request $request) {
 
         // Crear el nuevo artista con la relación al evento
         $artista = artistas::create([
@@ -53,7 +105,7 @@ class ArtistasController extends Controller
             'nombre' => $request->nombre,
             'email' => $request->email,
             'telefono' => $request->telefono,
-            'foto' => $fotoPath,
+            //'foto' => $fotoPath,
             'descripcion' => $request->descripcion,
             'fecharegistro' => $request->fecharegistro,
             'estado' => $request->estado,
@@ -61,7 +113,7 @@ class ArtistasController extends Controller
 
         // Redirigir o enviar una respuesta
         return redirect()->route('artistas.create')->with('success', 'Artista creado correctamente.');
-}
+    }
     /**
      * Display the specified resource.
      */
@@ -75,7 +127,7 @@ class ArtistasController extends Controller
      */
     public function edit(Artistas $artistas)
     {
-        $artistas = Artistas::find($id);
+        $artistas = Artistas::find($artistas->id);
         return view("admin/vistas/artistas/editartistas", compact('artistas'));
     }
 

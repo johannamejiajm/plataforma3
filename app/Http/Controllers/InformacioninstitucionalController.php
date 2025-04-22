@@ -10,9 +10,21 @@ class InformacioninstitucionalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+
+        $url = $request->url(); // O puedes colocar la URL manualmente
+
+    // Extraer la parte del nombre (en este caso, 'quienessomos')
+        $path = parse_url($url, PHP_URL_PATH);  // Extrae el path de la URL
+        $name = basename($path);  // Obtiene el nombre de la última parte del path
+
+        $url_view = 'publico.vistas.publicaciones.' . $name;
+
+        // dd($url_view);
+
+        return view($url_view);
+    
     }
 
     /**
