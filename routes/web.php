@@ -7,7 +7,6 @@ use App\Http\Controllers\ArtistasController;
 use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicacionesController;
-use App\Http\Controllers\ArtistasController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -47,7 +46,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-    Route::get('/donaciones', [DonacionesController::class, 'indexdonacion'])->name('donaciones.index');
+    Route::get('/donacionesindex', [DonacionesController::class, 'indexdonacion'])->name('donacionesindex.index');
     Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaciones.store');
 
     Route::get('/quienessomos', [InformacioninstitucionalController::class, 'index'])->name('quienessomos.index');
@@ -61,7 +60,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
     Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
-    Route::put('/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');   
+    Route::put('/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');
 
 
     Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
@@ -71,8 +70,8 @@ Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambia
 
 Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
 
-   
-   
+
+
 
     Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
 
