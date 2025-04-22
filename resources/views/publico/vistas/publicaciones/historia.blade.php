@@ -5,6 +5,16 @@
 @endsection
 
 
+@section('tituloheader')
+FUNDACION PACHO'S CLUB
+@endsection
+
+@section('subtituloheader')
+HISTORIA
+
+@endsection
+
+
 @section('tituloprincipal')
   
   <!-- <head>
@@ -17,12 +27,12 @@
 
 </head> -->
 
-
+<!-- 
 <div class="hero">
     <div class="overlay">
       <h1>Historia de la Administración Deportiva</h1>
     </div>
-  </div>
+  </div> -->
 @endsection
 
 @section('contenido')
