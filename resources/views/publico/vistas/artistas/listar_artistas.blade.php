@@ -9,71 +9,13 @@
 @endsection
 @section('contenido')
 
-<head>
-    
-    <style>
-      
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            color:rgb(9, 83, 231);
-        }
-        .card {
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background-color:rgb(53, 22, 226);
-        }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgb(14, 0, 0);
-        }
-        .card-img-top {
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            object-fit: cover;
-            height: 200px;
-            background-color: #f0f0f0;
-        }
-        .alert-success {
-            margin-bottom: 30px;
-            background-color: #4caf50;
-            color: white;
-            border-radius: 5px;
-        }
-        .list-group-item {
-            font-size: 14px;
-            background-color: #f7fafc;
-            border: none;
-        }
-        .card-body h5 {
-            font-size: 18px;
-            font-weight: bold;
-            color:rgb(255, 255, 255);
-        }
-        .card-body p {
-            color:rgb(248, 242, 242);
-        }
-        .container {
-            max-width: 1200px;
-            margin: auto;
-        }
-        .card-footer {
-            background-color: #2b2d42;
-            color: white;
-            border-radius: 0 0 10px 10px;
-            text-align: center;
-            padding: 10px;
-        }
-  
-        .card-body ul {
-            padding-left: 15px;
-        }
-        .list-group-item:last-child {
-            border-bottom: none;
-        }
-    </style>
-</head>
+@section('links')
+
+<link rel="stylesheet" href="{{ asset('assets/css/artistas.css') }}">
+
+@endsection
+
+
 <body class="p-4">
     <div class="container">
  
