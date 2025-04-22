@@ -80,7 +80,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
 
-    Route::get('vistas/publicaciones/historia', [PublicacionesController::class, 'index'])->name('historia.index');
+    Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
 
 
     Route::get('/contactos', [PublicacionesController::class, 'indexcontactos'])->name('contantos.indexcontactos');

@@ -7,23 +7,31 @@
 
 @section('tituloprincipal')
   
-  <head>
+  <!-- <head>
   <meta charset="UTF-8">
   <H1 class="text-center">Historia de PACHO'S CLUB</H1>
   <title>Historia - Administración Deportiva</title>
   <link rel="stylesheet" href="estilos.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-</head>
-@endsection
-
-@section('contenido')
   
-  <div class="hero">
+
+</head> -->
+
+
+<div class="hero">
     <div class="overlay">
       <h1>Historia de la Administración Deportiva</h1>
     </div>
   </div>
+@endsection
 
+@section('contenido')
+  
+<!-- <div class="hero">
+    <div class="overlay">
+      <h1>Historia de la Administración Deportiva</h1>
+    </div>
+  </div> -->
   <div class="contenedor">
     <div class="contenido">
       <h2>Historia sec 1</h2>
@@ -305,74 +313,13 @@
   </div>
 </html>
 
+@section('links')
+ <link rel="stylesheet" href="{{ asset('assets/css/styleshistoria.css') }}">
 
-<style>
-  /* estilos.css */
-body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f5f5f5;
-  color: #333;
-}
+@endsection
 
 
 
-.hero {
-  background-image: url("{{ asset('assets/images/imageneshistoria/IMG MAQUETACION/im1.jpeg')}}"); /* Cambia por la ruta correcta */
-  background-attachment: fixed;     /* Clave para el efecto parallax */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-}
-
-
-.hero .overlay {
-  background: rgba(0, 0, 0, 0.6);
-  width: 200%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero h1 {
-  color: #fff;
-  font-size: 36px;
-  text-align: center;
-  padding: 0 20px;
-}
-
-.contenedor {
-  max-width: 900px;
-  margin: 40px auto;
-  background: #ffffff;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #2c3e50;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 10px;
-}
-
-p {
-  line-height: 1.8;
-  text-align: justify;
-  margin-bottom: 20px;
-}
-
-</style>
 
 
 @endsection
