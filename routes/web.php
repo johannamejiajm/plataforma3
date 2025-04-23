@@ -66,11 +66,11 @@ Route::middleware('auth')->group(function () {
 
 
     
+// Mostrar formulario para crear un nuevo artista
+Route::get('/artistas/create', [ArtistasController::class, 'create'])->name('artistas.create');// Guardar artista en la base de datos
+Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
 
-    Route::get('/artistas/create', [ArtistasController::class, 'create'])->name('artistas.create');
 
-// Ruta para guardar el artista
-Route::post('/artistas/guardar', [ArtistasController::class, 'store'])->name('artistas.store');
   
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
     Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');

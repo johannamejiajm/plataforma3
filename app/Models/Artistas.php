@@ -11,7 +11,7 @@ class artistas extends Model
     protected $table = 'artistas';
     protected $fillable = [
         'idevento',
-        'nidentidad',
+        'identidad',
         'nombre',
         'email',
         'telefono',

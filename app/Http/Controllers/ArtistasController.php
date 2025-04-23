@@ -81,7 +81,7 @@ class ArtistasController extends Controller
     public function create()
     {
         $eventos = Evento::all();
-    return view('artistas.create', compact('eventos'));
+    return view('publico/vistas/artistas/create', compact('eventos'));
     }
 
     /**
@@ -91,22 +91,25 @@ class ArtistasController extends Controller
     {
 
         $request->validate([
+            'identidad' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255',
+            'email' => 'required|email',
+            'telefono' => 'nullable|string|max:255',
             'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'idevento' => 'required|exists:eventos,id',
+            'descripcion' => 'nullable|string',
+            'fecharegistro' => 'required|date',
         ]);
-    
         $data = $request->all();
     
         if ($request->hasFile('imagen')) {
-            $file = $request->file('imagen');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/artistas'), $filename);
-            $data['imagen'] = 'uploads/artistas/' . $filename;
+            $path = $request->file('imagen')->store('artistas', 'public');
+            $data['imagen'] = $path;
         }
     
-        Artista::create($data);
+        Artistas::create($data);
     
-        return redirect()->route('artistas.index')->with('success', 'Artista creado con éxito');
-
+        return redirect()->route('artistas.create')->with('success', 'Artista registrado correctamente.');
     }
     
 

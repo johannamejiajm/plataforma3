@@ -1,52 +1,75 @@
-@extends('publico.script.artistas.artistasscript')
+
+@extends('publico.plantilla.plantilla')
 @section('titulo')
-<title>Inscripciones</title>
+<title>
+    Artistas
+</title>
 @endsection
 @section('tituloprincipal')
-<div class="row justify-content-center align-content-center text-center">
-    <h2>inscripcion de artistas</h2>
-</div>
+<h1>Registrar Artistas</h1>
 @endsection
 @section('contenido')
 
-<form action="{{ route('artistas.store') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    <label>Evento</label>
-    <select name="idevento">
-        @foreach ($eventos as $evento)
-            <option value="{{ $evento->id }}">{{ $evento->evento }}</option>
-        @endforeach
-    </select>
 
-    <label>Identidad</label>
-    <input type="text" name="identidad" required>
+<body>
+<div class="max-w-xl mx-auto bg-white shadow-md rounded-xl p-8 mt-10">
+ 
 
-    <label>Nombre</label>
-    <input type="text" name="nombre" required>
+    <form action="{{ route('artistas.store') }}" method="POST" enctype="multipart/form-data" class="space-y-5">
+        @csrf
 
-    <label>Email</label>
-    <input type="email" name="email">
+        <div>
+            <label class="block text-sm font-medium mb-1">Identidad:</label>
+            <input type="text" name="identidad" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
 
-    <label>Teléfono</label>
-    <input type="text" name="telefono">
+        <div>
+            <label class="block text-sm font-medium mb-1">Nombre:</label>
+            <input type="text" name="nombre" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
 
-    <label>Descripción</label>
-    <textarea name="descripcion"></textarea>
+        <div>
+            <label class="block text-sm font-medium mb-1">Email:</label>
+            <input type="email" name="email" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
 
-    <label>Fecha Registro</label>
-    <input type="date" name="fecharegistro">
+        <div>
+            <label class="block text-sm font-medium mb-1">Teléfono:</label>
+            <input type="text" name="telefono" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
 
-    <label>Imagen</label>
-    <input type="file" name="imagen">
+        <div>
+            <label class="block text-sm font-medium mb-1">Imagen:</label>
+            <input type="file" name="imagen" class="w-full px-4 py-2 border rounded-lg file:border-0 file:bg-blue-500 file:text-white file:font-medium file:px-4 file:py-2">
+        </div>
 
-    <label>Estado</label>
-    <select name="estado">
-        <option value="1">Activo</option>
-        <option value="0">Inactivo</option>
-    </select>
+        <div>
+            <label class="block text-sm font-medium mb-1">Evento:</label>
+            <select name="idevento" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                @foreach($eventos as $evento)
+                    <option value="{{ $evento->id }}">{{ $evento->evento }}</option>
+                @endforeach
+            </select>
+        </div>
 
-    <button type="submit">Guardar Artista</button>
-</form>
+        <div>
+            <label class="block text-sm font-medium mb-1">Descripción:</label>
+            <textarea name="descripcion" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-1">Fecha de Registro:</label>
+            <input type="date" name="fecharegistro" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-all">
+                Guardar Artista
+            </button>
+        </div>
+    </form>
+</div>
+</body>
 
 
 @endsection
