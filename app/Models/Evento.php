@@ -16,8 +16,9 @@ class evento extends Model
     ];
 
     // Relación con la tabla artistas (un evento tiene muchos artistas)
-    public function artistas(): HasMany
+ 
+    public function artistas(): BelongsToMany
     {
-        return $this->hasMany(Artistas::class, 'idevento');
+        return $this->belongsToMany(Artista::class, 'artista_evento', 'evento_id', 'artista_id');
     }
 }

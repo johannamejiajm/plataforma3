@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artistas;
+use App\Models\evento;
 use Illuminate\Http\Request;
 use Symfony\Contracts\Service\Attribute\Required;
 
@@ -46,7 +47,7 @@ class ArtistasController extends Controller
             )
             ->get();
 
-        return view('admin/vistas/artistas.index', compact('artistas'));
+        return view('admin.vistas.artistas.index', compact('artistas'));
       
     }
     
@@ -79,7 +80,8 @@ class ArtistasController extends Controller
      */
     public function create()
     {
-        return view('artistas.create');
+        $eventos = Evento::all();
+    return view('artistas.create', compact('eventos'));
     }
 
     /**
@@ -89,12 +91,24 @@ class ArtistasController extends Controller
     {
 
         $request->validate([
-            'nombre'=>'Required|string|max:255'
+            'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
-        Artistas::create($request->all());
+    
+        $data = $request->all();
+    
+        if ($request->hasFile('imagen')) {
+            $file = $request->file('imagen');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/artistas'), $filename);
+            $data['imagen'] = 'uploads/artistas/' . $filename;
+        }
+    
+        Artista::create($data);
+    
+        return redirect()->route('artistas.index')->with('success', 'Artista creado con éxito');
 
-        return redirect()->route('artistas.create')->with('success','Artistas registrados exitosamente');
     }
+    
 
 public function crearArtistas(Request $request) {
 
@@ -146,4 +160,5 @@ public function crearArtistas(Request $request) {
     {
         //
     }
+
 }

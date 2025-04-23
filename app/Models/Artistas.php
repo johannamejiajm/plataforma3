@@ -21,8 +21,9 @@ class artistas extends Model
         'estado',
     ];
     // Relación con la tabla eventos (un artista pertenece a un evento)
-    public function evento()
+    
+    public function eventos(): BelongsToMany
     {
-        return $this->belongsTo(eventos::class, 'idevento');
+        return $this->belongsToMany(Evento::class, 'artista_evento', 'artista_id', 'evento_id');
     }
 }
