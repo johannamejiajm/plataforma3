@@ -4,7 +4,6 @@
 
 use App\Http\Controllers\InformacioninstitucionalController;
 use App\Http\Controllers\ArtistasController;
-
 use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicacionesController;
@@ -47,7 +46,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-    Route::get('/donaciones', [DonacionesController::class, 'indexdonacion'])->name('donaciones.index');
+    Route::get('/donacionesindex', [DonacionesController::class, 'indexdonacion'])->name('donacionesindex.index');
     Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaciones.store');
 
     Route::get('/quienessomos', [InformacioninstitucionalController::class, 'index'])->name('quienessomos.index');
@@ -61,7 +60,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
     Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
-    Route::put('/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');   
+    Route::put('/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');
 
 
     Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
@@ -75,12 +74,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
     Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
 
+
     Route::get('/vistas/publicaciones/inicio', [PublicacionesController::class, 'indexinicio'])->name('vistaspublicacionesinicio.index');
     Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
 
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
 
-    Route::get('vistas/publicaciones/historia', [PublicacionesController::class, 'index'])->name('historia.index');
+    Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
 
 
     Route::get('/contactos', [PublicacionesController::class, 'indexcontactos'])->name('contantos.indexcontactos');
@@ -88,6 +88,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
     Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
+
 
     Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
 require __DIR__ . '/auth.php';
