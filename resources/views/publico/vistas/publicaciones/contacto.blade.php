@@ -33,7 +33,7 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="info-details">
-                            <h4>Ubicación</h4>
+                            <h4>direccion</h4>
                             <p> Cra 8 # 8-101 AGUACHICA-CESAR</p>
                         </div>
                     </div>
@@ -44,10 +44,13 @@
                         <i class="fas fa-phone-alt"></i>
                     </div>
                     <div class="info-details">
-                        <h4>Teléfono</h4>
+                        <h4>Teléfono 1</h4>
                         <p>+573013772079 </p>
+                    
+                        <h4>Teléfono 2</h4>
                         <p>+573186157178</p>
                     </div>
+                    
                 </div>
 
                 <div class="info-item">
@@ -55,7 +58,7 @@
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div class="info-details">
-                        <h4>Correo Electrónico</h4>
+                        <h4>email</h4>
                         <p>fundacionpachosclub@outlook.com</p>
                     </div>
                 </div>
@@ -65,8 +68,9 @@
                         <i class="fas fa-clock"></i>
                     </div>
                     <div class="info-details">
-                        <h4>Horario de Atención</h4>
+                        <h4>Horario</h4>
                         <p>Lunes a Viernes: 8:00 AM - 12:00 PM - DE 2:00 PM- 6:00 PM</p>
+                        <h4>Horario Extras</h4>
                         <p>Sábados: 8:00 AM - 12:00 PM</p>
                     </div>
                 </div>
