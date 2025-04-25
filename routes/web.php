@@ -62,6 +62,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/quienessomos', [InformacioninstitucionalController::class, 'index'])->name('quienessomos.index');
     Route::get('/editquienessomos/{id}/edit', [InformacioninstitucionalController::class, 'edit'])->name('quienessomos.edit');
     Route::put('/quienessomos/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
+    Route::get('/admin/quienessomos', [InformacioninstitucionalController::class, 'indexadminquienessomos'])->name('quienessomos.indexadmin');
+
 
 
     
