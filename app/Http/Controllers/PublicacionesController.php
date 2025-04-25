@@ -64,6 +64,14 @@ class PublicacionesController extends Controller
         return view($path);
 
     }
+    public function indexpublicacionespublico()
+    {
+        $publicaciones = Publicaciones::with(['usuario', 'tipo'])
+        ->orderBy('fechainicial', 'desc')
+        ->get();
+
+    return view('views/publico/vista/publicaciones/publicaciones', compact('publicaciones'));
+    }
 
 
     public function indexinicio()

@@ -91,4 +91,6 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
+
+    Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
 require __DIR__ . '/auth.php';
