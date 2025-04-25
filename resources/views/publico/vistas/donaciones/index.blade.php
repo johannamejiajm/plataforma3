@@ -39,7 +39,7 @@
                                         placeholder="Email o teléfono" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="donacion" class="form-label">Donación ($)</label>
+                                    <label for="donacion" class="form-label">Donación($)</label>
                                     <input type="number" step="0.01" class="form-control" id="donacion" name="donacion"
                                         min="1" required>
                                 </div>
