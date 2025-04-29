@@ -20,16 +20,46 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
 
-
+ Route::middleware(['permission:view publicaciones', 'role:admin'])->group(function () {
     Route::get('/api/admin/eventos', [PublicacionesController::class, 'data'])->name('publicaciones.eventos');
     Route::get('/api/admin/historias', [PublicacionesController::class, 'data'])->name('publicaciones.historias');
     Route::get('/api/admin/noticias', [PublicacionesController::class, 'data'])->name('publicaciones.noticias');
-
-
     Route::get('/admin/dashboard', [PublicacionesController::class, 'dashboard'])->name('admin.dashboard');
-    Route::resource('/admin/eventos', PublicacionesController::class);
+
+    Route::get('/admin/eventos', [PublicacionesController::class, 'index'])->name('eventos.index');
+    Route::get('/admin/historias', [PublicacionesController::class, 'index'])->name('historias.index');
+    Route::get('/admin/noticias', [PublicacionesController::class, 'index'])->name('noticias.index');
+ });
+
+
+/* hare pruebas */
+    /* Route::resource('/admin/eventos', PublicacionesController::class);
     Route::resource('/admin/noticias', PublicacionesController::class);
-    Route::resource('/admin/historias', PublicacionesController::class);
+    Route::resource('/admin/historias', PublicacionesController::class); */
+
+
+    Route::middleware(['permission:create publicaciones', 'role:admin'])->group(function(){
+        Route::post('/admin/eventos', [PublicacionesController::class, 'store'])->name('eventos.store');
+        Route::post('/admin/historias', [PublicacionesController::class, 'store'])->name('historias.store');
+        Route::post('/admin/noticias', [PublicacionesController::class, 'store'])->name('noticias.store');
+    });
+
+    Route::middleware(['permission:edit publicaciones', 'role:admin'])->group(function(){
+        Route::put('/admin/eventos/{evento}', [PublicacionesController::class, 'update'])->name('eventos.update');
+        Route::put('/admin/historias/{historia}', [PublicacionesController::class, 'update'])->name('historias.update');
+        Route::put('/admin/noticias/{noticia}', [PublicacionesController::class, 'update'])->name('noticias.update');
+
+        Route::get('/admin/eventos/{evento}', [PublicacionesController::class, 'show'])->name('eventos.show');
+        Route::get('/admin/historias/{historia}', [PublicacionesController::class, 'show'])->name('historias.show');
+        Route::get('/admin/noticias/{noticia}', [PublicacionesController::class, 'show'])->name('noticias.show');
+    });
+
+    Route::middleware(['permission:delete publicaciones', 'role:admin'])->group(function(){
+        Route::delete('/admin/eventos/{evento}', [PublicacionesController::class, 'destroy'])->name('eventos.destroy');
+        Route::delete('/admin/historias/{historia}', [PublicacionesController::class, 'destroy'])->name('historias.destroy');
+        Route::delete('/admin/noticias/{noticia}', [PublicacionesController::class, 'destroy'])->name('noticias.destroy');
+    });
+
 
 });
 
