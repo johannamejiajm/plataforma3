@@ -12,6 +12,8 @@
 
   <!-- Core Css -->
   <link rel="stylesheet" href="{{ asset('assets/css/styles.css')  }}" />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 
  @yield('titulo')
@@ -60,7 +62,7 @@
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Eventos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Inscripciones</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('artistas.create') }}">Inscripciones</a>
             </li>
             <li class="nav-item">
             <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('artistas.activos') }}">Artistas</a>
@@ -69,7 +71,7 @@
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('donaciones.index') }}">Donaciones</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Contacto</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('contantos.indexcontactos') }}">Contacto</a>
             </li>
           </ul>
           <div>
@@ -141,7 +143,7 @@
           </a>
         </li>
         <li class="mb-1">
-          <a href=".#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+          <a href="{{ route('contantos.indexcontactos') }}" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
             Contacto
           </a>
         </li>
@@ -173,13 +175,14 @@
     <!-- ------------------------------------- -->
     <!-- banner Start -->
     <!-- ------------------------------------- -->
-    <section class="bg-success position-relative p-0 m-0" style="height: 300px; overflow: hidden;">
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-                    background-image: url('https://static.vecteezy.com/system/resources/previews/002/885/318/non_2x/nature-green-tree-fresh-leaf-on-beautiful-blurred-soft-bokeh-sunlight-background-with-free-copy-space-spring-summer-or-environment-cover-page-template-web-banner-and-header-free-photo.jpg');
+    <section class="bg-success position-relative p-0 m-0 hero-overlay" style="height: 300px; overflow: hidden;">
+        <div class="hero" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                    background-image: url({{ asset('assets/images/imageneshistoria/MAQUETACION/im1.jpeg') }});
                     background-size: cover; background-position: center; z-index: 1;">
-        </div>
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+              background-color: rgba(0, 0, 0, 0.5); z-index: 2;"></div>
 
-        <div class="custom-container position-relative z-2 text-white" style="z-index: 2; height: 100%;">
+        <div class="custom-container position-relative z-2 text-white " style="z-index: 2; height: 100%;">
             <div class="row h-100">
               <div class="col-12 d-flex flex-column justify-content-center align-items-center text-center">
                 <div>
@@ -190,6 +193,7 @@
                 @yield('leyendaheader')
               </div>
             </div>
+          </div>
           </div>
       </section>
     <!-- ------------------------------------- -->
