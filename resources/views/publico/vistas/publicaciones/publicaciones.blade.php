@@ -26,35 +26,41 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
+        @foreach($publicaciones as $publicacion)
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h2>{{ $publicaciones->titulo }}</h2>
+                    <h2>{{ $publicacion->titulo }}</h2>
                     <a href="{{ route('publicaciones.indexpublicacionespublico') }}" class="btn btn-secondary">Volver</a>
                 </div>
                 <div class="card-body">
                     <div class="row mb-4">
                         <div class="col-md-4">
-                            <strong>Tipo:</strong> {{ $publicaciones->tipoPublicacion->tipo }}
+                            <strong>Tipo:</strong> {{ optional($publicacion->tipo)->tipo ?? 'Sin tipo' }}
                         </div>
                         <div class="col-md-4">
-                            <strong>Autor:</strong> {{ $publicaciones->autor->nombre }}
+                            <strong>Autor:</strong> {{ optional($publicacion->usuario)->name ?? 'Anónimo' }}
                         </div>
                         <div class="col-md-4">
-                            <strong>Fecha:</strong> {{ \Carbon\Carbon::parse($publicaciones->fecha)->format('d/m/Y') }}
+                            <strong>Fecha:</strong> {{ \Carbon\Carbon::parse($publicacion->fecha)->format('d/m/Y') }}
                         </div>
                     </div>
 
-                    @if($publicaciones->imagen)
-                        <div class="text-center mb-4">
-                            <img src="{{ asset($publicaciones->imagen) }}" alt="{{ $publicaciones->titulo }}" class="img-fluid">
-                        </div>
+                    
+                    @if($publicacion->fotos)
+                        @foreach ($publicacion->fotos as $foto)
+                            <div class="text-center mb-4">
+                                <img src="{{ asset(  $foto->imagen) }}" alt="{{ $foto->imagen }}" class="img-fluid">
+                            </div>
+                        @endforeach
+                        
                     @endif
 
                     <div class="publicacion-contenido">
-                        {{ $publicaciones->contenido }}
+                        {{ $publicacion->contenido }}
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 </div>
