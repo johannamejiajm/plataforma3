@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artistas;
+use App\Models\evento;
 use Illuminate\Http\Request;
 use Symfony\Contracts\Service\Attribute\Required;
 
@@ -46,7 +47,7 @@ class ArtistasController extends Controller
             )
             ->get();
 
-        return view('admin/vistas/artistas.index', compact('artistas'));
+        return view('admin.vistas.artistas.index', compact('artistas'));
       
     }
     
@@ -79,7 +80,8 @@ class ArtistasController extends Controller
      */
     public function create()
     {
-        return view('artistas.create');
+        $eventos = Evento::all();
+    return view('publico/vistas/artistas/create', compact('eventos'));
     }
 
     /**
@@ -89,12 +91,29 @@ class ArtistasController extends Controller
     {
 
         $request->validate([
-            'nombre'=>'Required|string|max:255'
+            'identidad' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255',
+            'email' => 'required|email',
+            'telefono' => 'nullable|string|max:255',
+            'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'idevento' => 'required|exists:eventos,id',
+            'descripcion' => 'nullable|string',
+            'fecharegistro' => 'required|date',
         ]);
-        Artistas::create($request->all());
+        $data = $request->all();
+    
+        if ($request->hasFile('imagen')) {
+            $path = $request->file('imagen')->store('artistas', 'public');
+            $data['imagen'] = $path;
+        }
 
-        return redirect()->route('artistas.create')->with('success','Artistas registrados exitosamente');
+        $data['estado'] = '0';
+    
+        Artistas::create($data);
+    
+        return redirect()->route('artistas.create')->with('success', 'Artista registrado correctamente.');
     }
+    
 
 public function crearArtistas(Request $request) {
 
@@ -146,4 +165,5 @@ public function crearArtistas(Request $request) {
     {
         //
     }
+
 }
