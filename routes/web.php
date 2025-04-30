@@ -2,6 +2,7 @@
 
 
 
+use App\Http\Controllers\ContactosController;
 use App\Http\Controllers\InformacioninstitucionalController;
 use App\Http\Controllers\ArtistasController;
 use App\Http\Controllers\DonacionesController;
@@ -100,8 +101,9 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
 
 
-    Route::get('/contactos', [PublicacionesController::class, 'indexcontactos'])->name('contantos.indexcontactos');
-    Route::get('/admin/contactos', [PublicacionesController::class, 'admincontactos'])->name('admin.contactos');
+    Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
+    Route::post('/contactos/actualizar', [ContactosController::class, 'actualizarContactos'])->name('contantos.actualizarcontactos');
+    Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos');
 
     Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
     Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
