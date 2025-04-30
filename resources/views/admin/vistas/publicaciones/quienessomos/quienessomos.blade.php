@@ -1,13 +1,14 @@
-@extends(view:'admin.quienessomos.quienessomos.scrip.blade.php')
-@section()
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Formulario Quiénes Somos</title>
-</head>
-<body>
-    <h1>Formulario: Quiénes Somos</h1>
+@extends('admin.script.quienessomos.quienessomosscrip')
+@section('titulo')
+    <title>Donaciones</title>
+@endsection
+
+@section('tituloprincipal')
+    <div class="row justify-content-center align-content-center text-center">
+        <h2>Formulario Quiénes Somos</h2>
+    </div>
+@endsection
+@section('contenido')
     <form action="guardar.php" method="post">
 
         <label for="quienes somos">quienes somos:</label><br>
@@ -24,7 +25,5 @@
 
         <input type="submit" value="Guardar">
     </form>
-</body>
-</html>
 
 @endsection
