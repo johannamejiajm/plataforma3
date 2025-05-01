@@ -11,12 +11,6 @@
 @endsection
 
 
-    <section class="hero">
-        <div class="container">
-            <h1>Publicaciones</h1>
-            <p>Mantente al día con las últimas noticias, historias de éxito y actualizaciones de la fundación Pacho's Club.</p>
-        </div>
-    </section>
 
 
 @endsection
