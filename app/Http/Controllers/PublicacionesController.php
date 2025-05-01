@@ -74,10 +74,10 @@ class PublicacionesController extends Controller
    
     public function indexhistoria()
     {
-       //$publicaciones = Publicaciones::all();
-        //return view('admin/vistas/publicaciones/publicaciones', compact('publicaciones'));
-        $historia = Publicaciones::all();
-        return view('publico.vistas.publicaciones.historia', compact('historia'));
+       
+        $historias = Publicaciones::with(['fotos', 'tipo'])->where('idtipo', 3)->where('estado', 1)->get();
+        // dd($historia);
+        return view('publico.vistas.publicaciones.historia', compact('historias'));
       
     }
     public function indexpublicaciones()

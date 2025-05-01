@@ -90,7 +90,13 @@ body {
 }
 
 .galeria h2 {
-  color: #3454d1;
+  color: #001e97;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.Origen-Historia h2 {
+  color: #0a0097;
   font-size: 2rem;
   margin-bottom: 30px;
 }

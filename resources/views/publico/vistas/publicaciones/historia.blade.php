@@ -42,34 +42,42 @@ HISTORIA
       <h1>Historia de la Administración Deportiva</h1>
     </div>
   </div> -->
+
+
+  @if ($historias)
+
+  @foreach ($historias as $historia)
   <div class="contenedor">
     <div class="contenido">
-      <h2>Origen</h2>
+      <h2>{{ $historia->titulo }}</h2>
       <p>
-      Pacho’s Club nacio de un grupo de amigos de los medios de comunicación y profesionales en diferentes Areas,  amantes del deporte, con el fin de recrearnos sana mente nos dedicamos a organizar campeonatos en microfutbol en la cancha del barrio Potossi, organizadores del mejor campeonato que se juega en el municipio denominado Senior Master.
-      Tambien hemos hechos labor Social vinculados con el Asilo San Antonio e internos de la Carcel Municipal llevando recreacion, utiles de Aseo y Brigadas de Salud.
-      Pensando en servir a la Comunidad  decidimos registrarnos como fundacion, para seguir la labor social con el fin de llevar la alegria, la recreacion a la niñes y al Adulto Mayor .
-      En la Fundación PACHO’S CLUB ofrecemos espacios que permiten contribuir con el desarrollo integral, físico y mental de la Comunidad Aguachiquénse a través de actividades de recreación, deporte y eventos culturales y sociales.Desarrollamos nuestra misión con un equipo de trabajo interdisciplinario y comprometido en la promoción y defensa de los espacios lúdico-recreativos e infundiendo el espíritu del respeto mutuo y servicio a la sociedad  por medio de obras sociales.
-
+      
+{{ $historia->contenido }}
       </p>
       
     </div>
     <div class="contenedor">
       <h2 class="text-center mb-4">Momentos</h2>
 
-        <!-- <div id="carruselImagenes" class="carousel slide" data-bs-ride="carousel"> -->
+      
         <div id="carruselImagenes" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="false" data-bs-wrap="true">
 
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/Imagen10.jpg')}}" class="d-block w-100" alt="Imagen 1">
-            </div>
-            <div class="carousel-item">
+
+          @if ($historia->fotos)
+              @foreach ($historia->fotos as $foto)
+              <div class="carousel-item active">
+                  <img src="{{ asset($foto->imagen)}}" class="d-block w-100" alt="{{ $historia->titulo }}">
+                </div>
+              @endforeach
+          @endif
+           
+            <!-- <div class="carousel-item">
               <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/Imagen11.jpg')}}" class="d-block w-100" alt="Imagen 2">
             </div>
             <div class="carousel-item">
               <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen15.jpg')}}" class="d-block w-100" alt="Imagen 3">
-            </div>
+            </div> -->
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carruselImagenes" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -82,238 +90,114 @@ HISTORIA
         </div>
       </div>
     </div>
-  </div>
-
- 
-
+  @endforeach
   
-  <div class="contenedor">
-    <div class="contenido">
-      <h2>Celebración Día del Niño </h2>
-      <p>
-        La administración deportiva ha existido como actividad desde la época de los pobladores primitivos, pasando por la organización de las olimpiadas de los antiguos griegos, hasta la administración moderna de organizaciones y empresas deportivas del siglo XXI, lo que muestra la importancia que ha tenido el deporte y las actividades físicas desde la prehistoria del hombre.
-      </p>
-      
-    </div>
+  @endif
+  <section class="Origen-Historia">
 
-    <div class="contenedor">
-      <h2 class="text-center mb-4">Momentos</h2>
-      <div id="carruselImagenes2" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="false" data-bs-wrap="true">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración Día del Niño/Imagen1.jpg')}}" class="d-block w-100" alt="Imagen 4">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración Día del Niño/Imagen2.jpg')}}" class="d-block w-100" alt="Imagen 5">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración Día del Niño/Imagen3.jpg')}}" class="d-block w-100" alt="Imagen 6">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración Día del Niño/Imagen4.jpg')}}" class="d-block w-100" alt="Imagen 7">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carruselImagenes2" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carruselImagenes2" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <h2>ORIGEN</h2>
 
-       
-  
+    <div class="contenedor-gird">
+      <div class="item">
 
-  <div class="contenedor">
-    <div class="contenido">
-      <h2>Apoyo a los Abuelos del Ancianito </h2>
-      <p>
-        La administración deportiva ha existido como actividad desde la época de los pobladores primitivos, pasando por la organización de las olimpiadas de los antiguos griegos, hasta la administración moderna de organizaciones y empresas deportivas del siglo XXI, lo que muestra la importancia que ha tenido el deporte y las actividades físicas desde la prehistoria del hombre.
-      </p>
-      
-    </div>
-    <div class="contenedor">
-      <h2 class="text-center mb-4">Momentos</h2>
-
-      <div id="carruselImagenes3" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="false" data-bs-wrap="true">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/ancianato1.jpeg')}}" class="d-block w-100" alt="Imagen 1">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/ancianato2.jpeg')}}" class="d-block w-100" alt="Imagen 2">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/ancianato3.jpeg')}}" class="d-block w-100" alt="Imagen 3">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/ancianato4.jpeg')}}" class="d-block w-100" alt="Imagen 4">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/Imagen6.jpg')}}" class="d-block w-100" alt="Imagen 5">
-            </div>
-            <div class="carousel-item">
-            <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/Imagen7.jpg')}}" class="d-block w-100" alt="Imagen 6">
-            </div>
-            <div class="carousel-item">
-            <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/Imagen8.jpg')}}" class="d-block w-100" alt="Imagen 7">
-            </div>
-            <div class="carousel-item">
-            <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/Imagen9.jpg')}}" class="d-block w-100" alt="Imagen 8">
-            </div>
-            <div class="carousel-item">
-            <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/Imagen10.jpg')}}" class="d-block w-100" alt="Imagen 9">
-            </div>
-            <div class="carousel-item">
-            <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/Imagen11.jpg')}}" class="d-block w-100" alt="Imagen 10">
-            </div>
+            <a href="#" target="_blank">
+              <img src="{{ asset('assets/images/imageneshistoria/MAQUETACION/im1.jpeg')}}" alt="Imagen 1">
+            </a>
+            <a href="#" target="_blank">
             
+            PACHO'S CLUB CELEBRÓ DÍA A LOS ARTISTAS
+            </a>
+            <p>Octubre 28, 2024</p>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carruselImagenes3" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carruselImagenes3" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
-          </button>
-        </div>
+      </div>  
+
+
+  </section>
+
+  <section class="galeria">
+
+    <h2>HISTORIA DE EVENTOS</h2>
+    
+
+    <div class="contenedor-grid">
+      <!-- Item 1 -->
+      <div class="item">
+        <a href="#" target="_blank">
+          <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración Día del Niño/Imagen1.jpg')}}" alt="Imagen 1">
+        </a>
+        <a href="#" target="_blank">
+        Celebración Día del Niño
+        </a>
+        <p>abril 22, 2025</p>
       </div>
-    </div>
-  </div>
- 
-
-  <div class="contenedor">
-    <div class="contenido">
-      <h2>Apoyo a los Artistas de la Región </h2>
-      <p>
-        La administración deportiva ha existido como actividad desde la época de los pobladores primitivos, pasando por la organización de las olimpiadas de los antiguos griegos, hasta la administración moderna de organizaciones y empresas deportivas del siglo XXI, lo que muestra la importancia que ha tenido el deporte y las actividades físicas desde la prehistoria del hombre.
-      </p>
-    
-    
-    </div>
-    <div class="contenedor">
-      <h2 class="text-center mb-4">Momentos</h2>
-
-        <div id="carruselImagenes4" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="false" data-bs-wrap="true">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen13.jpg')}}" class="d-block w-100" alt="Imagen 1">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen14.jpg')}}" class="d-block w-100" alt="Imagen 2">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen15.jpg')}}" class="d-block w-100" alt="Imagen 3">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen16.jpg')}}" class="d-block w-100" alt="Imagen 4">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carruselImagenes4" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carruselImagenes4" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
-          </button>
-        </div>
+      <!-- Item 2 -->
+      <div class="item">
+        <a href="#" target="_blank">
+          <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/ancianato1.jpeg')}}" alt="Imagen 1">
+        </a>
+        <a href="#" target="_blank">
+        Apoyo a los Abuelos del Ancianito
+        </a>
+        <p>abril 22, 2025</p>
       </div>
-    </div>
-  </div>
-
-  
-  
-    
- 
-    
-  
-  <div class="contenedor">
-    <div class="contenido">
+      <!-- Item 3 -->
       
-      <h2>Apoyo al deporte con campeonatos a la Niñez</h2>
-      <p>
-        La administración deportiva ha existido como actividad desde la época de los pobladores primitivos, pasando por la organización de las olimpiadas de los antiguos griegos, hasta la administración moderna de organizaciones y empresas deportivas del siglo XXI, lo que muestra la importancia que ha tenido el deporte y las actividades físicas desde la prehistoria del hombre.
-      </p>
-     
-    </div>
-    <div class="contenedor">
-      <h2 class="text-center mb-4">Momentos</h2>
-
-        <div id="carruselImagenes5" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="false" data-bs-wrap="true">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo al deporte con campeonatos a la Niñez/Imagen17.jpg')}}" class="d-block w-100" alt="Imagen 1">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo al deporte con campeonatos a la Niñez/Imagen18.jpg')}}" class="d-block w-100" alt="Imagen 1">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo al deporte con campeonatos a la Niñez/Imagen19.jpg')}}" class="d-block w-100" alt="Imagen 1">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo al deporte con campeonatos a la Niñez/Imagen20.jpg')}}" class="d-block w-100" alt="Imagen 1">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carruselImagenes5" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carruselImagenes5" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
-          </button>
-        </div>
+      <div class="item">
+        <a href="#" target="_blank">
+          <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen13.jpg')}}" alt="Imagen 1">
+        </a>
+        <a href="#" target="_blank">
+        Apoyo a los Artistas de la Región
+        </a>
+        <p>abril 22, 2025</p>
       </div>
+      <!-- Item 4 -->
+      <div class="item">
+        <a href="#" target="_blank">
+          <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo al deporte con campeonatos a la Niñez/Imagen17.jpg')}}" alt="Imagen 1">
+        </a>
+        <a href="#" target="_blank">
+        
+        Apoyo al deporte con campeonatos a la Niñez
+        </a>
+        <p>Octubre 28, 2024</p>
+      </div>
+
+      <div class="item">
+        <a href="#" target="_blank">
+          <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración de la Navidad con la niñez/Imagen21.jpg')}}" alt="Imagen 1">
+        </a>
+        <a href="#" target="_blank">
+        
+        Celebración de la Navidad con la niñez
+        </a>
+        <p>Octubre 28, 2024</p>
+      </div>
+      
     </div>
-  </div>
+    <div class="boton-contenedor">
+      <button>VER MÁS VIDEOS E IMÁGENES</button>
+    </div>
+  </section>
+
+
+
+
   
+ 
 
-  <div class="contenedor">
-    <div class="contenido">
-      <h2>Celebración de la Navidad con la niñez </h2>
-      <p>
-        La administración deportiva ha existido como actividad desde la época de los pobladores primitivos, pasando por la organización de las olimpiadas de los antiguos griegos, hasta la administración moderna de organizaciones y empresas deportivas del siglo XXI, lo que muestra la importancia que ha tenido el deporte y las actividades físicas desde la prehistoria del hombre.
-      </p>
-     
-    </div>
 
-    <div class="contenedor">
-      <h2 class="text-center mb-4">Momentos</h2>
 
-        <!-- <div id="carruselImagenes6" class="carousel slide" data-bs-ride="carousel"> -->
-        <div id="carruselImagenes6" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="false" data-bs-wrap="true">
 
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración de la Navidad con la niñez/Imagen21.jpg')}}" class="d-block w-100" alt="Imagen 1">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración de la Navidad con la niñez/Imagen22.jpg')}}" class="d-block w-100" alt="Imagen 1">
-            </div>
-            <div class="carousel-item">
-              <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen15.jpg')}}" class="d-block w-100" alt="Imagen 3">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carruselImagenes6" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carruselImagenes6" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
 
+
+
+
+
+
+
+
+   <!-- VIDEOS -->
   <section class="galeria">
     <h2>Videos</h2>
     <div class="contenedor-grid">
@@ -393,7 +277,7 @@ HISTORIA
 
 
   <div class="contenedor-flex">
-  <!-- Columna 1: Texto -->
+
 
   <div class="contenedor">
     <div class="contenido">
@@ -413,7 +297,7 @@ HISTORIA
     </div>
   </div>
 
-  <!-- Columna 2: Galería -->
+
   <div class="columna">
   
     <h2 class="text-center mb-4">Galería de Imágenes</h2>
@@ -441,7 +325,9 @@ HISTORIA
     </div>
     
   </div>
-</div>
+
+  
+
  
 
 </html>
