@@ -66,18 +66,12 @@ class PublicacionesController extends Controller
     }
     public function indexpublicacionespublico()
     {
-
-        
-        $publicaciones = Publicaciones::with(['usuario', 'tipo'])
-        ->orderBy('fechainicial', 'desc')
-        ->get();
-
-        
-
+        $publicaciones = Publicaciones::where('estado', '1')->get();
         // dd($publicaciones[2]->fotos[0]->imagen);
 
     return view('publico.vistas.publicaciones.publicaciones', compact('publicaciones'));
     }
+
 
 
     public function indexinicio()
