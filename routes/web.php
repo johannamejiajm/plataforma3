@@ -2,6 +2,7 @@
 
 
 
+use App\Http\Controllers\ContactosController;
 use App\Http\Controllers\InformacioninstitucionalController;
 use App\Http\Controllers\ArtistasController;
 use App\Http\Controllers\DonacionesController;
@@ -31,7 +32,18 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/noticias', PublicacionesController::class);
     Route::resource('/admin/historias', PublicacionesController::class);
 
+
+
+
+
+
+
+
+    //rutas de alexander-admin
+    Route::get('/admin/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
+
 });
+
 
 
 
@@ -52,9 +64,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/quienessomos', [InformacioninstitucionalController::class, 'index'])->name('quienessomos.index');
     Route::get('/editquienessomos/{id}/edit', [InformacioninstitucionalController::class, 'edit'])->name('quienessomos.edit');
     Route::put('/quienessomos/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
+    Route::get('/admin/quienessomos', [InformacioninstitucionalController::class, 'indexadminquienessomos'])->name('quienessomos.indexadmin');
 
 
-    Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
+
+    
+// Mostrar formulario para crear un nuevo artista
+Route::get('/artistas/create', [ArtistasController::class, 'create'])->name('artistas.create');// Guardar artista en la base de datos
+Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
+
+
+  
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
     Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
 
@@ -65,7 +85,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
 
-    Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
+   
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
     Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
     Route::get('/artistas/activos', [ArtistasController::class, 'listarArtistasActivos'])->name('artistas.activos');
@@ -76,15 +96,16 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/vistas/publicaciones/inicio', [PublicacionesController::class, 'indexinicio'])->name('vistaspublicacionesinicio.index');
-    Route::get('/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
+   
 
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
 
     Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
 
 
-    Route::get('/contactos', [PublicacionesController::class, 'indexcontactos'])->name('contantos.indexcontactos');
-    Route::get('/admin/contactos', [PublicacionesController::class, 'admincontactos'])->name('admin.contactos');
+    Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
+    Route::post('/contactos/actualizar', [ContactosController::class, 'actualizarContactos'])->name('contantos.actualizarcontactos');
+    Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos');
 
     Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
     Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
@@ -93,4 +114,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
 
     Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
+    
 require __DIR__ . '/auth.php';
