@@ -174,6 +174,13 @@
           </a>
         </li>
 
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="{{ route('donaciones.index') }}" aria-expanded="false">
+            <i class="ti ti-atom"></i>
+            <span class="hide-menu">Donaciones</span>
+          </a>
+        </li>
+
       </ul>
     </nav>
 </aside>
