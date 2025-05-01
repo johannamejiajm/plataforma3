@@ -6,6 +6,11 @@
 
 @endsection
 
+@section('links')
+
+    <link rel="stylesheet" href="{{ asset('assets/css/quienessomos.css') }}">
+
+@endsection
 
 @section('contenido')
 <!DOCTYPE html>
@@ -14,41 +19,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Quiénes Somos - Pacho’s Club</title>
-  <style>
-    /* Estilos aplicados desde ¿Quiénes Somos? hacia abajo */
-.container {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #f5f5f5;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: 'Arial', sans-serif;
-}
-
-.container h2 {
-  color: #2c3e50;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 10px;
-}
-
-.container p {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #333;
-}
-
-.container ul {
-  padding-left: 20px;
-}
-
-.container li {
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 8px;
-}
-
-  </style>
+  
 </head>
 <body>
 
