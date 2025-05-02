@@ -2,6 +2,7 @@
 
 
 
+use App\Http\Controllers\ContactosController;
 use App\Http\Controllers\InformacioninstitucionalController;
 use App\Http\Controllers\ArtistasController;
 use App\Http\Controllers\DonacionesController;
@@ -83,6 +84,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 
+
 /* Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard'); */
@@ -100,6 +102,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/quienessomos', [InformacioninstitucionalController::class, 'index'])->name('quienessomos.index');
     Route::get('/editquienessomos/{id}/edit', [InformacioninstitucionalController::class, 'edit'])->name('quienessomos.edit');
     Route::put('/quienessomos/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
+    Route::get('/admin/quienessomos', [InformacioninstitucionalController::class, 'indexadminquienessomos'])->name('quienessomos.indexadmin');
+
 
 
 
@@ -137,8 +141,9 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
 
 
-    Route::get('/contactos', [PublicacionesController::class, 'indexcontactos'])->name('contantos.indexcontactos');
-    Route::get('/admin/contactos', [PublicacionesController::class, 'admincontactos'])->name('admin.contactos');
+    Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
+    Route::post('/contactos/actualizar', [ContactosController::class, 'actualizarContactos'])->name('contantos.actualizarcontactos');
+    Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos');
 
     Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
     Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');

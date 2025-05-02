@@ -106,6 +106,8 @@ class ArtistasController extends Controller
             $path = $request->file('imagen')->store('artistas', 'public');
             $data['imagen'] = $path;
         }
+
+        $data['estado'] = '0';
     
         Artistas::create($data);
     
