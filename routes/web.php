@@ -7,7 +7,9 @@ use App\Http\Controllers\ArtistasController;
 use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicacionesController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PermissionController;
 
 Route::get('/', function () {
     return view('publico/plantilla/plantilla');
@@ -29,6 +31,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/eventos', [PublicacionesController::class, 'index'])->name('eventos.index');
     Route::get('/admin/historias', [PublicacionesController::class, 'index'])->name('historias.index');
     Route::get('/admin/noticias', [PublicacionesController::class, 'index'])->name('noticias.index');
+
+    Route::get('/admin/roles/list', [RoleController::class, 'list'])->name('roles.list');
+    Route::resource('/admin/roles', RoleController::class)->only(['index', 'store', 'update', 'destroy', 'edit']);
+    Route::post('/admin/permiso', [RoleController::class, 'createPermission'])->name('permissions.store');
+
+    Route::resource('/admin/permissions', PermissionController::class);
  });
 
 
@@ -94,13 +102,13 @@ Route::middleware('auth')->group(function () {
     Route::put('/quienessomos/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
 
 
-    
+
 // Mostrar formulario para crear un nuevo artista
 Route::get('/artistas/create', [ArtistasController::class, 'create'])->name('artistas.create');// Guardar artista en la base de datos
 Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
 
 
-  
+
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
     Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
 
@@ -111,7 +119,7 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
 
     Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
 
-   
+
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
     Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
     Route::get('/artistas/activos', [ArtistasController::class, 'listarArtistasActivos'])->name('artistas.activos');
@@ -122,7 +130,7 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
 
 
     Route::get('/vistas/publicaciones/inicio', [PublicacionesController::class, 'indexinicio'])->name('vistaspublicacionesinicio.index');
-   
+
 
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
 

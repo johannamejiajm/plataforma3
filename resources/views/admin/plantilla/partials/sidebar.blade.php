@@ -174,6 +174,37 @@
           </a>
         </li>
 
+
+
+
+
+
+
+
+
+
+
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('roles.index') }}" aria-expanded="false">
+              <i class="ti ti-atom"></i>
+              <span class="hide-menu">Roles</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('permissions.index') }}" aria-expanded="false">
+              <i class="ti ti-atom"></i>
+              <span class="hide-menu">Permisos</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('permissions.index') }}" aria-expanded="false">
+              <i class="ti ti-atom"></i>
+              <span class="hide-menu">Usuarios</span>
+            </a>
+          </li>
+
       </ul>
     </nav>
 </aside>
