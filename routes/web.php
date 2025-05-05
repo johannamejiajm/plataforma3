@@ -116,11 +116,13 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
     Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
 
-    Route::get('/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
-    Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
-    Route::put('/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');
+    Route::middleware('auth')->group(function () {
 
+    Route::get('/admin/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
+    Route::get('/admin/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
+    Route::put('/admin/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');
 
+});
     Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
 
 
@@ -128,9 +130,9 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
     Route::get('/artistas/activos', [ArtistasController::class, 'listarArtistasActivos'])->name('artistas.activos');
 
-    Route::get('/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
-    Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
-    Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
+    // Route::get('/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
+    // Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
+    // Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
 
 
     Route::get('/vistas/publicaciones/inicio', [PublicacionesController::class, 'indexinicio'])->name('vistaspublicacionesinicio.index');
@@ -149,5 +151,8 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
 
 
+    //rutas Midas - publico
     Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
+    Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
+    
 require __DIR__ . '/auth.php';
