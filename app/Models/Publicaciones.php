@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Publicaciones extends Model
 {
     protected $table = "publicaciones";
-  
     protected $fillable =[
         'idtipo', 
         'iduser', 
@@ -18,8 +17,6 @@ class Publicaciones extends Model
         'fechafinal',
         'estado'
     ];
-
-
 
     public function usuario() {
         return $this->belongsTo(User::class, 'iduser');

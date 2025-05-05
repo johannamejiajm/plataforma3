@@ -1,0 +1,70 @@
+.container {
+    max-width: 880px;
+    margin: 60px auto;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.07);
+    font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+    transition: all 0.4s ease;
+    border: 1px solid #dfe6e9;
+  }
+  
+  .container:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container h2 {
+    color: #2c3e50; /* azul profundo */
+    border-left: 6px solid #e74c3c; /* rojo vibrante */
+    padding-left: 18px;
+    margin-bottom: 28px;
+    font: 700 30px/1.3 'Inter', sans-serif;
+    letter-spacing: 0.6px;
+  }
+  
+  .container p,
+  .container li {
+    font-size: 17px;
+    color: #2f2f2f;
+    margin-bottom: 16px;
+    line-height: 1.7;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+  }
+  
+  .container ul {
+    padding-left: 30px;
+  }
+  
+  .container li {
+    position: relative;
+    padding-left: 24px;
+    transition: color 0.3s ease;
+  }
+  
+  .container li:hover {
+    color: #2980b9; /* azul más vivo */
+  }
+  
+  .container li::before {
+    content: '✔';
+    color: #2980b9; /* azul elegante */
+    position: absolute;
+    left: 0;
+    font-size: 16px;
+  }
+  
+  .container ul ul {
+    padding-left: 25px;
+    margin-top: 8px;
+  }
+  
+  .container ul ul li::before {
+    content: '➤';
+    color: #e74c3c; /* rojo */
+    font-size: 15px;
+  }
+  
+  
