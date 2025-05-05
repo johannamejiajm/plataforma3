@@ -91,9 +91,18 @@ class ArtistasController extends Controller
         $request->validate([
             'nombre'=>'Required|string|max:255'
         ]);
-        Artistas::create($request->all());
+        $data = $request->all();
+    
+        if ($request->hasFile('imagen')) {
+            $path = $request->file('imagen')->store('artistas', 'public');
+            $data['imagen'] = $path;
+        }
 
-        return redirect()->route('artistas.create')->with('success','Artistas registrados exitosamente');
+        $data['estado'] = '0';
+    
+        Artistas::create($data);
+    
+        return redirect()->route('artistas.create')->with('success', 'Artista registrado correctamente.');
     }
 
 public function crearArtistas(Request $request) {
