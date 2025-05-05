@@ -11,7 +11,7 @@ class artistas extends Model
     protected $table = 'artistas';
     protected $fillable = [
         'idevento',
-        'identidad',
+        'nidentidad',
         'nombre',
         'email',
         'telefono',
@@ -21,9 +21,8 @@ class artistas extends Model
         'estado',
     ];
     // Relación con la tabla eventos (un artista pertenece a un evento)
-    
-    public function eventos(): BelongsToMany
+    public function evento()
     {
-        return $this->belongsToMany(Evento::class, 'artista_evento', 'artista_id', 'evento_id');
+        return $this->belongsTo(eventos::class, 'idevento');
     }
 }

@@ -62,6 +62,14 @@ class PublicacionesController extends Controller
         return view($path);
 
     }
+    public function indexpublicacionespublico()
+    {
+        $publicaciones = Publicaciones::where('estado', '1')->get();
+        // dd($publicaciones[2]->fotos[0]->imagen);
+
+    return view('publico.vistas.publicaciones.publicaciones', compact('publicaciones'));
+    }
+
 
 
     public function indexinicio()
