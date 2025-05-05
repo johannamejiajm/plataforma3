@@ -20,7 +20,7 @@ class PublicacionesController extends Controller
     {
         return view('admin.dashboard.index');
     }
-
+    
     public function data(Request $request)
     {
         $typePublic = Str::after($request->getPathInfo(), '/api/admin/');
@@ -71,14 +71,14 @@ class PublicacionesController extends Controller
 
 
     }
-   
+    
     public function indexhistoria()
     {
        //$publicaciones = Publicaciones::all();
         //return view('admin/vistas/publicaciones/publicaciones', compact('publicaciones'));
         $historia = Publicaciones::all();
         return view('publico.vistas.publicaciones.historia', compact('historia'));
-      
+    
     }
     public function indexpublicaciones()
     {
@@ -311,4 +311,6 @@ class PublicacionesController extends Controller
             ], 500);
         }
     }
+
+    
 }

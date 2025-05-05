@@ -27,6 +27,10 @@ class InformacioninstitucionalController extends Controller
     
     }
 
+    public function indexadminquienessomos(){
+        return view('admin.vistas.publicaciones.quienessomos.quienessomos');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
