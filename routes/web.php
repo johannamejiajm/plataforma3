@@ -44,6 +44,8 @@ Route::middleware(['auth'])->group(function () {
 /* hare pruebas */
     /* Route::resource('/admin/eventos', PublicacionesController::class);
     Route::resource('/admin/noticias', PublicacionesController::class);
+    Route::resource('/admin/historias', PublicacionesController::class);
+    Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos')
     Route::resource('/admin/historias', PublicacionesController::class); */
 
 
@@ -68,6 +70,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/admin/historias/{historia}', [PublicacionesController::class, 'destroy'])->name('historias.destroy');
         Route::delete('/admin/noticias/{noticia}', [PublicacionesController::class, 'destroy'])->name('noticias.destroy');
     });
+
 
 
 
@@ -145,9 +148,10 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
 
     Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
     Route::post('/contactos/actualizar', [ContactosController::class, 'actualizarContactos'])->name('contantos.actualizarcontactos');
-    Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos');
-
+    
     Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
+
+
     Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
 
 

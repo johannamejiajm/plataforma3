@@ -13,7 +13,7 @@ class ContactosController extends Controller
     public function index()
     {
         $contactos = Contactos::first();
-        return view('publico/vistas/publicaciones/contacto',compact('contactos'));
+        return view('publico/vistas/publicaciones/contactos',compact('contactos'));
     }
     public function indexAdmin()
     {
@@ -23,6 +23,8 @@ class ContactosController extends Controller
 
     public function actualizarContactos(Request $request)
     {
+
+        // dd($request->all());
         
         $actualizarContactos = Contactos::first();
         $actualizarContactos->direccion = $request->direccion;
@@ -30,7 +32,7 @@ class ContactosController extends Controller
         $actualizarContactos->telefono2 = $request->telefono2;
         $actualizarContactos->email = $request->email;
         $actualizarContactos->horario = $request->horario;
-        $actualizarContactos->horarioextras = $request->horarioextra;
+        $actualizarContactos->horarioextras = $request->horarioextras;
         $actualizarContactos->embebido = $request->direccion;
         $actualizarContactos->urlfacebook = $request->urlfacebook;
         $actualizarContactos->urlx = $request->urlx;
@@ -42,7 +44,11 @@ class ContactosController extends Controller
             'mensaje'   =>"contacto registrado",
             'estado'    =>1,
         );
+
+
+
         return response()->json($respuesta);
 
+        
     }
 }
