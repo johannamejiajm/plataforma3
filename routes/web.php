@@ -50,6 +50,8 @@ Route::middleware(['auth'])->group(function () {
 /* hare pruebas */
     /* Route::resource('/admin/eventos', PublicacionesController::class);
     Route::resource('/admin/noticias', PublicacionesController::class);
+    Route::resource('/admin/historias', PublicacionesController::class);
+    Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos')
     Route::resource('/admin/historias', PublicacionesController::class); */
 
 //castro
@@ -74,6 +76,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/admin/historias/{historia}', [PublicacionesController::class, 'destroy'])->name('historias.destroy');
         Route::delete('/admin/noticias/{noticia}', [PublicacionesController::class, 'destroy'])->name('noticias.destroy');
     });
+
 
 
 
@@ -122,21 +125,23 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
     Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
 
-    Route::get('/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
-    Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
-    Route::put('/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');
+    Route::middleware('auth')->group(function () {
+
+    Route::get('/admin/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
+    Route::get('/admin/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
+    Route::put('/admin/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');
 
 
-    Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
+    Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index'); //JOHAN RINCON
 
 
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
     Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
     Route::get('/artistas/activos', [ArtistasController::class, 'listarArtistasActivos'])->name('artistas.activos');
 
-    Route::get('/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
-    Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
-    Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
+    // Route::get('/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
+    // Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
+    // Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
 
 
     Route::get('/vistas/publicaciones/inicio', [PublicacionesController::class, 'indexinicio'])->name('vistaspublicacionesinicio.index');
@@ -149,11 +154,16 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
 
     Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
     Route::post('/contactos/actualizar', [ContactosController::class, 'actualizarContactos'])->name('contantos.actualizarcontactos');
-    Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos');
 
     Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
+
+
     Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
 
 
+    //rutas Midas - publico
     Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
+    Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
+    
+});
 require __DIR__ . '/auth.php';

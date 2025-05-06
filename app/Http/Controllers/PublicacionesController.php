@@ -62,12 +62,21 @@ class PublicacionesController extends Controller
         return view($path);
 
     }
+    public function indexpublicacionespublico()
+    {
+        $publicaciones = Publicaciones::where('estado', '1')->get();
+        // dd($publicaciones[2]->fotos[0]->imagen);
+
+    return view('publico.vistas.publicaciones.publicaciones', compact('publicaciones'));
+    }
+
 
 
     public function indexinicio()
     {
+        $publicaciones = Publicaciones::latest()->where('idtipo', 2)->take(2)->get();
         $inicio = Publicaciones::all();
-        return view('publico.vistas.publicaciones.inicio', compact('inicio'));
+        return view('publico.vistas.publicaciones.inicio', compact('inicio','publicaciones'));
 
 
     }
@@ -130,7 +139,7 @@ class PublicacionesController extends Controller
             'titulo' => $request->titulo,
             'contenido' => $request->contenido,
             'idtipo' => $request->idtipo,
-            'iduser' => auth()->user()->id,
+           /*  'iduser' => auth()->user()->id, */
             'fechainicial' => $request->fechainicial,
             'fechafinal' => $request->fechafinal,
             'estado' => $request->estado

@@ -34,19 +34,23 @@ class DonacionesController extends Controller
         } else {
             
             $donaciones = Donaciones::whereHas('tipoDonacion', function ($query) use ($estado) {
+
+                // dd($estado);
                 if ($estado == 'aprobado') {
-                    $query->where('tipo', 'aprobado');
+                    $query->where('idtipo', '1');
                 } elseif ($estado == 'denegado') {
-                    $query->where('tipo', 'denegado');
+                    $query->where('idtipo', '2');
                 } elseif ($estado == 'pendiente') {
-                    $query->where('tipo', 'pendiente');
+                    $query->where('idtipo', '0');
                 }
             })
             ->get();
+
+            // dd($donaciones);
         }
 
         // Pasar las donaciones filtradas y el estado actual a la vista
-        return view('admin/vistas/donaciones/donaciones', compact('donaciones', 'estado'));
+        return view('admin.vistas.donaciones.donaciones', compact('donaciones', 'estado'));
     }
    
 
