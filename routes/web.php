@@ -126,7 +126,7 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::put('/admin/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');
 
 
-    Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index'); //JOHAN RINCON 
+    Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index'); //JOHAN RINCON
 
 
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
@@ -148,7 +148,7 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
 
     Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
     Route::post('/contactos/actualizar', [ContactosController::class, 'actualizarContactos'])->name('contantos.actualizarcontactos');
-    
+
     Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
 
 
@@ -159,4 +159,5 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
     Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
     
+});
 require __DIR__ . '/auth.php';
