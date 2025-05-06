@@ -49,7 +49,7 @@
     // Mostrar modal de edición
 $('#permissionsTable').on('click', '.editBtn', function () {
     const id = $(this).data('id');
-    $.get(`/admin/permissions/${id}`, function(data) {
+    $.get(`{{ route( 'permissions.show', ':id' ) }}`.replace(':id', id), function(data) {
         $('#edit_id').val(data.id);
         $('#edit_name').val(data.name);
         $('#editModal').modal('show');
@@ -71,7 +71,7 @@ $('#formEdit').submit(function(e) {
     Swal.fire({ title: 'Actualizando...', didOpen: () => Swal.showLoading(), allowOutsideClick: false });
 
     $.ajax({
-        url: `/admin/permissions/${id}`,
+        url: `{{ route('permissions.update',  ':id') }}`.replace(':id', id),
         method: 'POST',
         data: data,
         success: function(response) {
@@ -106,7 +106,7 @@ $('#formEdit').submit(function(e) {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: `/admin/permissions/${id}`,
+                    url: `{{ route('permissions.destroy', ':id') }}`.replace(':id', id),
                     type: 'DELETE',
                     data: { _token: '{{ csrf_token() }}' },
                     success: function(response) {
