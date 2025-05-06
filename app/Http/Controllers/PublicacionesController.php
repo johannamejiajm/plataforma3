@@ -74,8 +74,9 @@ class PublicacionesController extends Controller
 
     public function indexinicio()
     {
+        $publicaciones = Publicaciones::latest()->where('idtipo', 2)->take(2)->get();
         $inicio = Publicaciones::all();
-        return view('publico.vistas.publicaciones.inicio', compact('inicio'));
+        return view('publico.vistas.publicaciones.inicio', compact('inicio','publicaciones'));
 
 
     }
@@ -138,7 +139,7 @@ class PublicacionesController extends Controller
             'titulo' => $request->titulo,
             'contenido' => $request->contenido,
             'idtipo' => $request->idtipo,
-            'iduser' => auth()->user()->id,
+           /*  'iduser' => auth()->user()->id, */
             'fechainicial' => $request->fechainicial,
             'fechafinal' => $request->fechafinal,
             'estado' => $request->estado
