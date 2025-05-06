@@ -9,6 +9,7 @@ use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicacionesController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermissionController;
 
@@ -20,8 +21,10 @@ Route::get('/', function () {
 }); */
 
 
-
+//castro
 Route::middleware(['auth'])->group(function () {
+
+
 
  Route::middleware(['permission:view publicaciones', 'role:admin'])->group(function () {
     Route::get('/api/admin/eventos', [PublicacionesController::class, 'data'])->name('publicaciones.eventos');
@@ -38,6 +41,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/permiso', [RoleController::class, 'createPermission'])->name('permissions.store');
 
     Route::resource('/admin/permissions', PermissionController::class);
+
+    Route::resource('/admin/users', UserController::class);
+
  });
 
 
@@ -46,13 +52,13 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/noticias', PublicacionesController::class);
     Route::resource('/admin/historias', PublicacionesController::class); */
 
-
+//castro
     Route::middleware(['permission:create publicaciones', 'role:admin'])->group(function(){
         Route::post('/admin/eventos', [PublicacionesController::class, 'store'])->name('eventos.store');
         Route::post('/admin/historias', [PublicacionesController::class, 'store'])->name('historias.store');
         Route::post('/admin/noticias', [PublicacionesController::class, 'store'])->name('noticias.store');
     });
-
+//castro
     Route::middleware(['permission:edit publicaciones', 'role:admin'])->group(function(){
         Route::put('/admin/eventos/{evento}', [PublicacionesController::class, 'update'])->name('eventos.update');
         Route::put('/admin/historias/{historia}', [PublicacionesController::class, 'update'])->name('historias.update');
@@ -62,7 +68,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/historias/{historia}', [PublicacionesController::class, 'show'])->name('historias.show');
         Route::get('/admin/noticias/{noticia}', [PublicacionesController::class, 'show'])->name('noticias.show');
     });
-
+//castro
     Route::middleware(['permission:delete publicaciones', 'role:admin'])->group(function(){
         Route::delete('/admin/eventos/{evento}', [PublicacionesController::class, 'destroy'])->name('eventos.destroy');
         Route::delete('/admin/historias/{historia}', [PublicacionesController::class, 'destroy'])->name('historias.destroy');
