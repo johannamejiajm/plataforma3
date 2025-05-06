@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PublicacionRequest;
 use App\Models\Publicaciones;
+use App\Models\Publicacionfotos;
+use App\Models\Publicionesfoto;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -74,7 +76,8 @@ class PublicacionesController extends Controller
 
     public function indexinicio()
     {
-        $publicaciones = Publicaciones::latest()->where('idtipo', 2)->take(2)->get();
+        $publicaciones = Publicaciones::latest()->where('idtipo', operator: 2)->take(3)->get();
+        $publicacionfotos = Publicacionfotos::latest()->where('idpublicaciones', 2)->take(3)->get();
         $inicio = Publicaciones::all();
         return view('publico.vistas.publicaciones.inicio', compact('inicio','publicaciones'));
 

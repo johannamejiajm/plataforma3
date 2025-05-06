@@ -54,25 +54,28 @@
         </button>
     </div>
 </div>
-@foreach ($publicaciones as $publicacion)
 
-<section class="noticias-recientes">
-    <h2>Noticias Recientes</h2>
-    <div class="listado-noticias">
-        <article class="noticia">
-            
-            <h3>{{ $publicacion->titulo }}</h3>
-        </article>
-        <article class="noticia">
-            <img src="imagen-noticia-2.jpg" alt="[Título de la Noticia 2]">
-            <h3>[Título de la Noticia 2]</h3>
-        </article>
+<div class="container my-4">
+    <h2 class="mb-4">Eventos</h2>
+    <div class="row">
+        @foreach ($publicaciones as $publicacion)
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    @if ($publicacion->fotos->isNotEmpty())
+                        <img src="{{ $publicacion->fotos->first()->imagen }}" class="card-img-top" alt="Imagen de {{ $publicacion->titulo }}">
+                    @endif
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $publicacion->titulo }}</h5>
+                        {{-- Puedes agregar una descripción si existe --}}
+                        {{-- <p class="card-text">{{ $publicacion->descripcion }}</p> --}}
+                        <a href="noticias.html" class="btn btn-outline-primary mt-2">Ver todas las noticias</a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
-    <br>
-    <a href="noticias.html" class="button outline">Ver todas las noticias</a>
-</section>
+</div>
 
-@endforeach
 
 
 <section class="llamada-a-la-accion-final">

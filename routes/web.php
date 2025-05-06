@@ -119,7 +119,7 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
     Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
 
-    Route::middleware('auth')->group(function () {
+    Route::middleware('auth')->group(function (){
 
     Route::get('/admin/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
     Route::get('/admin/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
@@ -158,5 +158,5 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     //rutas Midas - publico
     Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
     Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
-    
+    });
 require __DIR__ . '/auth.php';
