@@ -32,7 +32,7 @@
     <div id="carruselImagenes1" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/Imagen10.jpg') }}"
+                <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/Imagen9.jpg') }}"
                     class="d-block w-100" alt="Imagen 1">
             </div>
             <div class="carousel-item ">
@@ -54,23 +54,26 @@
         </button>
     </div>
 </div>
+@foreach ($publicaciones as $publicacion)
 
 <section class="noticias-recientes">
     <h2>Noticias Recientes</h2>
     <div class="listado-noticias">
         <article class="noticia">
-            <img src="https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/15665/production/_107435678_perro1.jpg.webp" alt="[Título de la Noticia 1]">
-            <h3>[Título de la Noticia 1]</h3>
-            <p>[Breve extracto de la noticia 1.]</p>
+            
+            <h3>{{ $publicacion->titulo }}</h3>
         </article>
         <article class="noticia">
             <img src="imagen-noticia-2.jpg" alt="[Título de la Noticia 2]">
             <h3>[Título de la Noticia 2]</h3>
-            <p>[Breve extracto de la noticia 2.]</p>
         </article>
     </div>
-    <a href="noticias.html" class="button outline">Ver todas las noticias</a>  
+    <br>
+    <a href="noticias.html" class="button outline">Ver todas las noticias</a>
 </section>
+
+@endforeach
+
 
 <section class="llamada-a-la-accion-final">
     <h2>Únete a Nuestra Causa</h2>
