@@ -25,9 +25,11 @@ class DatabaseSeeder extends Seeder
         ]); */
 
         $this->call([
-            /* UsersTableSeeder::class, */
-            /* TipopublicacionesSeeder::class, */
-            PublicacionesSeeder::class,
+             UsersTableSeeder::class, 
+
+             TipopublicacionesSeeder::class,
+
+             PublicacionesSeeder::class,
         ]);
 
 

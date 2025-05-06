@@ -17,57 +17,63 @@
 <div class="content-section">
                 <div class="section-header">
                     <h2>Administrar Información de Contacto</h2>
-                    <button class="btn btn-primary"><i class="fas fa-save"></i> Guardar Cambios</button>
+                   
                 </div>
-                
-                <form id="contactInfoForm">
+                <form method="POST" action="{{ route('contantos.actualizarcontactos') }}">
+                    @csrf
                     <div class="form-group">
-                        <label for="location">Ubicación:</label>
-                        <input type="text" id="location" class="form-control" value="Cra 8 # 8-101 AGUACHICA-CESAR">
+                        <label for="direccion">Direccion:</label>
+                        <input type="text" id="direccion" class="form-control" value="{{$contactos->direccion}}" name="direccion">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono1">Teléfono 1:</label>
+                        <input type="text" id="telefono1" class="form-control" value="{{$contactos->telefono1}}" name="telefono1">
                     </div>
                     
                     <div class="form-group">
-                        <label for="phone1">Teléfono 1:</label>
-                        <input type="text" id="phone1" class="form-control" value="+573013772079">
+                        <label for="telefono2">Teléfono 2:</label>
+                        <input type="text" id="telefono2" class="form-control" value="{{$contactos->telefono2}}" name="telefono2">
                     </div>
                     
                     <div class="form-group">
-                        <label for="phone2">Teléfono 2:</label>
-                        <input type="text" id="phone2" class="form-control" value="+573186157178">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" class="form-control" value="{{ $contactos->email }}" name="email">
                     </div>
                     
                     <div class="form-group">
-                        <label for="email">Correo Electrónico:</label>
-                        <input type="email" id="email" class="form-control" value="fundacionpachosclub@outlook.com">
+                        <label for="horarios">Horario:</label>
+                        <input type="text" id="horarios" class="form-control" value="{{ $contactos->horario }}" name="horario">
                     </div>
                     
                     <div class="form-group">
-                        <label for="weekdayHours">Horario de Lunes a Viernes:</label>
-                        <input type="text" id="weekdayHours" class="form-control" value="8:00 AM - 12:00 PM - DE 2:00 PM- 6:00 PM">
+                        <label for="horarioextras">Horario extra:</label>
+                        <input type="text" id="horarioextras" class="form-control" value="{{ $contactos->horarioextras }}" name="horarioextras">
                     </div>
                     
                     <div class="form-group">
-                        <label for="saturdayHours">Horario de Sábados:</label>
-                        <input type="text" id="saturdayHours" class="form-control" value="8:00 AM - 12:00 PM">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="mapEmbed">Código de Mapa Embebido:</label>
-                        <textarea id="mapEmbed" class="form-control" rows="4">https://www.google.com/maps/embed?pb=!4v1744157878941!6m8!1m7!1s1ACcJlzibcoiuRmxs8UAOA!2m2!1d8.304805676780639!2d-73.62666916106214!3f85.25628592770805!4f4.654949059101455!5f0.9891491240026099</textarea>
+                        <label for="embebido">Código de Mapa Embebido:</label>
+                        <textarea id="embebido" class="form-control" rows="" name="embebido">{{ $contactos->embebido }}</textarea>
                     </div>
                     
                     <h3 style="margin: 20px 0 15px;">Enlaces de Redes Sociales</h3>
                     
                     <div class="form-group">
-                        <label for="facebook">Facebook:</label>
-                        <input type="url" id="facebook" class="form-control" value="https://facebook.com/">
+                        <label for="urlfacebook">Facebook:</label>
+                        <input type="url" id="urlfacebook" class="form-control" value="{{ $contactos->urlfacebook }}" name="urlfacebook">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="urlx">x:</label>
+                        <input type="url" id="urlx" class="form-control" name="urlx" value="{{ $contactos->urlx }}">
                     </div>
 
                     
                     <div class="form-group">
-                        <label for="instagram">Instagram:</label>
-                        <input type="url" id="instagram" class="form-control" value="https://instagram.com/">
+                        <label for="urlinstagram">Instagram:</label>
+                        <input type="url" id="urlinstagram" class="form-control" name="urlinstagram" value="{{ $contactos->urlinstagram }}">
                     </div>
+
+                    <button class="btn btn-primary" type="submit" id="guardarcontactos">Guardar Cambios</button>
 
                 </form>
             </div>

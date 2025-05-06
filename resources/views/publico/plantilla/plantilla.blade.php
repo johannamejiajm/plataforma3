@@ -28,9 +28,75 @@
 <body>
 
 
-    <!-- Preloader -->
-    <div class="preloader">
-        <img src="{{ asset('assets/images/logos/favicon.png') }}" alt="loader" class="lds-ripple img-fluid" />
+  <!-- Preloader -->
+  <div class="preloader">
+    <img src="{{ asset('assets/images/logos/favicon.png') }}" alt="loader" class="lds-ripple img-fluid" />
+  </div>
+  <!-- ------------------------------------- -->
+  <!-- Header Start -->
+  <!-- ------------------------------------- -->
+  <header class="header-fp p-0 w-100">
+    <nav class="navbar navbar-expand-lg bg-primary-subtle py-2 py-lg-10">
+      <div class="custom-container d-flex align-items-center justify-content-between">
+        <a href="../main/frontend-landingpage.html" class="text-nowrap logo-img">
+          <img src="../assets/images/logos/dark-logo.svg" class="dark-logo" alt="Logo-Dark" />
+          <img src="../assets/images/logos/light-logo.svg" class="light-logo" alt="Logo-light" />
+        </a>
+        <button class="navbar-toggler border-0 p-0 shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto mb-2 gap-xl-7 gap-8 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('inicio.index') }}">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('quienessomos.index') }}">Quienes somos</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary d-flex gap-2" href="{{ route('historia.index') }}">Historia
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Publicaciones</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Eventos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Inscripciones</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('artistas.activos') }}">Artistas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('donaciones.index') }}">Donaciones</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('contantos.indexcontactos') }}">Contacto</a>
+            </li>
+          </ul>
+          <div>
+            <a href="{{ route('donaciones.index') }}"class="btn btn-primary py-8 px-9">Admin</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- ------------------------------------- -->
+  <!-- Header End -->
+  <!-- ------------------------------------- -->
+
+  <!-- ------------------------------------- -->
+  <!-- Responsive Sidebar Start -->
+  <!-- ------------------------------------- -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <a href="#">
+        <img src="../assets/images/logos/dark-logo.svg" alt="Logo-light" />
+      </a>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
     </div>
     <!-- ------------------------------------- -->
     <!-- Header Start -->
@@ -134,11 +200,44 @@
                     </a>
                 </li>
 
+
                 <li class="mb-1">
                     <a href="#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
                         Eventos
                     </a>
                 </li>
+                
+        <li class="mb-1">
+          <a href="#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+            Inscripciones
+          </a>
+        </li>
+        <li class="mb-1">
+          <a href="." class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+            Artistas
+            
+          </a>
+        </li>
+        <li class="mb-1">
+          <a href=".donaciones" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+            Donación
+          </a>
+        </li>
+        <li class="mb-1">
+          <a href="{{ route('contantos.indexcontactos') }}" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+            Contacto
+          </a>
+        </li>
+        <li class="mt-3">
+          <a href="#" class="btn btn-primary w-100">Admin</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- ------------------------------------- -->
+  <!-- Responsive Sidebar End -->
+  <!-- ------------------------------------- -->
+
 
                 <li class="mb-1">
                     <a href="#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
