@@ -78,6 +78,8 @@ class PublicacionesController extends Controller
     {
         $publicaciones = Publicaciones::latest()->where('idtipo', operator: 2)->take(3)->get();
         $publicacionfotos = Publicacionfotos::latest()->where('idpublicaciones', 2)->take(3)->get();
+        
+        
         $inicio = Publicaciones::all();
         return view('publico.vistas.publicaciones.inicio', compact('inicio','publicaciones'));
 
