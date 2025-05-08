@@ -2,7 +2,6 @@
 @section('titulo')
 <title>contactos</title>
 @endsection
-
 @section('links')
     <link rel="stylesheet" href="{{ asset('assets/css/contatosadmin03.css') }}">
 @section('tituloprincipal')
