@@ -7,6 +7,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Validation\Rule;
 
 class RoleController extends Controller
 {
@@ -61,9 +62,9 @@ class RoleController extends Controller
         $role = Role::create(['name' => $request->name]);
 
        if ($request->has('permissions')) {
-            /* $role->syncPermissions($request->permissions); */
+            $role->syncPermissions($request->permissions);
             /* otra forma de hacerlo */
-            $role->permissions()->sync($request->permissions);
+            /* $role->permissions()->sync($request->permissions); */
         }
 
         return response()->json(['success' => 'Rol creado exitosamente.']);
@@ -85,9 +86,10 @@ class RoleController extends Controller
         $role = Role::findOrFail($id);
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:roles,name,' . $role->id,
+            'name' => ['required', 'unique:roles,name,'. $role->id],
             'permissions_edit' => 'nullable|array'
         ]);
+
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
