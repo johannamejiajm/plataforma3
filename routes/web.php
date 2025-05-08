@@ -78,14 +78,6 @@ Route::middleware(['auth'])->group(function () {
     });
 
 
-
-
-
-
-
-
-
-
     //rutas de alexander-admin
     Route::get('/admin/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
 
@@ -146,14 +138,14 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
 
     Route::get('/vistas/publicaciones/inicio', [PublicacionesController::class, 'indexinicio'])->name('vistaspublicacionesinicio.index');
 
-
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
 
     Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
 
 
     Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
-    Route::post('/contactos/actualizar', [ContactosController::class, 'actualizarContactos'])->name('contantos.actualizarcontactos');
+    Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos');
+    Route::post('/contactos/actualizar', [ContactosController::class, 'actualizarContactos'])->name('contactos.actualizarcontactos');
 
     Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
 

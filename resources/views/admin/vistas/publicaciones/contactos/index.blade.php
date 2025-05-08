@@ -1,4 +1,4 @@
-@extends('admin.script.publicaciones.contactosscript') 
+@extends('admin.script.publicaciones.contactosscript')
 
 
 @section('titulo')
@@ -17,10 +17,9 @@
 <div class="content-section">
                 <div class="section-header">
                     <h2>Administrar Información de Contacto</h2>
-                   
+
                 </div>
-                <form method="POST" action="{{ route('contantos.actualizarcontactos') }}">
-                    @csrf
+                <form>
                     <div class="form-group">
                         <label for="direccion">Direccion:</label>
                         <input type="text" id="direccion" class="form-control" value="{{$contactos->direccion}}" name="direccion">
@@ -29,34 +28,34 @@
                         <label for="telefono1">Teléfono 1:</label>
                         <input type="text" id="telefono1" class="form-control" value="{{$contactos->telefono1}}" name="telefono1">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="telefono2">Teléfono 2:</label>
                         <input type="text" id="telefono2" class="form-control" value="{{$contactos->telefono2}}" name="telefono2">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input type="email" id="email" class="form-control" value="{{ $contactos->email }}" name="email">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="horarios">Horario:</label>
                         <input type="text" id="horarios" class="form-control" value="{{ $contactos->horario }}" name="horario">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="horarioextras">Horario extra:</label>
                         <input type="text" id="horarioextras" class="form-control" value="{{ $contactos->horarioextras }}" name="horarioextras">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="embebido">Código de Mapa Embebido:</label>
                         <textarea id="embebido" class="form-control" rows="" name="embebido">{{ $contactos->embebido }}</textarea>
                     </div>
-                    
+
                     <h3 style="margin: 20px 0 15px;">Enlaces de Redes Sociales</h3>
-                    
+
                     <div class="form-group">
                         <label for="urlfacebook">Facebook:</label>
                         <input type="url" id="urlfacebook" class="form-control" value="{{ $contactos->urlfacebook }}" name="urlfacebook">
@@ -67,7 +66,7 @@
                         <input type="url" id="urlx" class="form-control" name="urlx" value="{{ $contactos->urlx }}">
                     </div>
 
-                    
+
                     <div class="form-group">
                         <label for="urlinstagram">Instagram:</label>
                         <input type="url" id="urlinstagram" class="form-control" name="urlinstagram" value="{{ $contactos->urlinstagram }}">
