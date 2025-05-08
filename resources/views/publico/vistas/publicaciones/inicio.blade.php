@@ -6,16 +6,18 @@
 
 @section('links')
 <link rel="stylesheet" href="{{ asset('assets/css/inicio.css') }}">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 @endsection
 
 @section('contenido')
-<section class="hero">
+<section class="hero-1">
     <div class="hero-content">
-        <h1>[Título impactante que resuma la misión de tu fundación]</h1>
-        <p>[Breve descripción atractiva de lo que hace tu fundación y a quién beneficia.]</p>
+        <h1>Transformando Vidas a Través del Deporte</h1>
+        <p>Esta fundación fomenta una educación deportiva de calidad, respaldada por el sector privado, dirigida a niños y niñas de comunidades vulnerables, desplazadas y con escasos recursos en el municipio.</p>
         <div class="call-to-action">
             <a href="participa.html" class="button primary">Apóyanos Ahora</a>
             <a href="nuestros-proyectos.html" class="button secondary">Conoce Nuestros Proyectos</a>
@@ -66,13 +68,49 @@
                     @endif
                     <div class="card-body">
                         <h5 class="card-title">{{ $publicacion->titulo }}</h5>
-                        {{-- Puedes agregar una descripción si existe --}}
-                        {{-- <p class="card-text">{{ $publicacion->descripcion }}</p> --}}
-                        <a href="noticias.html" class="btn btn-outline-primary mt-2">Ver todas las noticias</a>
                     </div>
                 </div>
             </div>
         @endforeach
+        <a href="noticias.html" class="btn btn-outline-primary mt-2">Ver todos los eventos</a>
+    </div>
+</div>
+
+<div class="container my-4">
+    <h2 class="mb-4">Historias</h2>
+    <div class="row">
+        @foreach ($publicaciones as $publicacion)
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    @if ($publicacion->fotos->isNotEmpty())
+                        <img src="{{ $publicacion->fotos->first()->imagen }}" class="card-img-top" alt="Imagen de {{ $publicacion->titulo }}">
+                    @endif
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $publicacion->titulo }}</h5>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        <a href="noticias.html" class="btn btn-outline-primary mt-2">Ver todas las historias</a>
+    </div>
+</div>
+
+<div class="container my-4">
+    <h2 class="mb-4">Noticias</h2>
+    <div class="row">
+        @foreach ($publicaciones as $publicacion)
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    @if ($publicacion->fotos->isNotEmpty())
+                        <img src="{{ $publicacion->fotos->first()->imagen }}" class="card-img-top" alt="Imagen de {{ $publicacion->titulo }}">
+                    @endif
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $publicacion->titulo }}</h5>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        <a href="noticias.html" class="btn btn-outline-primary mt-2">Ver todas las noticias</a>
     </div>
 </div>
 

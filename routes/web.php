@@ -20,6 +20,7 @@ Route::get('/', function () {
     return view('admin/vistas/publicaciones/publicaciones');
 }); */
 
+Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index'); //JOHAN RINCON 
 
 //castro
 Route::middleware(['auth'])->group(function () {
@@ -124,7 +125,7 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::put('/admin/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');
 
 
-    Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index'); //JOHAN RINCON
+    Route::get('/inicio',action: [PublicacionesController::class,'indexinicio'])->name('inicio.index'); //JOHAN RINCON 
 
 
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');

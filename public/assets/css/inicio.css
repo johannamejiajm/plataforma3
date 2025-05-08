@@ -2,7 +2,7 @@ body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
-  background: #e6e6e6;
+  background: #ffffff;
 
 }
 
@@ -48,11 +48,13 @@ body {
 /* End Button */
 
 /*Hero Section*/
-.hero {
-  padding: 4rem 2rem;
+.hero-1 {
+  margin: 3rem;
+  padding: 4rem 4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #002868;
   
   /* Un azul muy claro de fondo */
 }
@@ -61,18 +63,22 @@ body {
   max-width: 50%; 
 }
 
-.hero h1 {
+.hero-1 h1 {
   font-size: 3rem;
+  font-family: "Special Gothic Expanded One";
+  font-weight: 900;
   margin-bottom: 1rem;
+  color: #ffffff
 }
 
-.hero p {
+.hero-1 p {
   font-size: 1.2rem;
   line-height: 1.8;
   margin-bottom: 2rem;
+  color: #ffffff
 }
 
-.hero .call-to-action a {
+.hero-1 .call-to-action a {
   margin-right: 1rem;
 }
 
@@ -115,7 +121,6 @@ body {
   margin:  auto;
   background: #ffffff;
   padding: 20PX 40px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .carousel-item img {
