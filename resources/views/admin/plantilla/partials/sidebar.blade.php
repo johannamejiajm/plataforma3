@@ -191,7 +191,7 @@
           </li>
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('permissions.index') }}" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('users.index') }}" aria-expanded="false">
               <i class="ti ti-atom"></i>
               <span class="hide-menu">Usuarios</span>
             </a>

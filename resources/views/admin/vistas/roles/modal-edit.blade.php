@@ -12,7 +12,7 @@
           <div class="modal-body">
             <div class="mb-3">
               <label for="editName">Nombre del Rol</label>
-              <input type="text" name="name" id="editName" class="form-control" >
+              <input type="text" name="name" id="editName" class="form-control">
             </div>
             <div class="mb-3">
               <label>Permisos</label>
