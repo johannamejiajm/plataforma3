@@ -24,8 +24,7 @@
         </div>
     </div>
     <div class="hero-image">
-        <img src="https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/15665/production/_107435678_perro1.jpg.webp"
-            alt="Imagen representativa de la labor de tu fundación">
+        <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/ancianato1.jpeg') }}" alt="Imagen representativa de la labor de tu fundación">
     </div>
 </section>
 
@@ -57,24 +56,6 @@
     </div>
 </div>
 
-<div class="container my-4">
-    <h2 class="mb-4">Eventos</h2>
-    <div class="row">
-        @foreach ($publicaciones as $publicacion)
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    @if ($publicacion->fotos->isNotEmpty())
-                        <img src="{{ $publicacion->fotos->first()->imagen }}" class="card-img-top" alt="Imagen de {{ $publicacion->titulo }}">
-                    @endif
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $publicacion->titulo }}</h5>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-        <a href="noticias.html" class="btn btn-outline-primary mt-2">Ver todos los eventos</a>
-    </div>
-</div>
 
 <div class="container my-4">
     <h2 class="mb-4">Historias</h2>
@@ -91,21 +72,40 @@
                 </div>
             </div>
         @endforeach
-        <a href="noticias.html" class="btn btn-outline-primary mt-2">Ver todas las historias</a>
+        <a href="noticias.html" class="btn btn-outline-primary mt-2">Ver todas las noticias</a>
     </div>
 </div>
 
 <div class="container my-4">
     <h2 class="mb-4">Noticias</h2>
     <div class="row">
-        @foreach ($publicaciones as $publicacion)
+        @foreach ($noticias as $noticia)
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    @if ($publicacion->fotos->isNotEmpty())
-                        <img src="{{ $publicacion->fotos->first()->imagen }}" class="card-img-top" alt="Imagen de {{ $publicacion->titulo }}">
+                    @if ($noticia->fotos->isNotEmpty())
+                        <img src="{{ $noticia->fotos->first()->imagen }}" class="card-img-top" alt="Imagen de {{ $noticia->titulo }}">
                     @endif
                     <div class="card-body">
-                        <h5 class="card-title">{{ $publicacion->titulo }}</h5>
+                        <h5 class="card-title">{{ $noticia->titulo }}</h5>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        <a href="noticias.html" class="btn btn-outline-primary mt-2">Ver todos los eventos</a>
+    </div>
+</div>
+
+<div class="container my-4">
+    <h2 class="mb-4">Eventos</h2>
+    <div class="row">
+        @foreach ($eventos as $evento)
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    @if ($evento->fotos->isNotEmpty())
+                        <img src="{{ $evento->fotos->first()->imagen }}" class="card-img-top" alt="Imagen de {{ $evento->titulo }}">
+                    @endif
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $evento->titulo }}</h5>
                     </div>
                 </div>
             </div>
