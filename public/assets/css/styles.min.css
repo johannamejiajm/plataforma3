@@ -15641,7 +15641,9 @@ textarea.form-control-lg {
   position: fixed;
   left: 0;
   right: 0;
+
   height: 100vh;
+
 }
 .left-sidebar .sidebartoggler {
   color: var(--bs-dark-text-emphasis);
@@ -15821,11 +15823,11 @@ textarea.form-control-lg {
   width: 100%;
   background: var(--bs-body-bg);
   padding: 0 10px;
-  top: 65px;
+  top: 0px;
 }
 @media (max-width: 991.98px) {
   .app-header {
-    top: 131px;
+    top: 0px;
   }
 }
 .app-header .container-fluid, .app-header .container-sm, .app-header .container-md, .app-header .container-lg, .app-header .container-xl, .app-header .container-xxl {
@@ -15934,7 +15936,7 @@ body {
 
 #main-wrapper[data-layout=vertical][data-sidebar-position=fixed] .left-sidebar {
   position: fixed;
-  top: 65px;
+  top: 0px;
 }
 @media (max-width: 991.98px) {
   #main-wrapper[data-layout=vertical][data-sidebar-position=fixed] .left-sidebar {

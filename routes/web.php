@@ -20,33 +20,45 @@ Route::get('/', function () {
     return view('admin/vistas/publicaciones/publicaciones');
 }); */
 
-Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index'); //JOHAN RINCON 
+Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index'); //JOHAN RINCON
 
 //castro
 Route::middleware(['auth'])->group(function () {
 
 
-
- Route::middleware(['permission:view publicaciones', 'role:admin'])->group(function () {
+//mis rutas castro
+ Route::middleware(['permission:manage_publicaciones'])->group(function () {
     Route::get('/api/admin/eventos', [PublicacionesController::class, 'data'])->name('publicaciones.eventos');
     Route::get('/api/admin/historias', [PublicacionesController::class, 'data'])->name('publicaciones.historias');
     Route::get('/api/admin/noticias', [PublicacionesController::class, 'data'])->name('publicaciones.noticias');
     Route::get('/admin/dashboard', [PublicacionesController::class, 'dashboard'])->name('admin.dashboard');
 
-    Route::get('/admin/eventos', [PublicacionesController::class, 'index'])->name('eventos.index');
+   /*  Route::get('/admin/eventos', [PublicacionesController::class, 'index'])->name('eventos.index');
     Route::get('/admin/historias', [PublicacionesController::class, 'index'])->name('historias.index');
-    Route::get('/admin/noticias', [PublicacionesController::class, 'index'])->name('noticias.index');
+    Route::get('/admin/noticias', [PublicacionesController::class, 'index'])->name('noticias.index'); */
 
-    Route::get('/admin/roles/list', [RoleController::class, 'list'])->name('roles.list');
-    Route::resource('/admin/roles', RoleController::class)->only(['index', 'store', 'update', 'destroy', 'edit']);
-    Route::post('/admin/permiso', [RoleController::class, 'createPermission'])->name('permissions.store');
+    Route::resource('/admin/eventos', PublicacionesController::class);
+    Route::resource('/admin/noticias', PublicacionesController::class);
+    Route::resource('/admin/historias', PublicacionesController::class);
 
-    Route::resource('/admin/permissions', PermissionController::class);
-
-    Route::resource('/admin/users', UserController::class);
 
  });
 
+//mis rutas castro
+ Route::middleware(['permission:manage_roles'])->group(function () {
+    Route::get('/admin/roles/list', [RoleController::class, 'list'])->name('roles.list');
+    Route::resource('/admin/roles', RoleController::class)->only(['index', 'store', 'update', 'destroy', 'edit']);
+});
+
+Route::middleware(['permission:manage_permisos'])->group(function () {
+    Route::post('/admin/permiso', [RoleController::class, 'createPermission'])->name('permissions.store');
+    Route::resource('/admin/permissions', PermissionController::class);
+});
+
+Route::middleware(['permission:manage_users'])->group(function () {
+
+    Route::resource('/admin/users', UserController::class);
+});
 
 /* hare pruebas */
     /* Route::resource('/admin/eventos', PublicacionesController::class);
@@ -56,7 +68,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/historias', PublicacionesController::class); */
 
 //castro
-    Route::middleware(['permission:create publicaciones', 'role:admin'])->group(function(){
+ /*    Route::middleware(['permission:create publicaciones', 'role:admin'])->group(function(){
         Route::post('/admin/eventos', [PublicacionesController::class, 'store'])->name('eventos.store');
         Route::post('/admin/historias', [PublicacionesController::class, 'store'])->name('historias.store');
         Route::post('/admin/noticias', [PublicacionesController::class, 'store'])->name('noticias.store');
@@ -76,7 +88,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/admin/eventos/{evento}', [PublicacionesController::class, 'destroy'])->name('eventos.destroy');
         Route::delete('/admin/historias/{historia}', [PublicacionesController::class, 'destroy'])->name('historias.destroy');
         Route::delete('/admin/noticias/{noticia}', [PublicacionesController::class, 'destroy'])->name('noticias.destroy');
-    });
+    }); */
 
 
     //rutas de alexander-admin
@@ -125,7 +137,7 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::put('/admin/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');
 
 
-    Route::get('/inicio',action: [PublicacionesController::class,'indexinicio'])->name('inicio.index'); //JOHAN RINCON 
+    Route::get('/inicio',action: [PublicacionesController::class,'indexinicio'])->name('inicio.index'); //JOHAN RINCON
 
 
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
@@ -159,5 +171,6 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
 
     });
+
 
 require __DIR__ . '/auth.php';
