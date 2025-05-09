@@ -86,7 +86,12 @@ class PublicacionesController extends Controller
         return view('publico/vistas/publicaciones/publicaciones', compact('publicaciones'));
     }
 
-   
+   public function indexeventos() 
+   {
+    $eventos = Publicaciones::with(['fotos', 'tipo'])->where('idtipo', 2)->where('estado', 1)->get();
+    return view('publico.vistas.publicaciones.eventos', compact('eventos'));
+
+   }
 
     /**
      * Show the form for creating a new resource.
