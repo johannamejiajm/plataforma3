@@ -98,7 +98,9 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
 
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
 
-    Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
+    
+    // Rutas santiago
+    Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index'); 
 
 
     Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
