@@ -153,7 +153,7 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
 
 
-    //rutas Midas - publico
+    //Rutas Midas - Publico Publicaciones
     Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
     Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
 
