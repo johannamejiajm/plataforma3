@@ -173,13 +173,15 @@
             <textarea name="descripcion" id="descripcion" class="form-control" rows="3"></textarea>
         </div>
 
-        <div class="mb-3">
+        <!-- <div class="mb-3">
             <label for="estado" class="form-label">Estado</label>
             <select name="estado" class="form-control" required>
                 <option value="1">Activo</option>
                 <option value="0">Inactivo</option>
             </select>
-        </div>
+        </div> -->
+
+        <input type="hidden" name="estado" value="0">
 
         <button type="submit" class="btn btn-primary w-100">Guardar Artista</button>
     </form>

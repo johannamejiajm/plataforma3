@@ -89,6 +89,8 @@ class ArtistasController extends Controller
      */
    public function store(Request $request)
 {
+
+    // dd($request->all());
     // Validación
     $validated = $request->validate([
         'idevento' => 'required|exists:eventos,id',
@@ -102,7 +104,7 @@ class ArtistasController extends Controller
     ]);
 
     // Conversión del estado a entero (por si viene como string)
-    $validated['estado'] = (int)$request->estado;
+    // $validated['estado'] = (int)$request->estado;
 
     // Guardar la imagen si se subió
     if ($request->hasFile('imagen')) {
