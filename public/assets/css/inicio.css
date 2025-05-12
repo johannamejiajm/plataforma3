@@ -1,0 +1,251 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+
+}
+
+/* Button */
+.button {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.button.primary {
+  background-color: #007bff;
+  /* Azul primario */
+  color: #fff;
+}
+
+.button.primary:hover {
+  background-color: #0056b3;
+}
+
+.button.secondary {
+  background-color: #6c757d;
+  /* Gris secundario */
+  color: #fff;
+}
+
+.button.outline {
+  background-color: transparent;
+  color: #007bff;
+  border: 1px solid #007bff;
+}
+
+.button.outline:hover {
+  background-color: #e9ecef;
+}
+
+/* End Button */
+
+/*Hero Section*/
+.hero-1 {
+  margin: 3rem;
+  padding: 4rem 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #002868;
+  
+  /* Un azul muy claro de fondo */
+}
+
+.hero-content {
+  max-width: 50%; 
+}
+
+.hero-1 h1 {
+  font-size: 3rem;
+  font-family: "Special Gothic Expanded One";
+  font-weight: 900;
+  margin-bottom: 1rem;
+  color: #ffffff
+}
+
+.hero-1 p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  color: #ffffff
+}
+
+.hero-1 .call-to-action a {
+  margin-right: 1rem;
+}
+
+.hero-image {
+  max-width: 45%;
+}
+
+.hero-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/*End Hero Section*/
+
+/* Galeria */
+.text-center {
+  font-family: 'sans-serif';
+}
+
+#carruselImagenes1 {
+  max-height: 400px;
+  /* Ejemplo: limita la altura del carrusel */
+}
+
+.carousel-inner {
+  max-height: 400px;
+}
+
+.carousel-item img {
+  max-height: 400px;
+  object-fit: contain;
+  /* Asegura que la imagen se ajuste sin recortar, manteniendo su relación de aspecto */
+}
+
+.contenedor {
+  max-width: 100%;
+  margin:  auto;
+  background: #ffffff;
+  padding: 20PX 40px;
+}
+
+.carousel-item img {
+  border-radius: 2%;
+
+}
+
+.container-fluid {
+  background-color: #002868;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+/* End Galeria */
+
+
+/*Noticias recientes section*/
+.noticias-recientes {
+  padding: 3rem 2rem;
+}
+
+.listado-noticias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.noticia {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.noticia img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.noticia-content {
+  padding: 1.5rem;
+}
+
+.noticia h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.noticia p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.noticia .leer-mas {
+  color: #007bff;
+  font-weight: 500;
+}
+
+.noticia .leer-mas:hover {
+  text-decoration: underline;
+}
+/* End Noticias recientes section*/
+
+/* Llamada a la Acción Final */
+.llamada-a-la-accion-final {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: #fff;
+}
+
+/* End Llamada a la Acción Final */
+
+
+.botones-finales a {
+  margin: 0 1rem;
+}
+
+/* Media Queries para hacerlo Responsive (Inspirado en la estructura adaptable) */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logo {
+    margin-bottom: 1rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav li {
+    margin: 0.5rem 0;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .hero-image {
+    max-width: 100%;
+  }
+
+  .cifras-impacto {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .botones-finales a {
+    display: block;
+    margin: 0.5rem 0;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+}
