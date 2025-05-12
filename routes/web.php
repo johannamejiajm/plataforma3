@@ -1,7 +1,5 @@
 <?php
 
-
-
 use App\Http\Controllers\ContactosController;
 use App\Http\Controllers\InformacioninstitucionalController;
 use App\Http\Controllers\ArtistasController;
@@ -93,6 +91,7 @@ Route::middleware(['permission:manage_users'])->group(function () {
 
     //rutas de alexander-admin
     Route::get('/admin/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
+    Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
 
 });
 
@@ -121,14 +120,6 @@ Route::middleware('auth')->group(function () {
 
 
 
-// Mostrar formulario para crear un nuevo artista
-Route::get('/artistas/create', [ArtistasController::class, 'create'])->name('artistas.create');// Guardar artista en la base de datos
-Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
-
-
-
-    Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
-    Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
 
     Route::middleware('auth')->group(function (){
 
@@ -160,9 +151,9 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos');
     Route::post('/contactos/actualizar', [ContactosController::class, 'actualizarContactos'])->name('contactos.actualizarcontactos');
 
-    Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
 
 
+    
     Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
 
 
