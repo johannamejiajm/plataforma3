@@ -17,12 +17,12 @@ use App\Models\Tipopublicaciones;
 class PublicacionesController extends Controller
 {
 
-    
+
     public function dashboard()
     {
         return view('admin.dashboard.index');
     }
-    
+
     public function data(Request $request)
     {
         $typePublic = Str::after($request->getPathInfo(), '/api/admin/');
@@ -85,14 +85,14 @@ class PublicacionesController extends Controller
 
 
     }
-    
+
     public function indexhistoria()
     {
        //$publicaciones = Publicaciones::all();
         //return view('admin/vistas/publicaciones/publicaciones', compact('publicaciones'));
         $historia = Publicaciones::all();
         return view('publico.vistas.publicaciones.historia', compact('historia'));
-    
+
     }
     public function indexpublicaciones()
     {
@@ -100,7 +100,7 @@ class PublicacionesController extends Controller
         return view('publico/vistas/publicaciones/publicaciones', compact('publicaciones'));
     }
 
-   
+
 
     /**
      * Show the form for creating a new resource.
@@ -144,7 +144,7 @@ class PublicacionesController extends Controller
             'titulo' => $request->titulo,
             'contenido' => $request->contenido,
             'idtipo' => $request->idtipo,
-           /*  'iduser' => auth()->user()->id, */
+           'iduser' => auth()->user()->id, 
             'fechainicial' => $request->fechainicial,
             'fechafinal' => $request->fechafinal,
             'estado' => $request->estado
@@ -209,7 +209,7 @@ class PublicacionesController extends Controller
        $publicacion = Publicaciones::find($id);
        return view("admin/vistas/publicaciones/editpublicaciones", compact('publicacion'));
 
-       
+
     }
 
     /**
@@ -326,5 +326,5 @@ class PublicacionesController extends Controller
         }
     }
 
-    
+
 }
