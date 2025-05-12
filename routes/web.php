@@ -170,7 +170,11 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
     Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
 
-    });
 
+    //Rutas Juan Sebastian - Publico
+    Route::get('publico/artistas/crear', [ArtistasController::class, 'create'])->name('artistas.create');
+    Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
+
+    });
 
 require __DIR__ . '/auth.php';

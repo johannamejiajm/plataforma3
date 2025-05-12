@@ -1,5 +1,9 @@
 @extends('publico.plantilla.plantilla')
 
+@section('tituloprincipal')
+    <h1>Artistas Activos</h1>
+@endsection
+
 @section('links')
 <link rel="stylesheet" href="{{ asset('assets/css/artistas.css') }}">
 @endsection
@@ -8,10 +12,6 @@
 <title>
     Artistas
 </title>
-@endsection
-
-@section('tituloprincipal')
-<h1>Artistas Activos</h1>
 @endsection
 
 @section('contenido')
@@ -83,6 +83,7 @@
 
 
 <body class="p-4">
+
     <div class="container">
  
         @if(session('success'))
