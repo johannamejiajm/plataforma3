@@ -18,20 +18,22 @@ class ContactosController extends Controller
     public function indexAdmin()
     {
         $contactos = Contactos::first();
-        return view('admin.vistas.publicaciones.contactos.index', compact('contactos')) ;
+        return view('admin/vistas/publicaciones/contactos/index', compact('contactos')) ;
     }
 
     public function actualizarContactos(Request $request)
     {
-        
+
+        // dd($request->all());
+
         $actualizarContactos = Contactos::first();
         $actualizarContactos->direccion = $request->direccion;
         $actualizarContactos->telefono1 = $request->telefono1;
         $actualizarContactos->telefono2 = $request->telefono2;
         $actualizarContactos->email = $request->email;
         $actualizarContactos->horario = $request->horario;
-        $actualizarContactos->horarioextras = $request->horarioextra;
-        $actualizarContactos->embebido = $request->direccion;
+        $actualizarContactos->horarioextras = $request->horarioextras;
+        $actualizarContactos->embebido = $request->embebido;
         $actualizarContactos->urlfacebook = $request->urlfacebook;
         $actualizarContactos->urlx = $request->urlx;
         $actualizarContactos->urlinstagram = $request->urlinstagram;
@@ -42,7 +44,11 @@ class ContactosController extends Controller
             'mensaje'   =>"contacto registrado",
             'estado'    =>1,
         );
+
+
+
         return response()->json($respuesta);
+
 
     }
 }

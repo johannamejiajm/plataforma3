@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artistas;
-use App\Models\evento;
+use App\Models\Evento;
 use Illuminate\Http\Request;
 use Symfony\Contracts\Service\Attribute\Required;
 
@@ -47,7 +47,7 @@ class ArtistasController extends Controller
             )
             ->get();
 
-        return view('admin.vistas.artistas.index', compact('artistas'));
+        return view('admin/vistas/artistas.index', compact('artistas'));
       
     }
     
@@ -80,47 +80,55 @@ class ArtistasController extends Controller
      */
     public function create()
     {
-        $eventos = Evento::all();
-    return view('publico/vistas/artistas/create', compact('eventos'));
+       $eventos = Evento::all(); // obtener eventos para el select
+        return view('publico/vistas/artistas.create', compact('eventos'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
+   public function store(Request $request)
+{
 
-        $request->validate([
-            'identidad' => 'required|string|max:255',
-            'nombre' => 'required|string|max:255',
-            'email' => 'required|email',
-            'telefono' => 'nullable|string|max:255',
-            'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'idevento' => 'required|exists:eventos,id',
-            'descripcion' => 'nullable|string',
-            'fecharegistro' => 'required|date',
-        ]);
-        $data = $request->all();
-    
-        if ($request->hasFile('imagen')) {
-            $path = $request->file('imagen')->store('artistas', 'public');
-            $data['imagen'] = $path;
-        }
+    // dd($request->all());
+    // Validación
+    $validated = $request->validate([
+        'idevento' => 'required|exists:eventos,id',
+        'identidad' => 'required|string|max:255',
+        'nombre' => 'required|string|max:255',
+        'email' => 'nullable|email',
+        'telefono' => 'nullable|string|max:20',
+        'imagen' => 'nullable|image|max:2048',
+        'descripcion' => 'nullable|string',
+        'estado' => 'required|in:1,0', // ahora acepta directamente 1 o 0
+    ]);
 
-        $data['estado'] = '0';
-    
-        Artistas::create($data);
-    
-        return redirect()->route('artistas.create')->with('success', 'Artista registrado correctamente.');
+    // Conversión del estado a entero (por si viene como string)
+    // $validated['estado'] = (int)$request->estado;
+
+    // Guardar la imagen si se subió
+    if ($request->hasFile('imagen')) {
+        $path = $request->file('imagen')->store('public/imagenes_artistas');
+        $validated['imagen'] = basename($path);
     }
-    
+
+    // Fecha de registro
+    $validated['fecharegistro'] = now();
+
+    // Crear el registro
+    Artistas::create($validated);
+
+    // Redirigir con mensaje
+    return redirect()->route('artistas.create')->with('success', 'Artista registrado correctamente.');
+}
+
 
 public function crearArtistas(Request $request) {
 
         // Crear el nuevo artista con la relación al evento
         $artista = artistas::create([
             'idevento' => $request->idevento,
-            'nidentidad' => $request->nidentidad,
+            'identidad' => $request->nidentidad,
             'nombre' => $request->nombre,
             'email' => $request->email,
             'telefono' => $request->telefono,
@@ -165,5 +173,4 @@ public function crearArtistas(Request $request) {
     {
         //
     }
-
 }
