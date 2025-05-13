@@ -1,5 +1,6 @@
 @extends('admin.plantilla.plantilla')
 @section('script')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
             $("#guardarcontactos").on('click', function(e){
@@ -8,8 +9,9 @@
                 var telefono1 = $("#telefono1").val();
                 var telefono2 = $("#telefono2").val();
                 var email = $("#email").val();
-                var horarios = $("#horarios").val();
+                var horario = $("#horarios").val();
                 var horarioextras = $("#horarioextras").val();
+                var embebido = $("#embebido").val();
                 var urlfacebook = $("#urlfacebook").val();
                 var urlx = $("#urlx").val();
                 var urlinstagram = $("#urlinstagram").val();
@@ -22,8 +24,9 @@
                         telefono1,
                         telefono2,
                         email,
-                        horarios,
+                        horario,
                         horarioextras,
+                        embebido,
                         urlfacebook,
                         urlx,
                         urlinstagram
@@ -41,4 +44,5 @@
             });
         });
     </script>
+
 @endsection

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PublicacionRequest;
 use App\Models\Publicaciones;
+use App\Models\Publicacionfotos;
+use App\Models\Publicionesfoto;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,12 +17,12 @@ use App\Models\Tipopublicaciones;
 class PublicacionesController extends Controller
 {
 
-    
+
     public function dashboard()
     {
         return view('admin.dashboard.index');
     }
-    
+
     public function data(Request $request)
     {
         $typePublic = Str::after($request->getPathInfo(), '/api/admin/');
@@ -74,19 +76,23 @@ class PublicacionesController extends Controller
 
     public function indexinicio()
     {
+        $publicaciones = Publicaciones::latest()->where('idtipo', operator: 2)->take(3)->get();
+        $publicacionfotos = Publicacionfotos::latest()->where('idpublicaciones', 2)->take(3)->get();
+        
+        
         $inicio = Publicaciones::all();
-        return view('publico.vistas.publicaciones.inicio', compact('inicio'));
+        return view('publico.vistas.publicaciones.inicio', compact('inicio','publicaciones'));
 
 
     }
-    
+
     public function indexhistoria()
     {
-       //$publicaciones = Publicaciones::all();
-        //return view('admin/vistas/publicaciones/publicaciones', compact('publicaciones'));
-        $historia = Publicaciones::all();
-        return view('publico.vistas.publicaciones.historia', compact('historia'));
-    
+
+        $historias = Publicaciones::with(['fotos', 'tipo'])->where('idtipo', 3)->where('estado', 1)->get();
+        // dd($historia);
+        return view('publico.vistas.publicaciones.historia', compact('historias'));
+     
     }
     public function indexpublicaciones()
     {
@@ -94,7 +100,13 @@ class PublicacionesController extends Controller
         return view('publico/vistas/publicaciones/publicaciones', compact('publicaciones'));
     }
 
-   
+   public function indexeventos() 
+   {
+    $eventos = Publicaciones::with(['fotos', 'tipo'])->where('idtipo', 2)->where('estado', 1)->get();
+    return view('publico.vistas.publicaciones.eventos', compact('eventos'));
+
+   }
+
 
     /**
      * Show the form for creating a new resource.
@@ -138,7 +150,7 @@ class PublicacionesController extends Controller
             'titulo' => $request->titulo,
             'contenido' => $request->contenido,
             'idtipo' => $request->idtipo,
-            'iduser' => auth()->user()->id,
+           'iduser' => auth()->user()->id, 
             'fechainicial' => $request->fechainicial,
             'fechafinal' => $request->fechafinal,
             'estado' => $request->estado
@@ -203,7 +215,7 @@ class PublicacionesController extends Controller
        $publicacion = Publicaciones::find($id);
        return view("admin/vistas/publicaciones/editpublicaciones", compact('publicacion'));
 
-       
+
     }
 
     /**
@@ -320,5 +332,5 @@ class PublicacionesController extends Controller
         }
     }
 
-    
+
 }
