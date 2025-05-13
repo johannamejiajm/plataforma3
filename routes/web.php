@@ -96,7 +96,11 @@ Route::middleware(['permission:manage_users'])->group(function () {
 
 });
 
+// Rutas santiago - Historia
+    Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
 
+    //Ruta santiago - eventos
+    Route::get('/eventos', [PublicacionesController::class, 'indexeventos'])->name('publica.eventos.index');
 
 
 /* Route::get('/dashboard', function () {
@@ -153,12 +157,8 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
 
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
 
-    
-    // Rutas santiago - Historia
-    Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index'); 
 
-    //Ruta santiago - eventos
-    Route::get('/eventos', [PublicacionesController::class, 'indexeventos'])->name('publica.eventos.index');
+
 
 
 
