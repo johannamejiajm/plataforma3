@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\Tipopublicaciones;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class PublicacionesController extends Controller
@@ -20,11 +20,17 @@ class PublicacionesController extends Controller
 
     public function dashboard()
     {
+
+
         return view('admin.dashboard.index');
     }
 
     public function data(Request $request)
     {
+        if (!Auth::user()->can('manage_publicaciones')) {
+            abort(403, 'No tienes permiso para obtener publicaciones.');
+        }
+
         $typePublic = Str::after($request->getPathInfo(), '/api/admin/');
 
         // Buscar el ID del tipo desde la base de datos
@@ -53,6 +59,10 @@ class PublicacionesController extends Controller
      */
     public function index(Request $request)
     {
+        if (!Auth::user()->can('manage_publicaciones')) {
+            abort(403, 'No tienes permiso.');
+        }
+
         //$publicaciones = Publicaciones::all();
         //return view('admin/vistas/publicaciones/publicaciones', compact('publicaciones'));
 
@@ -78,8 +88,8 @@ class PublicacionesController extends Controller
     {
         $publicaciones = Publicaciones::latest()->where('idtipo', operator: 2)->take(3)->get();
         $publicacionfotos = Publicacionfotos::latest()->where('idpublicaciones', 2)->take(3)->get();
-        
-        
+
+
         $inicio = Publicaciones::all();
         return view('publico.vistas.publicaciones.inicio', compact('inicio','publicaciones'));
 
@@ -92,7 +102,7 @@ class PublicacionesController extends Controller
         $historias = Publicaciones::with(['fotos', 'tipo'])->where('idtipo', 3)->where('estado', 1)->get();
         // dd($historia);
         return view('publico.vistas.publicaciones.historia', compact('historias'));
-     
+
     }
     public function indexpublicaciones()
     {
@@ -100,7 +110,7 @@ class PublicacionesController extends Controller
         return view('publico/vistas/publicaciones/publicaciones', compact('publicaciones'));
     }
 
-   public function indexeventos() 
+   public function indexeventos()
    {
     $eventos = Publicaciones::with(['fotos', 'tipo'])->where('idtipo', 2)->where('estado', 1)->get();
     return view('publico.vistas.publicaciones.eventos', compact('eventos'));
@@ -122,6 +132,11 @@ class PublicacionesController extends Controller
     public function store(Request $request)
     {
         //
+
+        if (!Auth::user()->can('manage_publicaciones')) {
+            abort(403, 'No tienes permiso.');
+        }
+
 
         $typePublic = Str::after($request->getPathInfo(), '/admin/');
         $errors = $request->validate([
@@ -150,7 +165,7 @@ class PublicacionesController extends Controller
             'titulo' => $request->titulo,
             'contenido' => $request->contenido,
             'idtipo' => $request->idtipo,
-           'iduser' => auth()->user()->id, 
+           'iduser' => auth()->user()->id,
             'fechainicial' => $request->fechainicial,
             'fechafinal' => $request->fechafinal,
             'estado' => $request->estado
@@ -187,6 +202,10 @@ class PublicacionesController extends Controller
     public function show(Publicaciones $publicaciones)
     {
         //
+        if (!Auth::user()->can('manage_publicaciones')) {
+            abort(403, 'No tienes permiso.');
+        }
+
         $publicaciones->load('fotos');
 
         return response()->json([
@@ -232,6 +251,11 @@ class PublicacionesController extends Controller
         $publicacionActualizar->save();
 
         return redirect('publicaciones'); */
+
+        if (!Auth::user()->can('manage_publicaciones')) {
+            abort(403, 'No tienes permiso.');
+        }
+
 
         // Validar datos del formulario
 
@@ -313,6 +337,10 @@ class PublicacionesController extends Controller
      */
     public function destroy(Publicaciones $evento)
     {
+        if (!Auth::user()->can('manage_publicaciones')) {
+            abort(403, 'No tienes permiso.');
+        }
+
         try {
             // Cambia el estado: si está activo (1) lo pone en inactivo (0), y viceversa
             $evento->estado = $evento->estado === '1' ? '0' : '1';
