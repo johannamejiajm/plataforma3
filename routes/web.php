@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactosController;
+use App\Http\Controllers\EventosController;
 use App\Http\Controllers\InformacioninstitucionalController;
 use App\Http\Controllers\ArtistasController;
 use App\Http\Controllers\DonacionesController;
@@ -95,7 +96,24 @@ Route::middleware(['permission:manage_users'])->group(function () {
 
 });
 
+// Ruta principal del CRUD
+Route::get('admin/eventos', [EventosController::class, 'index'])->name('eventos.index');
+// Ruta para guardar un nuevo evento (desde el modal)
+Route::post('/eventos', [EventosController::class, 'store'])->name('eventos.store');
+// Guardar un nuevo evento (desde el modal)
+Route::post('/eventos', [EventosController::class, 'store'])->name('eventos.store');
 
+// Mostrar un evento individual (opcional)
+Route::get('/eventos/{id}', [EventosController::class, 'show'])->name('eventos.show');
+
+// Traer los datos para editar (usado vía AJAX)
+Route::get('/eventos/{id}/edit', [EventosController::class, 'edit'])->name('eventos.edit');
+
+// Actualizar un evento existente
+Route::put('/eventos/{id}', [EventosController::class, 'update'])->name('eventos.update');
+
+// Eliminar un evento
+Route::delete('/eventos/{id}', [EventosController::class, 'destroy'])->name('eventos.destroy');
 
 
 /* Route::get('/dashboard', function () {
@@ -118,7 +136,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/quienessomos', [InformacioninstitucionalController::class, 'indexadminquienessomos'])->name('quienessomos.indexadmin');
 
 
-
+//Rutas Juan Sebastian - Publico
+    Route::get('publico/artistas/crear', [ArtistasController::class, 'create'])->name('artistas.create');
+    Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
 
 
     Route::middleware('auth')->group(function (){
@@ -162,9 +182,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
 
 
-    //Rutas Juan Sebastian - Publico
-    Route::get('publico/artistas/crear', [ArtistasController::class, 'create'])->name('artistas.create');
-    Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
+    
 
     });
 
