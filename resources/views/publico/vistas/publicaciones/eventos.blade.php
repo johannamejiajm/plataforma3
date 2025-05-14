@@ -26,7 +26,7 @@
 <section class="eventos-lista">
   <div class="contenedor-grid">
     @if ($eventos)
-      @foreach ($eventos as $evento)
+      {{-- @foreach ($eventos as $evento)
         <div class="tarjeta-evento">
           <img src="{{ asset($evento->fotos[0]->imagen) }}" alt="{{ $evento->titulo }}">
           <h2>{{ $evento->titulo }}</h2>
@@ -34,7 +34,21 @@
           <p class="descripcion">{{ Str::limit($evento->descripcion, 100) }}</p>
           <a href="{{ route('eventos.show', $evento->id) }}" class="btn-detalles">Ver más</a>
         </div>
-      @endforeach
+      @endforeach --}}
+      @foreach ($eventos as $evento)
+        <div class="tarjeta-evento">
+            <div class="contenedor-imagen">
+            <img src="{{ asset($evento->fotos[0]->imagen) }}" alt="{{ $evento->titulo }}">
+            </div>
+            <h2>{{ $evento->titulo }}</h2>
+            <p class="fecha">{{ $evento->fechainicial }}</p>
+            <p class="descripcion">{{ Str::limit($evento->descripcion, 100) }}</p>
+           <a href="{{ route('publica.evento', $evento->id) }}" class="btn-detalles">Ver más</a>
+
+
+        </div>
+        @endforeach
+
     @endif
   </div>
 </section>
@@ -43,7 +57,7 @@
 
 @section('links')
   <link rel="stylesheet" href="{{ asset('assets/css/styleseventos.css') }}">
-  
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
 @endsection
 
