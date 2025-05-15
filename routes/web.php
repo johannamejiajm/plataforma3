@@ -19,8 +19,8 @@ Route::get('/', function () {
     return view('admin/vistas/publicaciones/publicaciones');
 }); */
 
-//JOHAN RINCON 
-Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index'); 
+//JOHAN RINCON
+Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
 
 //castro
 Route::middleware(['auth'])->group(function () {
@@ -128,7 +128,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
 
-
+    });
 
     //Rutas Midas - Publico Publicaciones
     Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
@@ -163,18 +163,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
 
     });
-      
-    
-  
+
+
+
     //Rutas Juan Sebastian - Publico
     Route::get('publico/artistas/crear', [ArtistasController::class, 'create'])->name('artistas.create');
     Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
-      
+
     //Rutas Midas - Publico Publicaciones
     Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
     Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
 
-    
+
     Route::get('/donacionesindex', [DonacionesController::class, 'indexdonacion'])->name('donacionesindex.index');
     Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaciones.store');
 
