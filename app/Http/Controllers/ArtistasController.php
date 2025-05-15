@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Artistas;
 use App\Models\Evento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Symfony\Contracts\Service\Attribute\Required;
 
 class ArtistasController extends Controller
@@ -15,7 +16,7 @@ class ArtistasController extends Controller
      */
 
 
-     public function listarArtistasActivos()
+    public function listarArtistasActivos()
     {
         $artistasActivos = Artistas::where('estado', '1')->get(); // Assuming '1' represents active
 
@@ -25,7 +26,7 @@ class ArtistasController extends Controller
     {
         return view('publico/vistas/artistas/index');
     }
-   
+
     public function index()
     {
         $artistas = Artistas::all();
@@ -48,10 +49,9 @@ class ArtistasController extends Controller
             ->get();
 
         return view('admin/vistas/artistas.index', compact('artistas'));
-      
     }
-    
-   
+
+
     /**
      * Activa o desactiva un artista.
      *
@@ -80,50 +80,64 @@ class ArtistasController extends Controller
      */
     public function create()
     {
-       $eventos = Evento::all(); // obtener eventos para el select
+        $eventos = Evento::all(); // obtener eventos para el select
         return view('publico/vistas/artistas.create', compact('eventos'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-   public function store(Request $request)
-{
+    public function store(Request $request)
+    {
 
-    // dd($request->all());
-    // Validación
-    $validated = $request->validate([
-        'idevento' => 'required|exists:eventos,id',
-        'identidad' => 'required|string|max:255',
-        'nombre' => 'required|string|max:255',
-        'email' => 'nullable|email',
-        'telefono' => 'nullable|string|max:20',
-        'imagen' => 'nullable|image|max:2048',
-        'descripcion' => 'nullable|string',
-        'estado' => 'required|in:1,0', // ahora acepta directamente 1 o 0
-    ]);
+        DB::beginTransaction();
+        try {
 
-    // Conversión del estado a entero (por si viene como string)
-    // $validated['estado'] = (int)$request->estado;
+            $validated = $request->validate([
+                'idevento' => 'required|exists:eventos,id',
+                'identidad' => 'required|string|max:20|unique:artistas,identidad',
+                'nombre' => 'required|string|max:255',
+                'email' => 'nullable|email',
+                'telefono' => 'nullable|string|max:20',
+                'imagen' => 'nullable|image|max:2048',
+                'descripcion' => 'nullable|string',
+                'estado' => 'required|in:1,0', // ahora acepta directamente 1 o 0
 
-    // Guardar la imagen si se subió
-    if ($request->hasFile('imagen')) {
-        $path = $request->file('imagen')->store('public/imagenes_artistas');
-        $validated['imagen'] = basename($path);
+            ], [
+                'identidad.required' => 'El campo número de identidad es obligatorio.',
+                'identidad.unique' => 'Este número de identidad ya está registrado.',
+                'identidad.max' => 'El número de identidad no debe tener más de 20 caracteres.',
+                'imagen.max' => 'El campo de imagen no debe ser mayor a 2048 kilobytes.',
+            ]);
+            // Conversión del estado a entero (por si viene como string)
+            // $validated['estado'] = (int)$request->estado;
+
+            // Guardar la imagen si se subió
+            if ($request->hasFile('imagen')) {
+                $path = $request->file('imagen')->store('imagenes_artistas', 'public');
+                $validated['imagen'] = $path;
+            }
+            // Fecha de registro
+            $validated['fecharegistro'] = now();
+
+            // Crear el registro
+            Artistas::create($validated);
+            DB::commit();
+            // Redirigir con mensaje
+            return redirect()->route('artistas.create')->with('success', 'Artista registrado correctamente.');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            // Mostrar el mensaje exacto del error
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Error: ' . $th->getMessage());
+        }
     }
 
-    // Fecha de registro
-    $validated['fecharegistro'] = now();
 
-    // Crear el registro
-    Artistas::create($validated);
-
-    // Redirigir con mensaje
-    return redirect()->route('artistas.create')->with('success', 'Artista registrado correctamente.');
-}
-
-
-public function crearArtistas(Request $request) {
+    public function crearArtistas(Request $request)
+    {
 
         // Crear el nuevo artista con la relación al evento
         $artista = artistas::create([
