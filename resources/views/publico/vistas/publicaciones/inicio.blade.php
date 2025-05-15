@@ -18,14 +18,9 @@
     <div class="hero-content">
         <h1>Transformando Vidas a Través del Deporte</h1>
         <p>Esta fundación fomenta una educación deportiva de calidad, respaldada por el sector privado, dirigida a niños y niñas de comunidades vulnerables, desplazadas y con escasos recursos en el municipio.</p>
-        <div class="call-to-action">
-            <a href="participa.html" class="button primary">Apóyanos Ahora</a>
-            <a href="nuestros-proyectos.html" class="button secondary">Conoce Nuestros Proyectos</a>
-        </div>
     </div>
     <div class="hero-image">
-        <img src="https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/15665/production/_107435678_perro1.jpg.webp"
-            alt="Imagen representativa de la labor de tu fundación">
+        <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/ancianato1.jpeg') }}" alt="Imagen representativa de la labor de tu fundación">
     </div>
 </section>
 
@@ -45,6 +40,50 @@
                 <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen15.jpg') }}"
                     class="d-block w-100" alt="Imagen 3">
             </div>
+            <div class="carousel-item ">
+                <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/ancianato3.jpeg') }}"
+                    class="d-block w-100" alt="Imagen 1">
+            </div>
+            <div class="carousel-item ">
+                <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/ancianato4.jpeg') }}"
+                    class="d-block w-100" alt="Imagen 2">
+            </div>
+            <div class="carousel-item ">
+                <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/Imagen6.jpg') }}"
+                    class="d-block w-100" alt="Imagen 3">
+            </div>
+            <div class="carousel-item ">
+                <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo al deporte con campeonatos a la Niñez/Imagen17.jpg') }}"
+                    class="d-block w-100" alt="Imagen 1">
+            </div>
+            <div class="carousel-item ">
+                <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo al deporte con campeonatos a la Niñez/Imagen18.jpg') }}"
+                    class="d-block w-100" alt="Imagen 2">
+            </div>
+            <div class="carousel-item ">
+                <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo al deporte con campeonatos a la Niñez/Imagen19.jpg') }}"
+                    class="d-block w-100" alt="Imagen 3">
+            </div>
+            <div class="carousel-item ">
+                <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración de la Navidad con la niñez/Imagen21.jpg') }}"
+                    class="d-block w-100" alt="Imagen 1">
+            </div>
+            <div class="carousel-item ">
+                <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración de la Navidad con la niñez/Imagen22.jpg') }}"
+                    class="d-block w-100" alt="Imagen 2">
+            </div>
+            <div class="carousel-item ">
+                <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración Día del Niño/Imagen1.jpg') }}"
+                    class="d-block w-100" alt="Imagen 3">
+            </div>
+            <div class="carousel-item ">
+                <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración Día del Niño/Imagen2.jpg') }}"
+                    class="d-block w-100" alt="Imagen 3">
+            </div>
+            <div class="carousel-item ">
+                <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración Día del Niño/Imagen3.jpg') }}"
+                    class="d-block w-100" alt="Imagen 3">
+            </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carruselImagenes1" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -57,8 +96,9 @@
     </div>
 </div>
 
+
 <div class="container my-4">
-    <h2 class="mb-4">Eventos</h2>
+    <h2 class="mb-4">HISTORIAS</h2>
     <div class="row">
         @foreach ($publicaciones as $publicacion)
             <div class="col-md-4 mb-4">
@@ -72,45 +112,45 @@
                 </div>
             </div>
         @endforeach
-        <a href="noticias.html" class="btn btn-outline-primary mt-2">Ver todos los eventos</a>
+        <a href="{{ route('publicaciones.historias') }}" class="btn btn-outline-primary mt-2">Ver todas las noticias</a>
     </div>
 </div>
 
 <div class="container my-4">
-    <h2 class="mb-4">Historias</h2>
+    <h2 class="mb-4">NOTICIAS</h2>
     <div class="row">
-        @foreach ($publicaciones as $publicacion)
+        @foreach ($noticias as $noticia)
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    @if ($publicacion->fotos->isNotEmpty())
-                        <img src="{{ $publicacion->fotos->first()->imagen }}" class="card-img-top" alt="Imagen de {{ $publicacion->titulo }}">
+                    @if ($noticia->fotos->isNotEmpty())
+                        <img src="{{ $noticia->fotos->first()->imagen }}" class="card-img-top" alt="Imagen de {{ $noticia->titulo }}">
                     @endif
                     <div class="card-body">
-                        <h5 class="card-title">{{ $publicacion->titulo }}</h5>
+                        <h5 class="card-title">{{ $noticia->titulo }}</h5>
                     </div>
                 </div>
             </div>
         @endforeach
-        <a href="noticias.html" class="btn btn-outline-primary mt-2">Ver todas las historias</a>
+        <a href="{{ route('publicaciones.noticias') }}" class="btn btn-outline-primary mt-2">Ver todos los eventos</a>
     </div>
 </div>
 
 <div class="container my-4">
-    <h2 class="mb-4">Noticias</h2>
+    <h2 class="mb-4">EVENTOS</h2>
     <div class="row">
-        @foreach ($publicaciones as $publicacion)
+        @foreach ($eventos as $evento)
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    @if ($publicacion->fotos->isNotEmpty())
-                        <img src="{{ $publicacion->fotos->first()->imagen }}" class="card-img-top" alt="Imagen de {{ $publicacion->titulo }}">
+                    @if ($evento->fotos->isNotEmpty())
+                        <img src="{{ $evento->fotos->first()->imagen }}" class="card-img-top" alt="Imagen de {{ $evento->titulo }}">
                     @endif
                     <div class="card-body">
-                        <h5 class="card-title">{{ $publicacion->titulo }}</h5>
+                        <h5 class="card-title">{{ $evento->titulo }}</h5>
                     </div>
                 </div>
             </div>
         @endforeach
-        <a href="noticias.html" class="btn btn-outline-primary mt-2">Ver todas las noticias</a>
+        <a href="{{ route('publicaciones.eventos') }}" class="btn btn-outline-primary mt-2">Ver todas las noticias</a>
     </div>
 </div>
 
@@ -118,11 +158,10 @@
 
 <section class="llamada-a-la-accion-final">
     <h2>Únete a Nuestra Causa</h2>
-    <p>[Mensaje inspirador final animando a la participación.]</p>
+    <p>"Creemos en un mundo donde cada pequeño acto de amor puede cambiar una vida. En nuestra fundación, trabajamos cada día con el corazón, porque transformar realidades empieza con la voluntad de ayudar. Juntos, podemos ser el cambio que tanto necesitamos."</p>
     <div class="botones-finales">
-        <a href="donar.html" class="button primary">Donar</a>
-        <a href="voluntariado.html" class="button secondary">Ser Voluntario</a>
-        <a href="alianzas.html" class="button outline">Colaborar con Nosotros</a>
+        <a href="{{ route('donaciones.index') }}" class="button primary">Donar</a>
+        <a href="{{ route('contantos.indexcontactos') }}" class="button outline">Contactos</a>
     </div>
 </section>
 @endsection

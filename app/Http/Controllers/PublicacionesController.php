@@ -80,8 +80,17 @@ class PublicacionesController extends Controller
         $publicacionfotos = Publicacionfotos::latest()->where('idpublicaciones', 2)->take(3)->get();
 
 
+        
+        $noticias = Publicaciones::latest()->where('idtipo', operator: 1)->take(3)->get();
+        $fotosnoticias = Publicacionfotos::latest()->where('idpublicaciones', 1)->take(3)->get();
+
+
+        $eventos = Publicaciones::latest()->where('idtipo', operator: 3)->take(3)->get();
+        $fotoseventos = Publicacionfotos::latest()->where('idpublicaciones', 3)->take(3)->get();
+
+
         $inicio = Publicaciones::all();
-        return view('publico.vistas.publicaciones.inicio', compact('inicio','publicaciones'));
+        return view('publico.vistas.publicaciones.inicio', compact('inicio','publicaciones', 'noticias', 'eventos'));
 
 
     }
@@ -165,7 +174,7 @@ class PublicacionesController extends Controller
             'titulo' => $request->titulo,
             'contenido' => $request->contenido,
             'idtipo' => $request->idtipo,
-           'iduser' => auth()->user()->id,
+            'iduser' => auth()->user()->id, 
             'fechainicial' => $request->fechainicial,
             'fechafinal' => $request->fechafinal,
             'estado' => $request->estado
