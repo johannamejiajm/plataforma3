@@ -101,11 +101,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/quienessomos', [InformacioninstitucionalController::class, 'index'])->name('quienessomos.index');
     Route::get('/editquienessomos/{id}/edit', [InformacioninstitucionalController::class, 'edit'])->name('quienessomos.edit');
     Route::put('/quienessomos/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
-    Route::get('/admin/quienessomos', [InformacioninstitucionalController::class, 'indexadminquienessomos'])->name('quienessomos.indexadmin');
 
-//Rutas Juan Sebastian - Publico
-    Route::get('publico/artistas/crear', [ArtistasController::class, 'create'])->name('artistas.create');
-    Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
+
+    Route::get('/admin/quienessomos', [InformacioninstitucionalController::class, 'indexadminquienessomos'])->name('quienessomos.indexadmin');
+    Route::get('/admin/quienessomos/list', [InformacioninstitucionalController::class, 'list'])->name('quienessomos.list');
+    Route::post('/admin/quienessomos/store', [InformacioninstitucionalController::class, 'store'])->name('quienessomos.store');
+    Route::get('/admin/quienessomos/edit/{id}', [InformacioninstitucionalController::class, 'edit'])->name('quienessomos.edit');
+    Route::post('/admin/quienessomos/update/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
+    Route::delete('/admin/quienessomos/delete/{id}', [InformacioninstitucionalController::class, 'destroy'])->name('quienessomos.delete');
+
 
     Route::middleware('auth')->group(function (){
 
