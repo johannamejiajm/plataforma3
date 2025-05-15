@@ -116,8 +116,11 @@ class PublicacionesController extends Controller
     {
         $evento = Publicaciones::with(['fotos', 'tipo'])->findOrFail($id);
 
-         return view('publico.vistas.publicaciones.detalleevento', compact('evento'));
+
+        return view('publico.vistas.publicaciones.detalleevento', compact('evento'));
     }
+
+
 
 
     /**

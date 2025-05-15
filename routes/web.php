@@ -103,6 +103,9 @@ Route::middleware(['permission:manage_users'])->group(function () {
     Route::get('/eventos', [PublicacionesController::class, 'indexeventos'])->name('publica.eventos.index');
      Route::get('/eventos/{id}', [PublicacionesController::class, 'indexevento'])->name('publica.evento');
 
+    
+
+
 
 /* Route::get('/dashboard', function () {
     return view('dashboard');
