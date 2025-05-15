@@ -21,13 +21,13 @@ class RolesAndPermissionsUser extends Seeder
          $tesoreroRole = Role::create(['name' => 'tesorero']);
 
          // Crear permisos
-         $viewPermission = Permission::create(['name' => 'view publicaciones']);
-         $createPermission = Permission::create(['name' => 'create publicaciones']);
-         $editPermission = Permission::create(['name' => 'edit publicaciones']);
-         $deletePermission = Permission::create(['name' => 'delete publicaciones']);
+         $managePubliaciones = Permission::create(['name' => 'manage_publicaciones']);
+         $manageRoles = Permission::create(['name' => 'manage_roles']);
+         $managePermisos = Permission::create(['name' => 'manage_permisos']);
+         $manageUsers = Permission::create(['name' => 'manage_users']);
 
          // Asignar permisos a roles
-         $adminRole->givePermissionTo([$viewPermission, $createPermission, $editPermission, $deletePermission]);
-         $tesoreroRole->givePermissionTo($viewPermission);
+         $adminRole->givePermissionTo([$managePubliaciones, $manageRoles, $managePermisos, $manageUsers]);
+         $tesoreroRole->givePermissionTo($managePubliaciones);
     }
 }

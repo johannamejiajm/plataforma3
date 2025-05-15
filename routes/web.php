@@ -68,7 +68,15 @@ Route::middleware(['permission:manage_users'])->group(function () {
     Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
 
 
-// Ruta principal del CRUD de eventos
+
+// Rutas santiago - Historia
+    Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
+
+    //Ruta santiago - eventos
+     Route::get('/eventos', [PublicacionesController::class, 'indexeventos'])->name('publica.eventos.index');
+     Route::get('/eventos/{id}', [PublicacionesController::class, 'indexevento'])->name('publica.evento');
+
+ // Ruta principal del CRUD de eventos
 Route::get('admin/event', [EventosController::class, 'index'])->name('eventos.indexx');
 // Ruta para guardar un nuevo evento (desde el modal)
 Route::post('/event', [EventosController::class, 'store'])->name('eventos.storee');
@@ -77,6 +85,7 @@ Route::get('/event/{id}', [EventosController::class, 'show'])->name('eventos.sho
 
 // Traer los datos para editar (usado vía AJAX)
 Route::get('/event/{id}/edit', [EventosController::class, 'edit'])->name('eventos.edite');
+
 
 // Actualizar un evento existente
 Route::put('/event/{id}', [EventosController::class, 'update'])->name('eventos.updated');
@@ -142,13 +151,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/vistas/publicaciones/inicio', [PublicacionesController::class, 'indexinicio'])->name('vistaspublicacionesinicio.index');
 
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
-
-
-    // Rutas santiago - Historia
-    Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
-
-    //Ruta santiago - eventos
-    Route::get('/eventos', [PublicacionesController::class, 'indexeventos'])->name('publica.eventos.index');
 
 
     Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');

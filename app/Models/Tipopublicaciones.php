@@ -16,10 +16,12 @@ class Tipopublicaciones extends Model
         'tipo'
     ];
 
-    // Relación con publicaciones
+
+
+    // Relación con Publicacion
     public function publicaciones()
     {
-        return $this->hasMany(Publicaciones::class, 'idtipo', 'id');
+        return $this->hasMany(Publicaciones::class, 'idtipo');
     }
 }
 
