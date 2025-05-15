@@ -14,8 +14,12 @@
         <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png') }}" />
         <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
 
+        @yield('css')
+
         <!-- Scripts -->
        {{--  @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+
+       @yield('css')
     </head>
     <body >
 

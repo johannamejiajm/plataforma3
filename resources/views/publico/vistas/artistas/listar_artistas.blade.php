@@ -16,9 +16,9 @@
 
 @section('contenido')
 <head>
-    
+
     <style>
-      
+
         h1 {
             text-align: center;
             margin-bottom: 30px;
@@ -71,7 +71,7 @@
             text-align: center;
             padding: 10px;
         }
-  
+
         .card-body ul {
             padding-left: 15px;
         }
@@ -85,7 +85,7 @@
 <body class="p-4">
 
     <div class="container">
- 
+
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
@@ -97,8 +97,8 @@
                 @foreach($artistas as $artista)
                     <div class="col">
                         <div class="card" style="width: 18rem;">
-                            <img src="{{ $artista->imagen ?? 'https://via.placeholder.com/150' }}" 
-                                 class="card-img-top" 
+                            <img src="{{ asset('storage/' . $artista->imagen) }}"
+                                 class="card-img-top"
                                  alt="{{ $artista->nombre }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $artista->nombre }}</h5>
@@ -108,7 +108,7 @@
                                 <li class="list-group-item">Teléfono: {{ $artista->telefono ?? 'No disponible' }}</li>
                                 <li class="list-group-item">Email: {{ $artista->email ?? 'No disponible' }}</li>
                             </ul>
-                        
+
                         </div>
                     </div>
                 @endforeach
@@ -116,8 +116,8 @@
         @endif
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" 
-            integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
             crossorigin="anonymous"></script>
 </body>
 

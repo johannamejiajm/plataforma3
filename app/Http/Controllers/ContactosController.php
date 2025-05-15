@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contactos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ContactosController extends Controller
 {
@@ -17,6 +18,9 @@ class ContactosController extends Controller
     }
     public function indexAdmin()
     {
+          if (!auth()->user()->can('manage_contactos')) {
+            abort(403, 'No tienes permiso para actualizar contactos.');
+        }
         $contactos = Contactos::first();
         return view('admin/vistas/publicaciones/contactos/index', compact('contactos')) ;
     }
@@ -24,7 +28,27 @@ class ContactosController extends Controller
     public function actualizarContactos(Request $request)
     {
 
+          if (!auth()->user()->can('manage_contactos')) {
+            abort(403, 'No tienes permiso para actualizar contactos.');
+        }
+
         // dd($request->all());
+           $validator = Validator::make($request->all(), [
+        'direccion' => 'required|string',
+        'telefono1' => 'required|string',
+        //'telefono2'  => 'nullable|string|max:20',
+        'email' => 'required|email',
+         // 'urlx'           => 'nullable|url|max:255',
+          //  'urlinstagram'   => 'nullable|url|max:255',
+        // Agrega más reglas según tus necesidades
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->back()
+                         ->withErrors($validator)
+                         ->withInput()
+                         ->with('error', 'Por favor, corrige los errores del formulario.');
+    }
 
         $actualizarContactos = Contactos::first();
         $actualizarContactos->direccion = $request->direccion;
@@ -40,14 +64,16 @@ class ContactosController extends Controller
         $actualizarContactos->save();
 
 
-        $respuesta = array(
-            'mensaje'   =>"contacto registrado",
-            'estado'    =>1,
-        );
+        // $respuesta = array(
+        //     'mensaje'   =>"contacto registrado",
+        //     'estado'    =>1,
+        // );
 
 
 
-        return response()->json($respuesta);
+        // return response()->json($respuesta);
+
+        return redirect()->route('admin.contactos')->with('success','Pagina de Contacto actualizado Exitosamente');
 
 
     }

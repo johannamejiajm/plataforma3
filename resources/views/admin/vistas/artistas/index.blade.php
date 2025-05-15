@@ -1,18 +1,20 @@
-@extends('admin.script.artistas.artistasscript')
+@extends('admin.plantilla.layout')
 
-@section('titulo')
-    <title>Artista</title>
-@endsection
+@section('title', 'Administracion de Eventos')
 
-@section('tituloprincipal')
-    <div class="row justify-content-center align-content-center text-center">
-        <h2>MODULO ARTISTAS</h2>
-    </div>
-@endsection
+@section('content')
 
-@section('contenido')
+     <div class="body-wrapper-inner">
+        <div class="container-fluid">
+            
+          <!--  Row 1 -->
+          <div class="row">
+   <div class="col-12 ">
+                <h1 class="text-center">Listado de Artistas</h1>
+            </div>
+           
 
-    <h1 class="my-4 text-center">Lista de Artistas</h1>
+       
 
     @if (session('success'))
         <div class="alert alert-success d-flex align-items-center" role="alert">
@@ -66,5 +68,7 @@
             </tbody>
         </table>
     </div>
-
+</div>
+</div>
+</div>
 @endsection
