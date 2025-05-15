@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Donaciones;
+use App\Models\Tipodonaciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -13,15 +14,11 @@ class DonacionesController extends Controller
      */
      public function indexdonacion()
     {
-        $donaciones = donaciones::all();
-        return view('publico/vistas/donaciones/index', compact('donaciones'));
-
-        
+        $donaciones = Donaciones::all();
+        $tiposdonaciones = Tipodonaciones::all();
+        return view('publico/vistas/donaciones/index', compact('donaciones', 'tiposdonaciones'));      
     }
-   
-      //
-
-        
+         
     public function index(Request $request)
     {
         // Obtener el estado de la URL, por defecto es 'todos' si no se pasa ningún valor
@@ -123,18 +120,19 @@ class DonacionesController extends Controller
         
         $donaciones = Donaciones::create([
             'idtipo'=>2,
-            'fecha'=>$request->fecha,
-            'donante'=>$request->donante,
-            'contacto'=>$request->contacto,
+            'nombre'=>$request->nombre,
+            'apellido'=>$request->apellido,
+            'email'=>$request->email,
+            'telefono'=>$request->telefono,
             'donacion'=>$request->donacion,
             'soporte'=>$request->soporte,
-            'estado'=>2,
+            'estado'=>0,
             
         ]);
        
         $respuesta = array(
             'mensaje'   =>"donacion registrada",
-            'estado'    =>2,
+            'estado'    =>0,
         ) ;
         return response()->json($respuesta);
 
