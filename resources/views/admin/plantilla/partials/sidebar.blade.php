@@ -208,7 +208,14 @@
             <span class="hide-menu">Donaciones</span>
           </a>
         </li>
-
+ @can('manage_contactos')
+         <li class="sidebar-item">
+          <a class="sidebar-link" href="{{ route('admin.contactos') }}" aria-expanded="false">
+            <i class="ti ti-atom"></i>
+            <span class="hide-menu">Pagina Contacto</span>
+          </a>
+        </li>
+  @endcan
 
       </ul>
     </nav>

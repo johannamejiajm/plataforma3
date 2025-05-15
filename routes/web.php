@@ -125,6 +125,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/artistas/create', [ArtistasController::class, 'create'])->name('artistas.create');// Guardar artista en la base de datos
 Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
 
+    Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
+
 
 
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
@@ -162,9 +164,9 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
 
 
 
-    Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
+
     Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos');
-    Route::post('/contactos/actualizar', [ContactosController::class, 'actualizarContactos'])->name('contactos.actualizarcontactos');
+    Route::post('/admin/contactos', [ContactosController::class, 'actualizarContactos'])->name('contactos.actualizarcontactos');
 
     Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
 
