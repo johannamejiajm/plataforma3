@@ -1,9 +1,9 @@
-<head>
-    <meta charset="UTF-8">
-    <title>Eventos</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+@extends('admin.plantilla.layout')
+
+@section('title', 'Administracion de Eventos')
+
+@section('content')
+
 <body>
 <div class="container mt-4">
     <h2>Eventos</h2>
@@ -152,3 +152,4 @@
 </script>
 
 </body>
+@endsection

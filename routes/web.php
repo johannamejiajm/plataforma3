@@ -96,24 +96,24 @@ Route::middleware(['permission:manage_users'])->group(function () {
 
 });
 
-// Ruta principal del CRUD
-Route::get('admin/eventos', [EventosController::class, 'index'])->name('eventos.index');
+// Ruta principal del CRUD de eventos
+Route::get('admin/event', [EventosController::class, 'index'])->name('eventos.indexx');
 // Ruta para guardar un nuevo evento (desde el modal)
-Route::post('/eventos', [EventosController::class, 'store'])->name('eventos.store');
+Route::post('/event', [EventosController::class, 'store'])->name('eventos.storee');
 // Guardar un nuevo evento (desde el modal)
-Route::post('/eventos', [EventosController::class, 'store'])->name('eventos.store');
+Route::post('/event', [EventosController::class, 'store'])->name('eventos.storee');
 
 // Mostrar un evento individual (opcional)
-Route::get('/eventos/{id}', [EventosController::class, 'show'])->name('eventos.show');
+Route::get('/event/{id}', [EventosController::class, 'show'])->name('eventos.showe');
 
 // Traer los datos para editar (usado vía AJAX)
-Route::get('/eventos/{id}/edit', [EventosController::class, 'edit'])->name('eventos.edit');
+Route::get('/event/{id}/edit', [EventosController::class, 'edit'])->name('eventos.edite');
 
 // Actualizar un evento existente
-Route::put('/eventos/{id}', [EventosController::class, 'update'])->name('eventos.update');
+Route::put('/event/{id}', [EventosController::class, 'update'])->name('eventos.updated');
 
 // Eliminar un evento
-Route::delete('/eventos/{id}', [EventosController::class, 'destroy'])->name('eventos.destroy');
+Route::delete('/event/{id}', [EventosController::class, 'destroy'])->name('eventos.destroyed');
 
 
 /* Route::get('/dashboard', function () {
