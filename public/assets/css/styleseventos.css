@@ -1,0 +1,83 @@
+.evento-encabezado {
+    /* background: linear-gradient(to right, #0a0097, #1044f0); */
+    color: #080bc4;
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  .evento-encabezado h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+
+  .evento-encabezado p {
+    font-size: 1.2rem;
+  }
+
+  .eventos-lista {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+  }
+
+  .contenedor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .tarjeta-evento {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .tarjeta-evento:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .tarjeta-evento img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+
+  .tarjeta-evento h2 {
+    color: #0a0097;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .tarjeta-evento .fecha {
+    color: #555;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+  }
+
+  .tarjeta-evento .descripcion {
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+
+  .btn-detalles {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0a0097;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-detalles:hover {
+    background-color: #1044f0;
+  }

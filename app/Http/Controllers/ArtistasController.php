@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artistas;
-use App\Models\evento;
+use App\Models\Evento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Symfony\Contracts\Service\Attribute\Required;
 
 class ArtistasController extends Controller
@@ -15,7 +16,7 @@ class ArtistasController extends Controller
      */
 
 
-     public function listarArtistasActivos()
+    public function listarArtistasActivos()
     {
         $artistasActivos = Artistas::where('estado', '1')->get(); // Assuming '1' represents active
 
@@ -25,7 +26,7 @@ class ArtistasController extends Controller
     {
         return view('publico/vistas/artistas/index');
     }
-   
+
     public function index()
     {
         $artistas = Artistas::all();
@@ -47,11 +48,10 @@ class ArtistasController extends Controller
             )
             ->get();
 
-        return view('admin.vistas.artistas.index', compact('artistas'));
-      
+        return view('admin/vistas/artistas.index', compact('artistas'));
     }
-    
-   
+
+
     /**
      * Activa o desactiva un artista.
      *
@@ -80,8 +80,8 @@ class ArtistasController extends Controller
      */
     public function create()
     {
-        $eventos = Evento::all();
-    return view('publico/vistas/artistas/create', compact('eventos'));
+        $eventos = Evento::all(); // obtener eventos para el select
+        return view('publico/vistas/artistas.create', compact('eventos'));
     }
 
     /**
@@ -90,35 +90,59 @@ class ArtistasController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'identidad' => 'required|string|max:255',
-            'nombre' => 'required|string|max:255',
-            'email' => 'required|email',
-            'telefono' => 'nullable|string|max:255',
-            'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'idevento' => 'required|exists:eventos,id',
-            'descripcion' => 'nullable|string',
-            'fecharegistro' => 'required|date',
-        ]);
-        $data = $request->all();
-    
-        if ($request->hasFile('imagen')) {
-            $path = $request->file('imagen')->store('artistas', 'public');
-            $data['imagen'] = $path;
-        }
-    
-        Artistas::create($data);
-    
-        return redirect()->route('artistas.create')->with('success', 'Artista registrado correctamente.');
-    }
-    
+        DB::beginTransaction();
+        try {
 
-public function crearArtistas(Request $request) {
+            $validated = $request->validate([
+                'idevento' => 'required|exists:eventos,id',
+                'identidad' => 'required|string|max:20|unique:artistas,identidad',
+                'nombre' => 'required|string|max:255',
+                'email' => 'nullable|email',
+                'telefono' => 'nullable|string|max:20',
+                'imagen' => 'nullable|image|max:2048',
+                'descripcion' => 'nullable|string',
+                'estado' => 'required|in:1,0', // ahora acepta directamente 1 o 0
+
+            ], [
+                'identidad.required' => 'El campo número de identidad es obligatorio.',
+                'identidad.unique' => 'Este número de identidad ya está registrado.',
+                'identidad.max' => 'El número de identidad no debe tener más de 20 caracteres.',
+                'imagen.max' => 'El campo de imagen no debe ser mayor a 2048 kilobytes.',
+            ]);
+            // Conversión del estado a entero (por si viene como string)
+            // $validated['estado'] = (int)$request->estado;
+
+            // Guardar la imagen si se subió
+            if ($request->hasFile('imagen')) {
+                $path = $request->file('imagen')->store('imagenes_artistas', 'public');
+                $validated['imagen'] = $path;
+            }
+            // Fecha de registro
+            $validated['fecharegistro'] = now();
+
+            // Crear el registro
+            Artistas::create($validated);
+            DB::commit();
+            // Redirigir con mensaje
+            return redirect()->route('artistas.create')->with('success', 'Artista registrado correctamente.');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            // Mostrar el mensaje exacto del error
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Error: ' . $th->getMessage());
+        }
+    }
+
+
+    public function crearArtistas(Request $request)
+    {
 
         // Crear el nuevo artista con la relación al evento
         $artista = artistas::create([
             'idevento' => $request->idevento,
-            'nidentidad' => $request->nidentidad,
+            'identidad' => $request->nidentidad,
             'nombre' => $request->nombre,
             'email' => $request->email,
             'telefono' => $request->telefono,
@@ -163,5 +187,4 @@ public function crearArtistas(Request $request) {
     {
         //
     }
-
 }

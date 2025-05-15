@@ -1,8 +1,7 @@
 <?php
 
-
-
 use App\Http\Controllers\ContactosController;
+use App\Http\Controllers\EventosController;
 use App\Http\Controllers\InformacioninstitucionalController;
 use App\Http\Controllers\ArtistasController;
 use App\Http\Controllers\DonacionesController;
@@ -33,18 +32,21 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/api/admin/noticias', [PublicacionesController::class, 'data'])->name('publicaciones.noticias');
     Route::get('/admin/dashboard', [PublicacionesController::class, 'dashboard'])->name('admin.dashboard');
 
-   /*  Route::get('/admin/eventos', [PublicacionesController::class, 'index'])->name('eventos.index');
-    Route::get('/admin/historias', [PublicacionesController::class, 'index'])->name('historias.index');
-    Route::get('/admin/noticias', [PublicacionesController::class, 'index'])->name('noticias.index'); */
 
     Route::resource('/admin/eventos', PublicacionesController::class);
     Route::resource('/admin/noticias', PublicacionesController::class);
     Route::resource('/admin/historias', PublicacionesController::class);
-    
    
 
  });
 
+ });
+
+//mis rutas castro
+ Route::middleware(['permission:manage_roles'])->group(function () {
+    Route::get('/admin/roles/list', [RoleController::class, 'list'])->name('roles.list');
+    Route::resource('/admin/roles', RoleController::class)->only(['index', 'store', 'update', 'destroy', 'edit']);
+});
 
 //mis rutas castro
  Route::middleware(['permission:manage_roles'])->group(function () {
@@ -61,44 +63,28 @@ Route::middleware(['permission:manage_users'])->group(function () {
 
     Route::resource('/admin/users', UserController::class);
 });
-
-/* hare pruebas */
-    /* Route::resource('/admin/eventos', PublicacionesController::class);
-    Route::resource('/admin/noticias', PublicacionesController::class);
-    Route::resource('/admin/historias', PublicacionesController::class);
-    Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos')
-    Route::resource('/admin/historias', PublicacionesController::class); */
-
-//castro
- /*    Route::middleware(['permission:create publicaciones', 'role:admin'])->group(function(){
-        Route::post('/admin/eventos', [PublicacionesController::class, 'store'])->name('eventos.store');
-        Route::post('/admin/historias', [PublicacionesController::class, 'store'])->name('historias.store');
-        Route::post('/admin/noticias', [PublicacionesController::class, 'store'])->name('noticias.store');
-    });
-//castro
-    Route::middleware(['permission:edit publicaciones', 'role:admin'])->group(function(){
-        Route::put('/admin/eventos/{evento}', [PublicacionesController::class, 'update'])->name('eventos.update');
-        Route::put('/admin/historias/{historia}', [PublicacionesController::class, 'update'])->name('historias.update');
-        Route::put('/admin/noticias/{noticia}', [PublicacionesController::class, 'update'])->name('noticias.update');
-
-        Route::get('/admin/eventos/{evento}', [PublicacionesController::class, 'show'])->name('eventos.show');
-        Route::get('/admin/historias/{historia}', [PublicacionesController::class, 'show'])->name('historias.show');
-        Route::get('/admin/noticias/{noticia}', [PublicacionesController::class, 'show'])->name('noticias.show');
-    });
-//castro
-    Route::middleware(['permission:delete publicaciones', 'role:admin'])->group(function(){
-        Route::delete('/admin/eventos/{evento}', [PublicacionesController::class, 'destroy'])->name('eventos.destroy');
-        Route::delete('/admin/historias/{historia}', [PublicacionesController::class, 'destroy'])->name('historias.destroy');
-        Route::delete('/admin/noticias/{noticia}', [PublicacionesController::class, 'destroy'])->name('noticias.destroy');
-    }); */
-
-
     //rutas de alexander-admin
     Route::get('/admin/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
+    Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
 
 });
 
-    
+
+// Ruta principal del CRUD de eventos
+Route::get('admin/event', [EventosController::class, 'index'])->name('eventos.indexx');
+// Ruta para guardar un nuevo evento (desde el modal)
+Route::post('/event', [EventosController::class, 'store'])->name('eventos.storee');
+// Mostrar un evento individual (opcional)
+Route::get('/event/{id}', [EventosController::class, 'show'])->name('eventos.showe');
+
+// Traer los datos para editar (usado vía AJAX)
+Route::get('/event/{id}/edit', [EventosController::class, 'edit'])->name('eventos.edite');
+
+// Actualizar un evento existente
+Route::put('/event/{id}', [EventosController::class, 'update'])->name('eventos.updated');
+
+// Eliminar un evento
+Route::delete('/event/{id}', [EventosController::class, 'destroy'])->name('eventos.destroyed');
 
 
 /* Route::get('/dashboard', function () {
@@ -119,25 +105,22 @@ Route::middleware('auth')->group(function () {
     Route::put('/quienessomos/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
     Route::get('/admin/quienessomos', [InformacioninstitucionalController::class, 'indexadminquienessomos'])->name('quienessomos.indexadmin');
 
+//Rutas Juan Sebastian - Publico
+    Route::get('publico/artistas/crear', [ArtistasController::class, 'create'])->name('artistas.create');
+    Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
+
+    Route::middleware('auth')->group(function (){
+
+    Route::get('/donacionesindex', [DonacionesController::class, 'indexdonacion'])->name('donacionesindex.index');
+    Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaciones.store');
 
 
-// Mostrar formulario para crear un nuevo artista
-Route::get('/artistas/create', [ArtistasController::class, 'create'])->name('artistas.create');// Guardar artista en la base de datos
-Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
-
- 
-
-    Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
-    Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
 
     Route::middleware('auth')->group(function (){
 
     Route::get('/admin/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
     Route::get('/admin/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
     Route::put('/admin/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');
-
-      Route::get('/donacionesindex', [DonacionesController::class, 'indexdonacion'])->name('donacionesindex.index');
-Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaciones.store');
 
 
     Route::get('/inicio',action: [PublicacionesController::class,'indexinicio'])->name('inicio.index'); //JOHAN RINCON
@@ -147,17 +130,17 @@ Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaci
     Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
     Route::get('/artistas/activos', [ArtistasController::class, 'listarArtistasActivos'])->name('artistas.activos');
 
-    // Route::get('/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
-    // Route::get('/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
-    // Route::put('/donaciones/{id}', [DonacionesController::class, 'update'])->name('donaciones.update');
-        
 
     Route::get('/vistas/publicaciones/inicio', [PublicacionesController::class, 'indexinicio'])->name('vistaspublicacionesinicio.index');
 
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
 
-    Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
+    
+    // Rutas santiago - Historia
+    Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index'); 
 
+    //Ruta santiago - eventos
+    Route::get('/eventos', [PublicacionesController::class, 'indexeventos'])->name('publica.eventos.index');
 
     Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
     Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos');
@@ -169,11 +152,9 @@ Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaci
     Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
 
 
-
     //Rutas Midas - Publico Publicaciones
     Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
     Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
-
 
     //Rutas Juan Sebastian - Publico
     Route::get('publico/artistas/crear', [ArtistasController::class, 'create'])->name('artistas.create');
@@ -183,6 +164,7 @@ Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaci
     Route::get('/donacionesindex', [DonacionesController::class, 'indexdonacion'])->name('donacionesindex.index');
     Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaciones.store');
 
-    
+    });
+
 
 require __DIR__ . '/auth.php';

@@ -56,7 +56,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Publicaciones</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('publicaciones.indexpublicacionespublico') }}">Publicaciones</a>
             </li>
             <li class="nav-item">
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Eventos</a>
@@ -135,6 +135,7 @@
         <li class="mb-1">
           <a href="." class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
             Artistas
+            
           </a>
         </li>
         <li class="mb-1">
