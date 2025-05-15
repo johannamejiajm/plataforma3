@@ -30,7 +30,7 @@
                         </div>
                         <div class="info-details">
                             <h4>direccion</h4>
-                            <p> Cra 8 # 8-101 AGUACHICA-CESAR</p>
+                            <p>{{$contactos->direccion}}</p>
                         </div>
                     </div>
                 </div>
@@ -41,10 +41,10 @@
                     </div>
                     <div class="info-details">
                         <h4>Teléfono 1</h4>
-                        <p>+573013772079 </p>
+                        <p>+57 {{ $contactos->telefono1 }} </p>
 
                         <h4>Teléfono 2</h4>
-                        <p>+573186157178</p>
+                        <p>+57  {{ $contactos->telefono2 }}</p>
                     </div>
 
                 </div>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="info-details">
                         <h4>email</h4>
-                        <p>fundacionpachosclub@outlook.com</p>
+                        <p>{{ $contactos->email }}</p>
                     </div>
                 </div>
 
@@ -65,15 +65,15 @@
                     </div>
                     <div class="info-details">
                         <h4>Horario</h4>
-                        <p>Lunes a Viernes: 8:00 AM - 12:00 PM - DE 2:00 PM- 6:00 PM</p>
+                        <p>{{ $contactos->horario }}</p>
                         <h4>Horario Extras</h4>
-                        <p>Sábados: 8:00 AM - 12:00 PM</p>
+                        <p>{{ $contactos->horarioextras }}</p>
                     </div>
                 </div>
 
                 <div class="social-links">
 
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="{{ $contactos->urlfacebook }}" target="_bank"><i class="fab fa-facebook-f"></i></a>
 
                     <a href="#"><i class="fab fa-instagram"></i></a>
 

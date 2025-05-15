@@ -9,20 +9,18 @@ class Donaciones extends Model
 {
     protected $table = 'donaciones';
     protected $fillable = [
-     'idtipo',
-     'fecha',
-     'donante',
-     'contacto',
-     'donacion',
-     'soporte',
-     'estado'
+        'idtipo',
+        'nombre',
+        'apellido',
+        'email',
+        'telefono',
+        'donacion',
+        'tipodonacion',
+        'soporte',
+        'estado'
     ];
 
     use HasFactory;
-
-
-   
-
 
     // Relación con Tipodonaciones
     public function tipoDonacion()

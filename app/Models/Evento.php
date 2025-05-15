@@ -10,14 +10,16 @@ class evento extends Model
 
     protected $fillable = [
         'evento',
-        'fechainicio',
+        'fechainicial',
         'fechafinal',
         'estado',
     ];
 
     // Relación con la tabla artistas (un evento tiene muchos artistas)
+
     public function artistas()
     {
         return $this->hasMany(Artistas::class, 'idevento');
     }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Informacioninstitucional;
+use App\Models\Tipoinformacion;
 use Illuminate\Http\Request;
 
 class InformacioninstitucionalController extends Controller
@@ -24,11 +25,28 @@ class InformacioninstitucionalController extends Controller
         // dd($url_view);
 
         return view($url_view);
-    
+
     }
 
     public function indexadminquienessomos(){
-        return view('admin.vistas.publicaciones.quienessomos.quienessomos');
+          $tipos = Tipoinformacion::all();
+        return view('admin.vistas.publicaciones.quienessomos.quienessomos', compact('tipos'));
+    }
+
+    public function list()
+    {
+        $data = Informacioninstitucional::with('tipo')->get();
+
+        return datatables()->of($data)
+            ->addColumn('tipo', fn($row) => $row->tipo->tipo ?? '-')
+            ->addColumn('acciones', function ($row) {
+                return '
+                    <button class="btn btn-sm btn-warning edit" data-id="'.$row->id.'">Editar</button>
+                    <button class="btn btn-sm btn-danger delete" data-id="'.$row->id.'">Eliminar</button>
+                ';
+            })
+            ->rawColumns(['acciones'])
+            ->make(true);
     }
 
     /**
@@ -44,7 +62,33 @@ class InformacioninstitucionalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+                    $validated = $request->validate([
+                'idtipo' => 'required|exists:tipoinformacion,id',
+                'contenido' => 'required|string|max:5000',
+                'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            ]);
+
+            $info = new Informacioninstitucional();
+            $info->idtipo = $request->idtipo;
+            $info->contenido = $request->contenido;
+            $info->fechainicial = now();
+
+           if ($request->hasFile('foto')) {
+            $image = $request->file('foto');
+
+            // Nombre hasheado único
+            $hashedName = $image->hashName();
+
+            // Guarda la imagen en storage/app/public/fotos
+           $info->foto = $image->storeAs('informaciones', $hashedName, 'public');
+
+            // Guarda la ruta completa pública
+            
+            }
+
+            $info->save();
+
+            return response()->json(['success' => true]);
     }
 
     /**
@@ -58,24 +102,48 @@ class InformacioninstitucionalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Informacioninstitucional $informacioninstitucional)
+    public function edit($id)
     {
         //
+          $info = Informacioninstitucional::findOrFail($id);
+            return response()->json($info);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Informacioninstitucional $informacioninstitucional)
+    public function update(Request $request, $id)
     {
-        //
+        $info = Informacioninstitucional::findOrFail($id);
+
+        $validated = $request->validate([
+            'idtipo' => 'required|exists:tipoinformacion,id',
+            'contenido' => 'required|string|max:5000',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+        ]);
+
+        $info->idtipo = $request->idtipo;
+        $info->contenido = $request->contenido;
+
+        if ($request->hasFile('foto')) {
+            $path = $request->file('foto')->store('public/fotos');
+            $info->foto = basename($path);
+        }
+
+        $info->save();
+
+        return response()->json(['success' => true]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Informacioninstitucional $informacioninstitucional)
+    public function destroy($id)
     {
         //
+         $info = Informacioninstitucional::findOrFail($id);
+        $info->delete();
+
+        return response()->json(['success' => true]);
     }
 }
