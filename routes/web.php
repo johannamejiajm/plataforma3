@@ -116,8 +116,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/quienessomos', [InformacioninstitucionalController::class, 'index'])->name('quienessomos.index');
     Route::get('/editquienessomos/{id}/edit', [InformacioninstitucionalController::class, 'edit'])->name('quienessomos.edit');
     Route::put('/quienessomos/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
+
     Route::get('/admin/quienessomos', [InformacioninstitucionalController::class, 'indexadminquienessomos'])->name('quienessomos.indexadmin');
 
+    Route::get('/admin/quienessomos/list', [InformacioninstitucionalController::class, 'list'])->name('quienessomos.list');
+    Route::post('/admin/quienessomos/store', [InformacioninstitucionalController::class, 'store'])->name('quienessomos.store');
+    Route::get('/admin/quienessomos/edit/{id}', [InformacioninstitucionalController::class, 'edit'])->name('quienessomos.edit');
+    Route::post('/admin/quienessomos/update/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
+    Route::delete('/admin/quienessomos/delete/{id}', [InformacioninstitucionalController::class, 'destroy'])->name('quienessomos.delete');
 
 
 
@@ -153,9 +159,9 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
 
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
 
-    
+
     // Rutas santiago - Historia
-    Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index'); 
+    Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
 
     //Ruta santiago - eventos
     Route::get('/eventos', [PublicacionesController::class, 'indexeventos'])->name('publica.eventos.index');
