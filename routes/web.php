@@ -36,7 +36,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/eventos', PublicacionesController::class);
     Route::resource('/admin/noticias', PublicacionesController::class);
     Route::resource('/admin/historias', PublicacionesController::class);
-   
+
 
  });
 
@@ -66,8 +66,6 @@ Route::middleware(['permission:manage_users'])->group(function () {
     //rutas de alexander-admin
     Route::get('/admin/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
     Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
-
-});
 
 
 // Ruta principal del CRUD de eventos
@@ -135,9 +133,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
 
-    
+
     // Rutas santiago - Historia
-    Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index'); 
+    Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
 
     //Ruta santiago - eventos
     Route::get('/eventos', [PublicacionesController::class, 'indexeventos'])->name('publica.eventos.index');
@@ -161,10 +159,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
 
     });
+    
     Route::get('/donacionesindex', [DonacionesController::class, 'indexdonacion'])->name('donacionesindex.index');
     Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaciones.store');
 
-    });
 
 
 require __DIR__ . '/auth.php';
