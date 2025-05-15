@@ -174,7 +174,12 @@
             <span class="hide-menu">Artistas</span>
           </a>
         </li>
-
+   <li class="sidebar-item">
+          <a class="sidebar-link" href="{{ route('eventos.indexx') }}" aria-expanded="false">
+            <i class="ti ti-atom"></i>
+            <span class="hide-menu">Eventos</span>
+          </a>
+        </li>
         @can('manage_roles')
         <li class="sidebar-item">
             <a class="sidebar-link" href="{{ route('roles.index') }}" aria-expanded="false">
@@ -207,7 +212,7 @@
             <i class="ti ti-atom"></i>
             <span class="hide-menu">Donaciones</span>
           </a>
-        </li>
+      
 
 
       </ul>

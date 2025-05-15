@@ -1,8 +1,7 @@
 <?php
 
-
-
 use App\Http\Controllers\ContactosController;
+use App\Http\Controllers\EventosController;
 use App\Http\Controllers\InformacioninstitucionalController;
 use App\Http\Controllers\ArtistasController;
 use App\Http\Controllers\DonacionesController;
@@ -93,10 +92,28 @@ Route::middleware(['permission:manage_users'])->group(function () {
 
     //rutas de alexander-admin
     Route::get('/admin/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
+    Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
 
 });
 
+// Ruta principal del CRUD de eventos
+Route::get('admin/event', [EventosController::class, 'index'])->name('eventos.indexx');
+// Ruta para guardar un nuevo evento (desde el modal)
+Route::post('/event', [EventosController::class, 'store'])->name('eventos.storee');
+// Guardar un nuevo evento (desde el modal)
+Route::post('/event', [EventosController::class, 'store'])->name('eventos.storee');
 
+// Mostrar un evento individual (opcional)
+Route::get('/event/{id}', [EventosController::class, 'show'])->name('eventos.showe');
+
+// Traer los datos para editar (usado vía AJAX)
+Route::get('/event/{id}/edit', [EventosController::class, 'edit'])->name('eventos.edite');
+
+// Actualizar un evento existente
+Route::put('/event/{id}', [EventosController::class, 'update'])->name('eventos.updated');
+
+// Eliminar un evento
+Route::delete('/event/{id}', [EventosController::class, 'destroy'])->name('eventos.destroyed');
 
 
 /* Route::get('/dashboard', function () {
@@ -119,16 +136,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/quienessomos', [InformacioninstitucionalController::class, 'indexadminquienessomos'])->name('quienessomos.indexadmin');
 
 
+//Rutas Juan Sebastian - Publico
+    Route::get('publico/artistas/crear', [ArtistasController::class, 'create'])->name('artistas.create');
+    Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
 
-
-// Mostrar formulario para crear un nuevo artista
-Route::get('/artistas/create', [ArtistasController::class, 'create'])->name('artistas.create');// Guardar artista en la base de datos
-Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
-
-
-
-    Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
-    Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
 
     Route::middleware('auth')->group(function (){
 
@@ -166,9 +177,9 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos');
     Route::post('/contactos/actualizar', [ContactosController::class, 'actualizarContactos'])->name('contactos.actualizarcontactos');
 
-    Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
 
 
+    
     Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
 
 
@@ -177,9 +188,7 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
 
 
-    //Rutas Juan Sebastian - Publico
-    Route::get('publico/artistas/crear', [ArtistasController::class, 'create'])->name('artistas.create');
-    Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
+    
 
     });
 
