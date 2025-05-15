@@ -141,9 +141,23 @@
         </div>
 
         <div class="mb-3">
-            <label for="identidad" class="form-label">Número de Identidad</label>
-            <input type="text" name="identidad" id="identidad" class="form-control" required>
+    <label for="identidad" class="form-label">Número de Identidad</label>
+    <input 
+        type="text" 
+        name="identidad" 
+        id="identidad" 
+        class="form-control @error('identidad') is-invalid @enderror" 
+        value="{{ old('identidad') }}" 
+        required
+    >
+    @error('identidad')
+        <div class="invalid-feedback">
+            {{ $message }}
         </div>
+    @enderror
+</div>
+
+
 
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>

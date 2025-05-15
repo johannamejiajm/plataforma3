@@ -94,14 +94,27 @@ class ArtistasController extends Controller
     // Validación
     $validated = $request->validate([
         'idevento' => 'required|exists:eventos,id',
-        'identidad' => 'required|string|max:255',
+        'identidad' => 'required|string|max:20|unique:artistas,identidad',
         'nombre' => 'required|string|max:255',
         'email' => 'nullable|email',
         'telefono' => 'nullable|string|max:20',
         'imagen' => 'nullable|image|max:2048',
         'descripcion' => 'nullable|string',
         'estado' => 'required|in:1,0', // ahora acepta directamente 1 o 0
+
+        ], [
+        'identidad.required' => 'El campo número de identidad es obligatorio.',
+        'identidad.unique' => 'Este número de identidad ya está registrado.',
+        'identidad.max' => 'El número de identidad no debe tener más de 20 caracteres.',
     ]);
+
+    
+
+    
+
+        
+
+    
 
     // Conversión del estado a entero (por si viene como string)
     // $validated['estado'] = (int)$request->estado;

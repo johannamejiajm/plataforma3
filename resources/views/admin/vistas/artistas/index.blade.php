@@ -2,20 +2,17 @@
 
 @section('title', 'Administracion de Eventos')
 
-
-
-
-
 @section('content')
 
      <div class="body-wrapper-inner">
         <div class="container-fluid">
+            
           <!--  Row 1 -->
           <div class="row">
-
-            <div class="col-12 p-3">
+   <div class="col-12 ">
                 <h1 class="text-center">Listado de Artistas</h1>
             </div>
+           
 
        
 
