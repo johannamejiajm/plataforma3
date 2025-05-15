@@ -1,25 +1,31 @@
-@extends('admin.script.publicaciones.contactosscript')
+@extends('admin.plantilla.layout')
 
 
-@section('titulo')
-    Contactos
-@endsection
 
-@section('links')
+
+@section('css')
     <link rel="stylesheet" href="{{ asset('assets/css/contactos.css') }}">
 @endsection
 
-@section('tituloprincipal')
-    <h1>Administracion de Contactos</h1>
-@endsection
+@section('title', 'Administracion de Contactos')
 
-@section('contenido')
+@section('content')
+
+  <div class="body-wrapper-inner">
+        <div class="container-fluid">
+          <!--  Row 1 -->
+          <div class="row">
+<div class="col-12 mb-5 mt-5 text-center">
+    <h2>Administrar Información de Contacto</h2>
+</div>
+         
 <div class="content-section">
                 <div class="section-header">
-                    <h2>Administrar Información de Contacto</h2>
+                   <h2> Contacto</h2>
 
                 </div>
-                <form>
+                <form novalidate action="{{ route('admin.contactos')  }}" method="POST" >
+                      @csrf
                     <div class="form-group">
                         <label for="direccion">Direccion:</label>
                         <input type="text" id="direccion" class="form-control" value="{{$contactos->direccion}}" name="direccion">
@@ -76,4 +82,32 @@
 
                 </form>
             </div>
+              </div>
+          </div>
+          </div>
+@endsection
+
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if(session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: '¡Éxito!',
+            text: '{{ session('success') }}',
+            confirmButtonText: 'Aceptar'
+        });
+    </script>
+@endif
+
+@if(session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: '¡Error!',
+            text: '{{ session('error') }}',
+            confirmButtonText: 'Aceptar'
+        });
+    </script>
+@endif
 @endsection

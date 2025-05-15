@@ -16,7 +16,7 @@ HISTORIA
 
 
 @section('contenido')
-  
+
 
   <section class="Origen-Historia">
 
@@ -39,11 +39,11 @@ HISTORIA
           <p>{{ $historia->fechainicial }}</p>
         </div>
 
-@endforeach    
+@endforeach
 
 @endif
 
-    </div>  
+    </div>
 
 
 </section>
@@ -63,7 +63,7 @@ HISTORIA
         <p>{{ $historia->contenido }}</p>
       </div>
       <div class="contenedor">
-        <h2 class="text-center mb-4">Momentos</h2>
+        <h2 class="text-center mb-4">Galeria</h2>
 
         @php
           $carouselId = 'carruselImagenes' . $key;
@@ -94,12 +94,12 @@ HISTORIA
   @endforeach
 
   @endif
-  
-  
-  
 
 
-  
+
+
+
+
 
   </html>
 
