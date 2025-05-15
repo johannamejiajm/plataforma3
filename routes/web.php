@@ -130,6 +130,10 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
     Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
     Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
 
+    //Rutas Midas - Publico Publicaciones
+    Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
+    Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
+
     Route::middleware('auth')->group(function (){
 
     Route::get('/admin/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
@@ -170,11 +174,6 @@ Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.s
 
 
     Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
-
-
-    //Rutas Midas - Publico Publicaciones
-    Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
-    Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
 
 
     //Rutas Juan Sebastian - Publico
