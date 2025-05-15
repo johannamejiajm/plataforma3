@@ -66,7 +66,7 @@ body {
 
 .hero-1 h1 {
   font-size: 3rem;
-  font-family: "Special Gothic Expanded One", "";
+  font-family: "Special Gothic Expanded One";
   font-weight: 900;
   margin-bottom: 1rem;
   color: #ffffff
@@ -104,6 +104,11 @@ body {
   border-radius: 12px;
   border-left: 6px solid var(--azul);
   border-right: 6px solid var(--rojo);
+}
+
+.contenedor h2 {
+  font-family: "Special Gothic Expanded One";
+
 }
 
 .carousel-item img {
@@ -152,6 +157,7 @@ body {
 
 .container h2 {
   color: var(--rojo);
+  font-family: "Special Gothic Expanded One";
   font-weight: bold;
   text-shadow: 1px 1px 2px var(--sombra);
   margin-bottom: 1.5rem;
@@ -172,10 +178,7 @@ body {
   transition: background 0.3s ease;
 }
 
-.container a.btn:hover {
-  background: var(--rojo);
-  color: var(--blanco);
-}
+
 
 .container-fluid {
   background-color: #002868;
@@ -201,8 +204,9 @@ body {
 
 .llamada-a-la-accion-final h2 {
   font-size: 2.5rem;
-  font-weight: bold;
   margin-bottom: 1rem;
+  font-family: "Special Gothic Expanded One";
+
 }
 
 .llamada-a-la-accion-final p {
@@ -229,6 +233,7 @@ body {
   transform: scale(1.05);
 }
 
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .botones-finales a {
@@ -244,4 +249,3 @@ body {
     font-size: 2rem;
   }
 }
-
