@@ -3,6 +3,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Tipopublicaciones extends Model
@@ -23,3 +24,4 @@ class Tipopublicaciones extends Model
         return $this->hasMany(Publicaciones::class, 'idtipo', 'id');
     }
 }
+
