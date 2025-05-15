@@ -15,6 +15,7 @@
 @endsection
 
 @section('contenido')
+
 <head>
 
     <style>
@@ -80,7 +81,6 @@
         }
     </style>
 </head>
-
 
 <body class="p-4">
 
