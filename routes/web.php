@@ -129,7 +129,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/donacionesindex', [DonacionesController::class, 'indexdonacion'])->name('donacionesindex.index');
     Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaciones.store');
 
-    Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
+    // Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
 
     });
 
@@ -166,6 +166,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
 
+
     Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos');
     Route::post('/admin/contactos', [ContactosController::class, 'actualizarContactos'])->name('contactos.actualizarcontactos');
 
@@ -175,6 +176,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
 
     });
+
+    Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
 
 
 
