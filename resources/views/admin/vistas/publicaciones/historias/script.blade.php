@@ -95,7 +95,7 @@
     });
 
     $.ajax({
-        url: '{{ route('historias.store') }}',
+        // url: '{{ route('historias.store') }}',
         method: 'POST',
         data: formData,
         contentType: false,

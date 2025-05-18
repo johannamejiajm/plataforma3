@@ -7,7 +7,8 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-class RolesAndPermissionsUser extends Seeder
+
+class PermisosAndRolesSergio extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,19 +16,19 @@ class RolesAndPermissionsUser extends Seeder
     public function run(): void
     {
         //
-
-         // Crear roles
+          // Crear roles
          $adminRole = Role::create(['name' => 'admin']);
          $tesoreroRole = Role::create(['name' => 'tesorero']);
 
          // Crear permisos
-         $managePubliaciones = Permission::create(['name' => 'manage_publicaciones']);
+         $managePublicaciones = Permission::create(['name' => 'manage_publicaciones']);
          $manageRoles = Permission::create(['name' => 'manage_roles']);
          $managePermisos = Permission::create(['name' => 'manage_permisos']);
          $manageUsers = Permission::create(['name' => 'manage_users']);
+        $manageContactos = Permission::create(['name' => 'manage_contactos']);
 
          // Asignar permisos a roles
-         $adminRole->givePermissionTo([$managePubliaciones, $manageRoles, $managePermisos, $manageUsers]);
-         $tesoreroRole->givePermissionTo($managePubliaciones);
+         $adminRole->givePermissionTo([$managePublicaciones, $manageRoles, $managePermisos, $manageUsers,  $manageContactos]);
+         $tesoreroRole->givePermissionTo($managePublicaciones);
     }
 }
