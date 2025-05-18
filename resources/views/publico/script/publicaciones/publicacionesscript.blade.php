@@ -154,9 +154,6 @@
                 
                 <!-- Botón para ver la publicación completa o compartir -->
                 <div class="text-center mt-4">
-                    <a href="${route('publicaciones.show', publicacion.id)}" class="btn btn-primary">
-                        <i class="fas fa-external-link-alt mr-2"></i> Ver página completa
-                    </a>
                     <button class="btn btn-outline-secondary ml-2" onclick="compartirPublicacion(${publicacion.id}, '${publicacion.titulo}')">
                         <i class="fas fa-share-alt mr-2"></i> Compartir
                     </button>
@@ -174,8 +171,30 @@
     
     // Función auxiliar para formatear la fecha
     function formatearFecha(fechaStr) {
-        const fecha = new Date(fechaStr);
-        return fecha.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    try {
+        // Intentar varios formatos de fecha comunes
+        let fecha;
+        
+        // Si el formato es dd/mm/yyyy (como "15/04/2023")
+        if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(fechaStr)) {
+            const parts = fechaStr.split('/');
+            fecha = new Date(parts[2], parts[1] - 1, parts[0]);
+        } 
+        // Si el formato es ISO o similar (2023-04-15)
+        else {
+            fecha = new Date(fechaStr);
+        }
+        
+        // Verificar si la fecha es válida
+        if (isNaN(fecha.getTime())) {
+            return fechaStr; // Devolver el string original si no se pudo parsear
+        }
+        
+            return fecha.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        } catch (error) {
+            console.error("Error al formatear fecha:", error);
+            return fechaStr; // En caso de error, devolver el string original
+        }
     }
     
     // Función auxiliar para formatear el contenido (convertir saltos de línea)
