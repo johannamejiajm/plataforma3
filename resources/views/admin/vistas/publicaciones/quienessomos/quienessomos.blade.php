@@ -41,6 +41,7 @@
                                         <th>Contenido</th>
                                         <th>Foto</th>
                                         <th>Fecha Inicial</th>
+                                        <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -94,11 +95,23 @@
                         <textarea class="form-control" name="contenido" id="contenido" rows="4" required></textarea>
                     </div>
 
+                     <div class="col-12">
+                        <label for="estado" class="form-label">Estado</label>
+                        <select name="estado" id="estado" class="form-select" required>
+                            <option value="" disabled selected>--Seleccione--</option>
+                            <option value="0" >Inactivo</option>
+                            <option value="1" >Activo</option>
+                        </select>
+                        <div class="mt-2" id="fotoPreview"></div>
+                    </div>
+
                     <div class="col-12">
                         <label for="foto" class="form-label">Foto (opcional)</label>
                         <input type="file" name="foto" id="foto" class="form-control" accept="image/*">
                         <div class="mt-2" id="fotoPreview"></div>
                     </div>
+
+
                 </div>
 
                 <div class="modal-footer">
@@ -124,6 +137,13 @@ $(document).ready(function() {
             { data: 'contenido' },
             { data: 'foto', render: d => d ? `<img src="{{ asset('storage')  }}/${d}" width="50">` : '' },
             { data: 'fechainicial' },
+             {
+                    data: 'estado',
+                    render: function(data) {
+                        let clase = data === 1 ? 'bg-success' : 'bg-danger';
+                        return `<span class="badge ${clase}">${data ? 'Activo' : 'Inactivo'}</span>`;
+                    }
+                },
             { data: 'acciones', orderable: false }
         ],
          language: {
@@ -132,7 +152,9 @@ $(document).ready(function() {
     });
 
     $('#btnAdd').click(() => {
-        $('#infoId').val('');
+        $('#infoId').val('').trigger('change');
+        $('#idtipo').val('').trigger('change');
+        $('#contenido').val('').trigger('change');
         $('#infoForm')[0].reset();
         $('#infoModal').modal('show');
     });
@@ -140,9 +162,9 @@ $(document).ready(function() {
     $('#infoTable').on('click', '.edit', function() {
         let id = $(this).data('id');
         $.get(`/admin/quienessomos/edit/${id}`, function(data) {
-            $('#infoId').val(data.id);
-            $('#idtipo').val(data.idtipo);
-            $('#contenido').val(data.contenido);
+            $('#infoId').val(data.id).trigger('change');
+            $('#idtipo').val(data.idtipo).trigger('change');
+            $('#contenido').val(data.contenido).trigger('change');
             $('#infoModal').modal('show');
         });
     });
