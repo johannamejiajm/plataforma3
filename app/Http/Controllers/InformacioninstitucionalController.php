@@ -37,12 +37,13 @@ class InformacioninstitucionalController extends Controller
     {
         $data = Informacioninstitucional::with('tipo')->get();
 
+
         return datatables()->of($data)
             ->addColumn('tipo', fn($row) => $row->tipo->tipo ?? '-')
             ->addColumn('acciones', function ($row) {
                 return '
-                    <button class="btn btn-sm btn-warning edit" data-id="'.$row->id.'">Editar</button>
-                    <button class="btn btn-sm btn-danger delete" data-id="'.$row->id.'">Eliminar</button>
+                    <button class="btn btn-sm btn-warning edit" data-id="'.$row->id.'"><i class="ti ti-pencil"></i></button>
+                    <button class="btn btn-sm btn-danger delete" data-id="'.$row->id.'"><i class="ti ti-trash"></i></button>
                 ';
             })
             ->rawColumns(['acciones'])
@@ -62,7 +63,7 @@ class InformacioninstitucionalController extends Controller
      */
     public function store(Request $request)
     {
-                    $validated = $request->validate([
+            $validated = $request->validate([
                 'idtipo' => 'required|exists:tipoinformacion,id',
                 'contenido' => 'required|string|max:5000',
                 'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
@@ -72,6 +73,7 @@ class InformacioninstitucionalController extends Controller
             $info->idtipo = $request->idtipo;
             $info->contenido = $request->contenido;
             $info->fechainicial = now();
+            $info->estado = $request->estado;
 
            if ($request->hasFile('foto')) {
             $image = $request->file('foto');
@@ -83,7 +85,7 @@ class InformacioninstitucionalController extends Controller
            $info->foto = $image->storeAs('informaciones', $hashedName, 'public');
 
             // Guarda la ruta completa pública
-            
+
             }
 
             $info->save();
@@ -126,7 +128,7 @@ class InformacioninstitucionalController extends Controller
         $info->contenido = $request->contenido;
 
         if ($request->hasFile('foto')) {
-            $path = $request->file('foto')->store('public/fotos');
+            $path = $request->file('foto')->store('public/informaciones');
             $info->foto = basename($path);
         }
 
@@ -140,10 +142,22 @@ class InformacioninstitucionalController extends Controller
      */
     public function destroy($id)
     {
-        //
-         $info = Informacioninstitucional::findOrFail($id);
-        $info->delete();
+    $info = Informacioninstitucional::findOrFail($id);
 
-        return response()->json(['success' => true]);
+    //   $info->estado = true;
+    // $info->save();
+
+    // Eliminar la foto si existe
+    if ($info->foto) {
+        $fotoPath = public_path('storage/' . $info->foto);
+        if (file_exists($fotoPath)) {
+            unlink($fotoPath); // elimina el archivo del sistema
+        }
+    }
+
+    // Elimina el registro
+    $info->delete();
+
+    return response()->json(['success' => true]);
     }
 }
