@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\Tipopublicaciones;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class PublicacionesController extends Controller
@@ -20,11 +20,17 @@ class PublicacionesController extends Controller
 
     public function dashboard()
     {
+
+
         return view('admin.dashboard.index');
     }
 
     public function data(Request $request)
     {
+        if (!Auth::user()->can('manage_publicaciones')) {
+            abort(403, 'No tienes permiso para obtener publicaciones.');
+        }
+
         $typePublic = Str::after($request->getPathInfo(), '/api/admin/');
 
         // Buscar el ID del tipo desde la base de datos
@@ -53,6 +59,10 @@ class PublicacionesController extends Controller
      */
     public function index(Request $request)
     {
+        if (!Auth::user()->can('manage_publicaciones')) {
+            abort(403, 'No tienes permiso.');
+        }
+
         //$publicaciones = Publicaciones::all();
         //return view('admin/vistas/publicaciones/publicaciones', compact('publicaciones'));
 
@@ -79,11 +89,8 @@ class PublicacionesController extends Controller
         $publicaciones = Publicaciones::latest()->where('idtipo', operator: 2)->take(3)->get();
         $publicacionfotos = Publicacionfotos::latest()->where('idpublicaciones', 2)->take(3)->get();
 
-
-        
         $noticias = Publicaciones::latest()->where('idtipo', operator: 1)->take(3)->get();
         $fotosnoticias = Publicacionfotos::latest()->where('idpublicaciones', 1)->take(3)->get();
-
 
         $eventos = Publicaciones::latest()->where('idtipo', operator: 3)->take(3)->get();
         $fotoseventos = Publicacionfotos::latest()->where('idpublicaciones', 3)->take(3)->get();
@@ -116,9 +123,6 @@ class PublicacionesController extends Controller
     return view('publico.vistas.publicaciones.eventos', compact('eventos'));
 
 
-
-
-
    }
 
    public function indexevento($id)
@@ -147,6 +151,11 @@ class PublicacionesController extends Controller
     {
         //
 
+        if (!Auth::user()->can('manage_publicaciones')) {
+            abort(403, 'No tienes permiso.');
+        }
+
+
         $typePublic = Str::after($request->getPathInfo(), '/admin/');
         $errors = $request->validate([
             'titulo' => 'required|string',
@@ -174,7 +183,8 @@ class PublicacionesController extends Controller
             'titulo' => $request->titulo,
             'contenido' => $request->contenido,
             'idtipo' => $request->idtipo,
-            'iduser' => auth()->user()->id, 
+
+            'iduser' => auth()->user()->id,
             'fechainicial' => $request->fechainicial,
             'fechafinal' => $request->fechafinal,
             'estado' => $request->estado
@@ -211,6 +221,10 @@ class PublicacionesController extends Controller
     public function show(Publicaciones $publicaciones)
     {
         //
+        if (!Auth::user()->can('manage_publicaciones')) {
+            abort(403, 'No tienes permiso.');
+        }
+
         $publicaciones->load('fotos');
 
         return response()->json([
@@ -256,6 +270,11 @@ class PublicacionesController extends Controller
         $publicacionActualizar->save();
 
         return redirect('publicaciones'); */
+
+        if (!Auth::user()->can('manage_publicaciones')) {
+            abort(403, 'No tienes permiso.');
+        }
+
 
         // Validar datos del formulario
 
@@ -337,6 +356,10 @@ class PublicacionesController extends Controller
      */
     public function destroy(Publicaciones $evento)
     {
+        if (!Auth::user()->can('manage_publicaciones')) {
+            abort(403, 'No tienes permiso.');
+        }
+
         try {
             // Cambia el estado: si está activo (1) lo pone en inactivo (0), y viceversa
             $evento->estado = $evento->estado === '1' ? '0' : '1';

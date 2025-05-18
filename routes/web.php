@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 //mis rutas castro
- Route::middleware(['permission:manage_publicaciones'])->group(function () {
+/*  Route::middleware(['permission:manage_publicaciones'])->group(function () { */
     Route::get('/api/admin/eventos', [PublicacionesController::class, 'data'])->name('publicaciones.eventos');
     Route::get('/api/admin/historias', [PublicacionesController::class, 'data'])->name('publicaciones.historias');
     Route::get('/api/admin/noticias', [PublicacionesController::class, 'data'])->name('publicaciones.noticias');
@@ -39,7 +39,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/historias', PublicacionesController::class);
 
 
- });
+ /* }); */
 
  });
 
@@ -50,23 +50,26 @@ Route::middleware(['auth'])->group(function () {
 });
 
 //mis rutas castro
- Route::middleware(['permission:manage_roles'])->group(function () {
+/*  Route::middleware(['permission:manage_roles'])->group(function () { */
     Route::get('/admin/roles/list', [RoleController::class, 'list'])->name('roles.list');
     Route::resource('/admin/roles', RoleController::class)->only(['index', 'store', 'update', 'destroy', 'edit']);
-});
+/* }); */
 
-Route::middleware(['permission:manage_permisos'])->group(function () {
+/* Route::middleware(['permission:manage_permisos'])->group(function () { */
     Route::post('/admin/permiso', [RoleController::class, 'createPermission'])->name('permissions.store');
     Route::resource('/admin/permissions', PermissionController::class);
-});
+/* }); */
 
-Route::middleware(['permission:manage_users'])->group(function () {
+//se realizo colocar en los controladores
+/* Route::middleware(['permission:manage_users'])->group(function () { */
 
     Route::resource('/admin/users', UserController::class);
+
 });
     //rutas de alexander-admin
     Route::get('/admin/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
     Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
+
 
 
 
@@ -100,9 +103,9 @@ Route::delete('/event/{id}', [EventosController::class, 'destroy'])->name('event
 })->middleware(['auth', 'verified'])->name('dashboard'); */
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/perfil', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/perfil', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/perfil', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 
@@ -150,6 +153,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/vistas/publicaciones/inicio', [PublicacionesController::class, 'indexinicio'])->name('vistaspublicacionesinicio.index');
 
     Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
+
+
+
+    // Rutas santiago - Historia
+    //esto de aca cambia el nombre de la ruta nombrada generara confilctos
+    Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index'); //historia.index va a generar conflictos att: juan castro
+
+    //Ruta santiago - eventos
+    Route::get('/eventos', [PublicacionesController::class, 'indexeventos'])->name('publica.eventos.index');
 
 
     Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');

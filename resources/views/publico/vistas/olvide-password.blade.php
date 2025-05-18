@@ -3,7 +3,7 @@
 
 
     <x-slot:titulo>
-        Iniciar Sesion
+        Olvide mi Contraseña
     </x-slot>
 
       <!--  Body Wrapper -->
@@ -19,15 +19,15 @@
               <a href="{{ route('inicio') }}" class="text-nowrap logo-img text-center d-block py-3 w-100">
                 <img src="{{ asset('images/logotipo_pachos.png') }}" alt="logotipo" width="100" >
               </a>
-              <p class="text-center">Inicio de Sesion para Panel Administrativo</p>
-               <!-- ALERTA DE ÉXITO -->
-               @if (session('status'))
-               <div class="alert alert-success alert-dismissible fade show" role="alert">
-                   {{ session('status') }}
-                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-               </div>
-               @endif
-              <form method="POST" action="{{ route('login') }}">
+              <p class="text-center">Enviar Instrucciones para cambiar password</p>
+              <!-- ALERTA DE ÉXITO -->
+                @if (session('status'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('status') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                </div>
+                @endif
+              <form method="POST" action="{{ route('password.email') }}">
                 @csrf
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Correo Electronico</label>
@@ -41,28 +41,13 @@
                   </div>
                 </div>
                 {{-- <x-input-error :messages="$errors->get('email')" class="mt-2" /> --}}
-                <div class="mb-4">
-                  <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                  <input type="password" name="password" class="form-control {{ $errors->get('password') ? 'is-invalid' : '' }}" id="exampleInputPassword1" aria-describedby="passwordHelp">
-                  <div id="passwordHelp" class="invalid-feedback">
-                    @if($errors->get('password'))
-                        @foreach ($errors->get('password') as  $error)
-                            {{ $error }}
-                        @endforeach
-                    @endif
-              </div>
-                </div>
+
                 {{-- <x-input-error :messages="$errors->get('password')" class="mt-2" /> --}}
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                  <div class="form-check">
-                    <input class="form-check-input primary" type="checkbox" name="remember"  id="flexCheckChecked">
-                    <label class="form-check-label text-dark" for="flexCheckChecked">
-                      Recuerdame
-                    </label>
-                  </div>
-                  <a class="text-primary fw-bold" href="{{ route('password.request') }}">Olvidaste tu Contraseña ?</a>
+                <div class="d-flex  justify-content-end mb-4">
+
+                  <a class="text-primary fw-bold" href="{{ route('login') }}">ya te acuerdas? Iniciar Sesion </a>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Iniciar Sesion</a>
+                <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Enviar Instrucciones</a>
 
               </form>
             </div>
