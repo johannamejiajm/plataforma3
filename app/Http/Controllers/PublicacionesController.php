@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PublicacionRequest;
+use App\Models\Evento;
 use App\Models\Publicaciones;
 use App\Models\Publicacionfotos;
 use App\Models\Publicionesfoto;
@@ -20,16 +21,14 @@ class PublicacionesController extends Controller
 
     public function dashboard()
     {
-
-
         return view('admin.dashboard.index');
     }
 
     public function data(Request $request)
     {
-        if (!Auth::user()->can('manage_publicaciones')) {
-            abort(403, 'No tienes permiso para obtener publicaciones.');
-        }
+        // if (!Auth::user()->can('manage_publicaciones')) {
+        //     abort(403, 'No tienes permiso para obtener publicaciones.');
+        // }
 
         $typePublic = Str::after($request->getPathInfo(), '/api/admin/');
 
@@ -54,35 +53,37 @@ class PublicacionesController extends Controller
         return response()->json(['data' => $data]);
     }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request)
+    public function indexAdminNoticias(Request $request)
     {
-        if (!Auth::user()->can('manage_publicaciones')) {
-            abort(403, 'No tienes permiso.');
-        }
+        // if (!Auth::user()->can('manage_publicaciones')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
 
-        //$publicaciones = Publicaciones::all();
-        //return view('admin/vistas/publicaciones/publicaciones', compact('publicaciones'));
-
-        $typePublic =    Str::after($request->getPathInfo(), '/admin/');
-        $path = 'admin.vistas.publicaciones.' . $typePublic .'.index';
-
-        /* dd(auth()->user()->id); */
-        /* dd($path); */
-        return view($path);
-
+        return view('admin.vistas.publicaciones.noticias.index');
     }
+    public function indexAdminHistorias(Request $request)
+    {
+        // if (!Auth::user()->can('manage_publicaciones')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
+        $publicaciones = Publicaciones::where('estado', '3')->get();
+        return view('admin.vistas.publicaciones.historias.index');
+    }
+    public function indexAdminEventos(Request $request)
+    {
+        // if (!Auth::user()->can('manage_publicaciones')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
+        $publicaciones = Publicaciones::where('estado', '2')->get();
+        return view('admin.vistas.publicaciones.eventos.index', compact('publicaciones'));
+    }
+
     public function indexpublicacionespublico()
     {
         $publicaciones = Publicaciones::where('estado', '1')->get();
         // dd($publicaciones[2]->fotos[0]->imagen);
-
-    return view('publico.vistas.publicaciones.publicaciones', compact('publicaciones'));
+        return view('publico.vistas.publicaciones.publicaciones', compact('publicaciones'));
     }
-
-
 
     public function indexinicio()
     {
@@ -98,8 +99,6 @@ class PublicacionesController extends Controller
 
         $inicio = Publicaciones::all();
         return view('publico.vistas.publicaciones.inicio', compact('inicio','publicaciones', 'noticias', 'eventos'));
-
-
     }
 
     public function indexhistoria()
@@ -119,7 +118,7 @@ class PublicacionesController extends Controller
 
    public function indexeventos()
    {
-    $eventos = Publicaciones::with(['fotos', 'tipo'])->where('idtipo', 2)->where('estado', 1)->get();
+    $eventos = Evento::all();
     return view('publico.vistas.publicaciones.eventos', compact('eventos'));
 
 
@@ -128,8 +127,6 @@ class PublicacionesController extends Controller
    public function indexevento($id)
     {
         $evento = Publicaciones::with(['fotos', 'tipo'])->findOrFail($id);
-
-
         return view('publico.vistas.publicaciones.detalleevento', compact('evento'));
     }
 
@@ -151,9 +148,9 @@ class PublicacionesController extends Controller
     {
         //
 
-        if (!Auth::user()->can('manage_publicaciones')) {
-            abort(403, 'No tienes permiso.');
-        }
+        // if (!Auth::user()->can('manage_publicaciones')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
 
 
         $typePublic = Str::after($request->getPathInfo(), '/admin/');
@@ -218,15 +215,14 @@ class PublicacionesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Publicaciones $publicaciones)
+    public function show(Publicaciones $publicaciones, $id)
     {
         //
-        if (!Auth::user()->can('manage_publicaciones')) {
-            abort(403, 'No tienes permiso.');
-        }
-
+        // if (!Auth::user()->can('manage_publicaciones')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
+        $publicaciones = Publicaciones::find($id);
         $publicaciones->load('fotos');
-
         return response()->json([
             'id' => $publicaciones->id,
             'idtipo' => $publicaciones->idtipo,
@@ -259,24 +255,12 @@ class PublicacionesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Publicaciones $publicaciones)
+    public function update(Request $request, Publicaciones $publicaciones, $id)
     {
-      /*   $publicacionActualizar = Publicaciones::find($id);
-        $publicacionActualizar->titulo = $request->inputtitulo;
-        $publicacionActualizar->contenido = $request->inputcontenido;
-        $publicacionActualizar->fechainicial = $request->inputfechainicial;
-        $publicacionActualizar->fechafinal = $request->inputfechafinal;
-        $publicacionActualizar->estado = $request->inputestado;
-        $publicacionActualizar->save();
 
-        return redirect('publicaciones'); */
-
-        if (!Auth::user()->can('manage_publicaciones')) {
-            abort(403, 'No tienes permiso.');
-        }
-
-
-        // Validar datos del formulario
+        // if (!Auth::user()->can('manage_publicaciones')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
 
     $errors = $request->validate([
         'titulo' => 'required|string|max:255',
@@ -289,10 +273,10 @@ class PublicacionesController extends Controller
     ]);
 
     /*  $typePublic = Str::after($request->getPathInfo(), '/admin/'); */
-        $typePublic = $request->segment(2);
-
+    $typePublic = $request->segment(2);
      DB::beginTransaction();
 
+     $publicaciones = Publicaciones::find($id);
      try {
          // Actualizar los datos principales
          $publicaciones->update([
@@ -354,12 +338,13 @@ class PublicacionesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Publicaciones $evento)
+    public function destroy(Publicaciones $evento, $id)
     {
-        if (!Auth::user()->can('manage_publicaciones')) {
-            abort(403, 'No tienes permiso.');
-        }
+        // if (!Auth::user()->can('manage_publicaciones')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
 
+        $evento = Publicaciones::find($id);
         try {
             // Cambia el estado: si está activo (1) lo pone en inactivo (0), y viceversa
             $evento->estado = $evento->estado === '1' ? '0' : '1';

@@ -82,27 +82,27 @@
     });
 
     $('#formCrearEvento').submit(function(e) {
-    e.preventDefault();
+        e.preventDefault();
 
-    const form = $(this)[0];
+        const form = $(this)[0];
 
-    const formData = new FormData(form);
+        const formData = new FormData(form);
 
-    Swal.fire({
-        title: 'Creando evento...',
-        didOpen: () => Swal.showLoading(),
-        allowOutsideClick: false
-    });
+        Swal.fire({
+            title: 'Creando evento...',
+            didOpen: () => Swal.showLoading(),
+            allowOutsideClick: false
+        });
 
-    $.ajax({
-        url: '{{ route('eventos.store') }}',
-        method: 'POST',
-        data: formData,
-        contentType: false,
-        processData: false,
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
+        $.ajax({
+            url: '{{ route('eventos.store') }}',
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
         success: function(res) {
             console.log(res)
             $('#modalCrearEvento').modal('hide');
@@ -114,44 +114,43 @@
         error: function(err) {
             let errores = err.responseJSON.errors;
 
-        // Limpia clases y mensajes anteriores
-        $('#formCrearEvento .form-control, #formCrearEvento .form-select, #formCrearEvento textarea').removeClass('is-invalid');
-        $('#formCrearEvento .invalid-feedback').remove();
+            // Limpia clases y mensajes anteriores
+            $('#formCrearEvento .form-control, #formCrearEvento .form-select, #formCrearEvento textarea').removeClass('is-invalid');
+            $('#formCrearEvento .invalid-feedback').remove();
 
-        // Variable para fallback general
-        let mensajeGeneral = '';
+            // Variable para fallback general
+            let mensajeGeneral = '';
 
-        // Recorremos los errores para mostrarlos
-        for (const campo in errores) {
-        const input = $(`[name="${campo}"]`);
+            // Recorremos los errores para mostrarlos
+            for (const campo in errores) {
+            const input = $(`[name="${campo}"]`);
 
-        // Agregamos clase de error
-        input.addClass('is-invalid');
+            // Agregamos clase de error
+            input.addClass('is-invalid');
 
-        // Mostramos mensaje debajo del input
-        if (input.length > 0) {
-        const mensaje = `<div class="invalid-feedback">${errores[campo][0]}</div>`;
-        input.after(mensaje);
+            // Mostramos mensaje debajo del input
+            if (input.length > 0) {
+            const mensaje = `<div class="invalid-feedback">${errores[campo][0]}</div>`;
+            input.after(mensaje);
+            }
+
+            // También acumulamos para el mensaje general (por si quieres mostrar en SweetAlert2 también)
+            mensajeGeneral += `<p><strong>${campo}:</strong> ${errores[campo][0]}</p>`;
+            }
+
+            Swal.fire({
+                title: 'Errores de validación',
+                html: mensajeGeneral,
+                icon: 'error'
+            });
         }
-
-        // También acumulamos para el mensaje general (por si quieres mostrar en SweetAlert2 también)
-        mensajeGeneral += `<p><strong>${campo}:</strong> ${errores[campo][0]}</p>`;
-        }
-
-        Swal.fire({
-            title: 'Errores de validación',
-            html: mensajeGeneral,
-            icon: 'error'
-        });
-        }
-
     });
 });
 
 $('#tablaPublicaciones').on('click', '.btn-editar', function() {
     const id = $(this).data('id');
 
-    $.get(`{{ route('eventos.show', ':id') }}`.replace(':id', id), function(data) {
+    $.get(`{{ route('publicaciones.show', ':id') }}`.replace(':id', id), function(data) {
 
         $('#formEditarEvento .form-control, #formEditarEvento .form-select, #formEditarEvento textarea').removeClass('is-invalid');
         $('#formEditarEvento .invalid-feedback').remove();
@@ -253,4 +252,3 @@ $('#formEditarEvento').submit(function(e) {
 });
 
 </script>
-

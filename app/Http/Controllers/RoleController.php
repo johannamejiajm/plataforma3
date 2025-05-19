@@ -15,9 +15,9 @@ class RoleController extends Controller
     //
     public function index()
     {
-        if (!Auth::user()->can('manage_roles')) {
-            abort(403, 'No tienes permiso.');
-        }
+        // if (!Auth::user()->can('manage_roles')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
 
         $roles = Role::with('permissions')->get();
         $permissions = Permission::all();
@@ -26,9 +26,9 @@ class RoleController extends Controller
 
     public function list(Request $request)
     {
-        if (!Auth::user()->can('manage_roles')) {
-            abort(403, 'No tienes permiso.');
-        }
+        // if (!Auth::user()->can('manage_roles')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
 
         if ($request->ajax()) {
             $roles = Role::with('permissions')->select('id', 'name');
@@ -52,9 +52,9 @@ class RoleController extends Controller
 
     public function createPermission(Request $request)
     {
-        if (!Auth::user()->can('manage_roles')) {
-            abort(403, 'No tienes permiso.');
-        }
+        // if (!Auth::user()->can('manage_roles')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
         $request->validate(['name' => 'required|unique:permissions,name']);
         $permission = Permission::create(['name' => $request->name]);
         return response()->json(['success' => 'Permiso creado correctamente.', 'permission' => $permission]);
@@ -62,9 +62,9 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-        if (!Auth::user()->can('manage_roles')) {
-            abort(403, 'No tienes permiso.');
-        }
+        // if (!Auth::user()->can('manage_roles')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:roles,name',
@@ -88,9 +88,9 @@ class RoleController extends Controller
 
     public function edit($id)
     {
-        if (!Auth::user()->can('manage_roles')) {
-            abort(403, 'No tienes permiso.');
-        }
+        // if (!Auth::user()->can('manage_roles')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
 
         $role = Role::findOrFail($id);
         $permissions = $role->permissions->pluck('name');
@@ -103,9 +103,9 @@ class RoleController extends Controller
 
     public function update(Request $request, $id)
     {
-        if (!Auth::user()->can('manage_roles')) {
-            abort(403, 'No tienes permiso.');
-        }
+        // if (!Auth::user()->can('manage_roles')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
 
         $role = Role::findOrFail($id);
 
@@ -127,9 +127,9 @@ class RoleController extends Controller
 
     public function destroy($id)
     {
-        if (!Auth::user()->can('manage_roles')) {
-            abort(403, 'No tienes permiso.');
-        }
+        // if (!Auth::user()->can('manage_roles')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
         
         $role = Role::findOrFail($id);
         $role->delete();

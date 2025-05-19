@@ -1,17 +1,19 @@
 @extends('publico.script.publicaciones.publicacionesscript')
 
+@section('tituloheader')
+FUNDACION PACHO'S CLUB
+@endsection
+
+@section('subtituloheader')
+ULTIMAS NOTICIAS
+@endsection
+
 @section('titulo')
     <title>Publicaciones</title>
 @endsection
 
 @section('links')
     <link rel="stylesheet" href="{{ asset('assets/css/stylespublicidad.css') }}">
-@endsection
-
-@section('tituloprincipal')
-    <div class="container py-4">
-        <h1 class="text-center mb-4">Publicaciones</h1>
-    </div>
 @endsection
 
 @section('contenido')
@@ -101,8 +103,4 @@
     <button class="back-to-top" id="btnBackToTop">
         <i class="fas fa-chevron-up"></i>
     </button>
-@endsection
-
-@section('publicacionesscript')
-
 @endsection

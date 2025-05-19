@@ -81,7 +81,7 @@ class ArtistasController extends Controller
     public function create()
     {
         $eventos = Evento::all(); // obtener eventos para el select
-        return view('publico/vistas/artistas.create', compact('eventos'));
+        return view('publico/vistas/artistas/create', compact('eventos'));
     }
 
     /**

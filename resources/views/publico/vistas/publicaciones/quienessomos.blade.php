@@ -1,9 +1,15 @@
 @extends('publico.script.publicaciones.publicacionesscript')
 
+@section('tituloheader')
+FUNDACION PACHO'S CLUB
+@endsection
+
+@section('subtituloheader')
+SOBRE NOSOTROS
+@endsection
+
 @section('titulo')
-
     <title>Quienes Somos</title>
-
 @endsection
 
 @section('links')
@@ -13,18 +19,7 @@
 @endsection
 
 @section('contenido')
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Quiénes Somos - Pacho’s Club</title>
-  
-</head>
-<body>
 
-  <header>
-  </header>
 
   <div class="container">
     <h2>¿Quiénes Somos?</h2>

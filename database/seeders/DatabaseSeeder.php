@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tipoinformacion;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -29,6 +30,10 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             TipopublicacionesSeeder::class,
             PublicacionesSeeder::class,
+            TipoInfromacionTable::class,
+            TipoDonacionesSeeder::class,
+            RolesAndPermissionsUser::class,
+            DonacionSeeder::class,
 
         ]);
 

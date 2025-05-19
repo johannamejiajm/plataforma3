@@ -112,12 +112,12 @@
                 </div>
             </div>
         @endforeach
-        <a href="{{ route('publicaciones.historias') }}" class="btn btn-outline-primary mt-2">Ver todas las noticias</a>
+        <a href="{{ route('historia.index') }}" class="btn btn-outline-primary mt-2">Ver todas las noticias</a>
     </div>
 </div>
 
 <div class="container my-4">
-    <h2 class="mb-4">NOTICIAS</h2>
+    <h2 class="mb-4">PUBLICACIONES</h2>
     <div class="row">
         @foreach ($noticias as $noticia)
             <div class="col-md-4 mb-4">
@@ -131,7 +131,7 @@
                 </div>
             </div>
         @endforeach
-        <a href="{{ route('publicaciones.noticias') }}" class="btn btn-outline-primary mt-2">Ver todos los eventos</a>
+        <a href="{{ route('publicaciones.indexpublicacionespublico') }}" class="btn btn-outline-primary mt-2">Ver todas las publicaciones</a>
     </div>
 </div>
 
@@ -150,7 +150,7 @@
                 </div>
             </div>
         @endforeach
-        <a href="{{ route('publicaciones.eventos') }}" class="btn btn-outline-primary mt-2">Ver todas las noticias</a>
+        <a href="{{ route('publica.eventos.index') }}" class="btn btn-outline-primary mt-2">Ver todos los eventos</a>
     </div>
 </div>
 
@@ -160,7 +160,7 @@
     <h2>Únete a Nuestra Causa</h2>
     <p>"Creemos en un mundo donde cada pequeño acto de amor puede cambiar una vida. En nuestra fundación, trabajamos cada día con el corazón, porque transformar realidades empieza con la voluntad de ayudar. Juntos, podemos ser el cambio que tanto necesitamos."</p>
     <div class="botones-finales">
-        <a href="{{ route('donaciones.index') }}" class="button primary">Donar</a>
+        <a href="{{ route('donacionesindex.index') }}" class="button primary">Donar</a>
         <a href="{{ route('contantos.indexcontactos') }}" class="button outline">Contactos</a>
     </div>
 </section>

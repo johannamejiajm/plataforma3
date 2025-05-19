@@ -6,6 +6,8 @@ use App\Models\Donaciones;
 use App\Models\Tipodonaciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class DonacionesController extends Controller
 {
@@ -77,98 +79,36 @@ class DonacionesController extends Controller
         return redirect()->route('donaciones.index')->with('success', 'Donación actualizada.');
     }
     
-    
-    
-
-
-    
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        // $donacion = new Donaciones(); // Cambia "donaciones" a "Donacion"
-        // $donacion->fecha = $request->input('fecha');
-        // $donacion->donante = $request->input('donante');
-        // $donacion->contacto = $request->input('contacto');
-        // $donacion->donacion = $request->input('donacion');
-        // $donacion->soporte = $request->input('soporte');
-        // $donacion->idtipo = $request->input('idtipo');
-        // $donacion->save();
-    
-        // // Envía notificación al administrador (ejemplo con Mail)
-        // Mail::raw('Se ha recibido una nueva donación.', function ($message) {
-        //     $message->to('admin@example.com')->subject('Nueva Donación');
-        // });
-    
-        // // Envía mensaje de WhatsApp al tesorero (necesitas una API de WhatsApp)
-        // // ... (Implementación de la API de WhatsApp)
-    
-        // return redirect()->route('donaciones.store')->with('success', 'Donación registrada correctamente.');
-    
+        DB::beginTransaction();
+        try {
+            $donaciones = Donaciones::create([
+                'idtipo'   => $request->idtipo,
+                'nombre'   => $request->nombre,
+                'apellido' => $request->apellido,
+                'email'    => $request->email,
+                'telefono' => $request->telefono,
+                'donacion' => $request->donacion,
+                'estado'   => '0',
+            ]);
 
-       
-        
-        $donaciones = Donaciones::create([
-            'idtipo'=>2,
-            'nombre'=>$request->nombre,
-            'apellido'=>$request->apellido,
-            'email'=>$request->email,
-            'telefono'=>$request->telefono,
-            'donacion'=>$request->donacion,
-            'soporte'=>$request->soporte,
-            'estado'=>0,
-            
-        ]);
-       
-        $respuesta = array(
-            'mensaje'   =>"donacion registrada",
-            'estado'    =>0,
-        ) ;
-        return response()->json($respuesta);
+            DB::commit();
 
-        
-    }
-    
+            return response()->json([
+                'mensaje'   => "Donación registrada exitosamente",
+                'estado'    => 0,
+                'donante'   => $donaciones->nombre . ' ' . $donaciones->apellido,
+            ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Donaciones $donaciones)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Donaciones $donaciones)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Donaciones $donaciones)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Donaciones $donaciones)
-    {
-        //
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Error al registrar donación: '.$e->getMessage());
+            return response()->json([
+                'mensaje' => 'Ocurrió un error al guardar la donación.',
+                'estado'  => 1,
+                'error'   => $e->getMessage()
+            ], 500);
+        }
     }
 }

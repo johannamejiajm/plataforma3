@@ -1,39 +1,17 @@
-@extends('admin.plantilla.layout')
-
+@extends('admin.script.permisos.permisosscript')
 @section('title', 'Administracion de permisos')
-
 @section('content')
-
-
-
-
-  <div class="body-wrapper-inner">
+<div class="body-wrapper-inner">
     <div class="container-fluid">
-      <!--  Row 1 -->
-      <div class="row">
-
-
-        <div class="col-12 p-3">
-            <h1 class="text-center">Permisos</h1>
-        </div>
-
-
-        <div class="col-12 mb-4">
-            <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#createModal"><i class="ti ti-plus"></i> Crear Permiso</button>
-        </div>
-
-        <div class="col-12">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-md-flex align-items-center">
-                  <div>
-                    <h4 class="card-title">Listado de Permisos</h4>
-                    <p class="card-subtitle">
-                      Gestionar Permisos
-                    </p>
-                  </div>
-
-                </div>
+        <!--  Row 1 -->
+        <div class="row">
+            <div class="col-12 p-3">
+                <h1 class="text-center">Gestión Permisos</h1>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createModal"><i
+                        class="ti ti-plus"></i> Crear Permiso</button>
+            </div>
             <div class="table-responsive mt-4">
                 <table class="table table-bordered" id="permissionsTable">
                     <thead>
@@ -46,14 +24,9 @@
                     </thead>
                 </table>
             </div>
-                </div>
-                </div>
-            </div>
-
+        </div>
+    </div>
 </div>
-</div>
-</div>
-
 <!-- Modal de edición -->
 <div class="modal fade" id="editModal" tabindex="-1">
     <div class="modal-dialog">
@@ -102,8 +75,4 @@
     </div>
 </div>
 
-@endsection
-
-@section('scripts')
-    @includeIf('admin.vistas.permisos.script')
 @endsection

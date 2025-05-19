@@ -30,7 +30,7 @@
                         </div>
                         <div class="info-details">
                             <h4>direccion</h4>
-                            <p>{{$contactos->direccion}}</p>
+                            <p>{{$contactos->direccion ?? ''}}</p>
                         </div>
                     </div>
                 </div>
@@ -41,10 +41,10 @@
                     </div>
                     <div class="info-details">
                         <h4>Teléfono 1</h4>
-                        <p>+57 {{ $contactos->telefono1 }} </p>
+                        <p>+57 {{ $contactos->telefono1  ?? ''}} </p>
 
                         <h4>Teléfono 2</h4>
-                        <p>+57  {{ $contactos->telefono2 }}</p>
+                        <p>+57  {{ $contactos->telefono2  ?? ''}}</p>
                     </div>
 
                 </div>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="info-details">
                         <h4>email</h4>
-                        <p>{{ $contactos->email }}</p>
+                        <p>{{ $contactos->email  ?? ''}}</p>
                     </div>
                 </div>
 
@@ -65,15 +65,15 @@
                     </div>
                     <div class="info-details">
                         <h4>Horario</h4>
-                        <p>{{ $contactos->horario }}</p>
+                        <p>{{ $contactos->horario  ?? ''}}</p>
                         <h4>Horario Extras</h4>
-                        <p>{{ $contactos->horarioextras }}</p>
+                        <p>{{ $contactos->horarioextras  ?? ''}}</p>
                     </div>
                 </div>
 
                 <div class="social-links">
 
-                    <a href="{{ $contactos->urlfacebook }}" target="_bank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="{{ $contactos->urlfacebook  ?? ''}}" target="_bank"><i class="fab fa-facebook-f"></i></a>
 
                     <a href="#"><i class="fab fa-instagram"></i></a>
 

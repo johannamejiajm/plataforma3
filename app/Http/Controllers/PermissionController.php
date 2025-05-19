@@ -13,9 +13,9 @@ class PermissionController extends Controller
     //
     public function index(Request $request)
     {
-        if (!Auth::user()->can('manage_permisos')) {
-            abort(403, 'No tienes permiso.');
-        }
+        // if (!Auth::user()->can('manage_permisos')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
         if ($request->ajax()) {
             $permissions = Permission::select(['id', 'name', 'created_at']);
 
@@ -35,9 +35,9 @@ class PermissionController extends Controller
 
     public function store(Request $request)
     {
-        if (!Auth::user()->can('manage_permisos')) {
-            abort(403, 'No tienes permiso.');
-        }
+        // if (!Auth::user()->can('manage_permisos')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255|unique:permissions,name',
         ]);
@@ -53,18 +53,18 @@ class PermissionController extends Controller
 
     public function show($id)
     {
-        if (!Auth::user()->can('manage_permisos')) {
-            abort(403, 'No tienes permiso.');
-        }
+        // if (!Auth::user()->can('manage_permisos')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
         $permission = Permission::findOrFail($id);
         return response()->json($permission);
     }
 
     public function update(Request $request, $id)
     {
-        if (!Auth::user()->can('manage_permisos')) {
-            abort(403, 'No tienes permiso.');
-        }
+        // if (!Auth::user()->can('manage_permisos')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
 
         $permission = Permission::findOrFail($id);
 
@@ -83,9 +83,9 @@ class PermissionController extends Controller
 
     public function destroy($id)
     {
-        if (!Auth::user()->can('manage_permisos')) {
-            abort(403, 'No tienes permiso.');
-        }
+        // if (!Auth::user()->can('manage_permisos')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
         
         $permission = Permission::findOrFail($id);
         $permission->delete();

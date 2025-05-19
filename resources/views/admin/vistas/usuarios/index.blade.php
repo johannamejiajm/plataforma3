@@ -1,41 +1,19 @@
-@extends('admin.plantilla.layout')
+@extends('admin.script.usuarios.usuariosscript')
 
 @section('title', 'Administracion de Usuarios')
-
 @section('content')
-
-
-
-  <div class="body-wrapper-inner">
+<div class="body-wrapper-inner">
     <div class="container-fluid">
-      <!--  Row 1 -->
-      <div class="row">
-
-
-        <div class="col-12 p-3">
-            <h1 class="text-center">Usuarios</h1>
-        </div>
-
-
-        <div class="col-12 mb-4">
-            {{-- Botón para abrir el modal de creación --}}
-            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createModal">
-                <i class="fas fa-plus"></i> Nuevo Usuario
-            </button>
-        </div>
-
-        <div class="col-12">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-md-flex align-items-center">
-                  <div>
-                    <h4 class="card-title">Listado de Usuarios</h4>
-                    <p class="card-subtitle">
-                      Gestionar Usuarios
-                    </p>
-                  </div>
-
-                </div>
+        <!--  Row 1 -->
+        <div class="row">
+            <div class="col-12 p-3">
+                <h1 class="text-center">Gestión Usuarios</h1>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createModal">
+                    <i class="fas fa-plus"></i> Nuevo Usuario
+                </button>
+            </div>
             <div class="table-responsive mt-4">
                 <table class="table table-bordered" id="usersTable">
                     <thead>
@@ -49,12 +27,8 @@
                     </thead>
                 </table>
             </div>
-                </div>
-                </div>
-            </div>
-
-</div>
-</div>
+        </div>
+    </div>
 </div>
 
 
@@ -90,7 +64,7 @@
                         <select name="role" class="form-control">
                             <option value="">Seleccione</option>
                             @foreach ($roles as $rol)
-                                <option value="{{ $rol->name }}">{{ $rol->name }}</option>
+                            <option value="{{ $rol->name }}">{{ $rol->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -136,7 +110,7 @@
                         <select name="role" class="form-control" id="editRole">
                             <option value="">Seleccione</option>
                             @foreach ($roles as $rol)
-                                <option value="{{ $rol->name }}">{{ $rol->name }}</option>
+                            <option value="{{ $rol->name }}">{{ $rol->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -147,9 +121,5 @@
             </div>
         </form>
     </div>
-
-@endsection
-
-@section('scripts')
-    @includeIf('admin.vistas.usuarios.script')
+</div>
 @endsection
