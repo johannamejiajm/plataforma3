@@ -4,8 +4,21 @@
 <title>Inicio</title>
 @endsection
 
+@section('tituloheader')
+<div class="hero-title">
+  <h1>FUNDACIÓN PACHO'S CLUB</h1>
+</div>
+@endsection
+
+@section('subtituloheader')
+<div class="hero-title">
+   <p>"Construyendo Sueños, inspirando vidas."</p>
+</div>
+@endsection
+
 @section('links')
 <link rel="stylesheet" href="{{ asset('assets/css/inicio.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Roboto+Slab:ital@1&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">

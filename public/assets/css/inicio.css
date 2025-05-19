@@ -249,3 +249,29 @@ body {
     font-size: 2rem;
   }
 }
+.hero-title {
+  text-align: center;
+  padding: 2.5rem;
+  color: #ffffff;
+  text-shadow: 3px 3px 6px rgba(0,0,0,0.6);
+}
+
+/* Título principal más grande */
+.hero-title h1 {
+  font-size: 4.5rem; /* Aumentado el tamaño */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  color: #ffffff;
+}
+
+/* Eslogan */
+.hero-title p {
+  font-size: 1.8rem;
+  font-family: 'Roboto Slab', serif;
+  font-style: italic;
+  color: #ffd700;
+  margin: 0;
+}
