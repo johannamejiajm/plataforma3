@@ -1,83 +1,94 @@
 @extends('publico.script.publicaciones.historiasscript')
 
-@section('title')
+{{-- @section('title')
 Historia
 @endsection
 @section('links')
 <link rel="stylesheet" href="{{ asset('assets/css/styleshistoria.css') }}">
 @endsection
 
+@extends('publico.script.publicaciones.publicacionesscript') --}}
+
 @section('tituloheader')
 FUNDACION PACHO'S CLUB
 @endsection
 
 @section('subtituloheader')
-<p class="subtitulo-amarillo">"EL COMIENZO DE UN GRAN CAMINO"</p>
+<p class="subtitulo-amarillo">"EXPERIENCIAS QUE INSPIRAN"</p>
+@endsection
+
+@section('titulo')
+    <title>Historias</title>
+@endsection
+
+@section('links')
+    <link rel="stylesheet" href="{{ asset('assets/css/stylespublicidad.css') }}">
 @endsection
 
 @section('contenido')
+<div class="container publicaciones-container">
+    <h2 class="mb-4 text-center">Historias</h2>
 
-<section class="Origen-Historia">
-
-    <div class="contenedor-gird">
-        @if ($historias)
-        @foreach ($historias as $historia)
-        <div class="item">
-
-            <a href="#historia{{ $loop->index }}">
-                <img src="{{ asset($historia->fotos[0]->imagen)}}" alt="Imagen 1">
-            </a>
-            <a href="#historia{{ $loop->index }}">
-                {{ $historia->titulo }}
-            </a>
-
-            <p>{{ $historia->fechainicial }}</p>
-        </div>
-
-        @endforeach
-        @endif
-    </div>
-</section>
-@if ($historias)
-@foreach ($historias as $key => $historia)
-<div id="historia{{ $key }}" class="contenedor">
-
-    <div class="contenido">
-        <h2>{{ $historia->titulo }}</h2>
-        <hr>
-        <p>{{ $historia->contenido }}</p>
-    </div>
-    <div class="contenedor">
-        <h2 class="text-center mb-4">Galeria</h2>
-
-        @php
-        $carouselId = 'carruselImagenes' . $key;
-        @endphp
-
-        <div id="{{ $carouselId }}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="false" data-bs-wrap="true">
-            <div class="carousel-inner">
-                @if ($historia->fotos)
-                @foreach ($historia->fotos as $index => $foto)
-                <div class="carousel-item @if($index === 0) active @endif">
-                    <img src="{{ asset($foto->imagen)}}" class="d-block w-100" alt="{{ $historia->titulo }}">
+    <div class="row" id="historias-grid">
+        @foreach($historias as $historia)
+            <div class="col-md-4 col-sm-6 mb-4 publicacion-item" data-id="{{ $historia->id }}" data-toggle="modal" data-target="#modalPublicacion" data-publicacion-id="{{ $historia->id }}">
+                <div class="publicacion-preview">
+                    <div class="preview-image-container">
+                        @if($historia->fotos && count($historia->fotos) > 0)
+                            <img src="{{ asset($historia->fotos[0]->imagen) }}" alt="{{ $historia->titulo }}" class="preview-image">
+                        @else
+                            <div class="preview-no-image d-flex align-items-center justify-content-center h-100">
+                                <i class="fas fa-newspaper fa-3x text-muted"></i>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="preview-content">
+                        <h3 class="preview-title">{{ $historia->titulo }}</h3>
+                        <p class="preview-excerpt" data-contenido-completo="{{ $historia->contenido }}">
+                            {{ \Illuminate\Support\Str::limit(strip_tags($historia->contenido), 120) }}
+                        </p>
+                        <div class="preview-footer">
+                            <span class="preview-fecha">
+                                <i class="fas fa-calendar-alt"></i>
+                                {{ \Carbon\Carbon::parse($historia->fecha)->format('d/m/Y') }}
+                            </span>
+                        </div>
+                    </div>
                 </div>
-                @endforeach
-                @endif
             </div>
+        @endforeach
+    </div>
 
-            <button class="carousel-control-prev" type="button" data-bs-target="#{{ $carouselId }}" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Anterior</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#{{ $carouselId }}" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Siguiente</span>
-            </button>
+    @if(method_exists($historias, 'links') && $historias instanceof \Illuminate\Pagination\LengthAwarePaginator)
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-center">
+                {{ $historias->links() }}
+            </div>
+        </div>
+    </div>
+    @endif
+</div>
+
+<!-- Modal para mostrar la historia completa -->
+<div class="modal fade modal-publicacion" id="modalPublicacion" tabindex="-1" role="dialog" aria-labelledby="modalPublicacionLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalPublicacionLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modalContenido"></div>
+            </div>
         </div>
     </div>
 </div>
-@endforeach
 
-@endif
-</html>
+<!-- Botón flotante para volver arriba -->
+<button class="back-to-top" id="btnBackToTop">
+    <i class="fas fa-chevron-up"></i>
+</button>
 @endsection
