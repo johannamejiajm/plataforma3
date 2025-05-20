@@ -6,7 +6,7 @@
 }
 
 .Origen-Historia h2 {
-  color: #0a0097;
+  color: #0906d1;
   font-size: 2.5rem;
   margin-bottom: 40px;
 }
@@ -51,7 +51,7 @@
 
 .item a {
   font-weight: bold;
-  color: #001e97;
+  color: #000f97;
   text-decoration: none;
   display: block;
   margin: 10px 0 5px;
@@ -106,15 +106,30 @@ html {
 }
 
 .titulo-header {
-  color: #3b855a; /* Cambia este color al que desees */
+  color: #0fdb64; /* Cambia este color al que desees */
   font-size: 3rem;
   text-align: center;
   margin-top: 30px;
 }
 
 .subtitulo-header {
-  color: #96ac1c; /* Otro color diferente para el subtítulo */
+  color: #ff0000; /* Otro color diferente para el subtítulo */
   font-size: 2rem;
   text-align: center;
   margin-bottom: 20px;
+}
+
+.seccion-inferior {
+  background-image: url('https://i.pinimg.com/736x/55/fc/e5/55fce50581da2a61e4ed28680c7d0714.jpg'); /* Ruta relativa a tu carpeta public */
+  background-size: cover; /* Asegura que cubra toda la sección */
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 40px 0;
+
+  position: relative;
+  z-index: 1;
+}
+
+.tituloheader {
+
 }

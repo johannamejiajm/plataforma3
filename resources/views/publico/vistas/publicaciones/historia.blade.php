@@ -10,7 +10,7 @@ FUNDACION PACHO'S CLUB
 @endsection
 
 @section('subtituloheader')
-HISTORIA
+"Donde los sueños toman forma digital: así nace nuestra página, así comienza tu historia."
 
 @endsection
 
@@ -54,8 +54,10 @@ HISTORIA
 
 
   @if ($historias)
+  <section class="seccion-inferior">
   @foreach ($historias as $key => $historia)
-    <div id="historia{{ $key }}" class="contenedor">
+    <div id="historia{{ $key }}" class="contenedor seccion">
+
 
       <div class="contenido">
         <h2>{{ $historia->titulo }}</h2>
@@ -77,6 +79,7 @@ HISTORIA
                   <img src="{{ asset($foto->imagen)}}" class="d-block w-100" alt="{{ $historia->titulo }}">
                 </div>
               @endforeach
+
             @endif
           </div>
 
@@ -92,7 +95,7 @@ HISTORIA
       </div>
     </div>
   @endforeach
-
+    </section>
   @endif
 
 

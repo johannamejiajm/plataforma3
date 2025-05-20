@@ -5,7 +5,7 @@
 @endsection
 
 @section('tituloheader')
-  FUNDACION PACHO'S CLUB
+  "Donde los sueños toman forma digital: así nace nuestra página, así comienza tu historia."
 @endsection
 
 @section('subtituloheader')
