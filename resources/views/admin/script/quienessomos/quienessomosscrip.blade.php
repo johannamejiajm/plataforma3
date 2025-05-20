@@ -5,6 +5,7 @@
 <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 <script>
 $(document).ready(function() {
+    $('#linkInstitucional').addClass('active');
     let table = $('#infoTable').DataTable({
         ajax: '{{ route("quienessomos.list") }}',
         columns: [

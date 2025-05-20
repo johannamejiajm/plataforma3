@@ -5,7 +5,7 @@ FUNDACION PACHO'S CLUB
 @endsection
 
 @section('subtituloheader')
-SOBRE NOSOTROS
+<p class="subtitulo-amarillo">"UN EQUIPO CON UNA MISIÓN"</p>
 @endsection
 
 @section('titulo')

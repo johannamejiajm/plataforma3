@@ -1,8 +1,5 @@
 @extends('admin.plantilla.layout')
 
-
-
-
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/css/contactos.css') }}">
 @endsection
@@ -88,7 +85,11 @@
 @endsection
 
 @section('scripts')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function() {
+        $('#linkContactos').addClass('active');
+    });
+</script>
 @if(session('success'))
     <script>
         Swal.fire({

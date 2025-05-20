@@ -7,7 +7,7 @@
 @section('tituloheader')
     <div class="hero-title">
         <h1 class="hero-title">FUNDACIÓN PACHO'S CLUB</h1>
-        <p class="subtitulo-amarillo">"Construyendo Sueños, inspirando vidas."</p>
+        <p class="subtitulo-amarillo">"Construyendo Sueños, inspirando vidas"</p>
     </div>
 @endsection
 
@@ -117,7 +117,7 @@
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
                         @if ($publicacion->fotos->isNotEmpty())
-                            <img src="{{ $publicacion->fotos->first()->imagen }}" class="card-img-top"
+                            <img src="{{ asset($publicacion->fotos->first()->imagen) }}" class="card-img-top"
                                 alt="Imagen de {{ $publicacion->titulo }}">
                         @endif
                         <div class="card-body">
@@ -137,7 +137,7 @@
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
                         @if ($noticia->fotos->isNotEmpty())
-                            <img src="{{ $noticia->fotos->first()->imagen }}" class="card-img-top"
+                            <img src="{{ asset($noticia->fotos->first()->imagen) }}" class="card-img-top"
                                 alt="Imagen de {{ $noticia->titulo }}">
                         @endif
                         <div class="card-body">
@@ -158,7 +158,7 @@
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
                         @if ($evento->fotos->isNotEmpty())
-                            <img src="{{ $evento->fotos->first()->imagen }}" class="card-img-top"
+                            <img src="{{ asset($evento->fotos->first()->imagen) }}" class="card-img-top"
                                 alt="Imagen de {{ $evento->titulo }}">
                         @endif
                         <div class="card-body">
@@ -202,4 +202,9 @@
 
 @section('script')
     <script src="{{ asset('js/inicio.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#inicio').addClass('active');
+        });
+    </script>
 @endsection

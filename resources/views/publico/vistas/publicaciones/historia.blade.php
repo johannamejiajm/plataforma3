@@ -1,21 +1,21 @@
-@extends('publico.plantilla.plantilla')
+@extends('publico.script.publicaciones.historiasscript')
 
 @section('title')
 Historia
 @endsection
-
+@section('links')
+<link rel="stylesheet" href="{{ asset('assets/css/styleshistoria.css') }}">
+@endsection
 
 @section('tituloheader')
 FUNDACION PACHO'S CLUB
 @endsection
 
 @section('subtituloheader')
-ORIGEN E HISTORIAS
+<p class="subtitulo-amarillo">"EL COMIENZO DE UN GRAN CAMINO"</p>
 @endsection
 
-
 @section('contenido')
-
 
 <section class="Origen-Historia">
 
@@ -81,10 +81,3 @@ ORIGEN E HISTORIAS
 @endif
 </html>
 @endsection
-
-@section('links')
-<link rel="stylesheet" href="{{ asset('assets/css/styleshistoria.css') }}">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
-
-@endsection
-

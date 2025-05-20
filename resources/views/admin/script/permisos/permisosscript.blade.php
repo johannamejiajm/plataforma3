@@ -1,6 +1,17 @@
 @extends('admin.plantilla.layout')
 @section('scripts')
 <script>
+    var $link = $('#permisosLink'); // Usa el id del enlace de esta vista
+
+    $link.addClass('active'); // Marca como activo
+
+    var $submenu = $link.closest('ul');
+    $submenu.addClass('in'); // Abre el submenu
+
+    var $parentItem = $submenu.closest('.sidebar-item');
+    $parentItem.addClass('selected');
+
+    $parentItem.find('.has-arrow').addClass('active').attr('aria-expanded', 'true');
     const table = $('#permissionsTable').DataTable({
         processing: true
         , serverSide: true

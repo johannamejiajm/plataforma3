@@ -1,23 +1,17 @@
 @extends('publico.script.publicaciones.contactoscript')
 @section('titulo')
-<title>contactos</title>
+<title>Contactos</title>
 @endsection
 @section('links')
     <link rel="stylesheet" href="{{ asset('assets/css/contatosadmin03.css') }}">
-@section('tituloprincipal')
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Módulo de Contactos | TechConnect</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-</head>
-</http>
+@endsection
+@section('tituloheader')
+FUNDACION PACHO'S CLUB
+@endsection
+@section('subtituloheader')
+<p class="subtitulo-amarillo">"TU PUENTE HACIA FUNDACIÓN PACHO'S CLUB"</p>
 @endsection
 @section('contenido')
-<body>
     <div class="container">
         <div class="contacto-wrapper">
             <div class="contacto-info">
@@ -86,7 +80,6 @@
         </div>
     </div>
 
-</body>
 @endsection
 
 

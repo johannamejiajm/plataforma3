@@ -2,6 +2,14 @@
 @section('titulo')
 <title>Donaciones</title>
 @endsection
+@section('tituloheader')
+FUNDACION PACHO'S CLUB
+@endsection
+
+@section('subtituloheader')
+<p class="subtitulo-amarillo">"Tu apoyo transforma vidas"</p>
+@endsection
+
 @section('contenido')
 <div class="container mt-5">
     <div class="row justify-content-center">

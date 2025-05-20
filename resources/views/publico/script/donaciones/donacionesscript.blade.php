@@ -3,6 +3,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
         $(document).ready(function () {
+            $('#donaciones').addClass('active');
              $("#guardardonante").on('click', function (e) {
                 e.preventDefault();
 

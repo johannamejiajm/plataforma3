@@ -2,7 +2,7 @@
 @section('script')
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        $('#contactos').addClass('active');
+        $('#historia').addClass('active');
     });
 </script>
 @endsection
