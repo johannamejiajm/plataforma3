@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
@@ -12,6 +13,9 @@ class PermissionController extends Controller
     //
     public function index(Request $request)
     {
+        // if (!Auth::user()->can('manage_permisos')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
         if ($request->ajax()) {
             $permissions = Permission::select(['id', 'name', 'created_at']);
 
@@ -31,6 +35,9 @@ class PermissionController extends Controller
 
     public function store(Request $request)
     {
+        // if (!Auth::user()->can('manage_permisos')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255|unique:permissions,name',
         ]);
@@ -46,12 +53,19 @@ class PermissionController extends Controller
 
     public function show($id)
     {
+        // if (!Auth::user()->can('manage_permisos')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
         $permission = Permission::findOrFail($id);
         return response()->json($permission);
     }
 
     public function update(Request $request, $id)
     {
+        // if (!Auth::user()->can('manage_permisos')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
+
         $permission = Permission::findOrFail($id);
 
         $validator = Validator::make($request->all(), [
@@ -69,6 +83,10 @@ class PermissionController extends Controller
 
     public function destroy($id)
     {
+        // if (!Auth::user()->can('manage_permisos')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
+        
         $permission = Permission::findOrFail($id);
         $permission->delete();
 

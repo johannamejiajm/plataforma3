@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Favicon icon-->
-  <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png') }}" />
+  <link rel="shortcut icon" type="image/png" href="{{ asset('images/logo200px.png') }}" />
 
   <!-- Core Css -->
   <link rel="stylesheet" href="{{ asset('assets/css/styles.css')  }}" />
@@ -28,17 +28,17 @@
 
   <!-- Preloader -->
   <div class="preloader">
-    <img src="{{ asset('assets/images/logos/favicon.png') }}" alt="loader" class="lds-ripple img-fluid" />
+    <img src="{{ asset('images/logo400px.png') }}" alt="loader" class="lds-ripple img-fluid" />
   </div>
   <!-- ------------------------------------- -->
   <!-- Header Start -->
   <!-- ------------------------------------- -->
   <header class="header-fp p-0 w-100">
-    <nav class="navbar navbar-expand-lg bg-primary-subtle py-2 py-lg-10">
+    <nav class="navbar navbar-expand-lg bg-primary-subtle">
       <div class="custom-container d-flex align-items-center justify-content-between">
-        <a href="../main/frontend-landingpage.html" class="text-nowrap logo-img">
-          <img src="../assets/images/logos/dark-logo.svg" class="dark-logo" alt="Logo-Dark" />
-          <img src="../assets/images/logos/light-logo.svg" class="light-logo" alt="Logo-light" />
+        <a href="/" class="text-nowrap logo-img">
+          <img src="{{ asset('images/logo100px.png') }}" class="dark-logo" alt="Logo-Dark" />
+          <img src="{{ asset('images/logo100px.png') }}" class="light-logo" alt="Logo-light" />
         </a>
         <button class="navbar-toggler border-0 p-0 shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
           <i class="fa-solid fa-bars"></i>
@@ -68,7 +68,7 @@
             <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('artistas.activos') }}">Artistas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('donaciones.index') }}">Donaciones</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('donacionesindex.index') }}">Donaciones</a>
             </li>
             <li class="nav-item">
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('contantos.indexcontactos') }}">Contacto</a>
@@ -90,56 +90,55 @@
   <!-- ------------------------------------- -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
-      <a href="#">
-        <img src="../assets/images/logos/dark-logo.svg" alt="Logo-light" />
+      <a href="/">
+        <img src="{{ asset('images/logo100px.png') }}" alt="Logo-light" />
       </a>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
       <ul class="list-unstyled ps-0">
         <li class="mb-1">
-          <a href="#" class="px-0 fs-4 d-block text-dark link-primary w-100 py-2">
+          <a href="{{ route('inicio.index') }}" class="px-0 fs-4 d-block text-dark link-primary w-100 py-2">
             Inicio
           </a>
         </li>
 
         <li class="mb-1">
-          <a href="#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+          <a href="{{ route('quienessomos.index') }}" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
             Quienes Somos
           </a>
         </li>
 
         <li class="mb-1">
-          <a href="" class="px-0 fs-4 d-flex align-items-center justify-content-start gap-2 w-100 py-2 text-dark link-primary">
+          <a href="{{ route('historia.index') }} class="px-0 fs-4 d-flex align-items-center justify-content-start gap-2 w-100 py-2 text-dark link-primary">
             Historia
           </a>
         </li>
 
         <li class="mb-1">
-          <a href="{{ Route('publicaciones.index') }}" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary" >
+          <a href="{{ Route('publicaciones.indexpublicacionespublico') }}" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary" >
             Publicaciones
           </a>
         </li>
 
         <li class="mb-1">
-          <a href="#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+          <a href="{{ route('publica.eventos.index') }}" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
             Eventos
           </a>
         </li>
 
         <li class="mb-1">
-          <a href="#" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+          <a href="{{ route('artistas.create') }}" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
             Inscripciones
           </a>
         </li>
         <li class="mb-1">
-          <a href="." class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+          <a href="{{ route('artistas.create') }}" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
             Artistas
-
           </a>
         </li>
         <li class="mb-1">
-          <a href=".donaciones" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+          <a href="{{ route('donacionesindex.index') }}" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
             Donación
           </a>
         </li>
@@ -149,7 +148,7 @@
           </a>
         </li>
         <li class="mt-3">
-          <a href="#" class="btn btn-primary w-100">Admin</a>
+          <a href="/login" class="btn btn-primary w-100">Admin</a>
         </li>
       </ul>
     </div>
@@ -187,8 +186,8 @@
             <div class="row h-100">
               <div class="col-12 d-flex flex-column justify-content-center align-items-center text-center">
                 <div>
-                  <h1 class="fw-bolder fs-13 mb-3">@yield('tituloheader')</h1>
-                  <h2 class="fw-bolder fs-10 mb-4">@yield('subtituloheader')</h2>
+                  <h1 class="fw-bolder fs-13 mb-3" style="color: white">@yield('tituloheader')</h1>
+                  <h2 class="fw-bolder fs-10 mb-4"  style="color: white">@yield('subtituloheader')</h2>
                 </div>
                 <br>
                 @yield('leyendaheader')
@@ -261,7 +260,6 @@
   <script src="../assets/js/frontend-landingpage/homepage.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   @yield('script')
-  <script src="{{ asset('js/inicio.js') }}"></script>
 </body>
 
 </html>

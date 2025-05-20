@@ -12,107 +12,57 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermissionController;
 
-Route::get('/', function () {
-    return view('publico/plantilla/plantilla');
-})->name('inicio');
-/* Route::get('/admin', function () {
-    return view('admin/vistas/publicaciones/publicaciones');
-}); */
+Route::get('/',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
+Route::get('/publico/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
+Route::get('/publico/quienessomos', [InformacioninstitucionalController::class, 'index'])->name('quienessomos.index');
+Route::get('/publico/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
+Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
+Route::get('/publico/eventos', [PublicacionesController::class, 'indexeventos'])->name('publica.eventos.index');
+Route::get('/publico/artistas/crear', [ArtistasController::class, 'create'])->name('artistas.create');
+Route::post('/publico/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
+Route::get('/publico/artistas', [ArtistasController::class, 'listarArtistasActivos'])->name('artistas.activos');
+Route::get('/publico/donacionesindex', [DonacionesController::class, 'indexdonacion'])->name('donacionesindex.index');
+Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaciones.store');
+Route::get('/publico/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
+Route::get('/eventos/{id}', [PublicacionesController::class, 'indexevento'])->name('publica.evento');
 
-//JOHAN RINCON
-Route::get('/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
-
-//castro
 Route::middleware(['auth'])->group(function () {
+    //Rutas eventos administrador
+    Route::get('/admin/eventos', [EventosController::class, 'index'])->name('eventos.index');
+    Route::post('/admin/eventos', [EventosController::class, 'store'])->name('eventos.store');
+    Route::get('/admin/eventos/{id}', [EventosController::class, 'show'])->name('eventos.show');
+    Route::get('/admin/eventos/{id}/edit', [EventosController::class, 'edit'])->name('eventos.edit');
+    Route::put('/admin/eventos/{id}', [EventosController::class, 'update'])->name('eventos.update');
+    Route::delete('/admin/eventos/{id}', [EventosController::class, 'destroy'])->name('eventos.destroy');
 
+    //Rutas publicar eventos
+    Route::get('/admin/publicaciones/eventos', [PublicacionesController::class, 'indexAdminEventos'])->name('publicacionesadmin.eventos');
 
-//mis rutas castro
- Route::middleware(['permission:manage_publicaciones'])->group(function () {
+    //Rutas publicar noticias
+    Route::get('/admin/noticias', [PublicacionesController::class,'indexAdminNoticias'])->name('publicacionesadmin.noticias');
+
+     //Rutas publicar historias
+    Route::get('/admin/historias', [PublicacionesController::class,'indexAdminHistorias'])->name('publicacionesadmin.historias');
+
+    Route::post('/admin/historias', [PublicacionesController::class,'store'])->name('publicaciones.store');
+    Route::get('/admin/historias/{id}', [PublicacionesController::class,'show'])->name('publicaciones.show');
+    Route::get('/admin/historias/{id}/edit', [PublicacionesController::class,'edit'])->name('publicaciones.edit');
+    Route::put('/admin/historias/{id}', [PublicacionesController::class,'update'])->name('publicaciones.update');
+    Route::delete('/admin/historias/{id}', [PublicacionesController::class,'destroy'])->name('publicaciones.destroy');
+
+    //Rutas obtener informacion publicaciones
     Route::get('/api/admin/eventos', [PublicacionesController::class, 'data'])->name('publicaciones.eventos');
     Route::get('/api/admin/historias', [PublicacionesController::class, 'data'])->name('publicaciones.historias');
     Route::get('/api/admin/noticias', [PublicacionesController::class, 'data'])->name('publicaciones.noticias');
     Route::get('/admin/dashboard', [PublicacionesController::class, 'dashboard'])->name('admin.dashboard');
 
-
-    Route::resource('/admin/eventos', PublicacionesController::class);
-    Route::resource('/admin/noticias', PublicacionesController::class);
-    Route::resource('/admin/historias', PublicacionesController::class);
-
-
- });
-
- });
-
-//mis rutas castro
- Route::middleware(['permission:manage_roles'])->group(function () {
-    Route::get('/admin/roles/list', [RoleController::class, 'list'])->name('roles.list');
-    Route::resource('/admin/roles', RoleController::class)->only(['index', 'store', 'update', 'destroy', 'edit']);
-});
-
-//mis rutas castro
- Route::middleware(['permission:manage_roles'])->group(function () {
-    Route::get('/admin/roles/list', [RoleController::class, 'list'])->name('roles.list');
-    Route::resource('/admin/roles', RoleController::class)->only(['index', 'store', 'update', 'destroy', 'edit']);
-});
-
-Route::middleware(['permission:manage_permisos'])->group(function () {
-    Route::post('/admin/permiso', [RoleController::class, 'createPermission'])->name('permissions.store');
-    Route::resource('/admin/permissions', PermissionController::class);
-});
-
-Route::middleware(['permission:manage_users'])->group(function () {
-
-    Route::resource('/admin/users', UserController::class);
-});
-    //rutas de alexander-admin
+    //Rutas modulo artistas
     Route::get('/admin/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
-    Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
+    Route::post('/admin/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
+    // Route::get('/admin/artistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
+    // Route::put('/admin/artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
 
-
-
-// Rutas santiago - Historia
-    Route::get('/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
-
-    //Ruta santiago - eventos
-     Route::get('/eventos', [PublicacionesController::class, 'indexeventos'])->name('publica.eventos.index');
-     Route::get('/eventos/{id}', [PublicacionesController::class, 'indexevento'])->name('publica.evento');
-
- // Ruta principal del CRUD de eventos
-Route::get('admin/event', [EventosController::class, 'index'])->name('eventos.indexx');
-// Ruta para guardar un nuevo evento (desde el modal)
-Route::post('/event', [EventosController::class, 'store'])->name('eventos.storee');
-// Mostrar un evento individual (opcional)
-Route::get('/event/{id}', [EventosController::class, 'show'])->name('eventos.showe');
-
-// Traer los datos para editar (usado vía AJAX)
-Route::get('/event/{id}/edit', [EventosController::class, 'edit'])->name('eventos.edite');
-
-
-// Actualizar un evento existente
-Route::put('/event/{id}', [EventosController::class, 'update'])->name('eventos.updated');
-
-// Eliminar un evento
-Route::delete('/event/{id}', [EventosController::class, 'destroy'])->name('eventos.destroyed');
-
-
-/* Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard'); */
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-
-
-
-    Route::get('/quienessomos', [InformacioninstitucionalController::class, 'index'])->name('quienessomos.index');
-    Route::get('/editquienessomos/{id}/edit', [InformacioninstitucionalController::class, 'edit'])->name('quienessomos.edit');
-    Route::put('/quienessomos/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
-
-
+    //Rutas información institucional
     Route::get('/admin/quienessomos', [InformacioninstitucionalController::class, 'indexadminquienessomos'])->name('quienessomos.indexadmin');
     Route::get('/admin/quienessomos/list', [InformacioninstitucionalController::class, 'list'])->name('quienessomos.list');
     Route::post('/admin/quienessomos/store', [InformacioninstitucionalController::class, 'store'])->name('quienessomos.store');
@@ -121,63 +71,28 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/quienessomos/delete/{id}', [InformacioninstitucionalController::class, 'destroy'])->name('quienessomos.delete');
 
 
-    
-
-    Route::get('/donacionesindex', [DonacionesController::class, 'indexdonacion'])->name('donacionesindex.index');
-    Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaciones.store');
-
-    Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
-
-
-
-    //Rutas Midas - Publico Publicaciones
-    Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
-    Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
-
-    Route::middleware('auth')->group(function (){
-
+    //Rutas donaciones
     Route::get('/admin/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
     Route::get('/admin/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
     Route::put('/admin/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');
 
-
-
-    Route::get('/editArtistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
-    Route::put('/Artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
-    Route::get('/artistas/activos', [ArtistasController::class, 'listarArtistasActivos'])->name('artistas.activos');
-
-
-    Route::get('/vistas/publicaciones/inicio', [PublicacionesController::class, 'indexinicio'])->name('vistaspublicacionesinicio.index');
-
-    Route::get('/vistas/publicaciones/inicio',[PublicacionesController::class,'indexinicio'])->name('vistaspublicacionesinicio.index');
-
-
-    Route::get('/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
-
+    //Rutas contactos
     Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos');
     Route::post('/admin/contactos', [ContactosController::class, 'actualizarContactos'])->name('contactos.actualizarcontactos');
+    //Rutas roles
+    Route::get('/admin/roles/list', [RoleController::class, 'list'])->name('roles.list');
+    Route::post('/admin/permiso', [RoleController::class, 'createPermission'])->name('permissions.store');
+    Route::resource('/admin/roles', RoleController::class)->only(['index', 'store', 'update', 'destroy', 'edit']);
 
-    Route::post('/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
+    //Rutas permisos
+    Route::resource('/admin/permisos', PermissionController::class);
 
+    //Rutas usuarios
+    Route::resource('/admin/usuarios', UserController::class);
 
-    Route::get('/artistas/active', [ArtistasController::class, 'active'])->name('artistas.active');
-
-    });
-
-
-
-    //Rutas Juan Sebastian - Publico
-    Route::get('publico/artistas/crear', [ArtistasController::class, 'create'])->name('artistas.create');
-    Route::post('/artistas', [ArtistasController::class, 'store'])->name('artistas.store');
-
-    //Rutas Midas - Publico Publicaciones
-    Route::get('/publicaciones', [PublicacionesController::class, 'indexpublicaciones'])->name('publicaciones.index');
-    Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
-
-
-    Route::get('/donacionesindex', [DonacionesController::class, 'indexdonacion'])->name('donacionesindex.index');
-    Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaciones.store');
-
-
-
+    //Rutas perfil
+    Route::get('/perfil', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/perfil', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/perfil', [ProfileController::class, 'destroy'])->name('profile.destroy');
+ });
 require __DIR__ . '/auth.php';

@@ -16,7 +16,11 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        /* return view('profile.edit', [
+            'user' => $request->user(),
+        ]); */
+
+        return view('admin.vistas.perfil.edit', [
             'user' => $request->user(),
         ]);
     }
@@ -26,7 +30,16 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+
+        // Llenar solo los campos de nombre y correo
+        $user->fill($request->safe()->only(['name', 'email']));
+
+        // Si se proporciona una nueva contraseña, se actualiza
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->input('password'));
+        }
+
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
@@ -55,6 +68,7 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
+        /* return Redirect::to('/')->with('account_deleted', true); */
         return Redirect::to('/');
     }
 }

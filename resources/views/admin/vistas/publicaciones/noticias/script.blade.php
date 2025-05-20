@@ -55,7 +55,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: `{{ route('noticias.destroy', ':id') }}`.replace(':id', id),
+                        url: `{{ route('publicaciones.destroy', ':id') }}`.replace(':id', id),
                         type: 'DELETE',
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -95,7 +95,7 @@
     });
 
     $.ajax({
-        url: '{{ route("noticias.store") }}',
+        url: '{{ route("publicaciones.store") }}',
         method: 'POST',
         data: formData,
         contentType: false,
@@ -153,7 +153,7 @@
 $('#tablaPublicacionesNoticia').on('click', '.btn-editar', function() {
     const id = $(this).data('id');
 
-    $.get(`{{ route('noticias.show', ':id') }}`.replace(':id', id), function(data) {
+    $.get(`{{ route('publicaciones.show', ':id') }}`.replace(':id', id), function(data) {
 
         $('#formEditarNoticia .form-control, #formEditarNoticia .form-select, #formEditarNoticia textarea').removeClass('is-invalid');
         $('#formEditarNoticia .invalid-feedback').remove();
@@ -205,7 +205,7 @@ $('#formEditarNoticia').submit(function(e) {
     });
 
     $.ajax({
-        url: `{{ route('noticias.update', ':id') }}`.replace(':id', id),
+        url: `{{ route('publicaciones.update', ':id') }}`.replace(':id', id),
         method: 'POST',
         data: formData,
         contentType: false,

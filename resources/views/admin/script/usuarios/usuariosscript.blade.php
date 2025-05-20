@@ -1,9 +1,11 @@
+@extends('admin.plantilla.layout')
+@section('scripts')
 <script>
     $(document).ready(function() {
         let table = $('#usersTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('users.index') }}",
+            ajax: "{{ route('usuarios.index') }}",
             columns: [
                 { data: 'id' },
                 { data: 'name' },
@@ -21,7 +23,7 @@
             e.preventDefault();
             Swal.fire({ title: 'Creando...', didOpen: () => Swal.showLoading() });
 
-            $.post("{{ route('users.store') }}", $(this).serialize())
+            $.post("{{ route('usuarios.store') }}", $(this).serialize())
                 .done(function(data) {
                     Swal.fire('¡Éxito!', data.success, 'success');
                     $('#formCreate')[0].reset();
@@ -37,7 +39,7 @@
         // Cargar datos para editar
         $(document).on('click', '.editBtn', function() {
             let id = $(this).data('id');
-            $.get(`{{ route('users.show', ':id') }}`.replace(':id', id), function(data) {
+            $.get(`{{ route('usuarios.show', ':id') }}`.replace(':id', id), function(data) {
                 $('#editId').val(data.id);
                 $('#editName').val(data.name);
                 $('#editEmail').val(data.email);
@@ -53,7 +55,7 @@
             Swal.fire({ title: 'Actualizando...', didOpen: () => Swal.showLoading() });
 
             $.ajax({
-                url: `{{ route('users.update', ':id') }}`.replace(':id', id),
+                url: `{{ route('usuarios.update', ':id') }}`.replace(':id', id),
                 type: 'POST',
                 data: $(this).serialize(),
                 success: function(data) {
@@ -82,7 +84,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: `{{ route('users.destroy', ':id') }}`.replace(':id', id),
+                        url: `{{ route('usuarios.destroy', ':id') }}`.replace(':id', id),
                         type: 'DELETE',
                         data: { _token: "{{ csrf_token() }}" },
                         success: function(data) {
@@ -98,3 +100,4 @@
         });
     });
     </script>
+@endsection

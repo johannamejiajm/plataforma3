@@ -69,13 +69,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
               </div>
               <div class="modal-body row g-3">
-
                 <input type="hidden" name="idtipo" value="2"> <!-- Ajusta el valor dinámicamente si es necesario -->
-
                 <div class="col-md-6">
                   <label for="titulo" class="form-label">Título</label>
                   <input type="text" class="form-control" name="titulo" >
-
                 </div>
 
                 <div class="col-md-6">
@@ -103,8 +100,8 @@
                 </div>
 
                 <div class="col-12">
-                  <label for="imagenes" class="form-label">Imágenes (máx. 5)</label>
-                  <input type="file" name="imagenes[]" class="form-control" accept="image/*" multiple >
+                  <label for="imagen" class="form-label">Imágenes (máx. 5)</label>
+                  <input type="file" name="imagen" class="form-control" accept="image/*" multiple >
                 </div>
               </div>
               <div class="modal-footer">

@@ -10,7 +10,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png') }}" />
         <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
 
@@ -71,7 +71,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                               <div class="message-body">
-                                <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                                <a href="{{ route('profile.edit') }}" class="d-flex align-items-center gap-2 dropdown-item">
                                   <i class="ti ti-user fs-6"></i>
                                   <p class="mb-0 fs-3">Mi Perfil</p>
                                 </a>

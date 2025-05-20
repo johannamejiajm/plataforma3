@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 use Spatie\Permission\Models\Role;
@@ -13,6 +14,9 @@ class UserController extends Controller
     //
     public function index(Request $request)
     {
+        // if (!Auth::user()->can('manage_users')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
         if ($request->ajax()) {
             $data = User::with('roles')->select('users.*');
             return DataTables::of($data)
@@ -31,6 +35,10 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        // if (!Auth::user()->can('manage_users')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
+
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
@@ -51,12 +59,18 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        // if (!Auth::user()->can('manage_users')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
         $user->load('roles');
         return response()->json($user);
     }
 
     public function update(Request $request, User $user)
     {
+        // if (!Auth::user()->can('manage_users')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email,'.$user->id,
@@ -77,6 +91,9 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        // if (!Auth::user()->can('manage_users')) {
+        //     abort(403, 'No tienes permiso.');
+        // }
         $user->delete();
         return response()->json(['success' => 'Usuario eliminado']);
     }

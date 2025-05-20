@@ -18,9 +18,9 @@ class ContactosController extends Controller
     }
     public function indexAdmin()
     {
-          if (!auth()->user()->can('manage_contactos')) {
-            abort(403, 'No tienes permiso para actualizar contactos.');
-        }
+        //   if (!auth()->user()->can('manage_contactos')) {
+        //     abort(403, 'No tienes permiso para actualizar contactos.');
+        // }
         $contactos = Contactos::first();
         return view('admin/vistas/publicaciones/contactos/index', compact('contactos')) ;
     }
@@ -28,9 +28,9 @@ class ContactosController extends Controller
     public function actualizarContactos(Request $request)
     {
 
-          if (!auth()->user()->can('manage_contactos')) {
-            abort(403, 'No tienes permiso para actualizar contactos.');
-        }
+        //   if (!auth()->user()->can('manage_contactos')) {
+        //     abort(403, 'No tienes permiso para actualizar contactos.');
+        // }
 
         // dd($request->all());
            $validator = Validator::make($request->all(), [

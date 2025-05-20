@@ -1,20 +1,18 @@
-@extends('admin.plantilla.plantilla')
-@section('script')
-    <script>
-        $(document).ready(function() {
-
-            let tabladonaciones = new DataTable('#tabladonaciones', {
-                responsive: true
-            });
+@extends('admin.plantilla.layout')
+@section('scripts')
+<script>
+    $(document).ready(function() {
+        const tabla = $('#tablaDonaciones').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
+            }
         });
+    });
 
-        $(document).ready(function() {
-            $('#donaciones').DataTable();
-
-            function mostrarBotones(id) {
+    function mostrarBotones(id) {
         // Primero, ocultamos todos los botones de las demás donaciones
         let botones = document.querySelectorAll('[id^="botones-"]');
-        botones.forEach(function (boton) {
+        botones.forEach(function(boton) {
             boton.style.display = 'none';
         });
 
@@ -22,6 +20,6 @@
         let botonesSeleccionados = document.getElementById('botones-' + id);
         botonesSeleccionados.style.display = 'block';
     }
-        });
-    </script>
+
+</script>
 @endsection

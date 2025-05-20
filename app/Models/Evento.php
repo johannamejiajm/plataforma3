@@ -4,15 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class evento extends Model
+class Evento extends Model
 {
-    protected $table = 'evento'; // Especifica el nombre de la tabla
+    protected $table = 'eventos'; // Especifica el nombre de la tabla
 
     protected $fillable = [
         'evento',
         'fechainicial',
         'fechafinal',
         'estado',
+        'imagen',
     ];
 
     // Relación con la tabla artistas (un evento tiene muchos artistas)
