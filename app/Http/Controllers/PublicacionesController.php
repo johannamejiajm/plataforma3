@@ -66,8 +66,14 @@ class PublicacionesController extends Controller
         // if (!Auth::user()->can('manage_publicaciones')) {
         //     abort(403, 'No tienes permiso.');
         // }
+
+
         $publicaciones = Publicaciones::where('estado', '3')->get();
         return view('admin.vistas.publicaciones.historias.index');
+
+
+
+
     }
     public function indexAdminEventos(Request $request)
     {
