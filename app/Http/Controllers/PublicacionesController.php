@@ -53,7 +53,26 @@ class PublicacionesController extends Controller
         return response()->json(['data' => $data]);
     }
 
-    public function indexAdminNoticias(Request $request)
+    //yilber16 esto aca lo hace mas dinamico el resource se encarga de ir aca en base a la url
+    public function index(Request $request) {
+        /* if (!Auth::user()->can('manage_publicaciones')) {
+            abort(403, 'No tienes permiso.');
+        } */
+
+
+
+        //esta parte de aca gestiona mejor las rutas y lo hace dinamico
+        $typePublic =    Str::after($request->getPathInfo(), '/admin/publicaciones/');
+        $path = 'admin.vistas.publicaciones.' . $typePublic .'.index';
+
+        /* dd(auth()->user()->id); */
+        /* dd($path); */
+        return view($path);
+    }
+
+    //acalaracion los de roles toca mirar mani yilber16 que permisos colocar y que roles spatie laravel permission es una buena forma
+/* esto se puede gestionar mejor reduciendo varios metodos el index se encarga de gestionarlos gracias a la url */
+   /*  public function indexAdminNoticias(Request $request)
     {
         // if (!Auth::user()->can('manage_publicaciones')) {
         //     abort(403, 'No tienes permiso.');
@@ -82,7 +101,7 @@ class PublicacionesController extends Controller
         // }
         $publicaciones = Publicaciones::where('estado', '2')->get();
         return view('admin.vistas.publicaciones.eventos.index', compact('publicaciones'));
-    }
+    } */
 
     public function indexpublicacionespublico()
     {
@@ -231,13 +250,14 @@ class PublicacionesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Publicaciones $publicaciones, $id)
+    public function show(Publicaciones $publicaciones)
     {
         //
         // if (!Auth::user()->can('manage_publicaciones')) {
         //     abort(403, 'No tienes permiso.');
         // }
-        $publicaciones = Publicaciones::find($id);
+        //yilber16 el model route blinding si la ruta es asi /admin/publicaciones/eventos/11 el autamticamente manda y hace el paso que comente y lo pone en una variable
+       /*  $publicaciones = Publicaciones::find($id); esto de aca como resorce esta puesto se envia el id del usuario y automaticamnete hace la consulta no hay necesaidad de agregarle $id */
         $publicaciones->load('fotos');
         return response()->json([
             'id' => $publicaciones->id,
@@ -271,7 +291,7 @@ class PublicacionesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Publicaciones $publicaciones, $id)
+    public function update(Request $request, Publicaciones $publicaciones)
     {
 
         // if (!Auth::user()->can('manage_publicaciones')) {
@@ -292,7 +312,8 @@ class PublicacionesController extends Controller
     $typePublic = $request->segment(2);
      DB::beginTransaction();
 
-     $publicaciones = Publicaciones::find($id);
+    /* no es necesario esto */
+     /* $publicaciones = Publicaciones::find($id); */
      try {
          // Actualizar los datos principales
          $publicaciones->update([
@@ -354,13 +375,13 @@ class PublicacionesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Publicaciones $evento, $id)
+    public function destroy(Publicaciones $evento)
     {
         // if (!Auth::user()->can('manage_publicaciones')) {
         //     abort(403, 'No tienes permiso.');
         // }
 
-        $evento = Publicaciones::find($id);
+        /* $evento = Publicaciones::find($id);  no es necesario esto*/
         try {
             // Cambia el estado: si está activo (1) lo pone en inactivo (0), y viceversa
             $evento->estado = $evento->estado === '1' ? '0' : '1';

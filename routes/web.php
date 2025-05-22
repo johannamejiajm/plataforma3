@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermissionController;
 
 Route::get('/',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
-Route::get('/publico/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
+Route::get('/publico/inicio',[PublicacionesController::class,'indexinicio']);
 Route::get('/publico/quienessomos', [InformacioninstitucionalController::class, 'index'])->name('quienessomos.index');
 Route::get('/publico/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
 Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
@@ -30,25 +30,31 @@ Route::middleware(['auth'])->group(function () {
     //Rutas eventos administrador
     Route::get('/admin/eventos', [EventosController::class, 'index'])->name('eventos.index');
     Route::post('/admin/eventos', [EventosController::class, 'store'])->name('eventos.store');
-    Route::get('/admin/eventos/{id}', [EventosController::class, 'show'])->name('eventos.show');
+    //Route::get('/admin/eventos/{id}', [EventosController::class, 'show'])->name('eventos.show');
     Route::get('/admin/eventos/{id}/edit', [EventosController::class, 'edit'])->name('eventos.edit');
     Route::put('/admin/eventos/{id}', [EventosController::class, 'update'])->name('eventos.update');
     Route::delete('/admin/eventos/{id}', [EventosController::class, 'destroy'])->name('eventos.destroy');
 
-    //Rutas publicar eventos
-    Route::get('/admin/publicaciones/eventos', [PublicacionesController::class, 'indexAdminEventos'])->name('publicacionesadmin.eventos');
+    //Rutas publicar eventos (castro) : mani yilber esto de aca los puedes gestionar con un resource el problema es que las rutas nombradas generan conflictos
+    /* Route::get('/admin/publicaciones/eventos', [PublicacionesController::class, 'indexAdminEventos'])->name('publicacionesadmin.eventos'); */
 
-    //Rutas publicar noticias
-    Route::get('/admin/noticias', [PublicacionesController::class,'indexAdminNoticias'])->name('publicacionesadmin.noticias');
+    Route::resource('/admin/publicaciones/eventos', PublicacionesController::class)->names('admin.publicaciones.eventos');
+
+    //Rutas publicar noticias se gestiona mucho mejor yilber 16
+    /* Route::get('/admin/noticias', [PublicacionesController::class,'indexAdminNoticias'])->name('publicacionesadmin.noticias'); */
+
+    Route::resource('/admin/publicaciones/noticias', PublicacionesController::class)->names('admin.publicaciones.noticias');
 
      //Rutas publicar historias
-    Route::get('/admin/historias', [PublicacionesController::class,'indexAdminHistorias'])->name('publicacionesadmin.historias');
+    /* Route::get('/admin/historias', [PublicacionesController::class,'indexAdminHistorias'])->name('publicacionesadmin.historias'); */
+    Route::resource('/admin/publicaciones/historias', PublicacionesController::class)->names('admin.publicaciones.historias');
 
-    Route::post('/admin/historias', [PublicacionesController::class,'store'])->name('publicaciones.store');
+    //esto aca ya no es necesario mani YILBER16 EL metodo resource hace todo lo necesario
+    /* Route::post('/admin/historias', [PublicacionesController::class,'store'])->name('publicaciones.store');
     Route::get('/admin/historias/{id}', [PublicacionesController::class,'show'])->name('publicaciones.show');
     Route::get('/admin/historias/{id}/edit', [PublicacionesController::class,'edit'])->name('publicaciones.edit');
     Route::put('/admin/historias/{id}', [PublicacionesController::class,'update'])->name('publicaciones.update');
-    Route::delete('/admin/historias/{id}', [PublicacionesController::class,'destroy'])->name('publicaciones.destroy');
+    Route::delete('/admin/historias/{id}', [PublicacionesController::class,'destroy'])->name('publicaciones.destroy'); */
 
     //Rutas obtener informacion publicaciones
     Route::get('/api/admin/eventos', [PublicacionesController::class, 'data'])->name('publicaciones.eventos');

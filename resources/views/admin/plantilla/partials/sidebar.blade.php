@@ -30,21 +30,21 @@
         </a>
         <ul aria-expanded="false" class="collapse first-level">
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('publicacionesadmin.eventos') }}" aria-expanded="false" id="eventoPublicacionesLink">
+            <a class="sidebar-link" href="{{ route('admin.publicaciones.eventos.index') }}" aria-expanded="false" id="eventoPublicacionesLink">
               <i class="ti ti-circle"></i>
               <span class="hide-menu">Eventos</span>
             </a>
           </li>
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('publicacionesadmin.historias') }}" aria-expanded="false" id="historiaPublicacionesLink">
+            <a class="sidebar-link" href="{{ route('admin.publicaciones.historias.index') }}" aria-expanded="false" id="historiaPublicacionesLink">
               <i class="ti ti-circle"></i>
               <span class="hide-menu">Historias</span>
             </a>
           </li>
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('publicacionesadmin.noticias') }}" aria-expanded="false" id="noticiaPublicacionesLink">
+            <a class="sidebar-link" href="{{ route('admin.publicaciones.noticias.index') }}" aria-expanded="false" id="noticiaPublicacionesLink">
               <i class="ti ti-circle"></i>
               <span class="hide-menu">Noticias</span>
             </a>
