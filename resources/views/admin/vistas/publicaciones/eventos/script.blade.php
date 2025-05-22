@@ -66,7 +66,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: `{{ route('eventos.destroy', ':id') }}`.replace(':id', id),
+                        url: `{{ route('admin.publicaciones.eventos.destroy', ':id') }}`.replace(':id', id),
                         type: 'DELETE',
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -106,7 +106,7 @@
         });
 
         $.ajax({
-            url: '{{ route('eventos.store') }}',
+            url: '{{ route("admin.publicaciones.eventos.store") }}',
             method: 'POST',
             data: formData,
             contentType: false,
@@ -161,7 +161,7 @@
 $('#tablaPublicaciones').on('click', '.btn-editar', function() {
     const id = $(this).data('id');
 
-    $.get(`{{ route('publicaciones.show', ':id') }}`.replace(':id', id), function(data) {
+    $.get(`{{ route('admin.publicaciones.eventos.show', ':id') }}`.replace(':id', id), function(data) {
 
         $('#formEditarEvento .form-control, #formEditarEvento .form-select, #formEditarEvento textarea').removeClass('is-invalid');
         $('#formEditarEvento .invalid-feedback').remove();
@@ -213,7 +213,7 @@ $('#formEditarEvento').submit(function(e) {
     });
 
     $.ajax({
-        url: `{{ route('eventos.update', ':id') }}`.replace(':id', id),
+         url: `{{ route('admin.publicaciones.eventos.update', ':id') }}`.replace(':id', id),
         method: 'POST',
         data: formData,
         contentType: false,

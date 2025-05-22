@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermissionController;
 
 Route::get('/',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
-Route::get('/publico/inicio',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
+Route::get('/publico/inicio',[PublicacionesController::class,'indexinicio']);
 Route::get('/publico/quienessomos', [InformacioninstitucionalController::class, 'index'])->name('quienessomos.index');
 Route::get('/publico/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
 Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
@@ -30,25 +30,25 @@ Route::middleware(['auth'])->group(function () {
     //Rutas eventos administrador
     Route::get('/admin/eventos', [EventosController::class, 'index'])->name('eventos.index');
     Route::post('/admin/eventos', [EventosController::class, 'store'])->name('eventos.store');
-    Route::get('/admin/eventos/{id}', [EventosController::class, 'show'])->name('eventos.show');
+    //Route::get('/admin/eventos/{id}', [EventosController::class, 'show'])->name('eventos.show');
     Route::get('/admin/eventos/{id}/edit', [EventosController::class, 'edit'])->name('eventos.edit');
     Route::put('/admin/eventos/{id}', [EventosController::class, 'update'])->name('eventos.update');
     Route::delete('/admin/eventos/{id}', [EventosController::class, 'destroy'])->name('eventos.destroy');
 
     //Rutas publicar eventos
-    Route::get('/admin/publicaciones/eventos', [PublicacionesController::class, 'indexAdminEventos'])->name('publicacionesadmin.eventos');
+    Route::resource('/admin/publicaciones/eventos', PublicacionesController::class)->names('admin.publicaciones.eventos');
 
     //Rutas publicar noticias
-    Route::get('/admin/noticias', [PublicacionesController::class,'indexAdminNoticias'])->name('publicacionesadmin.noticias');
+    Route::resource('/admin/publicaciones/noticias', PublicacionesController::class)->names('admin.publicaciones.noticias');
 
      //Rutas publicar historias
-    Route::get('/admin/historias', [PublicacionesController::class,'indexAdminHistorias'])->name('publicacionesadmin.historias');
-    
-    Route::post('/admin/historias', [PublicacionesController::class,'store'])->name('publicaciones.store');
+    Route::resource('/admin/publicaciones/historias', PublicacionesController::class)->names('admin.publicaciones.historias');
+
+    /*Route::post('/admin/historias', [PublicacionesController::class,'store'])->name('publicaciones.store');
     Route::get('/admin/historias/{id}', [PublicacionesController::class,'show'])->name('publicaciones.show');
     Route::get('/admin/historias/{id}/edit', [PublicacionesController::class,'edit'])->name('publicaciones.edit');
     Route::put('/admin/historias/{id}', [PublicacionesController::class,'update'])->name('publicaciones.update');
-    Route::delete('/admin/historias/{id}', [PublicacionesController::class,'destroy'])->name('publicaciones.destroy');
+    Route::delete('/admin/historias/{id}', [PublicacionesController::class,'destroy'])->name('publicaciones.destroy');*/
 
     //Rutas obtener informacion publicaciones
     Route::get('/api/admin/eventos', [PublicacionesController::class, 'data'])->name('publicaciones.eventos');
@@ -75,7 +75,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
     Route::get('/admin/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
     Route::put('/admin/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');
-    
+
     //Rutas contactos
     Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos');
     Route::post('/admin/contactos', [ContactosController::class, 'actualizarContactos'])->name('contactos.actualizarcontactos');

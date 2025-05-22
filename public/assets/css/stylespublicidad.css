@@ -62,7 +62,7 @@ body {
     margin-bottom: 0.75rem;
     color: #1D3557; /* azul profundo para títulos */
     line-height: 1.4;
-    
+
 }
 
 /* Extracto */
@@ -124,7 +124,7 @@ body {
     color: #fff;
     padding: 1.5rem;
     border-bottom: none;
-    
+
 }
 
 .modal-title {
@@ -182,7 +182,7 @@ body {
 .detalle-metadato-item i {
     margin-right: 0.5rem;
     color: #0e1fb3; /* azul para iconos */
-    
+
 }
 
 .detalle-metadato-label {
@@ -252,4 +252,13 @@ body {
     .detalle-metadatos {
         padding: 1rem;
     }
+}
+#publicaciones-grid {
+    gap: 1.5rem;
+}
+
+.publicacion-item-wrapper {
+    flex: 0 0 auto; /* evita que se estire */
+    width: 360px; /* mantiene el tamaño fijo de la tarjeta */
+    margin-bottom: 1.5rem;
 }

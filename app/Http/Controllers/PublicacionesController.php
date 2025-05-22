@@ -53,35 +53,20 @@ class PublicacionesController extends Controller
         return response()->json(['data' => $data]);
     }
 
-    public function indexAdminNoticias(Request $request)
+    public function index(Request $request)
     {
-        // if (!Auth::user()->can('manage_publicaciones')) {
-        //     abort(403, 'No tienes permiso.');
-        // }
+        $typePublic =    Str::after($request->getPathInfo(), '/admin/publicaciones/');
+        $path = 'admin.vistas.publicaciones.' . $typePublic .'.index';
 
-        return view('admin.vistas.publicaciones.noticias.index');
-    }
-    public function indexAdminHistorias(Request $request)
-    {
-        // if (!Auth::user()->can('manage_publicaciones')) {
-        //     abort(403, 'No tienes permiso.');
-        // }
-        $publicaciones = Publicaciones::where('estado', '3')->get();
-        return view('admin.vistas.publicaciones.historias.index');
-    }
-    public function indexAdminEventos(Request $request)
-    {
-        // if (!Auth::user()->can('manage_publicaciones')) {
-        //     abort(403, 'No tienes permiso.');
-        // }
-        $publicaciones = Publicaciones::where('estado', '2')->get();
-        return view('admin.vistas.publicaciones.eventos.index', compact('publicaciones'));
+        return view($path);
     }
 
     public function indexpublicacionespublico()
     {
-        $publicaciones = Publicaciones::where('estado', '1')->get();
-        // dd($publicaciones[2]->fotos[0]->imagen);
+        $publicaciones = Publicaciones::where('estado', '1')
+            ->whereIn('idtipo', [1, 2]) // Reemplaza 'tipo_id' con el nombre correcto
+            ->with(['fotos', 'tipo'])
+            ->get();
         return view('publico.vistas.publicaciones.publicaciones', compact('publicaciones'));
     }
 
@@ -104,15 +89,22 @@ class PublicacionesController extends Controller
     public function indexhistoria()
     {
 
-        $historias = Publicaciones::with(['fotos', 'tipo'])->where('idtipo', 3)->where('estado', 1)->get();
-        // dd($historia);
+        $historias = Publicaciones::where('estado', '1')
+                ->where('idtipo', 3)
+                ->with('fotos') // asegura que las fotos se cargan
+                ->latest()
+                ->paginate(9);
         return view('publico.vistas.publicaciones.historia', compact('historias'));
 
     }
     public function indexpublicaciones()
     {
-        $publicaciones = Publicaciones::all();
-        return view('publico/vistas/publicaciones/publicaciones', compact('publicaciones'));
+         $publicaciones = Publicaciones::where('estado', '1')
+                ->where('idtipo', 3)
+                ->with('fotos') // asegura que las fotos se cargan
+                ->latest()
+                ->paginate(9);
+
     }
 
 
@@ -215,13 +207,13 @@ class PublicacionesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Publicaciones $publicaciones, $id)
+    public function show(Publicaciones $publicaciones)
     {
         //
         // if (!Auth::user()->can('manage_publicaciones')) {
         //     abort(403, 'No tienes permiso.');
         // }
-        $publicaciones = Publicaciones::find($id);
+        //$publicaciones = Publicaciones::find($id);
         $publicaciones->load('fotos');
         return response()->json([
             'id' => $publicaciones->id,
@@ -245,17 +237,14 @@ class PublicacionesController extends Controller
      */
     public function edit(Publicaciones $publicaciones, $id)
     {
-
        $publicacion = Publicaciones::find($id);
        return view("admin/vistas/publicaciones/editpublicaciones", compact('publicacion'));
-
-
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Publicaciones $publicaciones, $id)
+    public function update(Request $request, Publicaciones $publicaciones)
     {
 
         // if (!Auth::user()->can('manage_publicaciones')) {
@@ -276,7 +265,7 @@ class PublicacionesController extends Controller
     $typePublic = $request->segment(2);
      DB::beginTransaction();
 
-     $publicaciones = Publicaciones::find($id);
+    // $publicaciones = Publicaciones::find($id);
      try {
          // Actualizar los datos principales
          $publicaciones->update([
@@ -338,13 +327,13 @@ class PublicacionesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Publicaciones $evento, $id)
+    public function destroy(Publicaciones $evento)
     {
         // if (!Auth::user()->can('manage_publicaciones')) {
         //     abort(403, 'No tienes permiso.');
         // }
 
-        $evento = Publicaciones::find($id);
+        //$evento = Publicaciones::find($id);
         try {
             // Cambia el estado: si está activo (1) lo pone en inactivo (0), y viceversa
             $evento->estado = $evento->estado === '1' ? '0' : '1';

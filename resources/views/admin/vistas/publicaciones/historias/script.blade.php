@@ -66,7 +66,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: `{{ route('publicaciones.destroy', ':id') }}`.replace(':id', id),
+                        url: `{{ route('admin.publicaciones.historias.destroy', ':id') }}`.replace(':id', id),
                         type: 'DELETE',
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -106,7 +106,7 @@
     });
 
     $.ajax({
-         url: '{{ route("publicaciones.store") }}',
+        url: '{{ route("admin.publicaciones.historias.store") }}',
         method: 'POST',
         data: formData,
         contentType: false,
@@ -163,7 +163,7 @@
 $('#tablaPublicacionesHistoria').on('click', '.btn-editar', function() {
     const id = $(this).data('id');
 
-    $.get(`{{ route('publicaciones.show', ':id') }}`.replace(':id', id), function(data) {
+    $.get(`{{ route('admin.publicaciones.historias.show', ':id') }}`.replace(':id', id), function(data) {
 
         $('#formEditarHistoria .form-control, #formEditarHistoria .form-select, #formEditarHistoria textarea').removeClass('is-invalid');
         $('#formEditarHistoria .invalid-feedback').remove();
@@ -215,7 +215,7 @@ $('#formEditarHistoria').submit(function(e) {
     });
 
     $.ajax({
-        url: `{{ route('publicaciones.update', ':id') }}`.replace(':id', id),
+        url: `{{ route('admin.publicaciones.historias.update', ':id') }}`.replace(':id', id),
         method: 'POST',
         data: formData,
         contentType: false,
