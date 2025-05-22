@@ -5,7 +5,7 @@ FUNDACION PACHO'S CLUB
 @endsection
 
 @section('subtituloheader')
-ULTIMAS NOTICIAS
+<p class="subtitulo-amarillo">"EXPERIENCIAS QUE INSPIRAN"</p>
 @endsection
 
 @section('titulo')

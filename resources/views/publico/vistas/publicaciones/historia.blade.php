@@ -1,8 +1,12 @@
-@extends('publico.plantilla.plantilla')
+@extends('publico.script.publicaciones.historiasscript')
 
-@section('title')
+{{-- @section('title')
 Historia
 @endsection
+@section('links')
+<link rel="stylesheet" href="{{ asset('assets/css/styleshistoria.css') }}">
+@endsection
+
 
 @section('tituloheader')
     <div class="hero-title">

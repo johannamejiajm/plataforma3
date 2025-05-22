@@ -1,5 +1,4 @@
-@extends('publico.plantilla.plantilla')
-
+@extends('publico.script.publicaciones.eventosscrit')
 @section('title')
 Eventos
 @endsection
@@ -9,7 +8,7 @@ FUNDACION PACHO'S CLUB
 @endsection
 
 @section('subtituloheader')
-NUESTROS EVENTOS
+<p class="subtitulo-amarillo">"CADA EVENTO, UNA OPORTUNIDAD DE AYUDAR"</p>
 @endsection
 
 @section('links')
@@ -60,25 +59,4 @@ NUESTROS EVENTOS
         </div>
     @endforeach
 </div>
-
-<!-- Lista de eventos -->
-<section class="eventos-lista">
-  <div class="contenedor-grid">
-    @if ($eventos)
-    @foreach ($eventos as $evento)
-    <div class="tarjeta-evento">
-      <div class="contenedor-imagen">
-        {{-- <img src="{{ asset($evento?->fotos?[0]->imagen) }}" alt="{{ $evento->titulo }}"> --}}
-      </div>
-      <h2>{{ $evento->titulo }}</h2>
-      <p class="fecha">{{ $evento->fechainicial }}</p>
-      <p class="descripcion">{{ Str::limit($evento->descripcion, 100) }}</p>
-      <a href="{{ route('publica.evento', $evento->id) }}" class="btn-detalles">Ver más</a>
-
-
-    </div>
-    @endforeach
-    @endif
-  </div>
-</section>
 @endsection

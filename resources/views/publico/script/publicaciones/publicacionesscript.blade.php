@@ -10,6 +10,13 @@
     {{ Js::from(['csrf_token' => csrf_token()]) }}; // Opcional si usas AJAX
 
     document.addEventListener('DOMContentLoaded', function() {
+    const currentUrl = window.location.pathname;
+
+    if (currentUrl.includes('publicaciones')) {
+        $('#publicaciones').addClass('active');
+    } else if (currentUrl.includes('quienessomos')) {
+        $('#quienesSomos').addClass('active');
+    }
     // Cache de las publicaciones cargadas por AJAX
     const publicacionesCache = {};
     

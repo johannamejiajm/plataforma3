@@ -1,4 +1,4 @@
-@extends('publico.plantilla.plantilla')
+@extends('publico.script.artistas.artistasscript')
 
 @section('titulo')
     <title>
@@ -6,7 +6,20 @@
     </title>
 @endsection
 
+@section('tituloheader')
+FUNDACION PACHO'S CLUB
+@endsection
+
+@section('subtituloheader')
+<p class="subtitulo-amarillo">"DEJA TU HUELLA EN NUESTROS EVENTOS"</p>
+@endsection
+
 @section('script')
+    <script>
+        $(document).ready(function () {
+            $('#inscripcion').addClass('active');
+        });
+    </script>
     <script>
         @if (session('success'))
             Swal.fire({
@@ -40,7 +53,7 @@
 @section('contenido')
     <!-- Formulario HTML -->
     <div class="container mt-5">
-        <h2 class="text-center mb-4">Registrar Artista</h2>
+        <h2 class="text-center mb-4">Postulate a nuestros eventos</h2>
 
         <form action="{{ route('artistas.store') }}" method="POST" enctype="multipart/form-data"
             class="border p-4 rounded shadow-sm">
@@ -97,7 +110,7 @@
                 <textarea name="descripcion" id="descripcion" class="form-control" rows="3">{{ old('descripcion') }}</textarea>
             </div>
             <input type="hidden" name="estado" value="0">
-            <button type="submit" class="btn btn-primary w-100">Guardar Artista</button>
+            <button type="submit" class="btn btn-primary w-100">¡Postularme!</button>
         </form>
     </div>
 @endsection

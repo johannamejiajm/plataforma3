@@ -2,6 +2,17 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
+        var $link = $('#usuariosLink'); // Usa el id del enlace de esta vista
+
+        $link.addClass('active'); // Marca como activo
+
+        var $submenu = $link.closest('ul');
+        $submenu.addClass('in'); // Abre el submenu
+
+        var $parentItem = $submenu.closest('.sidebar-item');
+        $parentItem.addClass('selected');
+
+        $parentItem.find('.has-arrow').addClass('active').attr('aria-expanded', 'true');
         let table = $('#usersTable').DataTable({
             processing: true,
             serverSide: true,

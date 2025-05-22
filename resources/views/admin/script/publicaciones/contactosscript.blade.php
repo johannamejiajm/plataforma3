@@ -1,6 +1,5 @@
 @extends('admin.plantilla.plantilla')
 @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
             $("#guardarcontactos").on('click', function(e){

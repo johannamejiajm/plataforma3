@@ -9,6 +9,4 @@
 @endsection
 @section('contenido')
 
-
-
 @endsection
