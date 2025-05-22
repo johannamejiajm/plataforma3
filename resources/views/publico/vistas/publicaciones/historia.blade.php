@@ -44,7 +44,7 @@ Historia
 
 
                     <!-- Cuerpo -->
-                    <div class="modal-body">
+                    <div class="modal-body p-5">
 
 
                     <div class="d-flex flex-wrap justify-content-between mb-3">
@@ -112,6 +112,7 @@ Historia
                 </div>
             </div>
         </div>
+    </div>
     @endforeach
 @endif
 @endsection
