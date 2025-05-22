@@ -1,6 +1,6 @@
 @extends('publico.script.publicaciones.historiasscript')
 
-{{-- @section('title')
+@section('title')
 Historia
 @endsection
 @section('links')
@@ -20,7 +20,7 @@ Historia
     <div class="contenedor-gird">
         @if ($historias)
             @foreach ($historias as $key => $historia)
-                
+
                 <div class="card-historia">
                 <div class="card-historia-img" data-bs-toggle="modal" data-bs-target="#modalHistoria{{ $key }}" style="cursor: pointer;">
                     <img src="{{ asset($historia->fotos[0]->imagen) }}" alt="Imagen {{ $key }}">
