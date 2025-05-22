@@ -219,3 +219,75 @@ html {
   font-weight: bold;
   font-size: 2rem;
 }
+
+.card-historia {
+  display: flex;
+  background-color: #000;
+  color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  max-width: 100%;
+  flex-direction: row;
+}
+
+.card-historia:hover {
+  transform: translateY(-5px);
+}
+
+.card-historia-img {
+  flex: 1;
+  overflow: hidden;
+}
+
+.card-historia-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-historia-body {
+  flex: 2;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #002868;
+}
+
+.card-historia-body .categoria {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  color: #ccc;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.card-historia-body .titulo-historia {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.card-historia-body .descripcion {
+  color: #aaa;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.card-historia-body .leer-mas {
+  font-weight: bold;
+  color: #ffc107;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.card-historia-body .leer-mas:hover {
+  color: #fff;
+}

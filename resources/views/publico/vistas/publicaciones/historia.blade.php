@@ -16,15 +16,19 @@ Historia
     <div class="contenedor-gird">
         @if ($historias)
             @foreach ($historias as $key => $historia)
-                <div class="item">
-                    <a data-bs-toggle="modal" data-bs-target="#modalHistoria{{ $key }}" style="cursor: pointer;">
-                        <img src="{{ asset($historia->fotos[0]->imagen) }}" alt="Imagen {{ $key }}">
-                    </a>
-                    <a data-bs-toggle="modal" data-bs-target="#modalHistoria{{ $key }}" style="cursor: pointer;">
-                        {{ $historia->titulo }}
-                    </a>
-                    <p>{{ \Carbon\Carbon::parse($historia->fechainicial)->format('d/m/Y') }}</p>
+                
+                <div class="card-historia">
+                <div class="card-historia-img" data-bs-toggle="modal" data-bs-target="#modalHistoria{{ $key }}" style="cursor: pointer;">
+                    <img src="{{ asset($historia->fotos[0]->imagen) }}" alt="Imagen {{ $key }}">
                 </div>
+                <div class="card-historia-body">
+                    <p class="categoria">Historia</p>
+                    <h3 class="titulo-historia">{{ $historia->titulo }}</h3>
+                    <p class="descripcion">Publicado el {{ \Carbon\Carbon::parse($historia->fechainicial)->format('d \\d\\e F \\d\\e Y') }}</p>
+                    <a data-bs-toggle="modal" data-bs-target="#modalHistoria{{ $key }}" class="leer-mas">Leer más <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+
             @endforeach
         @endif
     </div>
