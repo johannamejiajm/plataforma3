@@ -66,8 +66,14 @@ class PublicacionesController extends Controller
         // if (!Auth::user()->can('manage_publicaciones')) {
         //     abort(403, 'No tienes permiso.');
         // }
+
+
         $publicaciones = Publicaciones::where('estado', '3')->get();
         return view('admin.vistas.publicaciones.historias.index');
+
+
+
+
     }
     public function indexAdminEventos(Request $request)
     {
@@ -80,38 +86,45 @@ class PublicacionesController extends Controller
 
     public function indexpublicacionespublico()
     {
-        $publicaciones = Publicaciones::where('estado', '1')->get();
-        // dd($publicaciones[2]->fotos[0]->imagen);
+            $publicaciones = Publicaciones::where('estado', '1')
+            ->whereIn('idtipo', [1, 2]) // Reemplaza 'tipo_id' con el nombre correcto
+            ->with(['fotos', 'tipo'])
+            ->get();
+
         return view('publico.vistas.publicaciones.publicaciones', compact('publicaciones'));
     }
 
     public function indexinicio()
     {
-        $publicaciones = Publicaciones::latest()->where('idtipo', operator: 2)->take(3)->get();
-        $publicacionfotos = Publicacionfotos::latest()->where('idpublicaciones', 2)->take(3)->get();
+        // Publicaciones por tipo
+        $noticias = Publicaciones::where('idtipo', 1)->latest()->take(3)->with('fotos')->get(); // tipo 1: noticias
+        $eventos = Publicaciones::where('idtipo', 2)->latest()->take(3)->with('fotos')->get();  // tipo 2: eventos
+        $historias = Publicaciones::where('idtipo', 3)->latest()->take(3)->with('fotos')->get(); // tipo 3: historia
 
-        $noticias = Publicaciones::latest()->where('idtipo', operator: 1)->take(3)->get();
-        $fotosnoticias = Publicacionfotos::latest()->where('idpublicaciones', 1)->take(3)->get();
-
-        $eventos = Publicaciones::latest()->where('idtipo', operator: 3)->take(3)->get();
-        $fotoseventos = Publicacionfotos::latest()->where('idpublicaciones', 3)->take(3)->get();
-
-
+        // Todas las publicaciones (si es necesario)
         $inicio = Publicaciones::all();
-        return view('publico.vistas.publicaciones.inicio', compact('inicio','publicaciones', 'noticias', 'eventos'));
+
+        return view('publico.vistas.publicaciones.inicio', compact('inicio', 'noticias', 'eventos', 'historias'));
     }
 
     public function indexhistoria()
     {
+    $historias = Publicaciones::where('estado', '1')
+                ->where('idtipo', 3)
+                ->with('fotos') // asegura que las fotos se cargan
+                ->latest()
+                ->paginate(9);
 
-        $historias = Publicaciones::with(['fotos', 'tipo'])->where('idtipo', 3)->where('estado', 1)->get();
-        // dd($historia);
         return view('publico.vistas.publicaciones.historia', compact('historias'));
 
     }
     public function indexpublicaciones()
     {
-        $publicaciones = Publicaciones::all();
+        $publicaciones = Publicaciones::where('estado', '1')
+                ->where('idtipo', 3)
+                ->with('fotos') // asegura que las fotos se cargan
+                ->latest()
+                ->paginate(9);
         return view('publico/vistas/publicaciones/publicaciones', compact('publicaciones'));
     }
 
@@ -126,7 +139,11 @@ class PublicacionesController extends Controller
 
    public function indexevento($id)
     {
-        $evento = Publicaciones::with(['fotos', 'tipo'])->findOrFail($id);
+        $evento = Publicaciones::with(['fotos', 'tipo'])->where('idtipo', 2)->where('estado', 1)->get()->findOrFail($id);
+
+        // dd($evento);
+
+
         return view('publico.vistas.publicaciones.detalleevento', compact('evento'));
     }
 
@@ -180,7 +197,6 @@ class PublicacionesController extends Controller
             'titulo' => $request->titulo,
             'contenido' => $request->contenido,
             'idtipo' => $request->idtipo,
-
             'iduser' => auth()->user()->id,
             'fechainicial' => $request->fechainicial,
             'fechafinal' => $request->fechafinal,

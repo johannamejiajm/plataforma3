@@ -19,7 +19,6 @@
           <span class="hide-menu">Panel Control</span>
         </a>
       </li>
-
       <li class="sidebar-item">
         <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)" aria-expanded="false">
           <div class="d-flex align-items-center gap-3">
@@ -28,25 +27,24 @@
             </span>
             <span class="hide-menu">Publicaciones</span>
           </div>
-
         </a>
         <ul aria-expanded="false" class="collapse first-level">
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('publicacionesadmin.eventos') }}" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('publicacionesadmin.eventos') }}" aria-expanded="false" id="eventoPublicacionesLink">
               <i class="ti ti-circle"></i>
               <span class="hide-menu">Eventos</span>
             </a>
           </li>
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('publicacionesadmin.historias') }}" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('publicacionesadmin.historias') }}" aria-expanded="false" id="historiaPublicacionesLink">
               <i class="ti ti-circle"></i>
               <span class="hide-menu">Historias</span>
             </a>
           </li>
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('publicacionesadmin.noticias') }}" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('publicacionesadmin.noticias') }}" aria-expanded="false" id="noticiaPublicacionesLink">
               <i class="ti ti-circle"></i>
               <span class="hide-menu">Noticias</span>
             </a>
@@ -54,40 +52,40 @@
         </ul>
       </li>
       <li class="sidebar-item">
-        <a class="sidebar-link" href="{{ route('artistas.index') }}" aria-expanded="false">
+        <a class="sidebar-link" href="{{ route('artistas.index') }}" aria-expanded="false" id="linkArtistas">
           <i class="fa-solid fa-palette fa-xl"></i>
           <span class="hide-menu">Artistas</span>
         </a>
       </li>
       <li class="sidebar-item">
-        <a class="sidebar-link" href="{{ route('eventos.index') }}" aria-expanded="false">
+        <a class="sidebar-link" href="{{ route('eventos.index') }}" aria-expanded="false" id="linkEventos">
           <i class="fa-solid fa-calendar-check fa-xl"></i>
           <span class="hide-menu">Eventos</span>
         </a>
       </li>
 
       <li class="sidebar-item">
-        <a class="sidebar-link" href="{{ route('donaciones.index') }}" aria-expanded="false">
+        <a class="sidebar-link" href="{{ route('donaciones.index') }}" aria-expanded="false" id="linkDonaciones">
           <i class="fa-solid fa-hand-holding-dollar fa-xl"></i>
           <span class="hide-menu">Donaciones</span>
         </a>
       </li>
       {{-- @can('manage_contactos') --}}
       <li class="sidebar-item">
-        <a class="sidebar-link" href="{{ route('quienessomos.indexadmin') }}" aria-expanded="false">
+        <a class="sidebar-link" href="{{ route('quienessomos.indexadmin') }}" aria-expanded="false" id="linkInstitucional">
           <i class="fa-solid fa-address-card fa-xl"></i>
           <span class="hide-menu">Información institucional</span>
         </a>
       </li>
       <li class="sidebar-item">
-        <a class="sidebar-link" href="{{ route('admin.contactos') }}" aria-expanded="false">
+        <a class="sidebar-link" href="{{ route('admin.contactos') }}" aria-expanded="false" id="linkContactos">
           <i class="fa-solid fa-address-card fa-xl"></i>
           <span class="hide-menu">Contactos</span>
         </a>
       </li>
       {{-- @endcan --}}
       <li class="sidebar-item">
-        <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)" aria-expanded="false">
+        <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)" aria-expanded="false" >
           <div class="d-flex align-items-center gap-3">
             <span class="d-flex">
               <i class="fa-solid fa-shield-halved fa-xl"></i>
@@ -98,7 +96,7 @@
         <ul aria-expanded="false" class="collapse first-level">
           {{-- @can('manage_users') --}}
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('usuarios.index') }}" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('usuarios.index') }}" aria-expanded="false" id="usuariosLink">
               <i class="ti ti-circle"></i>
               <span class="hide-menu">Usuarios</span>
             </a>
@@ -106,7 +104,7 @@
           {{-- @endcan --}}
           {{-- @can('manage_roles') --}}
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('roles.index') }}" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('roles.index') }}" aria-expanded="false" id="rolesLink">
               <i class="ti ti-circle"></i>
               <span class="hide-menu">Roles</span>
             </a>
@@ -114,7 +112,7 @@
           {{-- @endcan
           @can('manage_permisos') --}}
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('permisos.index') }}" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('permisos.index') }}" aria-expanded="false" id="permisosLink">
               <i class="ti ti-circle"></i>
               <span class="hide-menu">Permisos</span>
             </a>

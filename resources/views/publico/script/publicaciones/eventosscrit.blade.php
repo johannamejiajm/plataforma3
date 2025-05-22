@@ -1,20 +1,9 @@
-{{-- <!-- Script para miniaturas activas -->
+
+@extends('publico.plantilla.plantilla')
+@section('script')
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const thumbnails = document.querySelectorAll('.thumbnail-img');
-
-        thumbnails.forEach(thumb => {
-            thumb.addEventListener('click', () => {
-                thumbnails.forEach(t => t.classList.remove('active-thumbnail'));
-                thumb.classList.add('active-thumbnail');
-            });
-        });
-    });
-</script>
-@endsection --}}
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
+        $('#eventos').addClass('active');
         const mainImage = document.querySelector('.main-carousel-img');
         const thumbnails = document.querySelectorAll('.thumbnail-img');
 
@@ -30,4 +19,4 @@
         });
     });
 </script>
-
+@endsection

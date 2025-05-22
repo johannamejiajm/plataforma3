@@ -33,7 +33,7 @@ $(function () {
 
   // Do something with the matching element
   if(elements){
-    elements.classList.add("active");
+    // elements.classList.add("active");
   }
 
   document

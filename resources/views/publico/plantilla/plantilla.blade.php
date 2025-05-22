@@ -20,6 +20,14 @@
   <!-- Owl Carousel  -->
   <link rel="stylesheet" href="{{ asset('assets/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+        .subtitulo-amarillo {
+        color: #ffc107; /* Amarillo vibrante */
+        font-style: italic;
+        font-weight: bold;
+        font-size: 2rem;
+        }
+    </style>
   @yield('links')
 </head>
 
@@ -46,32 +54,32 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 gap-xl-7 gap-8 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('inicio.index') }}">Inicio</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('inicio.index') }}" id="inicio">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('quienessomos.index') }}">Quienes somos</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('quienessomos.index') }}" id="quienesSomos">Quienes somos</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary d-flex gap-2" href="{{ route('historia.index') }}">Historia
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary d-flex gap-2" href="{{ route('historia.index') }}" id="historia">Historia
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('publicaciones.indexpublicacionespublico') }}">Publicaciones</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('publicaciones.indexpublicacionespublico') }}" id="publicaciones">Publicaciones</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('publica.eventos.index') }}">Eventos</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('publica.eventos.index') }}" id="eventos">Eventos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('artistas.create') }}">Inscripciones</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('artistas.create') }}" id="inscripcion">Inscripciones</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('artistas.activos') }}">Artistas</a>
+            <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('artistas.activos') }}" id="artistas">Artistas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('donacionesindex.index') }}">Donaciones</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('donacionesindex.index') }}" id="donaciones">Donaciones</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('contantos.indexcontactos') }}">Contacto</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('contantos.indexcontactos') }}" id="contactos">Contacto</a>
             </li>
           </ul>
           <div>

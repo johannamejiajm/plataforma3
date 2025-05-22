@@ -7,7 +7,7 @@
 @section('tituloheader')
     <div class="hero-title">
         <h1 class="hero-title">FUNDACIÓN PACHO'S CLUB</h1>
-        <p class="subtitulo-amarillo">"Construyendo Sueños, inspirando vidas."</p>
+        <p class="subtitulo-amarillo">"Construyendo Sueños, inspirando vidas"</p>
     </div>
 @endsection
 
@@ -111,65 +111,71 @@
 
 
     <div class="container my-4">
-        <h2 class="mb-4">HISTORIAS</h2>
-        <div class="row">
-            @foreach ($publicaciones as $publicacion)
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        @if ($publicacion->fotos->isNotEmpty())
-                            <img src="{{ $publicacion->fotos->first()->imagen }}" class="card-img-top"
-                                alt="Imagen de {{ $publicacion->titulo }}">
-                        @endif
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $publicacion->titulo }}</h5>
-                        </div>
+    <h2 class="mb-4">HISTORIAS</h2>
+    <div class="row">
+        @foreach ($historias as $historia)
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    @if ($historia->fotos->isNotEmpty())
+                        <img src="{{ asset($historia->fotos->first()->imagen) }}" class="card-img-top"
+                             alt="Imagen de {{ $historia->titulo }}">
+                    @endif
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $historia->titulo }}</h5>
                     </div>
                 </div>
-            @endforeach
-            <a href="{{ route('historia.index') }}" class="btn btn-outline-primary mt-2">Ver todas las noticias</a>
+            </div>
+        @endforeach
+        <div class="col-12 text-center">
+            <a href="{{ route('historia.index') }}" class="btn btn-outline-primary mt-2">Ver todas las historias</a>
         </div>
     </div>
+</div>
 
-    <div class="container my-4">
-        <h2 class="mb-4">PUBLICACIONES</h2>
-        <div class="row">
-            @foreach ($noticias as $noticia)
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        @if ($noticia->fotos->isNotEmpty())
-                            <img src="{{ $noticia->fotos->first()->imagen }}" class="card-img-top"
-                                alt="Imagen de {{ $noticia->titulo }}">
-                        @endif
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $noticia->titulo }}</h5>
-                        </div>
+<div class="container my-4">
+    <h2 class="mb-4">NOTICIAS</h2>
+    <div class="row">
+        @foreach ($noticias as $noticia)
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    @if ($noticia->fotos->isNotEmpty())
+                        <img src="{{ asset($noticia->fotos->first()->imagen) }}" class="card-img-top"
+                             alt="Imagen de {{ $noticia->titulo }}">
+                    @endif
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $noticia->titulo }}</h5>
                     </div>
                 </div>
-            @endforeach
-            <a href="{{ route('publicaciones.indexpublicacionespublico') }}" class="btn btn-outline-primary mt-2">Ver
-                todas las publicaciones</a>
+            </div>
+        @endforeach
+        <div class="col-12 text-center">
+            <a href="{{ route('publicaciones.indexpublicacionespublico') }}" class="btn btn-outline-primary mt-2">Ver todas las noticias</a>
         </div>
     </div>
+</div>
 
-    <div class="container my-4">
-        <h2 class="mb-4">EVENTOS</h2>
-        <div class="row">
-            @foreach ($eventos as $evento)
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        @if ($evento->fotos->isNotEmpty())
-                            <img src="{{ $evento->fotos->first()->imagen }}" class="card-img-top"
-                                alt="Imagen de {{ $evento->titulo }}">
-                        @endif
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $evento->titulo }}</h5>
-                        </div>
+<div class="container my-4">
+    <h2 class="mb-4">EVENTOS</h2>
+    <div class="row">
+        @foreach ($eventos as $evento)
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    @if ($evento->fotos->isNotEmpty())
+                        <img src="{{ asset($evento->fotos->first()->imagen) }}" class="card-img-top"
+                             alt="Imagen de {{ $evento->titulo }}">
+                    @endif
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $evento->titulo }}</h5>
                     </div>
                 </div>
-            @endforeach
+            </div>
+        @endforeach
+        <div class="col-12 text-center">
             <a href="{{ route('publica.eventos.index') }}" class="btn btn-outline-primary mt-2">Ver todos los eventos</a>
         </div>
     </div>
+</div>
+
 
 
 
@@ -202,4 +208,9 @@
 
 @section('script')
     <script src="{{ asset('js/inicio.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#inicio').addClass('active');
+        });
+    </script>
 @endsection

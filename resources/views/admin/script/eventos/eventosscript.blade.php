@@ -2,6 +2,7 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
+        $('#linkEventos').addClass('active');
         let tablaEventos = new DataTable('#tablaeventos', {
             responsive: true
         });

@@ -1,5 +1,13 @@
 @extends('publico.script.publicaciones.publicacionesscript')
 
+@section('tituloheader')
+FUNDACION PACHO'S CLUB
+@endsection
+
+@section('subtituloheader')
+<p class="subtitulo-amarillo">"EXPERIENCIAS QUE INSPIRAN"</p>
+@endsection
+
 @section('titulo')
     <title>Publicaciones</title>
 @endsection

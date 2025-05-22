@@ -1,11 +1,11 @@
-@extends('publico.plantilla.plantilla')
+@extends('publico.script.artistas.artistasscript')
 
 @section('tituloheader')
 FUNDACION PACHO'S CLUB
 @endsection
 
 @section('subtituloheader')
-ARTISTAS INSCRITOS
+<p class="subtitulo-amarillo">"QUIENES HAN COMPARTIDO SU TALENTO CON NOSOTROS"</p>
 @endsection
 
 @section('links')
