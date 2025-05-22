@@ -13,9 +13,9 @@ body {
 /* Tarjetas de publicaciones */
 .publicacion-preview {
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     background-color: #ffffff;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.5s, box-shadow 0.5s;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -89,14 +89,27 @@ body {
 }
 
 /* Tipo de publicación */
+.tipo-eventos {
+    background-color: #E63946; /* rojo */
+    color: #ffffff;
+}
+
+.tipo-historia {
+    background-color: #f5f1e3; /* blanco hueso */
+    color: #333333;
+}
+
+.tipo-noticias {
+    background-color: #1D3557; /* azul profundo */
+    color: #ffffff;
+}
+
 .preview-tipo {
     display: inline-block;
     padding: 0.2rem 0.6rem;
     border-radius: 50px;
     font-size: 0.75rem;
     font-weight: 600;
-    background-color: #E63946; /* rojo para destacar */
-    color: #ffffff;
     text-transform: uppercase;
 }
 
