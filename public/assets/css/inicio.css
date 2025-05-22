@@ -123,6 +123,11 @@ body {
   box-shadow: 0 6px 12px var(--sombra);
 }
 
+.custom-icon i {
+  font-size: 2rem;
+  color: #6c757d; /* Cambia a tu color deseado */
+}
+
 /* Tarjetas */
 .card {
   background: linear-gradient(145deg, var(--blanco), #f3f3f3);
