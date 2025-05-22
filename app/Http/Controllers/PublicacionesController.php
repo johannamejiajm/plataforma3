@@ -66,8 +66,14 @@ class PublicacionesController extends Controller
         // if (!Auth::user()->can('manage_publicaciones')) {
         //     abort(403, 'No tienes permiso.');
         // }
+
+
         $publicaciones = Publicaciones::where('estado', '3')->get();
         return view('admin.vistas.publicaciones.historias.index');
+
+
+
+
     }
     public function indexAdminEventos(Request $request)
     {
@@ -133,7 +139,11 @@ class PublicacionesController extends Controller
 
    public function indexevento($id)
     {
-        $evento = Publicaciones::with(['fotos', 'tipo'])->findOrFail($id);
+        $evento = Publicaciones::with(['fotos', 'tipo'])->where('idtipo', 2)->where('estado', 1)->get()->findOrFail($id);
+
+        // dd($evento);
+
+
         return view('publico.vistas.publicaciones.detalleevento', compact('evento'));
     }
 
@@ -187,7 +197,6 @@ class PublicacionesController extends Controller
             'titulo' => $request->titulo,
             'contenido' => $request->contenido,
             'idtipo' => $request->idtipo,
-
             'iduser' => auth()->user()->id,
             'fechainicial' => $request->fechainicial,
             'fechafinal' => $request->fechafinal,

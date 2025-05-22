@@ -43,7 +43,7 @@ Route::middleware(['auth'])->group(function () {
 
      //Rutas publicar historias
     Route::get('/admin/historias', [PublicacionesController::class,'indexAdminHistorias'])->name('publicacionesadmin.historias');
-    
+
     Route::post('/admin/historias', [PublicacionesController::class,'store'])->name('publicaciones.store');
     Route::get('/admin/historias/{id}', [PublicacionesController::class,'show'])->name('publicaciones.show');
     Route::get('/admin/historias/{id}/edit', [PublicacionesController::class,'edit'])->name('publicaciones.edit');
@@ -75,7 +75,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
     Route::get('/admin/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
     Route::put('/admin/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');
-    
+
     //Rutas contactos
     Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos');
     Route::post('/admin/contactos', [ContactosController::class, 'actualizarContactos'])->name('contactos.actualizarcontactos');

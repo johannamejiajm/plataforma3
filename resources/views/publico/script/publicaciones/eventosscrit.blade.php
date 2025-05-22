@@ -1,3 +1,4 @@
+
 @extends('publico.plantilla.plantilla')
 @section('script')
 <script>
