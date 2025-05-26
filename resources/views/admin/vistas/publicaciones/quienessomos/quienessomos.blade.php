@@ -15,7 +15,7 @@
 
             <!-- Botón de Agregar -->
             <div class="col-12">
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#infoModal">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
                     <i class="ti ti-plus"></i> Nueva Información
                 </button>
             </div>
@@ -41,21 +41,79 @@
     </div>
 
     <!-- MODAL Crear/Editar -->
-    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="infoModalCrear" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content p-4">
-                <form id="infoForm" enctype="multipart/form-data">
+                <form id="crearInfoForm" enctype="multipart/form-data" novalidate>
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="infoModalLabel">Agregar Información</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body row g-3">
+
+                        <div class="col-md-6">
+                            <label for="idtipoAdd" class="form-label">Tipo de Información</label>
+                            <select name="idtipo" id="idtipoAdd" class="form-select" required>
+                                <option value="" disabled selected>Seleccione tipo</option>
+                                @foreach($tipos as $tipo)
+                                <option value="{{ $tipo->id }}">{{ $tipo->tipo }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="fechainicialAdd" class="form-label">Fecha Inicial</label>
+                            <input type="datetime-local" name="fechainicial" id="fechainicialAdd" class="form-control">
+                        </div>
+
+                        <div class="col-12">
+                            <label for="contenidoAdd" class="form-label">Contenido</label>
+                            <textarea class="form-control" name="contenido" id="contenidoAdd" rows="4" ></textarea>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="estadoAdd" class="form-label">Estado</label>
+                            <select name="estado" id="estadoAdd" class="form-select" >
+                                <option value="" disabled selected>--Seleccione--</option>
+                                <option value="0">Inactivo</option>
+                                <option value="1">Activo</option>
+                            </select>
+                            <div class="mt-2" id="fotoPreview"></div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="fotoAdd" class="form-label">Foto (opcional)</label>
+                            <input type="file" name="foto" id="fotoAdd" class="form-control" accept="image/*">
+                            <div class="mt-2" id="fotoPreview"></div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+        <!-- MODAL Editar -->
+    <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="infoModalEditar" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content p-4">
+                <form id="editarInfoForm" enctype="multipart/form-data" novalidate>
                     @csrf
                     <input type="hidden" id="infoId">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="infoModalLabel">Agregar / Editar Información</h5>
+                        <h5 class="modal-title" id="infoModalLabel">Editar Información</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body row g-3">
 
                         <div class="col-md-6">
                             <label for="idtipo" class="form-label">Tipo de Información</label>
-                            <select name="idtipo" id="idtipo" class="form-select" required>
+                            <select name="idtipo" id="idtipo" class="form-select" >
                                 <option value="" disabled selected>Seleccione tipo</option>
                                 @foreach($tipos as $tipo)
                                 <option value="{{ $tipo->id }}">{{ $tipo->tipo }}</option>
@@ -65,18 +123,17 @@
 
                         <div class="col-md-6">
                             <label for="fechainicial" class="form-label">Fecha Inicial</label>
-                            <input type="datetime-local" name="fechainicial" id="fechainicial" class="form-control"
-                                required>
+                            <input type="datetime-local" name="fechainicial" id="fechainicial" class="form-control">
                         </div>
 
                         <div class="col-12">
                             <label for="contenido" class="form-label">Contenido</label>
-                            <textarea class="form-control" name="contenido" id="contenido" rows="4" required></textarea>
+                            <textarea class="form-control" name="contenido" id="contenido" rows="4" ></textarea>
                         </div>
 
                         <div class="col-12">
                             <label for="estado" class="form-label">Estado</label>
-                            <select name="estado" id="estado" class="form-select" required>
+                      <select name="estado" id="estado" class="form-select" >
                                 <option value="" disabled selected>--Seleccione--</option>
                                 <option value="0">Inactivo</option>
                                 <option value="1">Activo</option>
@@ -89,9 +146,13 @@
                             <input type="file" name="foto" id="foto" class="form-control" accept="image/*">
                             <div class="mt-2" id="fotoPreview"></div>
                         </div>
+                          <div class="col-12">
+                            <strong>Foto:</strong>
+                            <div id="detalleFoto" class="mt-2"></div>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Guardar</button>
+                       <button type="submit" class="btn btn-success">Actualizar</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </form>

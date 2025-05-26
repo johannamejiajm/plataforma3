@@ -14,6 +14,8 @@ class InformacioninstitucionalController extends Controller
     public function index(Request $request)
     {
 
+        $informaciones = Informacioninstitucional::all();
+        $tipos = Tipoinformacion::all();
         $url = $request->url(); // O puedes colocar la URL manualmente
 
     // Extraer la parte del nombre (en este caso, 'quienessomos')
@@ -24,7 +26,7 @@ class InformacioninstitucionalController extends Controller
 
         // dd($url_view);
 
-        return view($url_view);
+        return view($url_view, compact('tipos', 'informaciones'));
 
     }
 
@@ -63,10 +65,12 @@ class InformacioninstitucionalController extends Controller
      */
     public function store(Request $request)
     {
-            $validated = $request->validate([
+            $validatedData = $request->validate([
                 'idtipo' => 'required|exists:tipoinformacion,id',
-                'contenido' => 'required|string|max:5000',
-                'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+                'contenido' => 'required|string',
+                'fechainicial' => 'required|date',
+                'estado' => 'required|in:0,1',
+                'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif',
             ]);
 
             $info = new Informacioninstitucional();
@@ -118,18 +122,22 @@ class InformacioninstitucionalController extends Controller
     {
         $info = Informacioninstitucional::findOrFail($id);
 
-        $validated = $request->validate([
-            'idtipo' => 'required|exists:tipoinformacion,id',
-            'contenido' => 'required|string|max:5000',
-            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
-        ]);
+        $validatedData = $request->validate([
+        'idtipo' => 'required|exists:tipoinformacion,id',
+        'contenido' => 'required|string',
+        'fechainicial' => 'required|date',
+        'estado' => 'required|in:0,1',
+        'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+    ]);
 
         $info->idtipo = $request->idtipo;
         $info->contenido = $request->contenido;
+        $info->estado = $request->estado;
+        $info->fechainicial = $request->fechainicial;
 
         if ($request->hasFile('foto')) {
-            $path = $request->file('foto')->store('public/informaciones');
-            $info->foto = basename($path);
+             $path = $request->file('foto')->store('informaciones', 'public');
+            $info->foto = $path;
         }
 
         $info->save();

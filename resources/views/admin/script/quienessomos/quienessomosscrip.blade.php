@@ -29,20 +29,31 @@ $(document).ready(function() {
     });
 
     $('#btnAdd').click(() => {
-        $('#infoId').val('').trigger('change');
-        $('#idtipo').val('').trigger('change');
-        $('#contenido').val('').trigger('change');
-        $('#infoForm')[0].reset();
-        $('#infoModal').modal('show');
+       $('#infoIdAdd').val('');
+        $('#idtipoAdd').val('');
+        $('#contenidoAdd').val('');
+        $('#fechainicialAdd').val('');
+        $('#crearInfoForm')[0].reset();
+        $('#addModal').modal('show');
     });
 
     $('#infoTable').on('click', '.edit', function() {
         let id = $(this).data('id');
+        $('#editarInfoForm')[0].reset();
         $.get(`/admin/quienessomos/edit/${id}`, function(data) {
             $('#infoId').val(data.id).trigger('change');
+            $('#infoId').attr('value', data.id);
             $('#idtipo').val(data.idtipo).trigger('change');
             $('#contenido').val(data.contenido).trigger('change');
-            $('#infoModal').modal('show');
+             $('#fechainicial').val(data.fechainicial).trigger('change');
+                if (data.foto) {
+                    let url = `{{ asset('storage') }}/${data.foto}`;
+                    $('#detalleFoto').html(`<img src="${url}" alt="Imagen" width="300" class="img-fluid border">`);
+                } else {
+                    $('#detalleFoto').html('<em>No hay imagen</em>');
+                }
+            $('#estado').val(data.estado).trigger('change');
+            $('#editarModal').modal('show');
         });
     });
 
@@ -70,10 +81,40 @@ $(document).ready(function() {
     });
 
     $('#infoForm').submit(function(e) {
+        $('#crearInfoForm').submit(function(e) {
+    e.preventDefault();
+    let formData = new FormData(this);
+    $.ajax({
+        url: '{{ route("quienessomos.store") }}',
+        method: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: () => {
+            $('#addModal').modal('hide');
+            table.ajax.reload();
+            Swal.fire('Éxito', 'Registro Actualizado correctamente', 'success');
+        },
+        error: function(xhr) {
+                let errors = xhr.responseJSON.errors;
+                let errorMessages = '';
+                for (const [key, value] of Object.entries(errors)) {
+                    errorMessages += `<p>${value.join(', ')}</p>`;
+                }
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Oops!',
+                    html: errorMessages,
+                    confirmButtonText: 'Aceptar'
+                });
+            }
+    });
+});
+    $('#editarInfoForm').submit(function(e) {
         e.preventDefault();
         let formData = new FormData(this);
         let id = $('#infoId').val();
-        let url = id ? `/admin/quienessomos/update/${id}` : '{{ route("quienessomos.store") }}';
+        let url = `/admin/quienessomos/update/${id}`;
 
         $.ajax({
             url,
@@ -82,9 +123,22 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
             success: () => {
-                $('#infoModal').modal('hide');
+                $('#editarModal').modal('hide');
                 table.ajax.reload();
-                Swal.fire('Éxito', 'Registro guardado correctamente', 'success');
+                  Swal.fire('Éxito', 'Registro Actualizado correctamente', 'success');
+            },
+            error: function(xhr) {
+                let errors = xhr.responseJSON.errors;
+                let errorMessages = '';
+                for (const [key, value] of Object.entries(errors)) {
+                    errorMessages += `<p>${value.join(', ')}</p>`;
+                }
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Oops!',
+                    html: errorMessages,
+                    confirmButtonText: 'Aceptar'
+                });
             }
         });
     });
