@@ -1,19 +1,17 @@
 @extends('publico.script.publicaciones.publicacionesscript')
 
-@section('tituloheader')
-FUNDACION PACHO'S CLUB
-@endsection
-
-@section('subtituloheader')
-<p class="subtitulo-amarillo">"EXPERIENCIAS QUE INSPIRAN"</p>
-@endsection
-
 @section('titulo')
     <title>Publicaciones</title>
 @endsection
 
 @section('links')
     <link rel="stylesheet" href="{{ asset('assets/css/stylespublicidad.css') }}">
+@endsection
+
+@section('tituloprincipal')
+    <div class="container py-4">
+        <h1 class="text-center mb-4">Publicaciones</h1>
+    </div>
 @endsection
 
 @section('contenido')
@@ -39,7 +37,11 @@ FUNDACION PACHO'S CLUB
         <!-- Grid de tarjetas de publicaciones -->
         <div class="row" id="publicaciones-grid">
             @foreach($publicaciones as $publicacion)
-                <div class="col-md-4 col-sm-6 mb-4 publicacion-item" data-id="{{ $publicacion->id }}" data-tipo="{{ $publicacion->tipo_id }}">
+                <div class="col-md-4 col-sm-6 mb-4 publicacion-item" 
+                     data-id="{{ $publicacion->id }}" 
+                     data-tipo="{{ $publicacion->tipo_id }}"
+                     data-autor="{{ optional($publicacion->usuario)->name ?? 'Anónimo' }}"
+                     data-autor-email="{{ optional($publicacion->usuario)->email ?? '' }}">
                     <div class="publicacion-preview" data-toggle="modal" data-target="#modalPublicacion" 
                          data-publicacion-id="{{ $publicacion->id }}">
                         <div class="preview-image-container">
@@ -57,7 +59,12 @@ FUNDACION PACHO'S CLUB
                                 {{ \Illuminate\Support\Str::limit(strip_tags($publicacion->contenido), 120) }}
                             </p>
                             <div class="preview-footer">
-                                <span class="preview-tipo">{{ optional($publicacion->tipo)->tipo ?? 'Sin tipo' }}</span>
+                                @php
+                                    $tipoNombre = strtolower(optional($publicacion->tipo)->tipo);
+                                @endphp
+                                <span class="preview-tipo tipo-{{ $tipoNombre }}">
+                                    {{ optional($publicacion->tipo)->tipo ?? 'Sin tipo' }}
+                                </span>
                                 <span class="preview-fecha">
                                     <i class="fas fa-calendar-alt"></i> 
                                     {{ \Carbon\Carbon::parse($publicacion->fecha)->format('d/m/Y') }}
@@ -103,4 +110,8 @@ FUNDACION PACHO'S CLUB
     <button class="back-to-top" id="btnBackToTop">
         <i class="fas fa-chevron-up"></i>
     </button>
+@endsection
+
+@section('publicacionesscript')
+
 @endsection

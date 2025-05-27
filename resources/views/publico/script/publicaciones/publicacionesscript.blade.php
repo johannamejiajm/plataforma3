@@ -10,13 +10,6 @@
     {{ Js::from(['csrf_token' => csrf_token()]) }}; // Opcional si usas AJAX
 
     document.addEventListener('DOMContentLoaded', function() {
-    const currentUrl = window.location.pathname;
-
-    if (currentUrl.includes('publicaciones')) {
-        $('#publicaciones').addClass('active');
-    } else if (currentUrl.includes('quienessomos')) {
-        $('#quienesSomos').addClass('active');
-    }
     // Cache de las publicaciones cargadas por AJAX
     const publicacionesCache = {};
     
@@ -32,12 +25,16 @@
         const publicacionElement = document.querySelector(`.publicacion-item[data-id="${publicacionId}"]`);
         
         if (publicacionElement) {
-            // Intentar extraer datos básicos del DOM
+            // Extraer datos del DOM incluyendo el autor
             const titulo = publicacionElement.querySelector('.preview-title').textContent;
             const contenido = publicacionElement.querySelector('.preview-excerpt').getAttribute('data-contenido-completo') || 
                              publicacionElement.querySelector('.preview-excerpt').textContent;
             const tipo = publicacionElement.querySelector('.preview-tipo').textContent;
             const fecha = publicacionElement.querySelector('.preview-fecha').textContent.replace(/.*(\d{2}\/\d{2}\/\d{4}).*/, '$1');
+            
+            // AQUÍ ESTÁ LA CORRECCIÓN: Extraer el autor de los atributos data
+            const autor = publicacionElement.getAttribute('data-autor') || 'Anónimo';
+            const autorEmail = publicacionElement.getAttribute('data-autor-email') || '';
             
             // Construir objeto de publicación simplificado
             const publicacion = {
@@ -46,6 +43,10 @@
                 contenido: contenido,
                 tipo: { tipo: tipo },
                 fecha: fecha,
+                usuario: { 
+                    name: autor,
+                    email: autorEmail 
+                },
                 fotos: []
             };
             
@@ -135,6 +136,7 @@
                 publicacion.fotos.forEach((foto, index) => {
                     html += `
                         <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                            <img src="${foto.imagen}" alt="${publicacion.titulo}" class="detalle-imagen d-block w-100">
                         </div>`;
                 });
                 
@@ -178,25 +180,25 @@
     
     // Función auxiliar para formatear la fecha
     function formatearFecha(fechaStr) {
-    try {
-        // Intentar varios formatos de fecha comunes
-        let fecha;
-        
-        // Si el formato es dd/mm/yyyy (como "15/04/2023")
-        if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(fechaStr)) {
-            const parts = fechaStr.split('/');
-            fecha = new Date(parts[2], parts[1] - 1, parts[0]);
-        } 
-        // Si el formato es ISO o similar (2023-04-15)
-        else {
-            fecha = new Date(fechaStr);
-        }
-        
-        // Verificar si la fecha es válida
-        if (isNaN(fecha.getTime())) {
-            return fechaStr; // Devolver el string original si no se pudo parsear
-        }
-        
+        try {
+            // Intentar varios formatos de fecha comunes
+            let fecha;
+            
+            // Si el formato es dd/mm/yyyy (como "15/04/2023")
+            if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(fechaStr)) {
+                const parts = fechaStr.split('/');
+                fecha = new Date(parts[2], parts[1] - 1, parts[0]);
+            } 
+            // Si el formato es ISO o similar (2023-04-15)
+            else {
+                fecha = new Date(fechaStr);
+            }
+            
+            // Verificar si la fecha es válida
+            if (isNaN(fecha.getTime())) {
+                return fechaStr; // Devolver el string original si no se pudo parsear
+            }
+            
             return fecha.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
         } catch (error) {
             console.error("Error al formatear fecha:", error);
@@ -275,5 +277,4 @@
         }
     };
 });
-
 </script>

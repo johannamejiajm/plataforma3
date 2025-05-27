@@ -13,9 +13,9 @@ body {
 /* Tarjetas de publicaciones */
 .publicacion-preview {
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     background-color: #ffffff;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.5s, box-shadow 0.5s;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -62,7 +62,7 @@ body {
     margin-bottom: 0.75rem;
     color: #1D3557; /* azul profundo para títulos */
     line-height: 1.4;
-
+    
 }
 
 /* Extracto */
@@ -89,14 +89,27 @@ body {
 }
 
 /* Tipo de publicación */
+.tipo-eventos {
+    background-color: #E63946; /* rojo */
+    color: #ffffff;
+}
+
+.tipo-historia {
+    background-color: #f5f1e3; /* blanco hueso */
+    color: #333333;
+}
+
+.tipo-noticias {
+    background-color: #1D3557; /* azul profundo */
+    color: #ffffff;
+}
+
 .preview-tipo {
     display: inline-block;
     padding: 0.2rem 0.6rem;
     border-radius: 50px;
     font-size: 0.75rem;
     font-weight: 600;
-    background-color: #E63946; /* rojo para destacar */
-    color: #ffffff;
     text-transform: uppercase;
 }
 
@@ -124,7 +137,7 @@ body {
     color: #fff;
     padding: 1.5rem;
     border-bottom: none;
-
+    
 }
 
 .modal-title {
@@ -182,7 +195,7 @@ body {
 .detalle-metadato-item i {
     margin-right: 0.5rem;
     color: #0e1fb3; /* azul para iconos */
-
+    
 }
 
 .detalle-metadato-label {
@@ -252,13 +265,4 @@ body {
     .detalle-metadatos {
         padding: 1rem;
     }
-}
-#publicaciones-grid {
-    gap: 1.5rem;
-}
-
-.publicacion-item-wrapper {
-    flex: 0 0 auto; /* evita que se estire */
-    width: 360px; /* mantiene el tamaño fijo de la tarjeta */
-    margin-bottom: 1.5rem;
 }
