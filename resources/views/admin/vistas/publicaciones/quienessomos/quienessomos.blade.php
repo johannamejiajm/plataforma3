@@ -1,162 +1,97 @@
 @extends('admin.script.quienessomos.quienessomosscrip')
 @section('title', 'Administración de Quiénes Somos')
 @section('css')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
 @endsection
 
 @section('content')
-<div class="body-wrapper-inner">
-    <div class="container-fluid">
-        <!-- Encabezado -->
-        <div class="row">
-            <div class="col-12 p-3">
-                <h1 class="text-center">Información Institucional</h1>
-            </div>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '¡Éxito!',
+                text: '{{ session('success') }}',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Aceptar'
+            });
+        </script>
+    @endif
+    <div class="body-wrapper-inner">
+        <div class="container-fluid">
+            <!-- Encabezado -->
+            <div class="row">
+                <div class="col-12 p-3">
+                    <h1 class="text-center">Información Institucional</h1>
+                </div>
 
-            <!-- Botón de Agregar -->
-            <div class="col-12">
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
-                    <i class="ti ti-plus"></i> Nueva Información
-                </button>
-            </div>
-            <div class="table-responsive mt-4">
-                <table class="table table-striped table-bordered w-100" id="infoTable">
-                    <thead>
-                        <tr class="text-center text-muted">
-                            <th>ID</th>
-                            <th>Tipo</th>
-                            <th>Contenido</th>
-                            <th>Foto</th>
-                            <th>Fecha Inicial</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Cargado vía AJAX -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+                <div class="accordion mt-4" id="infoAccordion">
 
-    <!-- MODAL Crear/Editar -->
-     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="infoModalCrear" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content p-4">
-                <form id="crearInfoForm" enctype="multipart/form-data" novalidate>
-                    @csrf
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="infoModalLabel">Agregar Información</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                    </div>
-                    <div class="modal-body row g-3">
+                    @foreach (['quienes_somos' => 'Quiénes Somos', 'mision' => 'Misión', 'vision' => 'Visión', 'valores' => 'Valores'] as $clave => $titulo)
+                        @php
+                            $item = $informaciones->firstWhere('tipo.tipo', $titulo);
+                        @endphp
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading-{{ $clave }}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse-{{ $clave }}" aria-expanded="false"
+                                    aria-controls="collapse-{{ $clave }}">
+                                    {{ $titulo }}
+                                </button>
+                            </h2>
+                            <div id="collapse-{{ $clave }}" class="accordion-collapse collapse"
+                                aria-labelledby="heading-{{ $clave }}" data-bs-parent="#infoAccordion">
+                                <div class="accordion-body">
 
-                        <div class="col-md-6">
-                            <label for="idtipoAdd" class="form-label">Tipo de Información</label>
-                            <select name="idtipo" id="idtipoAdd" class="form-select" required>
-                                <option value="" disabled selected>Seleccione tipo</option>
-                                @foreach($tipos as $tipo)
-                                <option value="{{ $tipo->id }}">{{ $tipo->tipo }}</option>
-                                @endforeach
-                            </select>
+                                    @if ($item)
+
+                                        <form action="{{ route('quienessomos.update', $item->id) }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            @method('PUT')
+                                             <input type="text" name="idtipo" id="idtipo" value="{{$item->idtipo}}" hidden>
+
+                                            <!-- Contenido -->
+                                            <div class="mb-3">
+                                                <label class="form-label">Contenido</label>
+                                                <textarea name="contenido" rows="4" class="form-control">{{ $item->contenido }}</textarea>
+                                            </div>
+
+                                            <!-- Foto actual -->
+                                            @if ($item->foto)
+                                                <div class="mb-3">
+                                                    <label class="form-label">Foto actual:</label><br>
+                                                    <img src="{{ asset('storage/' . $item->foto) }}" class="img-thumbnail"
+                                                        style="max-width: 200px;">
+                                                </div>
+                                            @endif
+
+                                            <!-- Cambiar foto -->
+                                            <div class="mb-3">
+                                                <label class="form-label">Cambiar Foto (opcional)</label>
+                                                <input type="file" name="foto" class="form-control" accept="image/*">
+                                            </div>
+
+                                            <!-- Botón Guardar -->
+                                            <div class="d-grid">
+                                                <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                                            </div>
+
+                                        </form>
+                                    @else
+                                        <div class="alert alert-warning">
+                                            No se encontró información para <strong>{{ $titulo }}</strong>.
+                                        </div>
+                                    @endif
+
+                                </div>
+                            </div>
                         </div>
+                    @endforeach
 
-                        <div class="col-md-6">
-                            <label for="fechainicialAdd" class="form-label">Fecha Inicial</label>
-                            <input type="datetime-local" name="fechainicial" id="fechainicialAdd" class="form-control">
-                        </div>
+                </div>
 
-                        <div class="col-12">
-                            <label for="contenidoAdd" class="form-label">Contenido</label>
-                            <textarea class="form-control" name="contenido" id="contenidoAdd" rows="4" ></textarea>
-                        </div>
 
-                        <div class="col-12">
-                            <label for="estadoAdd" class="form-label">Estado</label>
-                            <select name="estado" id="estadoAdd" class="form-select" >
-                                <option value="" disabled selected>--Seleccione--</option>
-                                <option value="0">Inactivo</option>
-                                <option value="1">Activo</option>
-                            </select>
-                            <div class="mt-2" id="fotoPreview"></div>
-                        </div>
-
-                        <div class="col-12">
-                            <label for="fotoAdd" class="form-label">Foto (opcional)</label>
-                            <input type="file" name="foto" id="fotoAdd" class="form-control" accept="image/*">
-                            <div class="mt-2" id="fotoPreview"></div>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Guardar</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
-
-        <!-- MODAL Editar -->
-    <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="infoModalEditar" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content p-4">
-                <form id="editarInfoForm" enctype="multipart/form-data" novalidate>
-                    @csrf
-                    <input type="hidden" id="infoId">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="infoModalLabel">Editar Información</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                    </div>
-                    <div class="modal-body row g-3">
-
-                        <div class="col-md-6">
-                            <label for="idtipo" class="form-label">Tipo de Información</label>
-                            <select name="idtipo" id="idtipo" class="form-select" >
-                                <option value="" disabled selected>Seleccione tipo</option>
-                                @foreach($tipos as $tipo)
-                                <option value="{{ $tipo->id }}">{{ $tipo->tipo }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="fechainicial" class="form-label">Fecha Inicial</label>
-                            <input type="datetime-local" name="fechainicial" id="fechainicial" class="form-control">
-                        </div>
-
-                        <div class="col-12">
-                            <label for="contenido" class="form-label">Contenido</label>
-                            <textarea class="form-control" name="contenido" id="contenido" rows="4" ></textarea>
-                        </div>
-
-                        <div class="col-12">
-                            <label for="estado" class="form-label">Estado</label>
-                      <select name="estado" id="estado" class="form-select" >
-                                <option value="" disabled selected>--Seleccione--</option>
-                                <option value="0">Inactivo</option>
-                                <option value="1">Activo</option>
-                            </select>
-                            <div class="mt-2" id="fotoPreview"></div>
-                        </div>
-
-                        <div class="col-12">
-                            <label for="foto" class="form-label">Foto (opcional)</label>
-                            <input type="file" name="foto" id="foto" class="form-control" accept="image/*">
-                            <div class="mt-2" id="fotoPreview"></div>
-                        </div>
-                          <div class="col-12">
-                            <strong>Foto:</strong>
-                            <div id="detalleFoto" class="mt-2"></div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                       <button type="submit" class="btn btn-success">Actualizar</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    @endsection
+@endsection

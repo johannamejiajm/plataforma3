@@ -21,7 +21,7 @@ FUNDACION PACHO'S CLUB
 @section('contenido')
   @foreach ($informaciones as $informacion)
         <div class="container">
-           <h1>{{ $informacion->idtipo}}</h1>
+           <h1>{{ $informacion->tipo->tipo}}</h1>
             <p>
                 {{ $informacion->contenido}}
             </p>

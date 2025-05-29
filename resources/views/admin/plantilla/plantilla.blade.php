@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="//cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap.min.css" />
-  
   @yield('links')
 </head>
 
@@ -100,14 +99,14 @@
               </a>
             </li>
             </li>
-          
+
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ route('donaciones.index') }}" aria-expanded="false">
                 <i class="ti ti-atom"></i>
                 <span class="hide-menu">Donaciones</span>
               </a>
             </li>
-      
+
              <li class="sidebar-item">
               <a class="sidebar-link" href="{{ route('admin.contactos') }}" aria-expanded="false">
                 <i class="ti ti-atom"></i>

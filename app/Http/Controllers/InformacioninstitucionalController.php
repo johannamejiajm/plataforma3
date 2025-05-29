@@ -14,7 +14,7 @@ class InformacioninstitucionalController extends Controller
     public function index(Request $request)
     {
 
-        $informaciones = Informacioninstitucional::all();
+        $informaciones = Informacioninstitucional::with('tipo')->get();
         $tipos = Tipoinformacion::all();
         $url = $request->url(); // O puedes colocar la URL manualmente
 
@@ -31,8 +31,9 @@ class InformacioninstitucionalController extends Controller
     }
 
     public function indexadminquienessomos(){
+          $informaciones = Informacioninstitucional::with('tipo')->get();
           $tipos = Tipoinformacion::all();
-        return view('admin.vistas.publicaciones.quienessomos.quienessomos', compact('tipos'));
+        return view('admin.vistas.publicaciones.quienessomos.quienessomos', compact('tipos', 'informaciones'));
     }
 
     public function list()
@@ -65,6 +66,7 @@ class InformacioninstitucionalController extends Controller
      */
     public function store(Request $request)
     {
+
             $validatedData = $request->validate([
                 'idtipo' => 'required|exists:tipoinformacion,id',
                 'contenido' => 'required|string',
@@ -76,7 +78,7 @@ class InformacioninstitucionalController extends Controller
             $info = new Informacioninstitucional();
             $info->idtipo = $request->idtipo;
             $info->contenido = $request->contenido;
-            $info->fechainicial = now();
+            $info->fechainicial = $request->fechainicial;
             $info->estado = $request->estado;
 
            if ($request->hasFile('foto')) {
@@ -120,21 +122,16 @@ class InformacioninstitucionalController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $info = Informacioninstitucional::findOrFail($id);
 
         $validatedData = $request->validate([
-        'idtipo' => 'required|exists:tipoinformacion,id',
-        'contenido' => 'required|string',
-        'fechainicial' => 'required|date',
-        'estado' => 'required|in:0,1',
-        'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-    ]);
+            'idtipo' => 'required|exists:tipoinformacion,id',
+            'contenido' => 'required|string'
+        ]);
 
         $info->idtipo = $request->idtipo;
         $info->contenido = $request->contenido;
-        $info->estado = $request->estado;
-        $info->fechainicial = $request->fechainicial;
-
         if ($request->hasFile('foto')) {
              $path = $request->file('foto')->store('informaciones', 'public');
             $info->foto = $path;
@@ -142,7 +139,7 @@ class InformacioninstitucionalController extends Controller
 
         $info->save();
 
-        return response()->json(['success' => true]);
+         return redirect()->back()->with('success', '¡Información actualizada exitosamente!');
     }
 
     /**

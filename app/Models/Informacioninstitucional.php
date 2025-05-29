@@ -10,7 +10,7 @@ class Informacioninstitucional extends Model
     protected $table = 'informacioninstitucional';
 
     protected $fillable = [
-        'idtipo', 'contenido', 'foto', 'fechainicial'
+        'idtipo', 'contenido', 'foto'
     ];
 
     public function tipo()
