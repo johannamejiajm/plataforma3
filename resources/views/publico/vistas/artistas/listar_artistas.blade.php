@@ -9,7 +9,7 @@ FUNDACION PACHO'S CLUB
 @endsection
 
 @section('links')
-<link rel="stylesheet" href="{{ asset('assets/css/stylespublicidad.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/artistas.css') }}">
 @endsection
 
 @section('titulo')
