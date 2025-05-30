@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\Contactosrequest;
 use App\Models\Contactos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -25,7 +25,7 @@ class ContactosController extends Controller
         return view('admin/vistas/publicaciones/contactos/index', compact('contactos')) ;
     }
 
-    public function actualizarContactos(Request $request)
+    public function actualizarContactos(Contactosrequest $request)
     {
 
         //   if (!auth()->user()->can('manage_contactos')) {

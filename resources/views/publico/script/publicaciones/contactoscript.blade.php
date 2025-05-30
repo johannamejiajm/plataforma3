@@ -4,5 +4,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         $('#contactos').addClass('active');
     });
+    
 </script>
+
 @endsection
