@@ -32,7 +32,7 @@
                 y niñas de comunidades vulnerables, desplazadas y con escasos recursos en el municipio.</p>
         </div>
         <div class="hero-image">
-            <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/ancianato1.jpeg') }}"
+            <img src="{{ asset('assets/images/imagenes-inicio/pachos-lideres.jpg') }}"
                 alt="Imagen representativa de la labor de tu fundación">
         </div>
     </section>
@@ -42,60 +42,140 @@
         <div id="carruselImagenes1" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/Imagen9.jpg') }}"
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos.jpg') }}"
                         class="d-block w-100" alt="Imagen 1">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen14.jpg') }}"
+                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-aguachica-fc.jpg') }}"
                         class="d-block w-100" alt="Imagen 2">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-comfacesar.jpg') }}"
+                        class="d-block w-100" alt="Imagen 3">
                 </div>
                 <div class="carousel-item ">
                     <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen15.jpg') }}"
-                        class="d-block w-100" alt="Imagen 3">
+                        class="d-block w-100" alt="Imagen 4">
                 </div>
                 <div class="carousel-item ">
                     <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/ancianato3.jpeg') }}"
-                        class="d-block w-100" alt="Imagen 1">
+                        class="d-block w-100" alt="Imagen 5">
                 </div>
                 <div class="carousel-item ">
                     <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/ancianato4.jpeg') }}"
-                        class="d-block w-100" alt="Imagen 2">
+                        class="d-block w-100" alt="Imagen 6">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/Imagen6.jpg') }}"
-                        class="d-block w-100" alt="Imagen 3">
+                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-gamarra.jpg') }}"
+                        class="d-block w-100" alt="Imagen 7">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo al deporte con campeonatos a la Niñez/Imagen17.jpg') }}"
-                        class="d-block w-100" alt="Imagen 1">
+                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-juanamaya.jpg') }}"
+                        class="d-block w-100" alt="Imagen 8">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo al deporte con campeonatos a la Niñez/Imagen18.jpg') }}"
-                        class="d-block w-100" alt="Imagen 2">
+                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-n1.jpg') }}"
+                        class="d-block w-100" alt="Imagen 9">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo al deporte con campeonatos a la Niñez/Imagen19.jpg') }}"
-                        class="d-block w-100" alt="Imagen 3">
+                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-pasion-talento.jpg') }}"
+                        class="d-block w-100" alt="Imagen 10">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración de la Navidad con la niñez/Imagen21.jpg') }}"
-                        class="d-block w-100" alt="Imagen 1">
+                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-pasion-talento2.jpg') }}"
+                        class="d-block w-100" alt="Imagen 11">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración de la Navidad con la niñez/Imagen22.jpg') }}"
-                        class="d-block w-100" alt="Imagen 2">
+                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-pasion-talento3.jpg') }}"
+                        class="d-block w-100" alt="Imagen 12">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración Día del Niño/Imagen1.jpg') }}"
-                        class="d-block w-100" alt="Imagen 3">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato.jpg') }}"
+                        class="d-block w-100" alt="Imagen 13">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración Día del Niño/Imagen2.jpg') }}"
-                        class="d-block w-100" alt="Imagen 3">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-2.jpg') }}"
+                        class="d-block w-100" alt="Imagen 14">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Celebración Día del Niño/Imagen3.jpg') }}"
-                        class="d-block w-100" alt="Imagen 3">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-3.jpg') }}"
+                        class="d-block w-100" alt="Imagen 15">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-4.jpg') }}"
+                        class="d-block w-100" alt="Imagen 16">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-5.jpg') }}"
+                        class="d-block w-100" alt="Imagen 17">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-6.jpg') }}"
+                        class="d-block w-100" alt="Imagen 18">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-7.jpg') }}"
+                        class="d-block w-100" alt="Imagen 19">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-8.jpg') }}"
+                        class="d-block w-100" alt="Imagen 20">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-9.jpg') }}"
+                        class="d-block w-100" alt="Imagen 21">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-10.jpg') }}"
+                        class="d-block w-100" alt="Imagen 22">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-11.jpg') }}"
+                        class="d-block w-100" alt="Imagen 23">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-12.jpg') }}"
+                        class="d-block w-100" alt="Imagen 24">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-13.jpg') }}"
+                        class="d-block w-100" alt="Imagen 25">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-14.jpg') }}"
+                        class="d-block w-100" alt="Imagen 26">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-15.jpg') }}"
+                        class="d-block w-100" alt="Imagen 27">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-16.jpg') }}"
+                        class="d-block w-100" alt="Imagen 28">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/01.jpg') }}"
+                        class="d-block w-100" alt="Imagen 29">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/02.jpg') }}"
+                        class="d-block w-100" alt="Imagen 30">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/03.jpg') }}"
+                        class="d-block w-100" alt="Imagen 31">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/banda-camposerrano.jpg') }}"
+                        class="d-block w-100" alt="Imagen 32">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/club-olimpico.jpg') }}"
+                        class="d-block w-100" alt="Imagen 33">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos2.jpg') }}"
+                        class="d-block w-100" alt="Imagen 28">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carruselImagenes1" data-bs-slide="prev">
