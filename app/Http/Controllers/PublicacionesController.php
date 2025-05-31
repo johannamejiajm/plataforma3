@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\Tipopublicaciones;
 use Illuminate\Support\Facades\Auth;
-
+/* use Intervention\Image\Facades\Image; */
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Encoders\AutoEncoder;
 
 class PublicacionesController extends Controller
 {
@@ -145,7 +148,7 @@ class PublicacionesController extends Controller
         // }
 
 
-        $typePublic = Str::after($request->getPathInfo(), '/admin/');
+        $typePublic = Str::after($request->getPathInfo(), '/admin/publicaciones/');
         $errors = $request->validate([
             'titulo' => 'required|string',
             'contenido' => 'required|string',
@@ -153,7 +156,7 @@ class PublicacionesController extends Controller
             'fechainicial' => 'required|date',
             'fechafinal' => 'required|date|after_or_equal:fechainicial',
             'estado' => 'required|in:0,1',
-            'imagenes.*' => 'image|mimes:jpeg,png,jpg|max:2048'
+            'imagenes.*' => 'image|mimes:jpeg,png,jpg,webp|max:2048'
         ]);
 
 
@@ -185,11 +188,27 @@ class PublicacionesController extends Controller
                 $nombreHash = Str::uuid() . '.' . $extension;
 
                 // Guarda en storage/app/public/publicacionfotos
-                $ruta = $imagen->storeAs('publicaciones/' . $typePublic, $nombreHash, 'public');
+                /* $ruta = $imagen->storeAs('publicaciones/' . $typePublic, $nombreHash, 'public'); */
+
+
+
+
+
+                 // Redimensionar la imagen con Intervention
+                $imagenRedimensionada = ImageManager::gd()->read($imagen)
+                    ->cover(800, 400 )
+                    ->encode(new AutoEncoder(quality: 90));
+
+                // Guardar imagen redimensionada
+                $rutaCarpeta = 'publicaciones/' . $typePublic;
+                /* Storage::disk('public')->makeDirectory($rutaCarpeta); */
+                $rutaFinal = $rutaCarpeta . '/' . $nombreHash;
+                Storage::disk('public')->put($rutaFinal, (string) $imagenRedimensionada);
 
                 DB::table('publicacionfotos')->insert([
                     'idpublicaciones' => $publicacion->id,
-                    'imagen' => 'storage/publicaciones/' . $typePublic . "/" . $nombreHash, // Para usarlo fácilmente en las vistas
+                    'imagen' => 'storage/' . $rutaFinal,
+                   /*  'imagen' => 'storage/publicaciones/' . $typePublic . "/" . $nombreHash, // Para usarlo fácilmente en las vistas */
                     'created_at' => now(),
                     'updated_at' => now()
                 ]);
@@ -258,11 +277,11 @@ class PublicacionesController extends Controller
         'fechainicial' => 'required|date',
         'fechafinal' => 'required|date|after_or_equal:fechainicial',
         'estado' => 'required|in:0,1',
-        'imagenes.*' => 'image|mimes:jpeg,png,jpg|max:2048'
+        'imagenes.*' => 'image|mimes:jpeg,png,jpg,webp|max:2048'
     ]);
 
-    /*  $typePublic = Str::after($request->getPathInfo(), '/admin/'); */
-    $typePublic = $request->segment(2);
+     /* $typePublic = Str::after($request->getPathInfo(), '/admin/publicaciones/'); */
+    $typePublic = $request->segment(3);
      DB::beginTransaction();
 
     // $publicaciones = Publicaciones::find($id);
@@ -271,6 +290,7 @@ class PublicacionesController extends Controller
          $publicaciones->update([
              'titulo' => $request->titulo,
              'idtipo' => $request->idtipo,
+             'iduser' => auth()->user()->id,
              'contenido' => $request->contenido,
              'fechainicial' => $request->fechainicial,
              'fechafinal' => $request->fechafinal,
@@ -303,11 +323,23 @@ class PublicacionesController extends Controller
                  $extension = $imagen->getClientOriginalExtension();
                  $nombreHash = Str::uuid() . '.' . $extension;
 
-                 $ruta = $imagen->storeAs('publicaciones/' . $typePublic, $nombreHash, 'public');
+               /*   $ruta = $imagen->storeAs('publicaciones/' . $typePublic, $nombreHash, 'public'); */
+
+               // Redimensionar la imagen con Intervention Image 3.x
+                $imagenRedimensionada = ImageManager::gd()->read($imagen)
+                    ->cover(800, 400)  // Redimensionar a 800x400
+                    ->encode(new AutoEncoder(quality: 90)); // Codificar con buena calidad (90%)
+
+                $rutaCarpeta = 'publicaciones/' . $typePublic;
+                $rutaFinal = $rutaCarpeta . '/' . $nombreHash;
+
+                // Guardar la imagen redimensionada
+                Storage::disk('public')->put($rutaFinal, (string) $imagenRedimensionada);
 
                  DB::table('publicacionfotos')->insert([
                      'idpublicaciones' => $publicaciones->id,
-                     'imagen' => 'storage/publicaciones/' . $typePublic . '/' . $nombreHash,
+                    'imagen' => 'storage/' . $rutaFinal,
+                     /* 'imagen' => 'storage/publicaciones/' . $typePublic . '/' . $nombreHash, */
                      'created_at' => now(),
                      'updated_at' => now()
                  ]);
