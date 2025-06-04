@@ -28,18 +28,6 @@ Route::get('/publico/contactos', [ContactosController::class, 'index'])->name('c
 Route::get('/eventos/{id}', [PublicacionesController::class, 'indexevento'])->name('publica.evento');
 
 
-Route::get('/clear-all-cache', function() {
-    Artisan::call('cache:clear');
-    Artisan::call('config:clear');
-    Artisan::call('config:cache');
-    Artisan::call('view:clear');
-    Artisan::call('route:clear');
-    Artisan::call('optimize:clear');
-    Artisan::call('clear-compiled');
-    Artisan::call('storage:link');
-    return "Cache, config, view, and route cache cleared successfully!";
-});
-
 Route::middleware(['auth'])->group(function () {
     //Rutas eventos administrador
     Route::get('/admin/eventos', [EventosController::class, 'index'])->name('eventos.index');

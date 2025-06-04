@@ -101,7 +101,7 @@
 
                 <div class="col-12">
                   <label for="imagen" class="form-label">Imágenes (máx. 5)</label>
-                  <input type="file" name="imagen" class="form-control" accept="image/*" multiple >
+                  <input type="file" name="imagenes" class="form-control" accept="image/*" multiple >
                 </div>
               </div>
               <div class="modal-footer">
