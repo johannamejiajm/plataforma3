@@ -66,11 +66,13 @@ Route::middleware(['auth'])->group(function () {
 
     //Rutas información institucional
     Route::get('/admin/quienessomos', [InformacioninstitucionalController::class, 'indexadminquienessomos'])->name('quienessomos.indexadmin');
-    Route::get('/admin/quienessomos/list', [InformacioninstitucionalController::class, 'list'])->name('quienessomos.list');
-    Route::post('/admin/quienessomos/store', [InformacioninstitucionalController::class, 'store'])->name('quienessomos.store');
-    Route::get('/admin/quienessomos/edit/{id}', [InformacioninstitucionalController::class, 'edit'])->name('quienessomos.edit');
-    Route::put('/admin/quienessomos/update/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
-    Route::delete('/admin/quienessomos/delete/{id}', [InformacioninstitucionalController::class, 'destroy'])->name('quienessomos.delete');
+    Route::put('/admin/quienessomos/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
+
+    // Route::get('/admin/quienessomos/list', [InformacioninstitucionalController::class, 'list'])->name('quienessomos.list');
+    // Route::post('/admin/quienessomos/store', [InformacioninstitucionalController::class, 'store'])->name('quienessomos.store');
+    // Route::get('/admin/quienessomos/edit/{id}', [InformacioninstitucionalController::class, 'edit'])->name('quienessomos.edit');
+    // Route::put('/admin/quienessomos/update/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
+    // Route::delete('/admin/quienessomos/delete/{id}', [InformacioninstitucionalController::class, 'destroy'])->name('quienessomos.delete');
 
 
     //Rutas donaciones
