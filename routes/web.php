@@ -11,6 +11,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermissionController;
+use Illuminate\Support\Facades\Artisan;
 
 Route::get('/',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
 Route::get('/publico/inicio',[PublicacionesController::class,'indexinicio']);
@@ -25,6 +26,16 @@ Route::get('/publico/donacionesindex', [DonacionesController::class, 'indexdonac
 Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaciones.store');
 Route::get('/publico/contactos', [ContactosController::class, 'index'])->name('contantos.indexcontactos');
 Route::get('/eventos/{id}', [PublicacionesController::class, 'indexevento'])->name('publica.evento');
+
+
+Route::get('/clear-all-cache', function() {
+    Artisan::call('storage:link');
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    return "Cache, config, view, and route cache cleared successfully!";
+});
 
 Route::middleware(['auth'])->group(function () {
     //Rutas eventos administrador
