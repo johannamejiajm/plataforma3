@@ -29,11 +29,14 @@ Route::get('/eventos/{id}', [PublicacionesController::class, 'indexevento'])->na
 
 
 Route::get('/clear-all-cache', function() {
-    Artisan::call('storage:link');
-    Artisan::call('config:clear');
     Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
     Artisan::call('view:clear');
     Artisan::call('route:clear');
+    Artisan::call('optimize:clear');
+    Artisan::call('clear-compiled');
+    Artisan::call('storage:link');
     return "Cache, config, view, and route cache cleared successfully!";
 });
 
