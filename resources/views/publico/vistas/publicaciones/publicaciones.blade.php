@@ -4,19 +4,21 @@
     <title>Publicaciones</title>
 @endsection
 
+@section('tituloheader')
+FUNDACION PACHO'S CLUB
+@endsection
+
+@section('subtituloheader')
+<p class="subtitulo-amarillo">"UN EQUIPO CON UNA MISIÓN"</p>
+@endsection
+
+
 @section('links')
     <link rel="stylesheet" href="{{ asset('assets/css/stylespublicidad.css') }}">
 @endsection
 
-@section('tituloprincipal')
-    <div class="container py-4">
-        <h1 class="text-center mb-4">Publicaciones</h1>
-    </div>
-@endsection
-
 @section('contenido')
     <div class="container publicaciones-container">
-        <!-- Filtros (opcional - solo se muestra si hay tipos) -->
         @if(isset($tipos) && count($tipos) > 0)
         <div class="row mb-4">
             <div class="col-md-12">
@@ -34,7 +36,6 @@
         </div>
         @endif
         
-        <!-- Grid de tarjetas de publicaciones -->
         <div class="row" id="publicaciones-grid">
             @foreach($publicaciones as $publicacion)
                 <div class="col-md-4 col-sm-6 mb-4 publicacion-item" 
@@ -76,7 +77,6 @@
             @endforeach
         </div>
 
-        <!-- Paginación - solo se muestra si es una instancia paginada -->
         @if(method_exists($publicaciones, 'links') && $publicaciones instanceof \Illuminate\Pagination\LengthAwarePaginator)
         <div class="row mt-4">
             <div class="col-md-12">
@@ -88,7 +88,6 @@
         @endif
     </div>
 
-    <!-- Modal para mostrar la publicación completa -->
     <div class="modal fade modal-publicacion" id="modalPublicacion" tabindex="-1" role="dialog" aria-labelledby="modalPublicacionLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
@@ -99,14 +98,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!-- Contenido dinámico del modal -->
                     <div id="modalContenido"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Botón flotante para volver arriba -->
     <button class="back-to-top" id="btnBackToTop">
         <i class="fas fa-chevron-up"></i>
     </button>
