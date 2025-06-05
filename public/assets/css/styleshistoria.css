@@ -1,5 +1,3 @@
-
-
 .Origen-Historia {
   padding: 40px 20px;
   text-align: center;
@@ -112,7 +110,6 @@ html {
   font-size: 3rem;
 }
 
-
 .subtitulo-header {
   color: #ff0000; /* Otro color diferente para el subtítulo */
   font-size: 2rem;
@@ -126,7 +123,6 @@ html {
   background-position: center;
   background-repeat: no-repeat;
   padding: 40px 0;
-
   position: relative;
   z-index: 1;
 }
@@ -139,42 +135,43 @@ html {
 }
 
 .info-box-red {
-    border: 1px solid rgba(220, 53, 69, 0.5); /* rojo suave */
-    box-shadow: 0 0 10px rgba(220, 53, 69, 0.4); /* sombra roja */
-    background-color: #f8f9fa; /* fondo claro */
-    border-radius: 0.5rem;
-    padding: 0.75rem 1rem;
+  border: 1px solid rgba(220, 53, 69, 0.5); /* rojo suave */
+  box-shadow: 0 0 10px rgba(220, 53, 69, 0.4); /* sombra roja */
+  background-color: #f8f9fa; /* fondo claro */
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
 }
 
 .tarjeta-info {
-    border: 1px solid rgba(220, 53, 69, 0.5); /* rojo suave */
-    box-shadow: 0 0 8px rgba(220, 53, 69, 0.4);
-    border-radius: 0.5rem;
-    padding: 1rem;
-    background-color: #fefefe;
-    margin: 0.5rem;
-    flex: 1;
-    min-width: 200px;
+  border: 1px solid rgba(220, 53, 69, 0.5); /* rojo suave */
+  box-shadow: 0 0 8px rgba(220, 53, 69, 0.4);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: #fefefe;
+  margin: 0.5rem;
+  flex: 1;
+  min-width: 200px;
 }
 
 .tarjeta-info-mini {
-    border: 1px solid rgba(220, 53, 69, 0.4);
-    box-shadow: 0 0 6px rgba(220, 53, 69, 0.2);
-    border-radius: 0.4rem;
-    padding: 0.5rem 1rem;
-    background-color: #fff;
-    margin-right: 0.5rem;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    white-space: nowrap;
+  border: 1px solid rgba(220, 53, 69, 0.4);
+  box-shadow: 0 0 6px rgba(220, 53, 69, 0.2);
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
 }
+
 .tarjeta-barra {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
 }
 
 .modal-header-custom {
@@ -213,8 +210,8 @@ html {
   z-index: 2;
 }
 
-.text-center h4{
-    color: #ffc107; /* Amarillo vibrante */
+.text-center h4 {
+  color: #ffc107; /* Amarillo vibrante */
   font-style: italic;
   font-weight: bold;
   font-size: 2rem;
@@ -290,4 +287,17 @@ html {
 
 .card-historia-body .leer-mas:hover {
   color: #fff;
+}
+
+@media (max-width: 768px) {
+  .card-historia {
+    flex-direction: column;
+  }
+}
+
+
+.modal-body img {
+  width: 100%;
+  max-height: 80vh; /* Limitar la altura de la imagen dentro del modal */
+  object-fit: contain;
 }
