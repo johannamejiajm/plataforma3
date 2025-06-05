@@ -43,7 +43,7 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="{{ asset('assets/images/imagenes-inicio/pachos.jpg') }}"
-                        class="d-block w-100" alt="Imagen 1">
+                        class="d-block w-100 img-fluid" alt="Imagen 1">
                 </div>
                 <div class="carousel-item ">
                     <img src="{{ asset('assets/images/imagenes-inicio/escuela-aguachica-fc.jpg') }}"
@@ -52,10 +52,6 @@
                 <div class="carousel-item ">
                     <img src="{{ asset('assets/images/imagenes-inicio/escuela-comfacesar.jpg') }}"
                         class="d-block w-100" alt="Imagen 3">
-                </div>
-                <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Artistas de la Región/Imagen15.jpg') }}"
-                        class="d-block w-100" alt="Imagen 4">
                 </div>
                 <div class="carousel-item ">
                     <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/ancianato3.jpeg') }}"
