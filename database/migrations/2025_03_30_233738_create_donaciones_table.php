@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('email');
             $table->string('telefono');
             $table->string('donacion');
-            $table->string('tipodonacion');
             $table->string('soporte')->nullable();
             $table->enum('estado',[0,1,2]);
             $table->timestamps();
