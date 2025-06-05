@@ -32,16 +32,16 @@ class ContactosController extends Controller
         //     abort(403, 'No tienes permiso para actualizar contactos.');
         // }
 
-        // dd($request->all());
-           $validator = Validator::make($request->all(), [
-        'direccion' => 'required|string',
-        'telefono1' => 'required|string',
-        //'telefono2'  => 'nullable|string|max:20',
-        'email' => 'required|email',
-         // 'urlx'           => 'nullable|url|max:255',
-          //  'urlinstagram'   => 'nullable|url|max:255',
-        // Agrega más reglas según tus necesidades
-    ]);
+       // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'direccion' => 'required|string',
+            'telefono1' => 'required|string',
+            //'telefono2'  => 'nullable|string|max:20',
+            'email' => 'required|email',
+            // 'urlx'           => 'nullable|url|max:255',
+            //  'urlinstagram'   => 'nullable|url|max:255',
+            // Agrega más reglas según tus necesidades
+        ]);
 
     if ($validator->fails()) {
         return redirect()->back()
