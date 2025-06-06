@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DonacionRequest;
 use App\Models\Donaciones;
 use App\Models\Tipodonaciones;
 use Illuminate\Http\Request;
@@ -79,7 +80,7 @@ class DonacionesController extends Controller
         return redirect()->route('donaciones.index')->with('success', 'Donación actualizada.');
     }
     
-    public function store(Request $request)
+    public function store(DonacionRequest $request)
     {
         DB::beginTransaction();
         try {
