@@ -171,12 +171,12 @@ $(document).ready(function() {
                     let errors = xhr.responseJSON.errors;
                     let mensaje = '';
                     for (let key in errors) {
-                        mensaje += errors[key][0] + '     ';
+                        mensaje += errors[key][0] + '   .<br>  ';
                     }
                     Swal.fire({
                         icon: 'error',
                         title: 'Error en el formulario',
-                        text: mensaje
+                        html: mensaje
                     });
                 } else {
                     Swal.fire({
