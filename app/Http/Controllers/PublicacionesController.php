@@ -6,13 +6,11 @@ use App\Http\Requests\PublicacionRequest;
 use App\Models\Evento;
 use App\Models\Publicaciones;
 use App\Models\Publicacionfotos;
-use App\Models\Publicionesfoto;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\Tipopublicaciones;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Encoders\AutoEncoder;
@@ -239,7 +237,7 @@ class PublicacionesController extends Controller
         //     abort(403, 'No tienes permiso.');
         // }
 
-  
+
 
 
     $typePublic = $request->segment(3);
