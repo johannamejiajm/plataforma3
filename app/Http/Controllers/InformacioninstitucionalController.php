@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InformacionInstitucionalRequest;
 use App\Models\Informacioninstitucional;
 use App\Models\Tipoinformacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class InformacioninstitucionalController extends Controller
 {
@@ -18,20 +21,13 @@ class InformacioninstitucionalController extends Controller
     }
 
     // Método para actualizar la info
-    public function update(Request $request, $id)
+    public function update(InformacionInstitucionalRequest $request, $id)
     {
         $info = Informacioninstitucional::findOrFail($id);
 
-        $validatedData = $request->validate([
-            'idtipo' => 'required|exists:tipoinformacion,id',
-            'contenido' => 'required|string',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // max 2MB por ejemplo
-        ]);
-
-        $info->idtipo = $validatedData['idtipo'];
-        $info->contenido = $validatedData['contenido'];
-
-      if ($request->hasFile('foto')) {
+       DB::beginTransaction();
+       try{
+        if ($request->hasFile('foto')) {
         // Eliminar foto anterior si existe
         if ($info->foto && \Storage::disk('public')->exists($info->foto)) {
             \Storage::disk('public')->delete($info->foto);
@@ -44,7 +40,19 @@ class InformacioninstitucionalController extends Controller
 
         $info->save();
 
+        DB::commit();
+
         return redirect()->back()->with('success', '¡Información actualizada exitosamente!');
+
+       }
+       catch (\Exception $e){
+         DB::rollback();
+         Log::error('Error al actualizar contactos:' . $e->getMessage());
+         return redirect()->route('quienessomos.indexadmin')->with('error','ocurrio un error al actualizar la informacion institucional');
+       }
+
+
+
     }
     /**
      * Display a listing of the resource.
@@ -74,133 +82,17 @@ class InformacioninstitucionalController extends Controller
         return view('admin.vistas.publicaciones.quienessomos.quienessomos', compact('tipos', 'informaciones'));
     }
 
-    // public function list()
-    // {
-    //     $data = Informacioninstitucional::with('tipo')->get();
 
-
-    //     return datatables()->of($data)
-    //         ->addColumn('tipo', fn($row) => $row->tipo->tipo ?? '-')
-    //         ->addColumn('acciones', function ($row) {
-    //             return '
-    //                 <button class="btn btn-sm btn-warning edit" data-id="'.$row->id.'"><i class="ti ti-pencil"></i></button>
-    //                 <button class="btn btn-sm btn-danger delete" data-id="'.$row->id.'"><i class="ti ti-trash"></i></button>
-    //             ';
-    //         })
-    //         ->rawColumns(['acciones'])
-    //         ->make(true);
-    // }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    // public function store(Request $request)
-    // {
 
-    //         $validatedData = $request->validate([
-    //             'idtipo' => 'required|exists:tipoinformacion,id',
-    //             'contenido' => 'required|string',
-    //             'fechainicial' => 'required|date',
-    //             'estado' => 'required|in:0,1',
-    //             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-    //         ]);
-
-    //         $info = new Informacioninstitucional();
-    //         $info->idtipo = $request->idtipo;
-    //         $info->contenido = $request->contenido;
-    //         $info->fechainicial = $request->fechainicial;
-    //         $info->estado = $request->estado;
-
-    //        if ($request->hasFile('foto')) {
-    //         $image = $request->file('foto');
-
-    //         // Nombre hasheado único
-    //         $hashedName = $image->hashName();
-
-    //         // Guarda la imagen en storage/app/public/fotos
-    //        $info->foto = $image->storeAs('informaciones', $hashedName, 'public');
-
-    //         // Guarda la ruta completa pública
-
-    //         }
-
-    //         $info->save();
-
-    //         return response()->json(['success' => true]);
-    // }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(Informacioninstitucional $informacioninstitucional)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-      */
-    // public function edit($id)
-    // {
-    //     //
-    //       $info = Informacioninstitucional::findOrFail($id);
-    //         return response()->json($info);
-    // }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    // public function update(Request $request, $id)
-    // {
-
-    //     $info = Informacioninstitucional::findOrFail($id);
-
-    //     $validatedData = $request->validate([
-    //         'idtipo' => 'required|exists:tipoinformacion,id',
-    //         'contenido' => 'required|string'
-    //     ]);
-
-    //     $info->idtipo = $request->idtipo;
-    //     $info->contenido = $request->contenido;
-    //     if ($request->hasFile('foto')) {
-    //          $path = $request->file('foto')->store('informaciones', 'public');
-    //         $info->foto = $path;
-    //     }
-
-    //     $info->save();
-
-    //      return redirect()->back()->with('success', '¡Información actualizada exitosamente!');
-    // }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    // public function destroy($id)
-    // {
-    // $info = Informacioninstitucional::findOrFail($id);
-
-    // //   $info->estado = true;
-    // // $info->save();
-
-    // // Eliminar la foto si existe
-    // if ($info->foto) {
-    //     $fotoPath = public_path('storage/' . $info->foto);
-    //     if (file_exists($fotoPath)) {
-    //         unlink($fotoPath); // elimina el archivo del sistema
-    //     }
-    // }
-
-    // // Elimina el registro
-    // $info->delete();
-
-    // return response()->json(['success' => true]);
-    // }
 }
