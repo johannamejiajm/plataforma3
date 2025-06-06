@@ -48,33 +48,38 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Crear Evento -->
 <div class="modal fade" id="eventoModal" tabindex="-1" aria-labelledby="eventoModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form method="POST" action="{{ route('eventos.store') }}" enctype="multipart/form-data">
+      
+        <form id="formCrearEvento" enctype="multipart/form-data">
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Registrar Evento</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
+
                 <div class="modal-body">
+
                     <div class="mb-3">
                         <label>Nombre del evento</label>
-                        <input type="text" name="evento" class="form-control" required>
+                        <input type="text" name="evento" class="form-control" value="{{ old('evento') }}" >
                     </div>
                     <div class="mb-3">
                         <label>Fecha inicial</label>
-                        <input type="datetime-local" name="fechainicial" class="form-control" required>
+                        <input type="datetime-local" name="fechainicial" class="form-control" value="{{ old('fechainicial') }}" >
                     </div>
                     <div class="mb-3">
                         <label>Fecha final</label>
-                        <input type="datetime-local" name="fechafinal" class="form-control" required>
+                        <input type="datetime-local" name="fechafinal" class="form-control" value="{{ old('fechafinal') }}" >
                     </div>
                     <div class="mb-3">
                         <label for="imagen" class="form-label">Imágenes (máx. 1)</label>
-                        <input type="file" name="imagen" class="form-control" accept="image/*" multiple >
+                        <input type="file" name="imagen" class="form-control" accept="image/*">
                     </div>
+                    <input type="hidden" name="estado" value="1">
+
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success">Guardar</button>
@@ -84,10 +89,11 @@
         </form>
     </div>
 </div>
-<!-- Modal Editar -->
+
+<!-- Modal Editar Evento -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form id="formEditar">
+        <form id="formEditar" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="modal-content">
@@ -96,6 +102,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
+                    <input type="hidden" id="edit_id" name="id">
                     <div class="mb-3">
                         <label>Nombre del evento</label>
                         <input type="text" name="evento" id="edit_evento" class="form-control" required>
@@ -110,7 +117,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="imagen" class="form-label">Imágenes (máx. 1)</label>
-                        <input type="file" name="imagen[]" class="form-control" accept="image/*" multiple >
+                        <input type="file" name="imagen" class="form-control" accept="image/*">
                     </div>
                     <div class="mb-3">
                         <label>Estado</label>
@@ -128,19 +135,160 @@
         </form>
     </div>
 </div>
-@if (session('success'))
+
+<!-- Scripts -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        Swal.fire({
-            icon: 'success',
-            title: '¡Éxito!',
-            text: '{{ session('success') }}',
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'OK'
+$(document).ready(function() {
+
+    // CREAR evento con AJAX
+    $('#formCrearEvento').on('submit', function(e) {
+        e.preventDefault();
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: "{{ route('eventos.store') }}",
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Evento creado!',
+                    text: response.success,
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    location.reload();
+                });
+            },
+            error: function(xhr) {
+                if (xhr.status === 422) {
+                    let errors = xhr.responseJSON.errors;
+                    let mensaje = '';
+                    for (let key in errors) {
+                        mensaje += errors[key][0] + '     ';
+                    }
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error en el formulario',
+                        text: mensaje
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Ocurrió un error al crear el evento.'
+                    });
+                }
+            }
         });
     });
-</script>
-@endif
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-@endsection
 
+    // Función para cargar datos en el modal editar
+    window.cargarDatos = function(id) {
+        $.ajax({
+            url: '/eventos/' + id + '/edit',
+            type: 'GET',
+            success: function(data) {
+                $('#edit_id').val(data.id);
+                $('#edit_evento').val(data.evento);
+                $('#edit_fechainicial').val(data.fechainicial.replace(' ', 'T'));
+                $('#edit_fechafinal').val(data.fechafinal.replace(' ', 'T'));
+                $('#edit_estado').val(data.estado ? '1' : '0');
+            },
+            error: function() {
+                Swal.fire('Error', 'No se pudieron cargar los datos del evento.', 'error');
+            }
+        });
+    };
+
+    // EDITAR evento con AJAX
+    $('#formEditar').on('submit', function(e) {
+        e.preventDefault();
+
+        var id = $('#edit_id').val();
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: '/eventos/' + id,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                'X-HTTP-Method-Override': 'PUT' // porque Laravel espera PUT
+            },
+            success: function(response) {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Evento actualizado!',
+                    text: response.success,
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    location.reload();
+                });
+            },
+            error: function(xhr) {
+                if (xhr.status === 422) {
+                    let errors = xhr.responseJSON.errors;
+                    let mensaje = '';
+                    for (let key in errors) {
+                        mensaje += errors[key][0] + '\n';
+                    }
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error en el formulario',
+                        text: mensaje
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Ocurrió un error al actualizar el evento.'
+                    });
+                }
+            }
+        });
+    });
+
+    // ELIMINAR evento con confirmación
+    window.eliminarEvento = function(id) {
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/eventos/' + id,
+                    type: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        Swal.fire('Eliminado', response.success, 'success').then(() => {
+                            location.reload();
+                        });
+                    },
+                    error: function() {
+                        Swal.fire('Error', 'No se pudo eliminar el evento.', 'error');
+                    }
+                });
+            }
+        });
+    };
+
+});
+</script>
+
+@endsection
