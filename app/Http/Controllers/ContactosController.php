@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\Contactosrequest;
 use App\Models\Contactos;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Stmt\TryCatch;
 
 class ContactosController extends Controller
 {
@@ -28,28 +31,8 @@ class ContactosController extends Controller
     public function actualizarContactos(Contactosrequest $request)
     {
 
-        //   if (!auth()->user()->can('manage_contactos')) {
-        //     abort(403, 'No tienes permiso para actualizar contactos.');
-        // }
-
-       // dd($request->all());
-        $validator = Validator::make($request->all(), [
-            'direccion' => 'required|string',
-            'telefono1' => 'required|string',
-            //'telefono2'  => 'nullable|string|max:20',
-            'email' => 'required|email',
-            // 'urlx'           => 'nullable|url|max:255',
-            //  'urlinstagram'   => 'nullable|url|max:255',
-            // Agrega más reglas según tus necesidades
-        ]);
-
-    if ($validator->fails()) {
-        return redirect()->back()
-                         ->withErrors($validator)
-                         ->withInput()
-                         ->with('error', 'Por favor, corrige los errores del formulario.');
-    }
-
+       DB::beginTransaction();
+       try{
         $actualizarContactos = Contactos::first();
         $actualizarContactos->direccion = $request->direccion;
         $actualizarContactos->telefono1 = $request->telefono1;
@@ -63,18 +46,15 @@ class ContactosController extends Controller
         $actualizarContactos->urlinstagram = $request->urlinstagram;
         $actualizarContactos->save();
 
-
-        // $respuesta = array(
-        //     'mensaje'   =>"contacto registrado",
-        //     'estado'    =>1,
-        // );
-
-
-
-        // return response()->json($respuesta);
+        DB::commit();
 
         return redirect()->route('admin.contactos')->with('success','Pagina de Contacto actualizado Exitosamente');
 
-
+       }
+       catch (\Exception $e){
+         DB::rollback();
+         Log::error('Error al actualizar contactos:' . $e->getMessage());
+         return redirect()->route('admin.contactos')->with('error','ocurrio un error al actualizar la pagina de contactos');
+       }
     }
 }
