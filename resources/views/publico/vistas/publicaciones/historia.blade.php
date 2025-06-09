@@ -79,7 +79,7 @@ Historia
 
                     <!-- Cuerpo -->
                     <div class="modal-body p-5">
-                        <div class="d-flex flex-wrap justify-content-between mb-3">
+                        <div class=" flex-wrap justify-content-between mb-3">
                             <div class="tarjeta-barra">
                                 <div class="tarjeta-info-mini">
                                     <i class="bi bi-pin-angle-fill text-danger"></i>
@@ -101,9 +101,10 @@ Historia
                             </div>
 
                             <!-- Carrusel de galería -->
-                            <h4 class="text-center mt-4">Galería</h4>
+
                             @php $carouselId = 'carousel' . $key; @endphp
                             <div id="{{ $carouselId }}" class="carousel slide" data-bs-ride="carousel">
+                                <h4 class="text-center mt-4 mb-4">Galería</h4>
                                 <div class="carousel-inner">
                                     @foreach ($historia->fotos as $index => $foto)
                                         <div class="carousel-item @if($index === 0) active @endif">
