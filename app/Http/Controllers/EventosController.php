@@ -7,9 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Routing\Controller as BaseController;
 
-class EventosController extends Controller
+class EventosController extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:manage_eventos');
+    }
 
     public function index()
     {

@@ -14,7 +14,7 @@ use App\Http\Controllers\PermissionController;
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('/',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
-Route::get('/publico/inicio',[PublicacionesController::class,'indexinicio']);
+Route::get('/publico/inicio',[PublicacionesController::class,'indexinicio'])->name('indexinicio');
 Route::get('/publico/quienessomos', [InformacioninstitucionalController::class, 'index'])->name('quienessomos.index');
 Route::get('/publico/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
 Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');

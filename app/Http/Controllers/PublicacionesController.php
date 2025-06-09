@@ -17,11 +17,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Encoders\AutoEncoder;
+use Illuminate\Routing\Controller as BaseController;
 
-class PublicacionesController extends Controller
+class PublicacionesController extends BaseController
 {
 
-
+    public function __construct()
+    {
+        $this->middleware('permission:manage_publicaciones')->except(['indexpublicacionespublico','indexeventos','indexhistoria','indexinicio','indexevento']);
+    }
     public function dashboard()
     {
         return view('admin.dashboard.index');
@@ -67,7 +71,7 @@ class PublicacionesController extends Controller
     public function indexpublicacionespublico()
     {
         $publicaciones = Publicaciones::where('estado', '1')
-            ->whereIn('idtipo', [1, 2]) // Reemplaza 'tipo_id' con el nombre correcto
+            ->whereIn('idtipo', [1, 2, 3]) 
             ->with(['fotos', 'tipo'])
             ->get();
         return view('publico.vistas.publicaciones.publicaciones', compact('publicaciones'));

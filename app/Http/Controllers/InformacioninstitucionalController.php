@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Informacioninstitucional;
 use App\Models\Tipoinformacion;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Storage;
 
-class InformacioninstitucionalController extends Controller
+class InformacioninstitucionalController extends BaseController
 {
 
-
+    public function __construct()
+    {
+        $this->middleware('permission:manage_informacion')->except('index');
+    }
      // Método para mostrar la info en el formulario de edición (opcional si no usas formulario separado)
     public function edit($id)
     {
@@ -33,8 +38,8 @@ class InformacioninstitucionalController extends Controller
 
       if ($request->hasFile('foto')) {
         // Eliminar foto anterior si existe
-        if ($info->foto && \Storage::disk('public')->exists($info->foto)) {
-            \Storage::disk('public')->delete($info->foto);
+        if ($info->foto && Storage::disk('public')->exists($info->foto)) {
+            Storage::disk('public')->delete($info->foto);
         }
 
         // Guardar la nueva foto en la carpeta 'informacion'

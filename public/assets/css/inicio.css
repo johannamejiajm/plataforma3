@@ -117,10 +117,23 @@ body {
 }
 
 .carousel-item img {
-  max-height: 400px;
-  object-fit: contain;
-  border-radius: 12px;
+  width: 100%;
+  height: auto;
+  max-height: 70vh; /* se adapta a pantallas grandes */
+  object-fit: cover; /* o 'contain' si prefieres que se vea completa aunque deje espacio */
   box-shadow: 0 6px 12px var(--sombra);
+}
+
+@media (max-width: 768px) {
+  .carousel-item img {
+    max-height: 50vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-item img {
+    max-height: 40vh;
+  }
 }
 
 .custom-icon i {
@@ -162,12 +175,17 @@ body {
 }
 
 .card-title {
-  color: var(--azul);
+  background-color: #002868; /* o usa var(--rojo) si prefieres */
+  color: #ffffff;
   font-weight: bold;
   text-align: center;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
   margin-top: 10px;
-  text-shadow: 1px 1px 2px var(--sombra);
+  text-shadow: none; /* Puedes quitarlo si interfiere con la legibilidad */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
+
 
 .card-img-top {
   border-bottom: 4px solid var(--rojo);
