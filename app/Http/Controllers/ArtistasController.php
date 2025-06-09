@@ -7,11 +7,16 @@ use App\Models\Evento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Contracts\Service\Attribute\Required;
+use Illuminate\Routing\Controller as BaseController;
 
-class ArtistasController extends Controller
+class ArtistasController extends BaseController
 {
 
-    
+
+    public function __construct()
+    {
+        $this->middleware('permission:manage_artistas')->except(['create','store','listarArtistasActivos']);
+    }
 
 
     public function listarArtistasActivos()
@@ -67,8 +72,6 @@ class ArtistasController extends Controller
         $artista->save();
 
         return redirect()->route('artistas.index')->with('success', 'El estado del artista ha sido actualizado.');
-
-       
 
     }
 

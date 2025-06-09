@@ -1,42 +1,31 @@
 @extends('publico.plantilla.plantilla')
-<!-- jQuery -->
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Bootstrap JS Bundle (incluye Popper) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Script personalizado para manejar el modal de publicaciones -->
 <script>
-    {{ Js::from(['csrf_token' => csrf_token()]) }}; // Opcional si usas AJAX
+    {{ Js::from(['csrf_token' => csrf_token()]) }};
 
     document.addEventListener('DOMContentLoaded', function() {
-    // Cache de las publicaciones cargadas por AJAX
     const publicacionesCache = {};
-    
-    // Función para cargar la publicación en el modal
+
     function cargarPublicacion(publicacionId) {
-        // Si ya tenemos la publicación en cache, la usamos
         if (publicacionesCache[publicacionId]) {
             mostrarPublicacionEnModal(publicacionesCache[publicacionId]);
             return;
         }
         
-        // Si no está en cache, intentamos obtener la información directamente del DOM
         const publicacionElement = document.querySelector(`.publicacion-item[data-id="${publicacionId}"]`);
         
         if (publicacionElement) {
-            // Extraer datos del DOM incluyendo el autor
             const titulo = publicacionElement.querySelector('.preview-title').textContent;
             const contenido = publicacionElement.querySelector('.preview-excerpt').getAttribute('data-contenido-completo') || 
                              publicacionElement.querySelector('.preview-excerpt').textContent;
             const tipo = publicacionElement.querySelector('.preview-tipo').textContent;
             const fecha = publicacionElement.querySelector('.preview-fecha').textContent.replace(/.*(\d{2}\/\d{2}\/\d{4}).*/, '$1');
             
-            // AQUÍ ESTÁ LA CORRECCIÓN: Extraer el autor de los atributos data
             const autor = publicacionElement.getAttribute('data-autor') || 'Anónimo';
             const autorEmail = publicacionElement.getAttribute('data-autor-email') || '';
             
-            // Construir objeto de publicación simplificado
             const publicacion = {
                 id: publicacionId,
                 titulo: titulo,
@@ -50,7 +39,6 @@
                 fotos: []
             };
             
-            // Buscar si hay imágenes
             const previewImage = publicacionElement.querySelector('.preview-image');
             if (previewImage) {
                 publicacion.fotos = [{
@@ -58,13 +46,11 @@
                 }];
             }
             
-            // Usar la publicación simplificada
             publicacionesCache[publicacionId] = publicacion;
             mostrarPublicacionEnModal(publicacion);
             return;
         }
         
-        // Si no podemos extraer los datos del DOM, mostrar un mensaje de error
         document.getElementById('modalContenido').innerHTML = `
             <div class="modal-detalle p-4">
                 <div class="alert alert-info">
@@ -78,12 +64,9 @@
         `;
     }
     
-    // Función para mostrar la publicación en el modal
     function mostrarPublicacionEnModal(publicacion) {
-        // Actualizar el título del modal
         document.getElementById('modalPublicacionLabel').textContent = publicacion.titulo;
         
-        // Preparar el contenido HTML para el modal
         let html = `
             <div class="modal-detalle">
                 <!-- Metadatos -->
@@ -113,7 +96,6 @@
                     </div>
                 </div>`;
         
-        // Galería de imágenes
         if (publicacion.fotos && publicacion.fotos.length > 0) {
             if (publicacion.fotos.length === 1) {
                 html += `
@@ -155,7 +137,6 @@
             }
         }
         
-        // Contenido
         html += `
                 <div class="detalle-contenido">
                     ${formatearContenido(publicacion.contenido)}
@@ -169,51 +150,41 @@
                 </div>
             </div>`;
         
-        // Actualizar el contenido del modal
         document.getElementById('modalContenido').innerHTML = html;
         
-        // Reinicializar componentes de Bootstrap en el modal si es necesario
         if (publicacion.fotos && publicacion.fotos.length > 1) {
             $('#carouselModal').carousel();
         }
     }
     
-    // Función auxiliar para formatear la fecha
     function formatearFecha(fechaStr) {
         try {
-            // Intentar varios formatos de fecha comunes
             let fecha;
             
-            // Si el formato es dd/mm/yyyy (como "15/04/2023")
             if (/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(fechaStr)) {
                 const parts = fechaStr.split('/');
                 fecha = new Date(parts[2], parts[1] - 1, parts[0]);
             } 
-            // Si el formato es ISO o similar (2023-04-15)
             else {
                 fecha = new Date(fechaStr);
             }
             
-            // Verificar si la fecha es válida
             if (isNaN(fecha.getTime())) {
-                return fechaStr; // Devolver el string original si no se pudo parsear
+                return fechaStr;
             }
             
             return fecha.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
         } catch (error) {
             console.error("Error al formatear fecha:", error);
-            return fechaStr; // En caso de error, devolver el string original
+            return fechaStr;
         }
     }
     
-    // Función auxiliar para formatear el contenido (convertir saltos de línea)
     function formatearContenido(contenido) {
         return contenido.replace(/\n/g, '<br>');
     }
     
-    // Helper para generar rutas de Laravel en JavaScript
     function route(name, params = {}) {
-        // URLs predefinidas para rutas comunes
         const routes = {
             'publicaciones.show': `/publicaciones/${params}`
         };
@@ -221,7 +192,6 @@
         return routes[name] || '#';
     }
     
-    // Evento para abrir el modal y cargar la publicación
     document.querySelectorAll('.publicacion-preview').forEach(item => {
         item.addEventListener('click', function() {
             const publicacionId = this.getAttribute('data-publicacion-id');
@@ -229,7 +199,6 @@
         });
     });
     
-    // Filtro por tipo (solo si existe el elemento)
     const filtroTipo = document.getElementById('filtroTipo');
     if (filtroTipo) {
         filtroTipo.addEventListener('change', function() {
@@ -246,7 +215,6 @@
         });
     }
     
-    // Botón para volver arriba
     const btnBackToTop = document.getElementById('btnBackToTop');
     
     window.addEventListener('scroll', function() {
@@ -261,13 +229,9 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     
-    // Función para compartir la publicación (dummy)
     window.compartirPublicacion = function(id, titulo) {
-        // Aquí podría ir la lógica para compartir en redes sociales
-        // Por ahora, simplemente mostraremos un alert
         alert(`Compartiendo: ${titulo}`);
         
-        // Implementación real podría usar la Web Share API
         if (navigator.share) {
             navigator.share({
                 title: titulo,

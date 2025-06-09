@@ -12,7 +12,7 @@ class Contactosrequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -35,16 +35,13 @@ class Contactosrequest extends FormRequest
 
         ];
 
-       /*  public function messages() {
-            return
-        } */
     }
 
     public function messages() {
 
         return [
 
-           'direccion.required' => 'La dirección es obligatoria',
+            'direccion.required' => 'La dirección es obligatoria',
             'direccion.string' => 'Debes ingresar una dirección válida',
 
             'telefono1.required' => 'El número es obligatorio',

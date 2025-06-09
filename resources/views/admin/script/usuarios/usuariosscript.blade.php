@@ -50,7 +50,10 @@
         // Cargar datos para editar
         $(document).on('click', '.editBtn', function() {
             let id = $(this).data('id');
+            console.log(id);
             $.get(`{{ route('usuarios.show', ':id') }}`.replace(':id', id), function(data) {
+                console.log(data);
+                
                 $('#editId').val(data.id);
                 $('#editName').val(data.name);
                 $('#editEmail').val(data.email);
@@ -64,7 +67,7 @@
             e.preventDefault();
             let id = $('#editId').val();
             Swal.fire({ title: 'Actualizando...', didOpen: () => Swal.showLoading() });
-
+            console.log($(this).serialize());
             $.ajax({
                 url: `{{ route('usuarios.update', ':id') }}`.replace(':id', id),
                 type: 'POST',

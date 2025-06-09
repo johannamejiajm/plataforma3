@@ -15,7 +15,6 @@ class Donaciones extends Model
         'email',
         'telefono',
         'donacion',
-        'tipodonacion',
         'soporte',
         'estado'
     ];

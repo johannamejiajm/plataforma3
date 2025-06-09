@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Informacioninstitucional;
 use App\Models\Tipoinformacion;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -28,12 +29,15 @@ class DatabaseSeeder extends Seeder
         $this->call([
 
             UsersTableSeeder::class,
+            ContactosSeeder::class,
             TipopublicacionesSeeder::class,
             PublicacionesSeeder::class,
             TipoInfromacionTable::class,
+            InformacionInstitucionalSeeder::class,
             TipoDonacionesSeeder::class,
-            RolesAndPermissionsUser::class,
             DonacionSeeder::class,
+            RolesAndPermissionsUser::class,
+            PublicacionesSeeder::class,
 
         ]);
 

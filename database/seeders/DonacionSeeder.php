@@ -22,34 +22,39 @@ class DonacionSeeder extends Seeder
         DB::table('donaciones')->insert([
             [
                 'idtipo' => 1, // Esto corresponde a 'aprobado' en la tabla tipodonaciones
-                'fecha' => $now,
-                'donante' => 'Juan Pérez',
-                'contacto' => 'juan@example.com',
-                'donacion' => '1000 USD',
-                'soporte' => 'Transferencia bancaria',
-                'estado' => '1', // Estado aprobado
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'idtipo' => 0, // Esto corresponde a 'denegado' en la tabla tipodonaciones
-                'fecha' => $now,
-                'donante' => 'Ana Gómez',
-                'contacto' => 'ana@example.com',
-                'donacion' => '500 USD',
-                'soporte' => 'Cheque',
-                'estado' => '0', // Estado denegado
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'idtipo' => 2, // Esto corresponde a 'pendiente' en la tabla tipodonaciones
-                'fecha' => $now,
-                'donante' => 'Carlos López',
-                'contacto' => 'carlos@example.com',
-                'donacion' => '250 USD',
+                'nombre' => 'Juan',
+                'apellido' =>'Pérez',
+                'email' =>'juan@example.com',
+                'telefono' =>'3112224334',
+                'donacion' => 10000,
                 'soporte' => 'Efectivo',
-                'estado' => '2', // Estado aprobado
+                'estado' => '0', // Estado aprobado
+                'created_at' => $now,
+                'updated_at' => $now,
+
+            ],
+
+            [
+                'idtipo' => 1,
+                'nombre' => 'Carlos',
+                'apellido' =>'Rodriguez',
+                'email' =>'carlos@example.com',
+                'telefono' =>'3112224334',
+                'donacion' => 15000,
+                'soporte' => 'Efectivo',
+                'estado' => '0',
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+               'idtipo' => 1,
+                'nombre' => 'Alexander',
+                'apellido' =>'Mejia',
+                'email' =>'alexander@example.com',
+                'telefono' =>'3112224334',
+                'donacion' => 20000,
+                'soporte' => 'Efectivo',
+                'estado' => '0',
                 'created_at' => $now,
                 'updated_at' => $now,
             ],

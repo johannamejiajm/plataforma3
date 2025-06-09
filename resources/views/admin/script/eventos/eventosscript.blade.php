@@ -45,6 +45,49 @@
                 }
             });
         });
+        $('#formCrearEvento').on('submit', function(e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: "{{ route('eventos.store') }}",
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Evento creado!',
+                        text: response.success,
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        location.reload();
+                    });
+                },
+                error: function(xhr) {
+                    if (xhr.status === 422) {
+                        let errors = xhr.responseJSON.errors;
+                        let mensaje = '';
+                        for (let key in errors) {
+                            mensaje += errors[key][0] + '   .<br>  ';
+                        }
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error en el formulario',
+                            html: mensaje
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Ocurrió un error al crear el evento.'
+                        });
+                    }
+                }
+            });
+        });
     });
     function eliminarEvento(id) {
         Swal.fire({
@@ -83,9 +126,9 @@
             }
         });
     }
-
-
     function cargarDatos(id) {
+        console.log(id);
+
         fetch(`/admin/eventos/${id}/edit`)
             .then(res => res.json())
             .then(data => {

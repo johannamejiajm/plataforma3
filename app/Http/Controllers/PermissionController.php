@@ -7,10 +7,14 @@ use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Routing\Controller as BaseController;
 
-class PermissionController extends Controller
+class PermissionController extends BaseController
 {
-    //
+    public function __construct()
+    {
+        $this->middleware('permission:manage_publicaciones');
+    }
     public function index(Request $request)
     {
         // if (!Auth::user()->can('manage_permisos')) {

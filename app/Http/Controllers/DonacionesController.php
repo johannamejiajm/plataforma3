@@ -8,12 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Routing\Controller as BaseController;
 
-class DonacionesController extends Controller
+class DonacionesController extends BaseController
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('permission:manage_donaciones')->except(['indexdonacion','store']);
+    }
      public function indexdonacion()
     {
         $donaciones = Donaciones::all();

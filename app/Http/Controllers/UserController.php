@@ -8,15 +8,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 use Spatie\Permission\Models\Role;
+use Illuminate\Validation\Rule;
+use Illuminate\Routing\Controller as BaseController;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
-    //
+    public function __construct()
+    {
+        $this->middleware('permission:manage_users');
+    }
+
     public function index(Request $request)
     {
-        // if (!Auth::user()->can('manage_users')) {
-        //     abort(403, 'No tienes permiso.');
-        // }
         if ($request->ajax()) {
             $data = User::with('roles')->select('users.*');
             return DataTables::of($data)
@@ -35,10 +38,6 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        // if (!Auth::user()->can('manage_users')) {
-        //     abort(403, 'No tienes permiso.');
-        // }
-
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
@@ -57,23 +56,23 @@ class UserController extends Controller
         return response()->json(['success' => 'Usuario creado correctamente']);
     }
 
-    public function show(User $user)
+    public function show(User $user, $id)
     {
-        // if (!Auth::user()->can('manage_users')) {
-        //     abort(403, 'No tienes permiso.');
-        // }
+        $user = User::find($id);
         $user->load('roles');
         return response()->json($user);
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $user, $id)
     {
-        // if (!Auth::user()->can('manage_users')) {
-        //     abort(403, 'No tienes permiso.');
-        // }
+        $user = User::find($id);
         $request->validate([
             'name' => 'required|string',
-            'email' => 'required|email|unique:users,email,'.$user->id,
+             'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($user->id), // Ignora el email del usuario actual
+            ],
             'password' => 'nullable|min:6|confirmed',
             'role' => 'required|exists:roles,name',
         ]);
@@ -91,9 +90,6 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        // if (!Auth::user()->can('manage_users')) {
-        //     abort(403, 'No tienes permiso.');
-        // }
         $user->delete();
         return response()->json(['success' => 'Usuario eliminado']);
     }

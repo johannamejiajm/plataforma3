@@ -48,33 +48,38 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Crear Evento -->
 <div class="modal fade" id="eventoModal" tabindex="-1" aria-labelledby="eventoModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form method="POST" action="{{ route('eventos.store') }}" enctype="multipart/form-data">
+
+        <form id="formCrearEvento" enctype="multipart/form-data">
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Registrar Evento</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
+
                 <div class="modal-body">
+
                     <div class="mb-3">
                         <label>Nombre del evento</label>
-                        <input type="text" name="evento" class="form-control" required>
+                        <input type="text" name="evento" class="form-control" value="{{ old('evento') }}" >
                     </div>
                     <div class="mb-3">
                         <label>Fecha inicial</label>
-                        <input type="datetime-local" name="fechainicial" class="form-control" required>
+                        <input type="datetime-local" name="fechainicial" class="form-control" value="{{ old('fechainicial') }}" >
                     </div>
                     <div class="mb-3">
                         <label>Fecha final</label>
-                        <input type="datetime-local" name="fechafinal" class="form-control" required>
+                        <input type="datetime-local" name="fechafinal" class="form-control" value="{{ old('fechafinal') }}" >
                     </div>
                     <div class="mb-3">
                         <label for="imagen" class="form-label">Imágenes (máx. 1)</label>
-                        <input type="file" name="imagen" class="form-control" accept="image/*" multiple >
+                        <input type="file" name="imagen" class="form-control" accept="image/*">
                     </div>
+                    <input type="hidden" name="estado" value="1">
+
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success">Guardar</button>
@@ -84,10 +89,11 @@
         </form>
     </div>
 </div>
-<!-- Modal Editar -->
+
+<!-- Modal Editar Evento -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form id="formEditar">
+        <form id="formEditar" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="modal-content">
@@ -96,6 +102,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
+                    <input type="hidden" id="edit_id" name="id">
                     <div class="mb-3">
                         <label>Nombre del evento</label>
                         <input type="text" name="evento" id="edit_evento" class="form-control" required>
@@ -110,7 +117,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="imagen" class="form-label">Imágenes (máx. 1)</label>
-                        <input type="file" name="imagen[]" class="form-control" accept="image/*" multiple >
+                        <input type="file" name="imagen" class="form-control" accept="image/*">
                     </div>
                     <div class="mb-3">
                         <label>Estado</label>
@@ -128,5 +135,10 @@
         </form>
     </div>
 </div>
-@endsection
 
+<!-- Scripts -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@endsection

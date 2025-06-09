@@ -9,10 +9,15 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Validation\Rule;
+use Illuminate\Routing\Controller as BaseController;
 
-class RoleController extends Controller
+class RoleController extends BaseController
 {
-    //
+    public function __construct()
+    {
+        $this->middleware('permission:manage_roles');
+    }
+
     public function index()
     {
         // if (!Auth::user()->can('manage_roles')) {
