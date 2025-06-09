@@ -20,7 +20,7 @@ class EventosController extends Controller
 
 public function store(EventosRequest $request)
 {
-    $datos = $request->only(['evento', 'fechainicial', 'fechafinal', 'estado']);
+    $datos = $request->only(['evento', 'fechainicial', 'fechafinal']);
 
     if ($request->hasFile('imagen')) {
         $imagen = $request->file('imagen');
@@ -29,6 +29,7 @@ public function store(EventosRequest $request)
         $ruta = $imagen->storeAs('eventos', $nombreHash, 'public');
         $datos['imagen'] = $ruta;
     }
+    $datos['estado'] = '1';
 
     Evento::create($datos);
 
