@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventosRequest;
 use App\Models\Evento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,33 +24,22 @@ class EventosController extends BaseController
         return view('admin/vistas/eventos.index', compact('eventos'));
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'evento' => 'required|string|max:255',
-            'fechainicial' => 'required|date',
-            'fechafinal' => 'required|date|after_or_equal:fechainicial',
-            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // valida una sola imagen
-        ]);
+public function store(EventosRequest $request)
+{
+    $datos = $request->only(['evento', 'fechainicial', 'fechafinal', 'estado']);
 
-        $datos = $request->only(['evento', 'fechainicial', 'fechafinal']);
-        $datos['estado'] = '1';
-        if ($request->hasFile('imagen')) {
-            $imagen = $request->file('imagen');
-
-            $extension = $imagen->getClientOriginalExtension();
-            $nombreHash = Str::uuid() . '.' . $extension;
-
-            // Guarda la imagen en storage/app/public/eventos/
-            $ruta = $imagen->storeAs('eventos', $nombreHash, 'public');
-
-            $datos['imagen'] = $ruta;
-        }
-
-        Evento::create($datos);
-
-        return redirect()->back()->with('success', 'Evento creado exitosamente.');
+    if ($request->hasFile('imagen')) {
+        $imagen = $request->file('imagen');
+        $extension = $imagen->getClientOriginalExtension();
+        $nombreHash = Str::uuid() . '.' . $extension;
+        $ruta = $imagen->storeAs('eventos', $nombreHash, 'public');
+        $datos['imagen'] = $ruta;
     }
+
+    Evento::create($datos);
+
+    return redirect()->back()->with('success', 'Evento creado exitosamente.');
+}
 
     public function edit($id)
     {
@@ -57,27 +47,31 @@ class EventosController extends BaseController
         return response()->json($evento);
     }
 
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'evento' => 'required',
-            'fechainicial' => 'required|date',
-            'fechafinal' => 'required|date',
-            'estado' => 'required|in:0,1',
-        ]);
+   public function update(EventosRequest $request, $id)
+{
+    DB::beginTransaction();
+    try {
+        $evento = Evento::findOrFail($id);
 
-        DB::beginTransaction();
-        try {
-            $evento = Evento::findOrFail($id);
-            $evento->update($request->all());
+        $datos = $request->only(['evento', 'fechainicial', 'fechafinal', 'estado']);
 
-            DB::commit();
-            return response()->json(['success' => 'Evento actualizado correctamente.'], 200);
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json(['error' => 'Error al actualizar el evento.'], 500);
+        if ($request->hasFile('imagen')) {
+            $imagen = $request->file('imagen');
+            $extension = $imagen->getClientOriginalExtension();
+            $nombreHash = Str::uuid() . '.' . $extension;
+            $ruta = $imagen->storeAs('eventos', $nombreHash, 'public');
+            $datos['imagen'] = $ruta;
         }
+
+        $evento->update($datos);
+
+        DB::commit();
+        return response()->json(['success' => 'Evento actualizado correctamente.'], 200);
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return response()->json(['error' => 'Error al actualizar el evento.'], 500);
     }
+}
 
     public function destroy($id)
     {
