@@ -5,12 +5,15 @@ use App\Http\Requests\Contactosrequest;
 use App\Models\Contactos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Routing\Controller as BaseController;
 
-class ContactosController extends Controller
+class ContactosController extends BaseController
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('permission:manage_contactos')->except('index');
+    }
+
     public function index()
     {
         $contactos = Contactos::first();

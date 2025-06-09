@@ -83,7 +83,7 @@
             </li>
           </ul>
           <div>
-            <a href="{{ route('donaciones.index') }}"class="btn btn-primary py-8 px-9">Admin</a>
+            <a href="{{ route('admin.publicaciones.eventos.index') }}"class="btn btn-primary py-8 px-9">Admin</a>
           </div>
         </div>
       </div>
