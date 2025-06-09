@@ -71,7 +71,7 @@ class PublicacionesController extends BaseController
     public function indexpublicacionespublico()
     {
         $publicaciones = Publicaciones::where('estado', '1')
-            ->whereIn('idtipo', [1, 2, 3]) 
+            ->whereIn('idtipo', [1, 2]) 
             ->with(['fotos', 'tipo'])
             ->get();
         return view('publico.vistas.publicaciones.publicaciones', compact('publicaciones'));
