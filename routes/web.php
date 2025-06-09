@@ -46,12 +46,6 @@ Route::middleware(['auth'])->group(function () {
      //Rutas publicar historias
     Route::resource('/admin/publicaciones/historias', PublicacionesController::class)->names('admin.publicaciones.historias');
 
-    /*Route::post('/admin/historias', [PublicacionesController::class,'store'])->name('publicaciones.store');
-    Route::get('/admin/historias/{id}', [PublicacionesController::class,'show'])->name('publicaciones.show');
-    Route::get('/admin/historias/{id}/edit', [PublicacionesController::class,'edit'])->name('publicaciones.edit');
-    Route::put('/admin/historias/{id}', [PublicacionesController::class,'update'])->name('publicaciones.update');
-    Route::delete('/admin/historias/{id}', [PublicacionesController::class,'destroy'])->name('publicaciones.destroy');*/
-
     //Rutas obtener informacion publicaciones
     Route::get('/api/admin/eventos', [PublicacionesController::class, 'data'])->name('publicaciones.eventos');
     Route::get('/api/admin/historias', [PublicacionesController::class, 'data'])->name('publicaciones.historias');

@@ -5,17 +5,6 @@
 @endsection
 
 @section('content')
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: '¡Éxito!',
-                text: '{{ session('success') }}',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'Aceptar'
-            });
-        </script>
-    @endif
     <div class="body-wrapper-inner">
         <div class="container-fluid">
             <!-- Encabezado -->
@@ -43,17 +32,11 @@
                                 <div class="accordion-body">
 
                                     @if ($item)
-
-                                        <form action="{{ route('quienessomos.update', $item->id) }}" method="POST"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            @method('PUT')
-                                             <input type="text" name="idtipo" id="idtipo" value="{{$item->idtipo}}" hidden>
-
+                                        <form>
                                             <!-- Contenido -->
                                             <div class="mb-3">
                                                 <label class="form-label">Contenido</label>
-                                                <textarea name="contenido" rows="4" class="form-control">{{ $item->contenido }}</textarea>
+                                                <textarea id="contenido-{{$item->id}}" rows="4" class="form-control">{{ $item->contenido }}</textarea>
                                             </div>
 
                                             <!-- Foto actual -->
@@ -68,15 +51,13 @@
                                             <!-- Cambiar foto -->
                                             <div class="mb-3">
                                                 <label class="form-label">Cambiar Foto (opcional)</label>
-                                                <input type="file" name="foto" class="form-control" accept="image/*">
+                                                <input type="file" id="foto-{{$item->id}}" name="foto[]" class="form-control" accept="image/*">
                                             </div>
-
-                                            <!-- Botón Guardar -->
-                                            <div class="d-grid">
-                                                <button type="submit" class="btn btn-success">Guardar Cambios</button>
-                                            </div>
-
                                         </form>
+                                        <div class="d-grid">
+                                            <button onclick="actualizarinformacion({{$item->id}},{{$item->idtipo}})"
+                                                class="btn btn-success">Guardar Cambios</button>
+                                        </div>
                                     @else
                                         <div class="alert alert-warning">
                                             No se encontró información para <strong>{{ $titulo }}</strong>.

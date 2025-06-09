@@ -27,9 +27,7 @@ class InformacionInstitucionalRequest extends FormRequest
         return [
             'idtipo' => 'required|string|max:50',
             'contenido' => 'required|string',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'fechainicial' => 'required|date',
-            'estado' => 'required|string|in:activo,inactivo',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 
@@ -43,17 +41,10 @@ class InformacionInstitucionalRequest extends FormRequest
             'contenido.required' => 'El contenido es obligatorio.',
             'contenido.string' => 'El contenido debe ser una cadena de texto.',
 
-            'foto.required' => 'La foto es obligatoria.',
             'foto.image' => 'La foto debe ser una imagen válida.',
             'foto.mimes' => 'La foto debe ser un archivo con formato jpeg, png, jpg o gif.',
             'foto.max' => 'La foto no debe pesar más de 2MB.',
 
-            'fechainicial.required' => 'La fecha inicial es obligatoria.',
-            'fechainicial.date' => 'La fecha inicial debe ser una fecha válida.',
-
-            'estado.required' => 'El estado es obligatorio.',
-            'estado.string' => 'El estado debe ser una cadena de texto.',
-            'estado.in' => 'El estado debe ser activo o inactivo.',
         ];
     }
 }
