@@ -8,13 +8,18 @@ use App\Models\Tipoinformacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Routing\Controller as BaseController;
+
 use Illuminate\Support\Facades\Storage;
 
-class InformacioninstitucionalController extends Controller
+class InformacioninstitucionalController extends BaseController
 {
 
+    public function __construct()
+    {
+        $this->middleware('permission:manage_informacion')->except('index');
+    }
 
-    // Método para mostrar la info en el formulario de edición (opcional si no usas formulario separado)
     public function edit($id)
     {
         $info = Informacioninstitucional::findOrFail($id);
@@ -32,12 +37,14 @@ class InformacioninstitucionalController extends Controller
             $info->idtipo = $request->idtipo;
             $info->contenido = $request->contenido;
 
+
             // Manejo de la foto (si se envía)
             if ($request->hasFile('foto')) {
                 // Eliminar la foto anterior si existe
                 if ($info->foto && Storage::disk('public')->exists($info->foto)) {
                     Storage::disk('public')->delete($info->foto);
                 }
+
 
                 // Guardar la nueva foto
                 $info->foto = $request->file('foto')->store('informacion', 'public');

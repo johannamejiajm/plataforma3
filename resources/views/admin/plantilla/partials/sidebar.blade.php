@@ -14,76 +14,86 @@
         <span class="hide-menu">Generales</span>
       </li>
       <li class="sidebar-item">
-        <a class="sidebar-link" href="" aria-expanded="false">
+        <a class="sidebar-link" href="{{ route('indexinicio') }}" aria-expanded="false">
           <i class="fa-solid fa-chart-line fa-xl"></i>
-          <span class="hide-menu">Panel Control</span>
+          <span class="hide-menu">Publico</span>
         </a>
       </li>
-      <li class="sidebar-item">
-        <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)" aria-expanded="false">
-          <div class="d-flex align-items-center gap-3">
-            <span class="d-flex">
-              <i class="fa-solid fa-newspaper fa-xl"></i>
-            </span>
-            <span class="hide-menu">Publicaciones</span>
-          </div>
-        </a>
-        <ul aria-expanded="false" class="collapse first-level">
-          <li class="sidebar-item">
-           <a class="sidebar-link" href="{{ route('admin.publicaciones.eventos.index') }}" aria-expanded="false" id="eventoPublicacionesLink">
-            <i class="ti ti-circle"></i>
-              <span class="hide-menu">Eventos</span>
-            </a>
-          </li>
+      @can('manage_publicaciones')
+        <li class="sidebar-item">
+          <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)" aria-expanded="false">
+            <div class="d-flex align-items-center gap-3">
+              <span class="d-flex">
+                <i class="fa-solid fa-newspaper fa-xl"></i>
+              </span>
+              <span class="hide-menu">Publicaciones</span>
+            </div>
+          </a>
+          <ul aria-expanded="false" class="collapse first-level">
+            <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('admin.publicaciones.eventos.index') }}" aria-expanded="false" id="eventoPublicacionesLink">
+              <i class="ti ti-circle"></i>
+                <span class="hide-menu">Eventos</span>
+              </a>
+            </li>
 
-          <li class="sidebar-item">
-           <a class="sidebar-link" href="{{ route('admin.publicaciones.historias.index') }}" aria-expanded="false" id="historiaPublicacionesLink">
-            <i class="ti ti-circle"></i>
-              <span class="hide-menu">Historias</span>
-            </a>
-          </li>
+            <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('admin.publicaciones.historias.index') }}" aria-expanded="false" id="historiaPublicacionesLink">
+              <i class="ti ti-circle"></i>
+                <span class="hide-menu">Historias</span>
+              </a>
+            </li>
 
-          <li class="sidebar-item">
-        <a class="sidebar-link" href="{{ route('admin.publicaciones.noticias.index') }}" aria-expanded="false" id="noticiaPublicacionesLink">
-            <i class="ti ti-circle"></i>
-              <span class="hide-menu">Noticias</span>
-            </a>
-          </li>
-        </ul>
-      </li>
+            <li class="sidebar-item">
+          <a class="sidebar-link" href="{{ route('admin.publicaciones.noticias.index') }}" aria-expanded="false" id="noticiaPublicacionesLink">
+              <i class="ti ti-circle"></i>
+                <span class="hide-menu">Noticias</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      @endcan
+      @can('manage_artistas')
       <li class="sidebar-item">
         <a class="sidebar-link" href="{{ route('artistas.index') }}" aria-expanded="false" id="linkArtistas">
           <i class="fa-solid fa-palette fa-xl"></i>
           <span class="hide-menu">Artistas</span>
         </a>
       </li>
+      @endcan
+      @can('manage_eventos')
       <li class="sidebar-item">
         <a class="sidebar-link" href="{{ route('eventos.index') }}" aria-expanded="false" id="linkEventos">
           <i class="fa-solid fa-calendar-check fa-xl"></i>
           <span class="hide-menu">Eventos</span>
         </a>
       </li>
-
+      @endcan
+      @can('manage_donaciones')
       <li class="sidebar-item">
         <a class="sidebar-link" href="{{ route('donaciones.index') }}" aria-expanded="false" id="linkDonaciones">
           <i class="fa-solid fa-hand-holding-dollar fa-xl"></i>
           <span class="hide-menu">Donaciones</span>
         </a>
       </li>
-      {{-- @can('manage_contactos') --}}
+      @endcan
+      @can('manage_informacion')
       <li class="sidebar-item">
         <a class="sidebar-link" href="{{ route('quienessomos.indexadmin') }}" aria-expanded="false" id="linkInstitucional">
           <i class="fa-solid fa-address-card fa-xl"></i>
           <span class="hide-menu">Información institucional</span>
         </a>
       </li>
+      @endcan
+      @can('manage_contactos')
       <li class="sidebar-item">
         <a class="sidebar-link" href="{{ route('admin.contactos') }}" aria-expanded="false" id="linkContactos">
           <i class="fa-solid fa-address-card fa-xl"></i>
           <span class="hide-menu">Contactos</span>
         </a>
       </li>
-      {{-- @endcan --}}
+      @endcan
+      @canany(['manage_users', 'manage_roles', 'manage_permisos'])
       <li class="sidebar-item">
         <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)" aria-expanded="false" >
           <div class="d-flex align-items-center gap-3">
@@ -94,33 +104,33 @@
           </div>
         </a>
         <ul aria-expanded="false" class="collapse first-level">
-          {{-- @can('manage_users') --}}
+          @can('manage_users')
           <li class="sidebar-item">
             <a class="sidebar-link" href="{{ route('usuarios.index') }}" aria-expanded="false" id="usuariosLink">
               <i class="ti ti-circle"></i>
               <span class="hide-menu">Usuarios</span>
             </a>
           </li>
-          {{-- @endcan --}}
-          {{-- @can('manage_roles') --}}
+          @endcan
+          @can('manage_roles')
           <li class="sidebar-item">
             <a class="sidebar-link" href="{{ route('roles.index') }}" aria-expanded="false" id="rolesLink">
               <i class="ti ti-circle"></i>
               <span class="hide-menu">Roles</span>
             </a>
           </li>
-          {{-- @endcan
-          @can('manage_permisos') --}}
+          @endcan
+          @can('manage_permisos')
           <li class="sidebar-item">
             <a class="sidebar-link" href="{{ route('permisos.index') }}" aria-expanded="false" id="permisosLink">
               <i class="ti ti-circle"></i>
               <span class="hide-menu">Permisos</span>
             </a>
           </li>
-          {{-- @endcan--}}
+          @endcan
         </ul>
       </li>
-
+      @endcanany
     </ul>
   </nav>
 </aside>

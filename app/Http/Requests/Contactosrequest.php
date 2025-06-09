@@ -41,7 +41,7 @@ class Contactosrequest extends FormRequest
 
         return [
 
-           'direccion.required' => 'La dirección es obligatoria',
+            'direccion.required' => 'La dirección es obligatoria',
             'direccion.string' => 'Debes ingresar una dirección válida',
 
             'telefono1.required' => 'El número es obligatorio',
