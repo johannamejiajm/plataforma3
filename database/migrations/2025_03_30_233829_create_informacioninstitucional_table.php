@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('idtipo')->unsigned();
             $table->string('contenido',5000);
-            $table->date('fechainicial');
             $table->string('foto')->nullable();
             $table->timestamps();
             $table->foreign('idtipo')->references('id')->on('tipoinformacion');
