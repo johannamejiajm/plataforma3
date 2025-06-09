@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DonacionRequest;
 use App\Models\Donaciones;
 use App\Models\Tipodonaciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Routing\Controller as BaseController;
 
-class DonacionesController extends Controller
+class DonacionesController extends BaseController
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('permission:manage_donaciones')->except(['indexdonacion','store']);
+    }
      public function indexdonacion()
     {
         $donaciones = Donaciones::all();
@@ -79,7 +82,7 @@ class DonacionesController extends Controller
         return redirect()->route('donaciones.index')->with('success', 'Donación actualizada.');
     }
     
-    public function store(Request $request)
+    public function store(DonacionRequest $request)
     {
         DB::beginTransaction();
         try {

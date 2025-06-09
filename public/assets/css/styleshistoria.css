@@ -175,15 +175,18 @@ html {
 }
 
 .modal-header-custom {
-  background: linear-gradient(to right, #ffffff 20%, #0a0f2c 80%);
-  color: #000;
+  background: linear-gradient(to right, navy, purple, red); /* Cambiado */
+  color: #fff; /* Para que contraste con el fondo oscuro */
   padding: 1.5rem 2rem;
   position: relative;
   border-bottom: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
+
 
 .modal-header-custom h5.modal-title {
   font-weight: 700;
@@ -194,17 +197,6 @@ html {
   z-index: 2;
 }
 
-.modal-header-custom::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -10%;
-  width: 130%;
-  height: 100%;
-  background: linear-gradient(120deg, #ffffff 10%, #00aaff 20%, #0a0f2c 60%);
-  transform: skewX(-20deg);
-  z-index: 1;
-}
 
 .modal-header-custom .btn-close {
   z-index: 2;
@@ -300,4 +292,32 @@ html {
   width: 100%;
   max-height: 80vh; /* Limitar la altura de la imagen dentro del modal */
   object-fit: contain;
+}
+
+.carousel-item img {
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    transition: none !important;
+    transform: none !important;
+}
+.galeria-contenedor {
+  position: relative;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.titulo-sobre-imagen {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.5); /* fondo oscuro semitransparente */
+  padding: 8px 16px;
+  border-radius: 8px;
+  z-index: 10;
 }

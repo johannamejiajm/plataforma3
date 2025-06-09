@@ -52,16 +52,17 @@ FUNDACION PACHO'S CLUB
 
 @section('contenido')
     <!-- Formulario HTML -->
-    <div class="container mt-5">
+<div class="d-flex justify-content-center mt-5">
+    <div class="container" style="max-width: 600px;">
         <h2 class="text-center mb-4">Postulate a nuestros eventos</h2>
 
         <form action="{{ route('artistas.store') }}" method="POST" enctype="multipart/form-data"
-            class="border p-4 rounded shadow-sm">
+            class="border p-4 rounded shadow-sm bg-white">
             @csrf
 
             <div class="mb-3">
                 <label for="idevento" class="form-label">Evento</label>
-                <select name="idevento" id="idevento" class="form-control" required>
+                <select name="idevento" id="idevento" class="form-control">
                     <option value="">Seleccione un evento</option>
                     @foreach ($eventos as $evento)
                         <option value="{{ $evento->id }}">{{ $evento->evento }}</option>
@@ -72,7 +73,7 @@ FUNDACION PACHO'S CLUB
             <div class="mb-3">
                 <label for="identidad" class="form-label">Número de Identidad</label>
                 <input type="text" name="identidad" id="identidad"
-                    class="form-control @error('identidad') is-invalid @enderror" value="{{ old('identidad') }}" required>
+                    class="form-control @error('identidad') is-invalid @enderror" value="{{ old('identidad') }}">
                 @error('identidad')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -80,12 +81,9 @@ FUNDACION PACHO'S CLUB
                 @enderror
             </div>
 
-
-
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" name="nombre" id="nombre" class="form-control" value="{{ old('nombre') }}"
-                    required>
+                <input type="text" name="nombre" id="nombre" class="form-control" value="{{ old('nombre') }}">
             </div>
 
             <div class="mb-3">
@@ -109,8 +107,13 @@ FUNDACION PACHO'S CLUB
                 <label for="descripcion" class="form-label">Descripción</label>
                 <textarea name="descripcion" id="descripcion" class="form-control" rows="3">{{ old('descripcion') }}</textarea>
             </div>
+
             <input type="hidden" name="estado" value="0">
             <button type="submit" class="btn btn-primary w-100">¡Postularme!</button>
         </form>
     </div>
+</div>
+
+
+    
 @endsection

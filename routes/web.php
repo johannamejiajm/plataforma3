@@ -14,7 +14,7 @@ use App\Http\Controllers\PermissionController;
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('/',[PublicacionesController::class,'indexinicio'])->name('inicio.index');
-Route::get('/publico/inicio',[PublicacionesController::class,'indexinicio']);
+Route::get('/publico/inicio',[PublicacionesController::class,'indexinicio'])->name('indexinicio');
 Route::get('/publico/quienessomos', [InformacioninstitucionalController::class, 'index'])->name('quienessomos.index');
 Route::get('/publico/historia', [PublicacionesController::class, 'indexhistoria'])->name('historia.index');
 Route::get('/publico/publicaciones', [PublicacionesController::class, 'indexpublicacionespublico'])->name('publicaciones.indexpublicacionespublico');
@@ -45,12 +45,6 @@ Route::middleware(['auth'])->group(function () {
 
      //Rutas publicar historias
     Route::resource('/admin/publicaciones/historias', PublicacionesController::class)->names('admin.publicaciones.historias');
-
-    /*Route::post('/admin/historias', [PublicacionesController::class,'store'])->name('publicaciones.store');
-    Route::get('/admin/historias/{id}', [PublicacionesController::class,'show'])->name('publicaciones.show');
-    Route::get('/admin/historias/{id}/edit', [PublicacionesController::class,'edit'])->name('publicaciones.edit');
-    Route::put('/admin/historias/{id}', [PublicacionesController::class,'update'])->name('publicaciones.update');
-    Route::delete('/admin/historias/{id}', [PublicacionesController::class,'destroy'])->name('publicaciones.destroy');*/
 
     //Rutas obtener informacion publicaciones
     Route::get('/api/admin/eventos', [PublicacionesController::class, 'data'])->name('publicaciones.eventos');
