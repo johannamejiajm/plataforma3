@@ -25,7 +25,6 @@ class EventosRequest extends FormRequest
             'evento' => 'required|string|max:255',
             'fechainicial' => 'required|date|before_or_equal:fechafinal',
             'fechafinal' => 'required|date|after_or_equal:fechainicial',
-            'estado' => 'required|in:activo,inactivo',
             'imagen' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
         ];
     }
@@ -44,9 +43,6 @@ class EventosRequest extends FormRequest
             'fechafinal.required' => 'La fecha final es obligatoria.',
             'fechafinal.date' => 'Debes ingresar una fecha final válida.',
             'fechafinal.after_or_equal' => 'La fecha final no puede ser anterior a la fecha inicial.',
-
-            'estado.required' => 'El estado del evento es obligatorio.',
-            'estado.in' => 'El estado debe ser "activo" o "inactivo".',
 
             'imagen.image' => 'El archivo debe ser una imagen válida.',
             'imagen.mimes' => 'La imagen debe ser de tipo: jpg, jpeg, png, gif o webp.',
