@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PermissionRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Routing\Controller as BaseController;
+
 
 class PermissionController extends BaseController
 {
@@ -37,18 +38,13 @@ class PermissionController extends BaseController
         return view('admin.vistas.permisos.index');
     }
 
-    public function store(Request $request)
+    public function store(PermissionRequest $request)
     {
         // if (!Auth::user()->can('manage_permisos')) {
         //     abort(403, 'No tienes permiso.');
         // }
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255|unique:permissions,name',
-        ]);
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
+
 
         Permission::create(['name' => $request->name]);
 
@@ -64,7 +60,7 @@ class PermissionController extends BaseController
         return response()->json($permission);
     }
 
-    public function update(Request $request, $id)
+    public function update(PermissionRequest $request, $id)
     {
         // if (!Auth::user()->can('manage_permisos')) {
         //     abort(403, 'No tienes permiso.');
@@ -72,13 +68,6 @@ class PermissionController extends BaseController
 
         $permission = Permission::findOrFail($id);
 
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255|unique:permissions,name,' . $permission->id,
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
 
         $permission->update(['name' => $request->name]);
 
@@ -90,7 +79,7 @@ class PermissionController extends BaseController
         // if (!Auth::user()->can('manage_permisos')) {
         //     abort(403, 'No tienes permiso.');
         // }
-        
+
         $permission = Permission::findOrFail($id);
         $permission->delete();
 
