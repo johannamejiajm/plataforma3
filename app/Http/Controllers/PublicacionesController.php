@@ -69,7 +69,7 @@ class PublicacionesController extends BaseController
     {
         $publicaciones = Publicaciones::where('estado', '1')
 
-            ->whereIn('idtipo', [1, 2]) 
+            ->whereIn('idtipo', [1, 2])
 
             ->with(['fotos', 'tipo'])
             ->get();
