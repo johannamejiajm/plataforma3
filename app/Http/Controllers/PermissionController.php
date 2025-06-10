@@ -14,7 +14,7 @@ class PermissionController extends BaseController
 {
     public function __construct()
     {
-        $this->middleware('permission:manage_publicaciones');
+        $this->middleware('permission:manage_permisos');
     }
     public function index(Request $request)
     {
