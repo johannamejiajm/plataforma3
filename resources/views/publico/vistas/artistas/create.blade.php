@@ -14,41 +14,6 @@ FUNDACION PACHO'S CLUB
 <p class="subtitulo-amarillo">"DEJA TU HUELLA EN NUESTROS EVENTOS"</p>
 @endsection
 
-@section('script')
-    <script>
-        $(document).ready(function () {
-            $('#inscripcion').addClass('active');
-        });
-    </script>
-    <script>
-        @if (session('success'))
-            Swal.fire({
-                icon: 'success',
-                title: 'Éxito',
-                text: '{{ session('success') }}',
-                confirmButtonColor: '#3085d6',
-            });
-        @endif
-
-        @if (session('error'))
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: '{{ session('error') }}',
-                confirmButtonColor: '#d33',
-            });
-        @endif
-
-        @if ($errors->any())
-            Swal.fire({
-                icon: 'warning',
-                title: 'Errores de validación',
-                html: `{!! implode('<br>', $errors->all()) !!}`,
-                confirmButtonColor: '#f0ad4e',
-            });
-        @endif
-    </script>
-@endsection
 
 @section('contenido')
     <!-- Formulario HTML -->
@@ -56,10 +21,9 @@ FUNDACION PACHO'S CLUB
     <div class="container" style="max-width: 600px;">
         <h2 class="text-center mb-4">Postulate a nuestros eventos</h2>
 
-        <form action="{{ route('artistas.store') }}" method="POST" enctype="multipart/form-data"
+        <form  enctype="multipart/form-data"
             class="border p-4 rounded shadow-sm bg-white">
-            @csrf
-
+           
             <div class="mb-3">
                 <label for="idevento" class="form-label">Evento</label>
                 <select name="idevento" id="idevento" class="form-control">
@@ -109,7 +73,7 @@ FUNDACION PACHO'S CLUB
             </div>
 
             <input type="hidden" name="estado" value="0">
-            <button type="submit" class="btn btn-primary w-100">¡Postularme!</button>
+            <button type="submit" id='guardarartistas' class="btn btn-primary w-100">¡Postularme!</button>
         </form>
     </div>
 </div>
