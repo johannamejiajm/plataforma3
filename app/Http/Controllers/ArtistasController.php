@@ -83,62 +83,46 @@ class ArtistasController extends BaseController
     }
 
     
-    public function store(Request $request)
+    public function store(InscripcionesRequest $request)
     {
         
 
         DB::beginTransaction();
         try {
 
-            $validated = $request->validate([
-                'idevento' => 'required|exists:eventos,id',
-                'identidad' => 'required|string|max:20|unique:artistas,identidad',
-                'nombre' => 'required|string|max:255',
-                'email' => 'nullable|email',
-                'telefono' => 'nullable|string|max:20',
-                'imagen' => 'nullable|image|max:2048',
-                'descripcion' => 'nullable|string',
-                'estado' => 'required|in:1,0', // ahora acepta directamente 1 o 0
+            $datos = [
+                'idevento'    => $request->idevento,
+                'identidad'   => $request->identidad,
+                'nombre'      => $request->nombre,
+                'email'       => $request->email,
+                'telefono'    => $request->telefono,
+                'descripcion' => $request->descripcion,
+                'estado'      => '0',
+            ];
 
-            ], [
-                'email.required' => 'El correo es obligatorio.',
-                'email.email' => 'El correo debe tener la siguiente estructura ejemplo@ejem.ejem.',
-                'email.unique' => 'El correo ya existe.',
-                'descripcion.required' => 'La descripción es obligatoria.',
-                'descripcion.string' => 'La descripción debe ser texto.',
-                'descripcion.max' => 'La descripción no puede ser mayor a :max caracteres.',
-                'nombre.required' => 'El nombre es obligatorio.',
-                'nombre.string' => 'El nombre debe ser texto.',
-                'idevento.required' => 'El evento es obligatorio.',
-                'identidad.required' => 'El numero de identidad es obligatorio.',
-                'identidad.required' => 'El campo número de identidad es obligatorio.',
-                'identidad.unique' => 'Este número de identidad ya está registrado.',
-                'identidad.max' => 'El número de identidad no debe tener más de 20 caracteres.',
-                'imagen.max' => 'El campo de imagen no debe ser mayor a 2048 kilobytes.',
-            ]);
-            // Conversión del estado a entero (por si viene como string)
-            
+       
+        if ($request->hasFile('imagen')) {
+            $path = $request->file('imagen')->store('imagenes_artistas', 'public');
+            $datos['imagen'] = $path;
+        }
 
-            // Guardar la imagen si se subió
-            if ($request->hasFile('imagen')) {
-                $path = $request->file('imagen')->store('imagenes_artistas', 'public');
-                $validated['imagen'] = $path;
-            }
-            // Fecha de registro
-            $validated['fecharegistro'] = now();
-
-            // Crear el registro
-            Artistas::create($validated);
+            $artista = Artistas::create($datos);
+             
+             
             DB::commit();
-            // Redirigir con mensaje
-            return redirect()->route('artistas.create')->with('success', 'Artista registrado correctamente.');
-        } catch (\Throwable $th) {
-            DB::rollBack();
+            return response()->json([
+                'mensaje'   => "Artista registrada exitosamente, ",
+                'estado'    => 0,
+                
+            ]);
 
-            // Mostrar el mensaje exacto del error
-            return redirect()->back()
-                ->withInput()
-                ->with('error', 'Error: ' . $th->getMessage());
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Error al registrar Artista: '.$e->getMessage());
+            return response()->json([
+                'mensaje' => 'Ocurrió un error al guardar el artistas.',
+                'error'   => $e->getMessage()
+            ], 500);
         }
     }
 
