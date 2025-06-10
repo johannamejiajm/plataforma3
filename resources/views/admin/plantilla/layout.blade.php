@@ -8,7 +8,7 @@
 
   <title>@yield('title', 'Pachos Club')</title>
 
-  <!-- Fonts -->
+
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -19,8 +19,6 @@
 
   @yield('css')
 
-  <!-- Scripts -->
-  {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 </head>
 
 <body>
@@ -29,9 +27,6 @@
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
 
-    <!-- Page Heading -->
-
-    {{-- @include('admin.plantilla.partials.header') --}} {{-- Incluir el header --}}
 
     @include('admin.plantilla.partials.sidebar')
 

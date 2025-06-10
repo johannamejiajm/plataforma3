@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RoleRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Validation\Rule;
 use Illuminate\Routing\Controller as BaseController;
+
 
 class RoleController extends BaseController
 {
@@ -65,20 +65,15 @@ class RoleController extends BaseController
         return response()->json(['success' => 'Permiso creado correctamente.', 'permission' => $permission]);
     }
 
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
         // if (!Auth::user()->can('manage_roles')) {
         //     abort(403, 'No tienes permiso.');
         // }
 
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:roles,name',
-            'permissions' => 'nullable|array'
-        ]);
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
+
+
 
         $role = Role::create(['name' => $request->name]);
 
@@ -106,7 +101,7 @@ class RoleController extends BaseController
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(RoleRequest $request, $id)
     {
         // if (!Auth::user()->can('manage_roles')) {
         //     abort(403, 'No tienes permiso.');
@@ -114,15 +109,6 @@ class RoleController extends BaseController
 
         $role = Role::findOrFail($id);
 
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'unique:roles,name,'. $role->id],
-            'permissions_edit' => 'nullable|array'
-        ]);
-
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
 
         $role->update(['name' => $request->name]);
         $role->syncPermissions($request->permissions_edit ?? []);
@@ -135,7 +121,7 @@ class RoleController extends BaseController
         // if (!Auth::user()->can('manage_roles')) {
         //     abort(403, 'No tienes permiso.');
         // }
-        
+
         $role = Role::findOrFail($id);
         $role->delete();
 

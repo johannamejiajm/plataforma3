@@ -22,14 +22,24 @@
             , {
                 data: 'name'
             }
-            , {
-                data: 'created_at'
-            }
-            , {
-                data: 'actions'
-                , orderable: false
-                , searchable: false
-            }
+            ,  {
+          data: 'created_at',
+          render: function(data) {
+            if (!data) return '';
+            const date = new Date(data);
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            return `${day}/${month}/${year} ${hours}:${minutes}`;
+          }
+        },
+        {
+          data: 'actions',
+          orderable: false,
+          searchable: false
+        }
         ]
         , language: {
             url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
