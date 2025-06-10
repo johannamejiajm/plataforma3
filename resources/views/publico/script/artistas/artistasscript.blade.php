@@ -1,64 +1,75 @@
 @extends('publico.plantilla.plantilla')
 @section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script>
-        $(document).ready(function () {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+    $(document).ready(function () {
              $('#inscripcion').addClass('active');
-             $("#guardarartistas").on('click', function (e) {
+                         // ...existing code...
+            $("#guardarartistas").on('click', function (e) {
                 e.preventDefault();
-
-                // Captura los valores del formulario
-                var idevento = $("#idevento").val();
-                var identidad = $("#identidad").val();
-                var nombre = $("#nombre").val();
-                var email = $("#email").val();
-                var telefono = $("#telefono").val();
-                var imagen = $("#imagen").val();
-                var descripcion = $("#descripcion").val();
-                var estado = 0;
-
+            
+                // Crea un objeto FormData
+                var formData = new FormData();
+                formData.append("_token", "{{ csrf_token() }}");
+                formData.append("idevento", $("#idevento").val());
+                formData.append("identidad", $("#identidad").val());
+                formData.append("nombre", $("#nombre").val());
+                formData.append("email", $("#email").val());
+                formData.append("telefono", $("#telefono").val());
+                formData.append("descripcion", $("#descripcion").val());
+                formData.append("estado", 0);
+            
+                // Adjunta la imagen (asegúrate que el input tenga type="file" y id="imagen")
+                var imagenInput = $("#imagen")[0];
+                if (imagenInput.files.length > 0) {
+                    formData.append("imagen", imagenInput.files[0]);
+                }
+            
                 $.ajax({
                     method: "POST",
                     url: "/publico/artistas",
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        idevento,
-                        identidad,
-                        nombre,
-                        email,
-                        telefono,
-                        imagen,
-                        descripcion,
-                        estado
-                    },
-                   @if (session('success'))
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        // Muestra un mensaje de agradecimiento por la postulación
                         Swal.fire({
                             icon: 'success',
-                            title: 'Éxito',
-                            text: '{{ session('success') }}',
+                            title: '¡Gracias por tu postulación!',
+                            text: 'Tu información ha sido recibida correctamente. Pronto nos comunicaremos contigo.',
                             confirmButtonColor: '#3085d6',
+                        }).then(function() {
+                            // Limpia todos los campos del formulario
+                            $("#idevento").val('');
+                            $("#identidad").val('');
+                            $("#nombre").val('');
+                            $("#email").val('');
+                            $("#telefono").val('');
+                            $("#descripcion").val('');
+                            $("#imagen").val('');
                         });
-                    @endif
-
-                    @if (session('error'))
+                    },
+                    error: function(xhr) {
+                        // Maneja los errores de validación y otros errores
+                        let mensaje = 'Ocurrió un error al guardar el artista';
+                        if (xhr.responseJSON && xhr.responseJSON.errors) {
+                            // Si hay errores de validación, los mostramos todos
+                            mensaje = Object.values(xhr.responseJSON.errors)
+                                .map(arr => arr.join('<br>'))
+                                .join('<br>');
+                        } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                            mensaje = xhr.responseJSON.message;
+                        }
                         Swal.fire({
                             icon: 'error',
                             title: 'Error',
-                            text: '{{ session('error') }}',
+                            html: mensaje,
                             confirmButtonColor: '#d33',
                         });
-                    @endif
-
-                    @if ($errors->any())
-                        Swal.fire({
-                            icon: 'warning',
-                            title: 'Errores de validación',
-                            html: `{!! implode('<br>', $errors->all()) !!}`,
-                            confirmButtonColor: '#f0ad4e',
-                        });
-                    @endif
-                            });
-                        });
+                    }
+                });
+            });
+            // ...existing code...
                     });
-    </script>
+</script>
 @endsection

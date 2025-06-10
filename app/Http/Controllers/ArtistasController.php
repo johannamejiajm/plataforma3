@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InscripcionesRequest;
 use App\Models\Artistas;
 use App\Models\Evento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Contracts\Service\Attribute\Required;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Log;
 
 class ArtistasController extends BaseController
 {
@@ -124,27 +126,6 @@ class ArtistasController extends BaseController
                 'error'   => $e->getMessage()
             ], 500);
         }
-    }
-
-
-    public function crearArtistas(Request $request)
-    {
-
-        // Crear el nuevo artista con la relación al evento
-        $artista = artistas::create([
-            'idevento' => $request->idevento,
-            'identidad' => $request->nidentidad,
-            'nombre' => $request->nombre,
-            'email' => $request->email,
-            'telefono' => $request->telefono,
-            //'foto' => $fotoPath,
-            'descripcion' => $request->descripcion,
-            'fecharegistro' => $request->fecharegistro,
-            'estado' => $request->estado,
-        ]);
-
-        // Redirigir o enviar una respuesta
-        return redirect()->route('artistas.create')->with('success', 'Artista creado correctamente.');
     }
     
     public function show(Artistas $artistas)
