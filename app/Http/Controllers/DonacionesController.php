@@ -21,67 +21,63 @@ class DonacionesController extends BaseController
     {
         $donaciones = Donaciones::all();
         $tiposdonaciones = Tipodonaciones::all();
-        return view('publico/vistas/donaciones/index', compact('donaciones', 'tiposdonaciones'));      
+        return view('publico/vistas/donaciones/index', compact('donaciones', 'tiposdonaciones'));
     }
-         
+
     public function index(Request $request)
     {
         // Obtener el estado de la URL, por defecto es 'todos' si no se pasa ningún valor
-        $estado = $request->get('estado', 'todos'); 
+        $idtipo = $request->get('idtipo', 'todos');
 
         // Realizar la consulta dinámica según el estado
-        if ($estado == 'todos') {
-            
+        if ($idtipo == 'todos') {
+
             $donaciones = Donaciones::with('tipoDonacion')->get();
         } else {
-            
-            $donaciones = Donaciones::whereHas('tipoDonacion', function ($query) use ($estado) {
 
-                // dd($estado);
-                if ($estado == 'aprobado') {
+            $donaciones = Donaciones::whereHas('tipoDonacion', function ($query) use ($idtipo) {
+                if ($idtipo == 'aprobado') {
                     $query->where('idtipo', '1');
-                } elseif ($estado == 'denegado') {
+                } elseif ($idtipo == 'denegado') {
                     $query->where('idtipo', '2');
-                } elseif ($estado == 'pendiente') {
+                } elseif ($idtipo == 'pendiente') {
                     $query->where('idtipo', '0');
                 }
             })
             ->get();
-
-            // dd($donaciones);
         }
 
         // Pasar las donaciones filtradas y el estado actual a la vista
-        return view('admin.vistas.donaciones.donaciones', compact('donaciones', 'estado'));
+        return view('admin/vistas/donaciones/donaciones', compact('donaciones', 'idtipo'));
     }
-   
 
-    public function updateEstado(Request $request, $id)
+    public function updateEstado(Request $request)
     {
-        $donacion = Donaciones::findOrFail($id);
-    
-        $estado = $request->estado;
-    
-        $donacion->estado = $estado;
-    
-        // Asignar tipo de donación basado en estado
-        switch ($estado) {
-            case 1: // Aprobado
-                $donacion->idtipo = 1;
-                break;
-            case 2: // Denegado
-                $donacion->idtipo = 2;
-                break;
-            default: // Pendiente u otros
-                $donacion->idtipo = 0;
-                break;
+        $request->validate([
+            'id' => 'required|integer|exists:donaciones,id',
+            'idtipo' => 'required|string',
+            'soporte' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
+
+        $donacion = Donaciones::findOrFail($request->id);
+        $donacion->idtipo = $request->idtipo;
+
+        // Si viene archivo, lo guardamos
+        if ($request->hasFile('soporte')) {
+            $archivo = $request->file('soporte');
+
+            // Guarda el archivo en storage/app/public/soportes
+            $ruta = $archivo->store('soportes', 'public');
+
+            // Guarda la ruta en la base de datos
+            $donacion->soporte = 'storage/' . $ruta;
         }
-    
+
         $donacion->save();
-    
-        return redirect()->route('donaciones.index')->with('success', 'Donación actualizada.');
+
+        return redirect('/donaciones');
     }
-    
+
     public function store(DonacionRequest $request)
     {
         DB::beginTransaction();

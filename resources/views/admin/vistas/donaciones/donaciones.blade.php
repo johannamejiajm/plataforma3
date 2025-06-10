@@ -11,10 +11,10 @@
             </div>
             <div class="col-12 mb-4">
                 <div class=" d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
-                    <a href="{{ route('donaciones.index', ['estado' => 'todos']) }}" class="btn btn-primary w-100">Todos</a>
-                    <a href="{{ route('donaciones.index', ['estado' => 'aprobado']) }}" class="btn btn-success w-100">Aprobados</a>
-                    <a href="{{ route('donaciones.index', ['estado' => 'pendiente']) }}" class="btn btn-warning w-100">Pendientes</a>
-                    <a href="{{ route('donaciones.index', ['estado' => 'denegado']) }}" class="btn btn-danger w-100">Denegados</a>
+                    <a href="{{ route('donaciones.index', ['idtipo' => 'todos']) }}" class="btn btn-primary w-100">Todos</a>
+                    <a href="{{ route('donaciones.index', ['idtipo' => 'aprobado']) }}" class="btn btn-success w-100">Aprobados</a>
+                    <a href="{{ route('donaciones.index', ['idtipo' => 'pendiente']) }}" class="btn btn-warning w-100">Pendientes</a>
+                    <a href="{{ route('donaciones.index', ['idtipo' => 'denegado']) }}" class="btn btn-danger w-100">Denegados</a>
                 </div>
             </div>
             <table id="tablaDonaciones" class="table table-striped" style="width:100%">
@@ -26,7 +26,6 @@
                         <th class="text-center">Fecha</th>
                         <th class="text-center">Contacto</th>
                         <th class="text-center">Donación</th>
-                        <th class="text-center">Estado</th>
                         <th class="text-center">Acciones</th>
                     </tr>
                 </thead>
@@ -46,21 +45,19 @@
                                     @csrf
                                     @method('PUT')
                                     <input type="hidden" name="estado" value="1">
-                                    <button type="submit" class="btn btn-success btn-sm">Aprobar</button>
+                                    <button type="submit" class="btn btn-success btn-sm" onclick="aprobar()">Aprobar</button>
                                 </form>
 
-                                <form action="{{ route('donaciones.update_estado', $donacion->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('PUT')
+                                <form  method="POST" class="d-inline">
                                     <input type="hidden" name="estado" value="2">
-                                    <button type="submit" class="btn btn-danger btn-sm">Denegar</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="denegar()">Denegar</button>
                                 </form>
 
 
                             </div>
-                            @elseif ($donacion->estado == 1)
+                            @elseif ($donacion->idtipo == 1)
                             Aprobado
-                            @elseif($donacion->estado == 2)
+                            @elseif($donacion->idtipo == 2)
                             Denegado
                             @endif
 

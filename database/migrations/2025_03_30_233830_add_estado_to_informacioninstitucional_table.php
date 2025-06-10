@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('informacioninstitucional', function (Blueprint $table) {
             //
-                $table->boolean('estado')->default(true)->after('fechainicial');
+                $table->boolean('estado')->default(true);
         });
     }
 

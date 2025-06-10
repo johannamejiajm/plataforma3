@@ -55,24 +55,15 @@ Route::middleware(['auth'])->group(function () {
     //Rutas modulo artistas
     Route::get('/admin/artistas', [ArtistasController::class, 'index'])->name('artistas.index');
     Route::post('/admin/artistas/{id}/cambiar-estado', [ArtistasController::class, 'cambiarEstado'])->name('artistas.cambiarEstado');
-    // Route::get('/admin/artistas/{id}/edit', [ArtistasController::class, 'edit'])->name('Artistas.edit');
-    // Route::put('/admin/artistas/{id}', [ArtistasController::class, 'update'])->name('Artistas.update');
 
     //Rutas información institucional
     Route::get('/admin/quienessomos', [InformacioninstitucionalController::class, 'indexadminquienessomos'])->name('quienessomos.indexadmin');
     Route::put('/admin/quienessomos/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
 
-    // Route::get('/admin/quienessomos/list', [InformacioninstitucionalController::class, 'list'])->name('quienessomos.list');
-    // Route::post('/admin/quienessomos/store', [InformacioninstitucionalController::class, 'store'])->name('quienessomos.store');
-    // Route::get('/admin/quienessomos/edit/{id}', [InformacioninstitucionalController::class, 'edit'])->name('quienessomos.edit');
-    // Route::put('/admin/quienessomos/update/{id}', [InformacioninstitucionalController::class, 'update'])->name('quienessomos.update');
-    // Route::delete('/admin/quienessomos/delete/{id}', [InformacioninstitucionalController::class, 'destroy'])->name('quienessomos.delete');
-
-
     //Rutas donaciones
     Route::get('/admin/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
     Route::get('/admin/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
-    Route::put('/admin/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');
+    Route::post('/admin/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');
 
     //Rutas contactos
     Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos');
