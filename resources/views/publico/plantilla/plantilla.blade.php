@@ -236,11 +236,11 @@
     <div class="container-fluid">
       <div class="d-flex justify-content-between py-7 flex-md-nowrap flex-wrap gap-sm-0 gap-3">
         <div class="d-flex gap-3 align-items-center">
-          <img src="../assets/images/logos/favicon.png" alt="icon">
-          <p class="fs-4 mb-0">Fundacion Pachos Club. </p>
+          <img src="{{ asset('assets/images/logos/senaimagen.png') }}" alt="icon">
+          <p class="fs-4 mb-0">CentroAgroEmpresarial </p>
         </div>
         <div>
-          <p class="mb-0">Produced by <a target="_blank" href="https://www.wrappixel.com/" class="text-primary link-primary">Wrappixel</a>.</p>
+          <p class="mb-0">  #ADSO #Ficha2827316 #DesarrolloWeb #TalentoSENA #FormaciónConCalidad </p>
         </div>
       </div>
     </div>
