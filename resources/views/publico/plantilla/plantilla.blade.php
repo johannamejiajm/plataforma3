@@ -141,7 +141,7 @@
           </a>
         </li>
         <li class="mb-1">
-          <a href="{{ route('artistas.create') }}" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
+          <a href="{{ route('artistas.activos') }}" class="px-0 fs-4 d-block w-100 py-2 text-dark link-primary">
             Artistas
           </a>
         </li>
