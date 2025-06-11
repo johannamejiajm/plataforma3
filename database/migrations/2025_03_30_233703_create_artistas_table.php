@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('telefono');
             $table->string('imagen');
             $table->string('descripcion');
-            $table->string('fecharegistro');
             $table->enum('estado',[1,0]);
             $table->timestamps();
             $table->foreign('idevento')->references('id')->on('eventos');
