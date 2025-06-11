@@ -63,7 +63,7 @@ Route::middleware(['auth'])->group(function () {
     //Rutas donaciones
     Route::get('/admin/donaciones', [DonacionesController::class, 'index'])->name('donaciones.index');
     Route::get('/admin/editdonaciones/{id}/edit', [DonacionesController::class, 'edit'])->name('donaciones.edit');
-    Route::post('/admin/donaciones/{id}update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');
+    Route::post('/admin/donaciones/update_estado', [DonacionesController::class, 'updateEstado'])->name('donaciones.update_estado');
 
     //Rutas contactos
     Route::get('/admin/contactos', [ContactosController::class, 'indexAdmin'])->name('admin.contactos');

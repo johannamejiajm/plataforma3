@@ -2,82 +2,102 @@
 @section('title', 'Administracion de Donaciones')
 
 @section('content')
-<div class="body-wrapper-inner">
-    <div class="container-fluid">
-        <!--  Row 1 -->
-        <div class="row">
-            <div class="col-12 p-3">
-                <h1 class="text-center">Gestión Donaciones</h1>
+
+
+    <div class="body-wrapper-inner">
+        <div class="container-fluid">
+            <div class="col-12 ">
+                <h1 class="text-center">MODULO DONACIONES</h1>
             </div>
-            <div class="col-12 mb-4">
-                <div class=" d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
-                    <a href="{{ route('donaciones.index', ['idtipo' => 'todos']) }}" class="btn btn-primary w-100">Todos</a>
-                    <a href="{{ route('donaciones.index', ['idtipo' => 'aprobado']) }}" class="btn btn-success w-100">Aprobados</a>
-                    <a href="{{ route('donaciones.index', ['idtipo' => 'pendiente']) }}" class="btn btn-warning w-100">Pendientes</a>
-                    <a href="{{ route('donaciones.index', ['idtipo' => 'denegado']) }}" class="btn btn-danger w-100">Denegados</a>
+
+            <div class=" d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+                <a href="{{ route('donaciones.index', ['idtipo' => 'todos']) }}" class="btn btn-primary w-100">Todos</a>
+                <a href="{{ route('donaciones.index', ['idtipo' => 'aprobado']) }}"
+                    class="btn btn-success w-100">Aprobados</a>
+                <a href="{{ route('donaciones.index', ['idtipo' => 'pendiente']) }}"
+                    class="btn btn-warning w-100">Pendientes</a>
+                <a href="{{ route('donaciones.index', ['idtipo' => 'denegado']) }}"
+                    class="btn btn-danger w-100">Denegados</a>
+            </div>
+
+            <div class="table-responsive mt-4">
+
+                <table id="donaciones" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th class="text-center">Tipo de Donación</th>
+                            <th class="text-center">Nombre</th>
+                            <th class="text-center">Apellido</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">Teléfono</th>
+                            <th class="text-center">Donación</th>
+                            <th class="text-center">Soporte</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($donaciones as $donacion)
+                            <tr id="donacion-{{ $donacion->id }}">
+                                <td class="text-center">{{ $donacion->tipodonacion }}</td>
+                                <td class="text-center">{{ $donacion->nombre }}</td>
+                                <td class="text-center">{{ $donacion->apellido }}</td>
+                                <td class="text-center">{{ $donacion->email }}</td>
+                                <td class="text-center">{{ $donacion->telefono }}</td>
+                                <td class="text-center">{{ $donacion->donacion }}</td>
+                                <td class="text-center">
+                                    @if ($donacion->soporte)
+                                        <a href="{{ asset('storage/' . $donacion->soporte) }}" target="_blank">Ver
+                                            soporte</a>
+                                    @else
+                                        No adjuntó
+                                    @endif
+                                </td>
+                                </td>
+                                <td class="text-center">
+                                    @if ($donacion->idtipo == 0)
+                                        <div class="d-flex gap-2 d-md-block">
+                                            <button type="button" class="btn btn-success btn-sm"
+                                                onclick="confirmarEstado({{ $donacion->id }}, 1)">Aprobar</button>
+                                            <button type="button" class="btn btn-danger btn-sm"
+                                                onclick="confirmarEstado({{ $donacion->id }}, 2)">Denegar</button>
+                                        </div>
+                                    @elseif ($donacion->idtipo == 1)
+                                        Aprobado
+                                    @elseif($donacion->idtipo == 2)
+                                        Denegado
+                                    @endif
+
+
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+
+
+            <div class="modal fade" id="Modalaprobado" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Soporte Donación</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="number" class="form-control" id="idDonacion" hidden>
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" id="soporte" name="soporte">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary" onclick="aprobar()">Guardar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <table id="tablaDonaciones" class="table table-striped" style="width:100%">
-                <thead>
-                    <tr>
-                        <th class="text-center">#</th>
-                        <th class="text-center">Tipo de Donación</th>
-                        <th class="text-center">Donante</th>
-                        <th class="text-center">Fecha</th>
-                        <th class="text-center">Contacto</th>
-                        <th class="text-center">Donación</th>
-                        <th class="text-center">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($donaciones as $donacion)
-                    <tr id="donacion-{{ $donacion->id }}" onclick="mostrarBotones({{ $donacion->id }})">
-                        <td class="text-center">{{ $donacion->id }}</td>
-                        <td class="text-center">{{ $donacion->tipoDonacion->tipo }}</td>
-                        <td class="text-center">{{ $donacion->donante }}</td>
-                        <td class="text-center">{{ $donacion->fecha }}</td>
-                        <td class="text-center">{{ $donacion->contacto }}</td>
-                        <td class="text-center">{{ $donacion->donacion }}</td>
-                        <td class="text-center">
-                            @if ($donacion->estado == 0)
-                            <div class="d-flex gap-2 d-md-block">
-                                <form action="{{ route('donaciones.update_estado', $donacion->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('PUT')
-                                    <input type="hidden" name="estado" value="1">
-                                    <button type="submit" class="btn btn-success btn-sm" onclick="aprobar()">Aprobar</button>
-                                </form>
-
-                                <form  method="POST" class="d-inline">
-                                    <input type="hidden" name="estado" value="2">
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="denegar()">Denegar</button>
-                                </form>
-
-
-                            </div>
-                            @elseif ($donacion->idtipo == 1)
-                            Aprobado
-                            @elseif($donacion->idtipo == 2)
-                            Denegado
-                            @endif
-
-
-                        </td>
-                        <td>
-                            <div class="d-flex gap-2 justify-content-end">
-                                <button class="btn btn-sm btn-danger btn-eliminar">
-                                    <i class="ti ti-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
         </div>
-    </div>
-</div>
 
-
-@endsection
-
+    @endsection

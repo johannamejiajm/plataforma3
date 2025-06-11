@@ -15,8 +15,8 @@ class Donaciones extends Model
         'email',
         'telefono',
         'donacion',
-        'soporte',
-        'estado'
+        'tipodonacion',
+        'soporte'
     ];
 
     use HasFactory;
@@ -24,6 +24,6 @@ class Donaciones extends Model
     // Relación con Tipodonaciones
     public function tipoDonacion()
     {
-        return $this->belongsTo(Tipodonaciones::class, 'idtipo');
+        return $this->belongsTo(Tipodonaciones::class, 'tipodonacion');
     }
 }

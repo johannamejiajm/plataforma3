@@ -31,7 +31,7 @@
 
             $.ajax({
                 method: "POST",
-                url: "{{ url('/donaciones/update_estado') }}",
+                url: "{{ url('/admin/donaciones/update_estado') }}",
                 data: formData,
                 processData: false,
                 contentType: false,
@@ -61,7 +61,7 @@
             var id = $("#idDonacion").val();
             $.ajax({
                 method: "POST",
-                url: "{{ url('/donaciones/update_estado') }}",
+                url: "{{ url('/admin/donaciones/update_estado') }}",
                 data: {
                     "_token": "{{ csrf_token() }}",
                     idtipo:2,

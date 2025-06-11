@@ -25,89 +25,87 @@ class DonacionesController extends BaseController
     }
 
     public function index(Request $request)
-    {
-        // Obtener el estado de la URL, por defecto es 'todos' si no se pasa ningún valor
-        $idtipo = $request->get('idtipo', 'todos');
+{
 
-        // Realizar la consulta dinámica según el estado
-        if ($idtipo == 'todos') {
+    $idtipo = $request->get('idtipo', 'todos');
 
-            $donaciones = Donaciones::with('tipoDonacion')->get();
-        } else {
 
-            $donaciones = Donaciones::whereHas('tipoDonacion', function ($query) use ($idtipo) {
-                if ($idtipo == 'aprobado') {
-                    $query->where('idtipo', '1');
-                } elseif ($idtipo == 'denegado') {
-                    $query->where('idtipo', '2');
-                } elseif ($idtipo == 'pendiente') {
-                    $query->where('idtipo', '0');
-                }
-            })
-            ->get();
-        }
+    if ($idtipo === 'todos') {
+        $donaciones = Donaciones::all();
+    } elseif (in_array($idtipo, ['aprobado', 'denegado', 'pendiente'])) {
+        $estadoMap = [
+            'pendiente' => 0,
+            'aprobado'  => 1,
+            'denegado'  => 2,
+        ];
 
-        // Pasar las donaciones filtradas y el estado actual a la vista
-        return view('admin/vistas/donaciones/donaciones', compact('donaciones', 'idtipo'));
+        $donaciones = Donaciones::where('idtipo', $estadoMap[$idtipo])->get();
+    } else {
+
+        $donaciones = collect();
     }
+
+    
+    return view('admin.vistas.donaciones.donaciones', compact('donaciones', 'idtipo'));
+}
+
 
     public function updateEstado(Request $request)
     {
+        dd($request->all());
         $request->validate([
-            'id' => 'required|integer|exists:donaciones,id',
-            'idtipo' => 'required|string',
-            'soporte' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'id'     => ['required','integer','exists:donaciones,id'],
+            'idtipo' => ['required','integer','in:1,2'],     // 1=aprobado, 2=denegado
+            'soporte'=> ['nullable','file','mimes:jpg,jpeg,png,pdf','max:2048'],
         ]);
 
-        $donacion = Donaciones::findOrFail($request->id);
-        $donacion->idtipo = $request->idtipo;
+        $donacion           = Donaciones::findOrFail($request->id);
+        $donacion->idtipo   = $request->idtipo;
 
-        // Si viene archivo, lo guardamos
+        // Solo si viene archivo (aprobado)
         if ($request->hasFile('soporte')) {
-            $archivo = $request->file('soporte');
-
-            // Guarda el archivo en storage/app/public/soportes
-            $ruta = $archivo->store('soportes', 'public');
-
-            // Guarda la ruta en la base de datos
-            $donacion->soporte = 'storage/' . $ruta;
+            $donacion->soporte = $request->file('soporte')->store('soportes', 'public');
         }
 
         $donacion->save();
 
-        return redirect('/donaciones');
+        return response()->json(['mensaje' => 'Estado actualizado con éxito']);
     }
 
     public function store(DonacionRequest $request)
     {
         DB::beginTransaction();
         try {
-            $donaciones = Donaciones::create([
-                'idtipo'   => $request->idtipo,
-                'nombre'   => $request->nombre,
-                'apellido' => $request->apellido,
-                'email'    => $request->email,
-                'telefono' => $request->telefono,
-                'donacion' => $request->donacion,
-                'estado'   => '0',
+            $donacion = Donaciones::create([
+                'idtipo'        => $request->idtipo,          // 0 = pendiente
+                'nombre'        => $request->nombre,
+                'apellido'      => $request->apellido,
+                'email'         => $request->email,
+                'telefono'      => $request->telefono,
+                'donacion'      => $request->donacion,
+                'tipodonacion'  => $request->tipodonacion,
+
+                'soporte'       => $request->hasFile('soporte')
+                                ? $request->file('soporte')->store('soportes', 'public')
+                                : null,
             ]);
 
             DB::commit();
 
             return response()->json([
-                'mensaje'   => "Donación registrada exitosamente",
-                'estado'    => 0,
-                'donante'   => $donaciones->nombre . ' ' . $donaciones->apellido,
+                'mensaje' => 'Donación registrada exitosamente',
+                'estado'  => 0,
+                'donante' => "{$donacion->nombre} {$donacion->apellido}",
             ]);
 
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             DB::rollBack();
-            Log::error('Error al registrar donación: '.$e->getMessage());
+            Log::error($e->getMessage());
             return response()->json([
                 'mensaje' => 'Ocurrió un error al guardar la donación.',
                 'estado'  => 1,
-                'error'   => $e->getMessage()
             ], 500);
         }
     }
+
 }
