@@ -60,29 +60,31 @@
         function denegar(id){
             var id = $("#idDonacion").val();
             $.ajax({
-                method: "POST",
-                url: "{{ url('/admin/donaciones/update_estado') }}",
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    idtipo:2,
-                    id
-                },
-                success: function(msg) {
-                    Swal.fire({
-                        title: '¡Actualización estado exitosa!',
-                        text: msg.mensaje,
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                    });
-                },
-                error: function(xhr, status, error) {
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Ocurrió un problema al enviar el archivo.',
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    });
-                }
+            method: "POST",
+            url: "{{ url('/admin/donaciones/update_estado') }}",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                idtipo:2,
+                id
+            },
+            success: function(msg) {
+                Swal.fire({
+                title: '¡Actualización estado exitosa!',
+                text: msg.mensaje,
+                icon: 'success',
+                confirmButtonText: 'OK'
+                }).then(() => {
+                location.reload();
+                });
+            },
+            error: function(xhr, status, error) {
+                Swal.fire({
+                title: 'Error',
+                text: 'Ocurrió un problema al enviar el archivo.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+                });
+            }
             });
         }
     </script>

@@ -52,7 +52,7 @@ class DonacionesController extends BaseController
 
     public function updateEstado(Request $request)
     {
-        dd($request->all());
+        $idtipo = $request->get('', '');
         $request->validate([
             'id'     => ['required','integer','exists:donaciones,id'],
             'idtipo' => ['required','integer','in:1,2'],     // 1=aprobado, 2=denegado
