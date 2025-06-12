@@ -1,25 +1,27 @@
-/* Tarjeta de artista - estilo general */
 .publicacion-preview {
   display: flex;
   flex-direction: row;
-  background-color: #fff;
+  background-color: #002868; /* Azul profundo */
   border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 100%;
-  color: #1a237e; /* Azul neutro aplicado a todo el texto */
-    background-color: #e8eaf6;
+  color: #fff;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  margin-top: 40px;
+
 }
 
-/* Contenedor de imagen */
 .preview-image-container {
-  width: 180px;
-  height: 180px;
-  flex-shrink: 0;
-  overflow: hidden;
+  flex: 0 0 180px;
+  max-width: 180px;
+  aspect-ratio: 1 / 1;
   border-radius: 12px 0 0 12px;
-  background-color: #f0f0f0;
+  background-color: #000;
+  overflow: hidden;
 }
 
 .preview-image {
@@ -27,41 +29,84 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
+  display: block;
 }
 
 .publicacion-preview:hover .preview-image {
   transform: scale(1.05);
 }
 
-/* Contenido textual */
 .preview-content {
-  padding: 20px;
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 20px 15px;
   text-align: left;
-  color: #1a237e; /* Azul neutro aplicado */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #002868; /* Azul profundo fondo textual */
+  color: #fff;
 }
 
 .preview-title {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: bold;
-  color: #1a237e; /* Azul neutro para el título */
   margin-bottom: 0.5rem;
+  color: #ffc107; /* Amarillo vibrante */
 }
 
 .preview-excerpt {
   font-size: 0.95rem;
-  color: #374785; /* Azul un poco más claro para el párrafo */
+  color: #ccc; /* Gris claro */
   margin-bottom: 1rem;
 }
 
 .preview-footer span {
   font-size: 0.9rem;
-  color: #283593; /* Otro tono azul neutro */
+  color: #aaa;
   display: block;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.3rem;
 }
 
 .preview-tipo i,
 .preview-fecha i {
-  color: #1a237e;
+  color: #ffc107; /* Iconos en amarillo vibrante */
+}
+
+/* --- Responsividad --- */
+@media (max-width: 768px) {
+  .publicacion-preview {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .preview-image-container {
+    flex: 0 0 140px;
+    max-width: 140px;
+    border-radius: 12px;
+  }
+
+  .preview-content {
+    flex: 1 1 100%;
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .preview-image-container {
+    flex: 0 0 100px;
+    max-width: 100px;
+  }
+
+  .preview-title {
+    font-size: 1.2rem;
+  }
+
+  .preview-excerpt {
+    font-size: 0.85rem;
+  }
+
+  .preview-footer span {
+    font-size: 0.8rem;
+  }
 }
