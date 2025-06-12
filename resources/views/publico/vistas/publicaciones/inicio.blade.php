@@ -42,16 +42,16 @@
         <div id="carruselImagenes1" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos.jpg') }}"
-                        class="d-block w-100 img-fluid" alt="Imagen 1">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos.jpg') }}" class="d-block w-100 img-fluid"
+                        alt="Imagen 1">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-aguachica-fc.jpg') }}"
-                        class="d-block w-100" alt="Imagen 2">
+                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-aguachica-fc.jpg') }}" class="d-block w-100"
+                        alt="Imagen 2">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-comfacesar.jpg') }}"
-                        class="d-block w-100" alt="Imagen 3">
+                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-comfacesar.jpg') }}" class="d-block w-100"
+                        alt="Imagen 3">
                 </div>
                 <div class="carousel-item ">
                     <img src="{{ asset('assets/images/imageneshistoria/IMAGENES PACHOS CLUB/Apoyo a los Abuelos del Ancianito/ancianato3.jpeg') }}"
@@ -62,20 +62,20 @@
                         class="d-block w-100" alt="Imagen 6">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-gamarra.jpg') }}"
-                        class="d-block w-100" alt="Imagen 7">
+                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-gamarra.jpg') }}" class="d-block w-100"
+                        alt="Imagen 7">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-juanamaya.jpg') }}"
-                        class="d-block w-100" alt="Imagen 8">
+                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-juanamaya.jpg') }}" class="d-block w-100"
+                        alt="Imagen 8">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-n1.jpg') }}"
-                        class="d-block w-100" alt="Imagen 9">
+                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-n1.jpg') }}" class="d-block w-100"
+                        alt="Imagen 9">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-pasion-talento.jpg') }}"
-                        class="d-block w-100" alt="Imagen 10">
+                    <img src="{{ asset('assets/images/imagenes-inicio/escuela-pasion-talento.jpg') }}" class="d-block w-100"
+                        alt="Imagen 10">
                 </div>
                 <div class="carousel-item ">
                     <img src="{{ asset('assets/images/imagenes-inicio/escuela-pasion-talento2.jpg') }}"
@@ -86,92 +86,89 @@
                         class="d-block w-100" alt="Imagen 12">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato.jpg') }}"
-                        class="d-block w-100" alt="Imagen 13">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato.jpg') }}" class="d-block w-100"
+                        alt="Imagen 13">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-2.jpg') }}"
-                        class="d-block w-100" alt="Imagen 14">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-2.jpg') }}" class="d-block w-100"
+                        alt="Imagen 14">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-3.jpg') }}"
-                        class="d-block w-100" alt="Imagen 15">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-3.jpg') }}" class="d-block w-100"
+                        alt="Imagen 15">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-4.jpg') }}"
-                        class="d-block w-100" alt="Imagen 16">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-4.jpg') }}" class="d-block w-100"
+                        alt="Imagen 16">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-5.jpg') }}"
-                        class="d-block w-100" alt="Imagen 17">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-5.jpg') }}" class="d-block w-100"
+                        alt="Imagen 17">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-6.jpg') }}"
-                        class="d-block w-100" alt="Imagen 18">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-6.jpg') }}" class="d-block w-100"
+                        alt="Imagen 18">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-7.jpg') }}"
-                        class="d-block w-100" alt="Imagen 19">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-7.jpg') }}" class="d-block w-100"
+                        alt="Imagen 19">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-8.jpg') }}"
-                        class="d-block w-100" alt="Imagen 20">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-8.jpg') }}" class="d-block w-100"
+                        alt="Imagen 20">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-9.jpg') }}"
-                        class="d-block w-100" alt="Imagen 21">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-9.jpg') }}" class="d-block w-100"
+                        alt="Imagen 21">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-10.jpg') }}"
-                        class="d-block w-100" alt="Imagen 22">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-10.jpg') }}" class="d-block w-100"
+                        alt="Imagen 22">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-11.jpg') }}"
-                        class="d-block w-100" alt="Imagen 23">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-11.jpg') }}" class="d-block w-100"
+                        alt="Imagen 23">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-12.jpg') }}"
-                        class="d-block w-100" alt="Imagen 24">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-12.jpg') }}" class="d-block w-100"
+                        alt="Imagen 24">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-13.jpg') }}"
-                        class="d-block w-100" alt="Imagen 25">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-13.jpg') }}" class="d-block w-100"
+                        alt="Imagen 25">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-14.jpg') }}"
-                        class="d-block w-100" alt="Imagen 26">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-14.jpg') }}" class="d-block w-100"
+                        alt="Imagen 26">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-15.jpg') }}"
-                        class="d-block w-100" alt="Imagen 27">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-15.jpg') }}" class="d-block w-100"
+                        alt="Imagen 27">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-16.jpg') }}"
-                        class="d-block w-100" alt="Imagen 28">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos-campeonato-16.jpg') }}" class="d-block w-100"
+                        alt="Imagen 28">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/01.jpg') }}"
-                        class="d-block w-100" alt="Imagen 29">
+                    <img src="{{ asset('assets/images/imagenes-inicio/01.jpg') }}" class="d-block w-100" alt="Imagen 29">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/02.jpg') }}"
-                        class="d-block w-100" alt="Imagen 30">
+                    <img src="{{ asset('assets/images/imagenes-inicio/02.jpg') }}" class="d-block w-100" alt="Imagen 30">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/03.jpg') }}"
-                        class="d-block w-100" alt="Imagen 31">
+                    <img src="{{ asset('assets/images/imagenes-inicio/03.jpg') }}" class="d-block w-100" alt="Imagen 31">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/banda-camposerrano.jpg') }}"
-                        class="d-block w-100" alt="Imagen 32">
+                    <img src="{{ asset('assets/images/imagenes-inicio/banda-camposerrano.jpg') }}" class="d-block w-100"
+                        alt="Imagen 32">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/club-olimpico.jpg') }}"
-                        class="d-block w-100" alt="Imagen 33">
+                    <img src="{{ asset('assets/images/imagenes-inicio/club-olimpico.jpg') }}" class="d-block w-100"
+                        alt="Imagen 33">
                 </div>
                 <div class="carousel-item ">
-                    <img src="{{ asset('assets/images/imagenes-inicio/pachos2.jpg') }}"
-                        class="d-block w-100" alt="Imagen 28">
+                    <img src="{{ asset('assets/images/imagenes-inicio/pachos2.jpg') }}" class="d-block w-100"
+                        alt="Imagen 28">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carruselImagenes1" data-bs-slide="prev">
@@ -185,67 +182,96 @@
         </div>
     </div>
 
+    <br>
+    <div class="text-center my-4 centrar-noticias">
+        <h2>EVENTOS RELEVANTES</h2>
+    </div>
 
-    <div class="container my-4">
-        <h2 class="mb-4">HISTORIAS</h2>
-        <div class="row">
+    <section class="Origen-Historia">
+        <div class="contenedor-gird">
             @foreach ($publicaciones as $publicacion)
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
+                <div class="card-historia">
+                    <div class="card-historia-img" data-bs-toggle="modal" style="cursor: pointer;">
                         @if ($publicacion->fotos->isNotEmpty())
                             <img src="{{ asset($publicacion->fotos->first()->imagen) }}" class="card-img-top"
                                 alt="Imagen de {{ $publicacion->titulo }}">
                         @endif
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $publicacion->titulo }}</h5>
-                        </div>
+                    </div>
+                    <div class="card-historia-body">
+                        <h5 class="card-title">{{ $publicacion->titulo }}</h5>
+                        <a href="{{ route('publica.eventos.index') }}" class="btn btn-outline-primary mt-2">Ver todos los
+                            eventos</a>
                     </div>
                 </div>
             @endforeach
+        </div>
+    </section>
+
+    {{-- <div class="container my-4">
+        <h2 class="mb-4">HISTORIAS</h2>
+        <div class="row">
+            @foreach ($publicaciones as $publicacion)
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    @if ($publicacion->fotos->isNotEmpty())
+                    <img src="{{ asset($publicacion->fotos->first()->imagen) }}" class="card-img-top"
+                        alt="Imagen de {{ $publicacion->titulo }}">
+                    @endif
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $publicacion->titulo }}</h5>
+                    </div>
+                </div>
+            </div>
+            @endforeach
             <a href="{{ route('historia.index') }}" class="btn btn-outline-primary mt-2">Ver todas las noticias</a>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="container my-4">
-        <h2 class="mb-4">PUBLICACIONES</h2>
-        <div class="row">
+    <div class="text-center my-4 centrar-noticias">
+        <h2>NOTICIAS RELEVANTES</h2>
+    </div>
+    <section class="Origen-Historia">
+        <div class="contenedor-gird">
             @foreach ($noticias as $noticia)
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
+                <div class="card-historia">
+                    <div class="card-historia-img" data-bs-toggle="modal" style="cursor: pointer;">
                         @if ($noticia->fotos->isNotEmpty())
                             <img src="{{ asset($noticia->fotos->first()->imagen) }}" class="card-img-top"
                                 alt="Imagen de {{ $noticia->titulo }}">
                         @endif
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $noticia->titulo }}</h5>
-                        </div>
+                    </div>
+                    <div class="card-historia-body">
+                        <h5 class="card-title">{{ $noticia->titulo }}</h5>
+                        <a href="{{ route('publicaciones.indexpublicacionespublico') }}"
+                            class="btn btn-outline-primary mt-2">Ver todas las noticias</a>
                     </div>
                 </div>
             @endforeach
-            <a href="{{ route('publicaciones.indexpublicacionespublico') }}" class="btn btn-outline-primary mt-2">Ver
-                todas las publicaciones</a>
         </div>
-    </div>
+    </section>
 
-    <div class="container my-4">
-        <h2 class="mb-4">EVENTOS</h2>
-        <div class="row">
+
+    <div class="text-center my-4 centrar-noticias">
+        <h2>HISTORIAS RELEVANTES</h2>
+    </div>
+    <section class="Origen-Historia">
+        <div class="contenedor-gird">
             @foreach ($eventos as $evento)
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
+                <div class="card-historia">
+                    <div class="card-historia-img" data-bs-toggle="modal" style="cursor: pointer;">
                         @if ($evento->fotos->isNotEmpty())
                             <img src="{{ asset($evento->fotos->first()->imagen) }}" class="card-img-top"
                                 alt="Imagen de {{ $evento->titulo }}">
                         @endif
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $evento->titulo }}</h5>
-                        </div>
+                    </div>
+                    <div class="card-historia-body">
+                        <h5 class="card-title">{{ $evento->titulo }}</h5>
+                        <a href="{{ route('historia.index') }}" class="btn btn-outline-primary mt-2">Ver todas las historias</a>
                     </div>
                 </div>
             @endforeach
-            <a href="{{ route('publica.eventos.index') }}" class="btn btn-outline-primary mt-2">Ver todos los eventos</a>
         </div>
-    </div>
+    </section>
 
 
 
@@ -279,7 +305,7 @@
 @section('script')
     <script src="{{ asset('js/inicio.js') }}"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#inicio').addClass('active');
         });
     </script>
