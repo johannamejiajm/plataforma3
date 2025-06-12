@@ -3,14 +3,13 @@
 
 @section('content')
 
-
     <div class="body-wrapper-inner">
         <div class="container-fluid">
             <div class="col-12 ">
                 <h1 class="text-center">MODULO DONACIONES</h1>
             </div>
 
-            <div class=" d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+            <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
                 <a href="{{ route('donaciones.index', ['idtipo' => 'todos']) }}" class="btn btn-primary w-100">Todos</a>
                 <a href="{{ route('donaciones.index', ['idtipo' => 'aprobado']) }}"
                     class="btn btn-success w-100">Aprobados</a>
@@ -33,11 +32,17 @@
                             <th class="text-center">Teléfono</th>
                             <th class="text-center">Donación</th>
                             <th class="text-center">Soporte</th>
+                            <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $filtro = request('idtipo'); 
+                        @endphp
+
                         @foreach ($donaciones as $donacion)
                             <tr id="donacion-{{ $donacion->id }}">
+                                <td class="text-center">{{ $loop->iteration }}</td>
                                 <td class="text-center">{{ $donacion->tipodonacion }}</td>
                                 <td class="text-center">{{ $donacion->nombre }}</td>
                                 <td class="text-center">{{ $donacion->apellido }}</td>
@@ -45,13 +50,11 @@
                                 <td class="text-center">{{ $donacion->telefono }}</td>
                                 <td class="text-center">{{ $donacion->donacion }}</td>
                                 <td class="text-center">
-                                    @if ($donacion->soporte)
-                                        <a href="{{ asset('storage/' . $donacion->soporte) }}" target="_blank">Ver
-                                            soporte</a>
+                                    @if ($donacion->soporte && ($filtro === 'todos' || $filtro === 'aprobado'))
+                                        <a href="{{ asset('storage/' . $donacion->soporte) }}" target="_blank">Ver soporte</a>
                                     @else
                                         No adjuntó
                                     @endif
-                                </td>
                                 </td>
                                 <td class="text-center">
                                     @if ($donacion->idtipo == 0)
@@ -66,16 +69,12 @@
                                     @elseif($donacion->idtipo == 2)
                                         Denegado
                                     @endif
-
-
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-
-
 
             <div class="modal fade" id="Modalaprobado" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -100,4 +99,4 @@
             </div>
         </div>
 
-    @endsection
+@endsection
