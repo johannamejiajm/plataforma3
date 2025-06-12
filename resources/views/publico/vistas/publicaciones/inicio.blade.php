@@ -184,7 +184,7 @@
 
     <br>
     <div class="text-center my-4 centrar-noticias">
-        <h2>NOTICIAS RELEVANTES</h2>
+        <h2>EVENTOS RELEVANTES</h2>
     </div>
 
     <section class="Origen-Historia">
@@ -198,7 +198,6 @@
                         @endif
                     </div>
                     <div class="card-historia-body">
-                        <h2 class="mb-4">EVENTOS</h2>
                         <h5 class="card-title">{{ $publicacion->titulo }}</h5>
                         <a href="{{ route('publica.eventos.index') }}" class="btn btn-outline-primary mt-2">Ver todos los
                             eventos</a>
@@ -228,7 +227,9 @@
         </div>
     </div> --}}
 
-
+    <div class="text-center my-4 centrar-noticias">
+        <h2>NOTICIAS RELEVANTES</h2>
+    </div>
     <section class="Origen-Historia">
         <div class="contenedor-gird">
             @foreach ($noticias as $noticia)
@@ -240,7 +241,6 @@
                         @endif
                     </div>
                     <div class="card-historia-body">
-                        <h2 class="mb-4">NOTICIAS</h2>
                         <h5 class="card-title">{{ $noticia->titulo }}</h5>
                         <a href="{{ route('publicaciones.indexpublicacionespublico') }}"
                             class="btn btn-outline-primary mt-2">Ver todas las noticias</a>
@@ -251,6 +251,9 @@
     </section>
 
 
+    <div class="text-center my-4 centrar-noticias">
+        <h2>HISTORIAS RELEVANTES</h2>
+    </div>
     <section class="Origen-Historia">
         <div class="contenedor-gird">
             @foreach ($eventos as $evento)
@@ -262,7 +265,6 @@
                         @endif
                     </div>
                     <div class="card-historia-body">
-                        <h2 class="mb-4">HISTORIAS</h2>
                         <h5 class="card-title">{{ $evento->titulo }}</h5>
                         <a href="{{ route('historia.index') }}" class="btn btn-outline-primary mt-2">Ver todas las historias</a>
                     </div>
