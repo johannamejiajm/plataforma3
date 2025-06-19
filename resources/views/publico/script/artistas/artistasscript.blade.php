@@ -3,11 +3,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
     $(document).ready(function () {
-             $('#inscripcion').addClass('active');
+             $('#artista').addClass('active');
                          // ...existing code...
             $("#guardarartistas").on('click', function (e) {
                 e.preventDefault();
-            
+
                 // Crea un objeto FormData
                 var formData = new FormData();
                 formData.append("_token", "{{ csrf_token() }}");
@@ -18,13 +18,13 @@
                 formData.append("telefono", $("#telefono").val());
                 formData.append("descripcion", $("#descripcion").val());
                 formData.append("estado", 0);
-            
+
                 // Adjunta la imagen (asegúrate que el input tenga type="file" y id="imagen")
                 var imagenInput = $("#imagen")[0];
                 if (imagenInput.files.length > 0) {
                     formData.append("imagen", imagenInput.files[0]);
                 }
-            
+
                 $.ajax({
                     method: "POST",
                     url: "/publico/artistas",

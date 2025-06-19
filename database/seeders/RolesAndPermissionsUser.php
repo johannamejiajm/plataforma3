@@ -37,7 +37,7 @@ class RolesAndPermissionsUser extends Seeder
         $manageInformacion = Permission::create(['name' => 'manage_informacion']);
         $manageDonaciones = Permission::create(['name' => 'manage_donaciones']);
          // Asignar permisos a roles
-         $adminRole->givePermissionTo([$managePubliaciones, $manageInformacion, $manageRoles, $managePermisos, $manageUsers, $manageEventos, $manageContactos, $manageArtistas]);
+         $adminRole->givePermissionTo([$managePubliaciones, $manageInformacion, $manageRoles, $managePermisos, $manageUsers, $manageEventos, $manageContactos, $manageArtistas, $manageDonaciones]);
          $publicadorRole->givePermissionTo([$managePubliaciones, $manageArtistas, $manageEventos, $manageInformacion]);
          $tesoreroRole->givePermissionTo($manageDonaciones);
 

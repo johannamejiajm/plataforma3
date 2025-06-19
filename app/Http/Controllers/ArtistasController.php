@@ -46,7 +46,6 @@ class ArtistasController extends BaseController
                 'artistas.telefono',
                 'artistas.imagen',
                 'artistas.descripcion',
-                'artistas.fecharegistro',
                 'artistas.estado as estado_artista',
                 'artistas.created_at as artista_creado_en',
                 'artistas.updated_at as artista_actualizado_en'
@@ -77,17 +76,17 @@ class ArtistasController extends BaseController
 
     }
 
-    
+
     public function create()
     {
         $eventos = Evento::all(); // obtener eventos para el select
         return view('publico/vistas/artistas/create', compact('eventos'));
     }
 
-    
+
     public function store(InscripcionesRequest $request)
     {
-        
+
 
         DB::beginTransaction();
         try {
@@ -102,20 +101,20 @@ class ArtistasController extends BaseController
                 'estado'      => '0',
             ];
 
-       
+
         if ($request->hasFile('imagen')) {
             $path = $request->file('imagen')->store('imagenes_artistas', 'public');
             $datos['imagen'] = $path;
         }
 
             $artista = Artistas::create($datos);
-             
-             
+
+
             DB::commit();
             return response()->json([
                 'mensaje'   => "Artista registrada exitosamente, ",
                 'estado'    => 0,
-                
+
             ]);
 
         } catch (\Exception $e) {
@@ -127,26 +126,26 @@ class ArtistasController extends BaseController
             ], 500);
         }
     }
-    
+
     public function show(Artistas $artistas)
     {
         //
     }
 
-    
+
     public function edit(Artistas $artistas)
     {
         $artistas = Artistas::find($artistas->id);
         return view("admin/vistas/artistas/editartistas", compact('artistas'));
     }
 
-    
+
     public function update(Request $request, Artistas $artistas)
     {
         //
     }
 
-    
+
     public function destroy(Artistas $artistas)
     {
         //
