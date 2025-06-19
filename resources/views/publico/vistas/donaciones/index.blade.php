@@ -54,8 +54,8 @@
                         value="{{ old('donacion') }}" required>
                 </div>
                 <div class="don-form-group">
-                    <label for="idtipo" class="form-label">Tipo de Donacion</label>
-                    <select class="form-control" id="idtipo" name="idtipo">
+                    <label for="tipodonacion" class="form-label">Tipo de Donacion</label>
+                    <select class="form-control" id="tipodonacion" name="tipodonacion" required>
                         @foreach ($tiposdonaciones as $tipodonacion)
                             <option value="{{ $tipodonacion->id }}">{{ $tipodonacion->tipo }}</option>
                         @endforeach
@@ -102,5 +102,5 @@
         </div>
 
 @endsession
-    
+
 @endsection

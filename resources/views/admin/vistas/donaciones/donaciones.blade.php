@@ -37,13 +37,13 @@
                     </thead>
                     <tbody>
                         @php
-                            $filtro = request('idtipo'); 
+                            $filtro = request('idtipo');
                         @endphp
 
                         @foreach ($donaciones as $donacion)
                             <tr id="donacion-{{ $donacion->id }}">
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                <td class="text-center">{{ $donacion->tipodonacion }}</td>
+                                <td class="text-center">{{ $donacion->tipoDonacion->tipo ?? 'Sin tipo' }}</td>
                                 <td class="text-center">{{ $donacion->nombre }}</td>
                                 <td class="text-center">{{ $donacion->apellido }}</td>
                                 <td class="text-center">{{ $donacion->email }}</td>

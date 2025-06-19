@@ -8,13 +8,15 @@
                 e.preventDefault();
 
                 // Captura los valores del formulario
-                var idtipo = $("#idtipo").val();
+                var idtipo = 0;
                 var nombre = $("#nombre").val();
                 var apellido = $("#apellido").val();
                 var email = $("#email").val();
                 var telefono = $("#telefono").val();
                 var donacion = $("#donacion").val();
-                var estado = 0;
+                var tipodonacion = $("#tipodonacion").val();
+
+
 
                 $.ajax({
                     method: "POST",
@@ -27,7 +29,7 @@
                         email,
                         telefono,
                         donacion,
-                        estado
+                        tipodonacion,
                     },
                     success: function (msg) {
                         Swal.fire({

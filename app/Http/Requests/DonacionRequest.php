@@ -20,23 +20,28 @@ class DonacionRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    
+
     {
         return [
             'nombre' => 'required|string|max:255',
 
             'apellido' => 'required|string|max:255',
 
-            'donacion' => 'required|integer|digits_between:1,15', 
+            'donacion' => 'required|integer|digits_between:1,15',
 
             'telefono' => 'required|integer|digits_between:1,15',
-            
+
             'email' => 'required|email|unique:users,email',
+
+            'soporte' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+
+
+
         ];
     }
 
-    
-   
+
+
     public function messages(): array
     {
         return [
@@ -57,6 +62,7 @@ class DonacionRequest extends FormRequest
             'email.required' => 'Es obligatorio ingresar un email.',
             'email.email' => 'El formato del email no es válido.',
             'email.unique' => 'Este email ya está registrado.',
+
         ];
     }
 }

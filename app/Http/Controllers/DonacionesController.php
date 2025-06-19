@@ -19,7 +19,7 @@ class DonacionesController extends BaseController
     }
      public function indexdonacion()
     {
-        $donaciones = Donaciones::all();
+        $donaciones = Donaciones::with('tipoDonacion')->get();
         $tiposdonaciones = Tipodonaciones::all();
         return view('publico/vistas/donaciones/index', compact('donaciones', 'tiposdonaciones'));
     }
@@ -31,7 +31,7 @@ class DonacionesController extends BaseController
 
 
     if ($idtipo === 'todos') {
-        $donaciones = Donaciones::all();
+        $donaciones = Donaciones::with('tipoDonacion')->get();
     } elseif (in_array($idtipo, ['aprobado', 'denegado', 'pendiente'])) {
         $estadoMap = [
             'pendiente' => 0,
@@ -45,14 +45,14 @@ class DonacionesController extends BaseController
         $donaciones = collect();
     }
 
-    
+
     return view('admin.vistas.donaciones.donaciones', compact('donaciones', 'idtipo'));
 }
 
 
     public function updateEstado(Request $request)
     {
-        $idtipo = $request->get('', '');
+
         $request->validate([
             'id'     => ['required','integer','exists:donaciones,id'],
             'idtipo' => ['required','integer','in:1,2'],     // 1=aprobado, 2=denegado
@@ -77,7 +77,7 @@ class DonacionesController extends BaseController
         DB::beginTransaction();
         try {
             $donacion = Donaciones::create([
-                'idtipo'        => $request->idtipo,          // 0 = pendiente
+                'idtipo'        => 0,         // 0 = pendiente
                 'nombre'        => $request->nombre,
                 'apellido'      => $request->apellido,
                 'email'         => $request->email,
@@ -94,7 +94,7 @@ class DonacionesController extends BaseController
 
             return response()->json([
                 'mensaje' => 'Donación registrada exitosamente',
-                'estado'  => 0,
+                'idtipo'  => 0,
                 'donante' => "{$donacion->nombre} {$donacion->apellido}",
             ]);
 
@@ -103,7 +103,7 @@ class DonacionesController extends BaseController
             Log::error($e->getMessage());
             return response()->json([
                 'mensaje' => 'Ocurrió un error al guardar la donación.',
-                'estado'  => 1,
+                'error'   => $e->getMessage(),
             ], 500);
         }
     }
