@@ -14,12 +14,17 @@ FUNDACION PACHO'S CLUB
 <p class="subtitulo-amarillo">"DEJA TU HUELLA EN NUESTROS EVENTOS"</p>
 @endsection
 
+@section('links')
+<link rel="stylesheet" href="{{ asset('assets/css/inscripciones.css') }}">
+@endsection
 
 @section('contenido')
+<div class="don-form-wrapper">
+    <div class="don-form-container">
+        <h1>Postulate a nuestros eventos</h1>
     <!-- Formulario HTML -->
-<div class="d-flex justify-content-center mt-5">
-    <div class="container" style="max-width: 600px;">
-        <h2 class="text-center mb-4">Postulate a nuestros eventos</h2>
+
+       
 
         <form  enctype="multipart/form-data"
             class="border p-4 rounded shadow-sm bg-white">
@@ -71,7 +76,7 @@ FUNDACION PACHO'S CLUB
                 <label for="descripcion" class="form-label">Descripción</label>
                 <textarea name="descripcion" id="descripcion" class="form-control" rows="3">{{ old('descripcion') }}</textarea>
             </div>
-
+            
             <input type="hidden" name="estado" value="0">
             <button type="submit" id='guardarartistas' class="btn btn-primary w-100">¡Postularme!</button>
         </form>
