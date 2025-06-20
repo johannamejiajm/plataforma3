@@ -117,7 +117,7 @@
                         <button class="btn btn-outline-primary d-flex align-items-center gap-2" onclick="compartir('{{ $publicacion->titulo }}')">
                             <i class="bi bi-share-fill"></i> Compartir
                         </button>
-                        <a href="https://wa.me/3147949465" class="btn btn-success d-flex align-items-center gap-2" target="_blank">
+                        <a href="https://wa.me/{{ $contacto->telefono1 }}" class="btn btn-success d-flex align-items-center gap-2" target="_blank">
                             <i class="bi bi-whatsapp"></i> Contáctanos
                         </a>
                     </div>
