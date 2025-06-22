@@ -205,12 +205,8 @@ Eventos
                                 <i class="bi bi-share-fill" aria-hidden="true"></i> Compartir
                             </button>
 
-                            <a href="https://wa.me/3147949465"
-                                class="btn btn-success d-flex align-items-center gap-2"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="Contáctanos por WhatsApp">
-                                <i class="bi bi-whatsapp" aria-hidden="true"></i> Contáctanos
+                            <a href="https://wa.me/{{ $contacto->telefono1 }}" class="btn btn-success d-flex align-items-center gap-2" target="_blank">
+                                <i class="bi bi-whatsapp"></i> Contáctanos
                             </a>
                         </div>
 

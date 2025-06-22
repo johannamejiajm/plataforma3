@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PublicacionRequest;
+use App\Models\Contactos;
 use App\Models\Evento;
 use App\Models\Publicaciones;
 use App\Models\Publicacionfotos;
@@ -27,7 +28,6 @@ class PublicacionesController extends BaseController
     {
         return view('admin.dashboard.index');
     }
-
     public function data(Request $request)
     {
         // if (!Auth::user()->can('manage_publicaciones')) {
@@ -73,7 +73,10 @@ class PublicacionesController extends BaseController
 
             ->with(['fotos', 'tipo'])
             ->get();
-        return view('publico.vistas.publicaciones.publicaciones', compact('publicaciones'));
+
+        $contacto = Contactos::first();
+
+        return view('publico.vistas.publicaciones.publicaciones', compact('publicaciones', 'contacto'));
     }
 
     public function indexinicio()
@@ -99,7 +102,8 @@ class PublicacionesController extends BaseController
                 ->with('fotos') // asegura que las fotos se cargan
                 ->latest()
                 ->paginate(9);
-        return view('publico.vistas.publicaciones.historia', compact('historias'));
+        $contacto = Contactos::first();
+        return view('publico.vistas.publicaciones.historia', compact('historias', 'contacto'));
 
     }
     public function indexpublicaciones()
@@ -116,9 +120,9 @@ class PublicacionesController extends BaseController
    public function indexeventos()
    {
     $eventos = Evento::all();
-    return view('publico.vistas.publicaciones.eventos', compact('eventos'));
-
-
+    $contacto = Contactos::first();
+    
+    return view('publico.vistas.publicaciones.eventos', compact('eventos', 'contacto'));
    }
 
    public function indexevento($id)
