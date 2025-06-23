@@ -24,7 +24,7 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="info-details">
-                            <h4>direccion</h4>
+                            <h4>Dirección</h4>
                             <p>{{$contactos->direccion ?? ''}}</p>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div class="info-details">
-                        <h4>email</h4>
+                        <h4>Email</h4>
                         <p>{{ $contactos->email ?? ''}}</p>
                     </div>
                 </div>
