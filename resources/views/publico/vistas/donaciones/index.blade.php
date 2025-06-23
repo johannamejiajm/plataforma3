@@ -3,15 +3,17 @@
     <title>Donaciones</title>
 @endsection
 @section('tituloheader')
-    FUNDACION PACHO'S CLUB
-@endsection
-@section('links')
-    <link rel="stylesheet" href="{{ asset('assets/css/donaciones.css') }}">
+    <p class="titulo-blanco"> FUNDACION PACHO'S CLUB</p>
 @endsection
 
 @section('subtituloheader')
     <p class="subtitulo-amarillo">"Tu apoyo transforma vidas"</p>
 @endsection
+
+@section('links')
+    <link rel="stylesheet" href="{{ asset('assets/css/donaciones.css') }}">
+@endsection
+
 
 @section('contenido')
     <div class="don-form-wrapper">

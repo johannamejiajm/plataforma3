@@ -1,8 +1,80 @@
+/* Reset y fuente base */
 body {
     font-family: 'Gotham Bold', sans-serif;
     margin: 0;
     padding: 0;
     background: #ffffff;
+}
+
+
+/* Títulos principales */
+h1, h2 {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+/* Hero section: solo estos títulos deben ir en blanco */
+.hero-1 h1,
+.hero-1 p {
+    color: #ffffff;
+}
+
+/* Títulos de secciones como GALERÍA, NOTICIAS, etc. */
+.centrar-noticias h2,
+.contenedor > h2 {
+    color: #041291; /* azul oscuro */
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #ffc107;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+}
+
+/* Hero section */
+.hero-1 {
+    margin: 2rem auto;
+    padding: 3rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #002868;
+    gap: 2rem;
+}
+
+.hero-content {
+    flex: 1 1 45%;
+    color: #ffffff;
+}
+
+.hero-1 h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+.hero-1 p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.hero-image {
+    flex: 1 1 45%;
+    max-width: 600px;
+}
+
+.hero-image img {
+    width: 100%;
+    border-radius: 12px;
 }
 
 /* Botones */
@@ -27,11 +99,6 @@ body {
     background-color: #0056b3;
 }
 
-.button.secondary {
-    background-color: #6c757d;
-    color: #fff;
-}
-
 .button.outline {
     background-color: transparent;
     color: #007bff;
@@ -42,154 +109,65 @@ body {
     background-color: #e9ecef;
 }
 
-/* Hero Section */
-.hero-1 {
-    margin: 3rem auto;
-    padding: 4rem;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #002868;
-    gap: 2rem;
-}
-
-.hero-content {
-    flex: 1 1 45%;
-    max-width: 600px;
-}
-
-.hero-1 h1 {
-    font-size: 3rem;
-    font-family: "Special Gothic Expanded One";
-    font-weight: 900;
-    margin-bottom: 1rem;
-    color: #ffffff;
-}
-
-.hero-1 p {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    margin-bottom: 2rem;
-    color: #ffffff;
-}
-
-.hero-image {
-    flex: 1 1 45%;
-    max-width: 600px;
-}
-
-.hero-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 12px;
-}
-
-.hero-title {
-    font-family: 'Montserrat', sans-serif;
-    color: white;
-    font-weight: 900;
-    font-size: 3rem;
-}
-
-.subtitulo-amarillo {
-    color: #ffc107;
-    /* Amarillo vibrante */
-    font-style: italic;
-    font-weight: bold;
-    font-size: 2rem;
-}
-
-/* Galería */
+/* Galería / Carrusel */
 .contenedor {
-    max-width: 960px;
+    max-width: 100%;
     margin: 40px auto;
-    background: var(--blanco);
     padding: 30px;
-    box-shadow: 0 10px 20px var(--sombra);
+    background: #ffffff;
     border-radius: 12px;
-    border-left: 6px solid var(--azul);
-    border-right: 6px solid var(--rojo);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-left: 6px solid #002868;
+    border-right: 6px solid #dc3545;
 }
 
-.contenedor h2 {
-    font-family: "Special Gothic Expanded One";
-    text-align: center;
+.carousel-inner {
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .carousel-item img {
     width: 100%;
-    height: auto;
-    max-height: 70vh;
-    /* se adapta a pantallas grandes */
+    height: 80vh;
     object-fit: cover;
-    /* o 'contain' si prefieres que se vea completa aunque deje espacio */
-    box-shadow: 0 6px 12px var(--sombra);
+    transition: transform 0.6s ease;
 }
 
-@media (max-width: 768px) {
-    .carousel-item img {
-        max-height: 50vh;
-    }
-}
-
-@media (max-width: 480px) {
-    .carousel-item img {
-        max-height: 40vh;
-    }
-}
-
-.custom-icon i {
-    font-size: 2rem;
-    color: #6d7d6c;
-    /* Cambia a tu color deseado */
+.carousel-item.active img {
+    transform: scale(1.01);
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     background-color: rgba(0, 0, 0, 0.5);
-    /* fondo del icono */
     border-radius: 50%;
     padding: 10px;
     transition: background-color 0.3s ease;
 }
 
-/* Color cuando pasas el mouse */
 .carousel-control-prev:hover .carousel-control-prev-icon,
 .carousel-control-next:hover .carousel-control-next-icon {
-    background-color: #002868;
-    /* azul Bootstrap */
+    background-color: #ffc107;
 }
 
-.centrar-noticias {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    font-family: "Special Gothic Expanded One";
-    font-weight: bold;
-}
-
-/* Nuevas tarjetas zayas */
-.Origen-Historia {
-    width: 90%;
+/* Cards Historia */
+.Origin-Historia {
+    width: 95%;
     margin: 0 auto;
 }
 
 .contenedor-gird {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    justify-items: center;
-    align-items: stretch;
-    max-width: 1200px;
-    margin: 0 auto;
+    gap: 20px;
+    max-width: 1400px;
+    margin: auto;
 }
 
+/* Tarjetas igualadas */
 .card-historia {
     display: flex;
+    flex-direction: row;
     background-color: #000;
     color: #fff;
     border-radius: 12px;
@@ -197,23 +175,8 @@ body {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease;
     width: 100%;
-    min-height: 220px;
-    max-width: 400px;
-    flex-direction: row;
-    font-family: "Special Gothic Expanded One";
-    font-weight: bold;
-    justify-content: center;
-    align-items: stretch;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.card-historia:last-child {
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 270px;
+    /* Eliminado max-width para permitir el ajuste */
 }
 
 .card-historia:hover {
@@ -221,145 +184,127 @@ body {
 }
 
 .card-historia-img {
-    flex: 1 1 180px;
-    min-width: 140px;
+    flex: 1 1 250px;
     background: #e9ecef;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    border: none;
     height: 100%;
-    max-height: 220px;
 }
 
 .card-historia-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
 }
 
 .card-historia-body {
-    flex: 2 1 320px;
+    flex: 2 1 350px;
+    background-color: #002868;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #002868;
-    align-items: center;
     text-align: center;
     height: 100%;
-    min-height: 140px;
-}
-
-.card-historia-body * {
-    text-align: center;
-}
-
-@media (max-width: 768px) {
-    .card-historia {
-        flex-direction: column;
-        align-items: stretch;
-        width: 100%;
-        max-width: 100%;
-        min-height: unset;
-    }
-    .card-historia-img {
-        width: 100%;
-        min-width: unset;
-        min-height: 140px;
-        border: none;
-        height: 180px;
-        max-height: 180px;
-    }
-    .card-historia-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .card-historia-body {
-        height: auto;
-        min-height: unset;
-    }
-    .card-historia:last-child {
-        margin-left: auto;
-        margin-right: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-}
-
-
-/* Terminacion zayas */
-
-/* Tarjetas */
-/* .card {
-    background: linear-gradient(145deg, var(--blanco), #f3f3f3);
-    border: 2px solid var(--azul);
-    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3), -4px -4px 8px rgba(255, 255, 255, 0.7);
-    border-radius: 16px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;
-}
-
-.card:hover {
-    transform: scale(1.03) translateY(-6px);
-    box-shadow: 10px 10px 18px rgba(0, 0, 0, 0.4), -6px -6px 12px rgba(255, 255, 255, 0.6);
-    border-color: var(--rojo);
 }
 
 .card-title {
-    background-color: #002868;
+    font-size: 1.2rem;
+    font-weight: bold;
     color: #ffffff;
-    font-weight: bold;
-    text-align: center;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    margin-top: 10px;
-    text-shadow: none;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Responsive */
+@media (max-width: 992px) {
+    .contenedor-gird {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
 
-.card-img-top {
-    border-bottom: 4px solid var(--rojo);
-    border-radius: 16px 16px 0 0;
-    transition: all 0.3s ease-in-out;
+    .card-historia {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .card-historia-img {
+        height: 200px;
+    }
+
+    .card-historia-body {
+        height: auto;
+    }
 }
 
-.card-img-top:hover {
-    filter: brightness(1.05);
+@media (max-width: 768px) {
+    .hero-1 {
+        flex-direction: column;
+        padding: 2rem 1rem;
+    }
+
+    .hero-1 h1 {
+        font-size: 2rem;
+    }
+
+    .carousel-item img {
+        height: 50vh;
+    }
+
+    .contenedor-gird {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card-historia-img {
+        height: 180px;
+    }
+
+    .card-title {
+        font-size: 1.1rem;
+    }
 }
 
-.container h2 {
-    color: var(--rojo);
-    font-family: "Special Gothic Expanded One";
-    font-weight: bold;
-    text-shadow: 1px 1px 2px var(--sombra);
-    margin-bottom: 1.5rem;
-} */
+@media (max-width: 480px) {
+    .carousel-item img {
+        height: 40vh;
+    }
 
-/* Llamado a la acción */
+    .card-title {
+        font-size: 1rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+}
+
+/* Llamado a la acción final */
 .llamada-a-la-accion-final {
-    background-color: #002868;
+    background-color: #002868; /* Azul oscuro institucional */
     color: #ffffff;
     text-align: center;
     padding: 3rem 2rem;
     margin-top: 4rem;
+
+
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .llamada-a-la-accion-final h2 {
-    font-family: "Special Gothic Expanded One";
     font-size: 2rem;
+    font-weight: 900;
     margin-bottom: 1rem;
+    color: #ffffff;
+    text-transform: uppercase;
 }
 
 .llamada-a-la-accion-final p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 2rem;
-    line-height: 1.6;
+    line-height: 1.7;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .botones-finales {
@@ -369,73 +314,58 @@ body {
     gap: 1rem;
 }
 
-/* Footer */
-footer .container-fluid {
-    padding: 2rem 1rem;
+.botones-finales .button {
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
 
-/* ===== MEDIA QUERIES ===== */
-@media (max-width: 991px) {
-    .hero-1 {
-        flex-direction: column;
-        text-align: center;
-        padding: 2rem;
-    }
-
-    .hero-content,
-    .hero-image {
-        flex: 1 1 100%;
-        max-width: 100%;
-    }
-
-    .hero-1 h1 {
-        font-size: 2.2rem;
-    }
-
-    .hero-1 p {
-        font-size: 1rem;
-    }
-
-    .contenedor {
-        padding: 20px;
-        margin: 20px;
-    }
-
-    .carousel-item img {
-        max-height: 300px;
-    }
+.botones-finales .primary {
+    background-color: #ffc107;
+    color: #000;
+    border: none;
 }
 
-@media (max-width: 576px) {
-    .hero-1 {
-        margin: 1rem 0;
-    }
+.botones-finales .primary:hover {
+    background-color: #e0a800;
+    color: #fff;
+}
 
-    .hero-1 h1 {
-        font-size: 1.8rem;
-    }
+.botones-finales .outline {
+    background-color: transparent;
+    color: #ffc107;
+    border: 2px solid #ffc107;
+}
 
-    .hero-1 p {
-        font-size: 1rem;
-    }
+.botones-finales .outline:hover {
+    background-color: #ffc107;
+    color: #000;
+}
 
-    .llamada-a-la-accion-final {
-        padding: 2rem 1rem;
-    }
-
+/* Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
     .llamada-a-la-accion-final h2 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
 
     .llamada-a-la-accion-final p {
         font-size: 1rem;
     }
 
-    .card-title {
-        font-size: 1rem;
+    .botones-finales {
+        flex-direction: column;
+        align-items: center;
     }
 
-    .carousel-item img {
-        max-height: 200px;
+    .botones-finales .button {
+        width: 100%;
+        max-width: 300px;
     }
+}
+
+
+/* Footer */
+footer .container-fluid {
+    padding: 2rem 1rem;
 }

@@ -3,7 +3,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
     $(document).ready(function () {
-             $('#artista').addClass('active');
+             $('#inscripcion').addClass('active');
                          // ...existing code...
             $("#guardarartistas").on('click', function (e) {
                 e.preventDefault();

@@ -7,11 +7,11 @@
 @endsection
 
 @section('tituloheader')
-FUNDACION PACHO'S CLUB
+    <p class="titulo-blanco"> FUNDACION PACHO'S CLUB</p>
 @endsection
 
 @section('subtituloheader')
-<p class="subtitulo-amarillo">"DEJA TU HUELLA EN NUESTROS EVENTOS"</p>
+<p class="subtitulo-amarillo">"Deja tu huella en nuestros eventos"</p>
 @endsection
 
 @section('links')
@@ -24,11 +24,11 @@ FUNDACION PACHO'S CLUB
         <h1>Postulate a nuestros eventos</h1>
     <!-- Formulario HTML -->
 
-       
+
 
         <form  enctype="multipart/form-data"
             class="border p-4 rounded shadow-sm bg-white">
-           
+
             <div class="mb-3">
                 <label for="idevento" class="form-label">Evento</label>
                 <select name="idevento" id="idevento" class="form-control">
@@ -76,7 +76,7 @@ FUNDACION PACHO'S CLUB
                 <label for="descripcion" class="form-label">Descripción</label>
                 <textarea name="descripcion" id="descripcion" class="form-control" rows="3">{{ old('descripcion') }}</textarea>
             </div>
-            
+
             <input type="hidden" name="estado" value="0">
             <button type="submit" id='guardarartistas' class="btn btn-primary w-100">¡Postularme!</button>
         </form>
@@ -84,5 +84,5 @@ FUNDACION PACHO'S CLUB
 </div>
 
 
-    
+
 @endsection

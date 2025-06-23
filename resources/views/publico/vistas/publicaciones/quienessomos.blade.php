@@ -1,11 +1,11 @@
-@extends('publico.script.publicaciones.publicacionesscript')
+@extends('publico.script.publicaciones.quienessomosscript')
 
 @section('tituloheader')
-    FUNDACION PACHO'S CLUB
+   <p class="titulo-blanco"> FUNDACION PACHO'S CLUB</p>
 @endsection
 
 @section('subtituloheader')
-    <p class="subtitulo-amarillo">"UN EQUIPO CON UNA MISIÓN"</p>
+    <p class="subtitulo-amarillo">"Un equipo con una misión"</p>
 @endsection
 
 @section('titulo')

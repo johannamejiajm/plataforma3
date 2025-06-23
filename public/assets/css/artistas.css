@@ -1,112 +1,175 @@
 .publicacion-preview {
-  display: flex;
-  flex-direction: row;
-  background-color: #002868; /* Azul profundo */
+  background-color: #002868;
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%;
-  color: #fff;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: row;
   gap: 0.5rem;
-  flex-wrap: nowrap;
-  align-items: stretch;
-  margin-top: 40px;
+  color: #fff;
+  height: 100%; /* importante */
+  width: 100%;  /* para que use el espacio disponible */
+}
+.modal-header {
+  background-color: #001c50; /* azul profundo */
+  color: #fff;
+  text-align: center;
+  justify-content: center;
+  padding: 1.2rem 1rem;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  position: relative;
+}
 
+.modal-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  color: #ffffff; /* amarillo vibrante */
+  margin: 0;
+}
+
+.modal-body {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+  padding: 1.5rem;
+  word-break: break-word;
+}
+
+.modal-footer {
+  justify-content: flex-end;
+  padding: 1rem 1.5rem;
+  background-color: #f8f9fa;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.btn-close-white {
+  filter: invert(1);
+}
+
+@media (max-width: 576px) {
+  .modal-title {
+    font-size: 1.3rem;
+  }
+  .modal-body {
+    font-size: 0.95rem;
+  }
+}
+.modal-body {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.modal-body p,
+.modal-body span {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  text-align: justify;
 }
 
 .preview-image-container {
-  flex: 0 0 180px;
-  max-width: 180px;
-  aspect-ratio: 1 / 1;
-  border-radius: 12px 0 0 12px;
-  background-color: #000;
+  flex: 0 0 140px; /* Ancho fijo */
+  max-width: 140px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f1f3f5;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
   overflow: hidden;
+  position: relative;
 }
 
 .preview-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
-  display: block;
+  transition: transform 0.4s ease;
 }
-
+/* Efecto de zoom al pasar el mouse */
 .publicacion-preview:hover .preview-image {
   transform: scale(1.05);
 }
 
 .preview-content {
-  flex: 1 1 auto;
-  min-width: 0;
-  padding: 20px 15px;
-  text-align: left;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background-color: #002868; /* Azul profundo fondo textual */
-  color: #fff;
+  justify-content: space-between;
+  padding: 1rem;
+  flex: 1;
+  background-color: #002868;
 }
 
 .preview-title {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: #ffc107; /* Amarillo vibrante */
+  margin-bottom: 0.75rem;
+  color: #fff;
 }
 
 .preview-excerpt {
   font-size: 0.95rem;
-  color: #ccc; /* Gris claro */
+  color: #ccc;
   margin-bottom: 1rem;
+  word-break: break-word;
+}
+
+.preview-footer {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-top: auto;
 }
 
 .preview-footer span {
-  font-size: 0.9rem;
-  color: #aaa;
   display: block;
   margin-bottom: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.preview-tipo i,
-.preview-fecha i {
-  color: #ffc107; /* Iconos en amarillo vibrante */
+/* QR Code Container */
+.preview-qr {
+  flex: 1;
+  background-color: #002868;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow: hidden;
 }
 
-/* --- Responsividad --- */
-@media (max-width: 768px) {
+.preview-qr img {
+  max-width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
   .publicacion-preview {
-    flex-wrap: wrap;
-    gap: 1rem;
+    flex-direction: column;
   }
 
-  .preview-image-container {
-    flex: 0 0 140px;
-    max-width: 140px;
-    border-radius: 12px;
+  .preview-image-container,
+  .preview-content,
+  .preview-qr {
+    width: 100%;
+    min-width: 0;
   }
 
   .preview-content {
-    flex: 1 1 100%;
-    padding: 10px 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  .preview-image-container {
-    flex: 0 0 100px;
-    max-width: 100px;
-  }
-
-  .preview-title {
-    font-size: 1.2rem;
-  }
-
-  .preview-excerpt {
-    font-size: 0.85rem;
+    text-align: center;
   }
 
   .preview-footer span {
-    font-size: 0.8rem;
+    text-align: center;
   }
 }

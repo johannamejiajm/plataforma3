@@ -17,18 +17,36 @@
 
 
  @yield('titulo')
+
   <!-- Owl Carousel  -->
   <link rel="stylesheet" href="{{ asset('assets/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <style>
-        .subtitulo-amarillo {
-        color: #ffc107; /* Amarillo vibrante */
-        font-style: italic;
-        font-weight: bold;
-        font-size: 2rem;
-        }
+ @yield('links')
+<style>
+        /* Título blanco grande y fuerte */
+.titulo-blanco {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: 'Arial Black', 'Segoe UI', sans-serif;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    margin: 0;
+}
+
+/* Subtítulo amarillo cursiva y en negrita */
+.subtitulo-amarillo {
+    font-size: 2rem;
+    font-style: italic;
+    font-weight: bold;
+    color: #FFC107; /* amarillo vibrante */
+    text-align: center;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    margin-top: 10px;
+}
     </style>
-  @yield('links')
+
 </head>
 
 <body>
@@ -194,8 +212,8 @@
             <div class="row h-100">
               <div class="col-12 d-flex flex-column justify-content-center align-items-center text-center">
                 <div>
-                  <h1 class="fw-bolder fs-13 mb-3" style="color: white">@yield('tituloheader')</h1>
-                  <h2 class="fw-bolder fs-10 mb-4"  style="color: white">@yield('subtituloheader')</h2>
+                  <h1 style="color: white">@yield('tituloheader')</h1>
+                  <p style="color: white">@yield('subtituloheader')</p>
                 </div>
                 <br>
                 @yield('leyendaheader')

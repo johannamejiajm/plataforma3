@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="{{ asset('assets/css/contatosadmin03.css') }}">
 @endsection
 @section('tituloheader')
-    FUNDACION PACHO'S CLUB
+    <p class="titulo-blanco"> FUNDACION PACHO'S CLUB</p>
 @endsection
+
 @section('subtituloheader')
-    <p class="subtitulo-amarillo">"TU PUENTE HACIA FUNDACIÓN PACHO'S CLUB"</p>
+    <p class="subtitulo-amarillo">"Tu puente hacia fundación pacho's club"</p>
 @endsection
 @section('contenido')
     <div class="container">

@@ -1,16 +1,5 @@
 @extends('publico.script.publicaciones.inicioscript')
 
-@section('titulo')
-    <title>Inicio</title>
-@endsection
-
-@section('tituloheader')
-    <div class="hero-title">
-        <h1 class="hero-title">FUNDACIÓN PACHO'S CLUB</h1>
-        <p class="subtitulo-amarillo">"Construyendo Sueños, inspirando vidas"</p>
-    </div>
-@endsection
-
 @section('links')
     <link rel="stylesheet" href="{{ asset('assets/css/inicio.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Roboto+Slab:ital@1&display=swap"
@@ -22,6 +11,18 @@
         rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+@endsection
+
+@section('titulo')
+    <title>Inicio</title>
+@endsection
+
+@section('tituloheader')
+        <h1 class="titulo-blanco">FUNDACIÓN PACHO'S CLUB</h1>
+@endsection
+
+@section('subtituloheader')
+    <p class="subtitulo-amarillo">"Construyendo sueños, inspirando vidas"</p>
 @endsection
 
 @section('contenido')
@@ -207,27 +208,7 @@
         </div>
     </section>
 
-    {{-- <div class="container my-4">
-        <h2 class="mb-4">HISTORIAS</h2>
-        <div class="row">
-            @foreach ($publicaciones as $publicacion)
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    @if ($publicacion->fotos->isNotEmpty())
-                    <img src="{{ asset($publicacion->fotos->first()->imagen) }}" class="card-img-top"
-                        alt="Imagen de {{ $publicacion->titulo }}">
-                    @endif
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $publicacion->titulo }}</h5>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-            <a href="{{ route('historia.index') }}" class="btn btn-outline-primary mt-2">Ver todas las noticias</a>
-        </div>
-    </div> --}}
-
-    <div class="text-center my-4 centrar-noticias">
+     <div class="text-center my-4 centrar-noticias">
         <h2>NOTICIAS RELEVANTES</h2>
     </div>
     <section class="Origen-Historia">
@@ -287,26 +268,3 @@
     </section>
 @endsection
 
-@section('footer')
-    <div class="container-fluid">
-        <div class="d-flex justify-content-between py-7 flex-md-nowrap flex-wrap gap-sm-0 gap-3">
-            <div class="d-flex gap-3 align-items-center">
-                <img src="../assets/images/logos/favicon.png" alt="icon">
-                <p class="fs-4 mb-0">Fundacion Pachos Club. </p>
-            </div>
-            <div>
-                <p class="mb-0">Produced by <a target="_blank" href="https://www.wrappixel.com/"
-                        class="text-primary link-primary">Wrappixel</a>.</p>
-            </div>
-        </div>
-    </div>
-@endsection
-
-@section('script')
-    <script src="{{ asset('js/inicio.js') }}"></script>
-    <script>
-        $(document).ready(function () {
-            $('#inicio').addClass('active');
-        });
-    </script>
-@endsection

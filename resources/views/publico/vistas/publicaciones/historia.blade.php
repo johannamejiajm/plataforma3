@@ -52,12 +52,12 @@
     });
 </script>
 @endsection
-
 @section('tituloheader')
-    <div class="hero-title">
-        <h1 class="hero-title">FUNDACIÓN PACHO'S CLUB</h1>
+    <p class="titulo-blanco"> FUNDACION PACHO'S CLUB</p>
+@endsection
+
+@section('subtituloheader')
         <p class="subtitulo-amarillo">"Donde los sueños toman forma digital y tu historia comienza."</p>
-    </div>
 @endsection
 
 @section('contenido')
@@ -165,52 +165,4 @@
         </div>
     @endforeach
 @endif
-@endsection
-
-@section('links')
-<link rel="stylesheet" href="{{ asset('assets/css/styleshistoria.css') }}">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-<script>
-    function compartir() {
-        if (navigator.share) {
-            navigator.share({
-                title: 'Historia de la Fundación Pacho’s Club',
-                text: 'Conoce la historia de la Fundación Pacho’s Club.',
-                url: window.location.href
-            }).catch((error) => {
-                console.error('Error al compartir:', error);
-            });
-        } else {
-            alert('Tu navegador no soporta la función de compartir.');
-        }
-    }
-
-    let scrollPos = 0;
-
-    const modals = document.querySelectorAll('.modal');
-    modals.forEach(modal => {
-        modal.addEventListener('show.bs.modal', function () {
-            scrollPos = window.scrollY;
-        });
-        modal.addEventListener('hidden.bs.modal', function () {
-            window.scrollTo(0, scrollPos);
-        });
-    });
-</script>
-
-<script>
-    let scrollPos = 0;
-const modals = document.querySelectorAll('.modal');
-
-modals.forEach(modal => {
-    modal.addEventListener('show.bs.modal', function () {
-        scrollPos = window.scrollY;
-    });
-
-    modal.addEventListener('hidden.bs.modal', function () {
-        window.scrollTo(0, scrollPos);
-    });
-});
-</script>
 @endsection

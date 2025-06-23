@@ -5,7 +5,7 @@ Eventos
 @endsection
 
 @section('links')
-<link rel="stylesheet" href="{{ asset('assets/css/stylespublicidad.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/styleshistoria.css') }}">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script>
@@ -63,19 +63,20 @@ Eventos
 @endsection
 
 @section('tituloheader')
-    <div class="hero-title">
-        <h1 class="hero-title">FUNDACIÓN PACHO'S CLUB</h1>
-        <p class="subtitulo-amarillo">"Cada evento, una oportunidad de ayudar"</p>
-    </div>
+    <p class="titulo-blanco"> FUNDACION PACHO'S CLUB</p>
+@endsection
+
+@section('subtituloheader')
+    <p class="subtitulo-amarillo">"Cada evento, una oportunidad de ayudar"</p>
 @endsection
 
 @section('contenido')
 <section class="Eventos-Seccion">
-    <div class="contenedor-eventos">
+    <div class="contenedor-gird">
         @if ($eventos && count($eventos) > 0)
             @foreach ($eventos as $key => $evento)
-                <div class="card-evento">
-                    <div class="card-evento-img"
+                <div class="card-historia">
+                    <div class="card-historia-img"
                          data-bs-toggle="modal"
                          data-bs-target="#modalEvento{{ $key }}"
                          style="cursor: pointer;"
@@ -93,16 +94,16 @@ Eventos
                             </div>
                         @endif
                     </div>
-                    <div class="card-evento-body">
-                        <p class="categoria-evento">Evento</p>
-                        <h3 class="titulo-evento">{{ $evento['evento'] }}</h3>
-                        <p class="descripcion-evento">
+                    <div class="card-historia-body">
+                        <p class="categoria">Evento</p>
+                        <h3 class="titulo-historia">{{ $evento['evento'] }}</h3>
+                        <p class="descripcion">
                             Del {{ \Carbon\Carbon::parse($evento['fechainicial'])->format('d \\d\\e F \\d\\e Y') }}
                             al {{ \Carbon\Carbon::parse($evento['fechafinal'])->format('d \\d\\e F \\d\\e Y') }}
                         </p>
                         <a data-bs-toggle="modal"
                            data-bs-target="#modalEvento{{ $key }}"
-                           class="ver-mas"
+                           class="leer-mas"
                            role="button"
                            aria-label="Ver más sobre {{ $evento['evento'] }}">
                             Ver más <i class="bi bi-arrow-right"></i>
