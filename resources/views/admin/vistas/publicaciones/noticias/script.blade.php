@@ -14,17 +14,25 @@
         const tabla = $('#tablaPublicacionesNoticia').DataTable({
             ajax: '{{ route("publicaciones.noticias") }}',
             columns: [
-                { data: 'titulo' },
-                { data: 'contenido' },
-                { data: 'fecha_inicial' },
-                { data: 'fecha_final' },
-                {
-                    data: 'estado',
-                    render: function(data) {
-                        let clase = data === 'Activo' ? 'bg-success' : 'bg-danger';
-                        return `<span class="badge ${clase}">${data}</span>`;
-                    }
-                },
+            { data: 'titulo' },
+            { 
+                data: 'contenido',
+                render: function(data) {
+                if (typeof data === 'string' && data.length > 60) {
+                    return data.substring(0, 60) + '...';
+                }
+                return data;
+                }
+            },
+            { data: 'fecha_inicial' },
+            { data: 'fecha_final' },
+            {
+                data: 'estado',
+                render: function(data) {
+                let clase = data === 'Activo' ? 'bg-success' : 'bg-danger';
+                return `<span class="badge ${clase}">${data}</span>`;
+                }
+            },
                 {
                     data: 'id',
                     orderable: false,

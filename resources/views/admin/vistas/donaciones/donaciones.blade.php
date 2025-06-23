@@ -11,10 +11,10 @@
 
             <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
                 <a href="{{ route('donaciones.index', ['idtipo' => 'todos']) }}" class="btn btn-primary w-100">Todos</a>
+            <a href="{{ route('donaciones.index', ['idtipo' => 'pendiente']) }}"
+                    class="btn btn-warning w-100">Pendientes</a>
                 <a href="{{ route('donaciones.index', ['idtipo' => 'aprobado']) }}"
                     class="btn btn-success w-100">Aprobados</a>
-                <a href="{{ route('donaciones.index', ['idtipo' => 'pendiente']) }}"
-                    class="btn btn-warning w-100">Pendientes</a>
                 <a href="{{ route('donaciones.index', ['idtipo' => 'denegado']) }}"
                     class="btn btn-danger w-100">Denegados</a>
             </div>
@@ -51,7 +51,8 @@
                                 <td class="text-center">{{ $donacion->donacion }}</td>
                                 <td class="text-center">
                                     @if ($donacion->soporte && ($filtro === 'todos' || $filtro === 'aprobado'))
-                                        <a href="{{ asset('storage/' . $donacion->soporte) }}" target="_blank">Ver soporte</a>
+
+                                    <a type="button" class="btn btn-primary" href="{{ asset('storage/' . $donacion->soporte) }}" target="_blank"><i class="fa-solid fa-magnifying-glass"></i></a>
                                     @else
                                         No adjuntó
                                     @endif
@@ -65,9 +66,9 @@
                                                 onclick="confirmarEstado({{ $donacion->id }}, 2)">Denegar</button>
                                         </div>
                                     @elseif ($donacion->idtipo == 1)
-                                        Aprobado
+                                       <p class="badge bg-success" >Aprobado</p>
                                     @elseif($donacion->idtipo == 2)
-                                        Denegado
+                                         <p class="badge bg-danger" >Denegado</p>
                                     @endif
                                 </td>
                             </tr>

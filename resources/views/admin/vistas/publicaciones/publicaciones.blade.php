@@ -11,6 +11,4 @@
 @section('contenido')
 
 
-    </tbody>
-  </table>
 @endsection

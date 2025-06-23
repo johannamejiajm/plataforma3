@@ -15,7 +15,15 @@
             ajax: '{{ route("publicaciones.eventos") }}',
             columns: [
                 { data: 'titulo' },
-                { data: 'contenido' },
+                { 
+                    data: 'contenido',
+                    render: function(data) {
+                        if (data.length > 50) {
+                            return data.substring(0, 50) + '...';
+                        }
+                        return data;
+                    }
+                },
                 { data: 'fecha_inicial' },
                 { data: 'fecha_final' },
                 {
