@@ -46,7 +46,7 @@
             <div class="card-historia">
                 <div class="card-historia-img" data-bs-toggle="modal" data-bs-target="#modalPublicacion{{ $key }}" style="cursor: pointer;">
                     @if($publicacion->fotos && count($publicacion->fotos) > 0)
-                        <img src="{{ asset($publicacion?->fotos[0]?->imagen) }}" alt="{{ $publicacion->titulo }}">
+                        <img src="{{ asset($publicacion->fotos[0]->imagen) }}" alt="{{ $publicacion->titulo }}">
                     @else
                         <div class="preview-no-image d-flex align-items-center justify-content-center h-100 bg-light">
                             <i class="bi bi-image fa-3x text-muted"></i>
