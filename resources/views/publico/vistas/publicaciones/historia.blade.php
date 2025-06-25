@@ -112,7 +112,7 @@
                             </div>
 
                             <!-- Texto de la historia -->
-                            <div>
+                            <div class="text-modal">
                                 <p>{{ $historia->contenido }}</p>
                             </div>
 

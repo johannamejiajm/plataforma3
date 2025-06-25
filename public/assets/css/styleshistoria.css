@@ -263,6 +263,10 @@ body {
   padding: var(--spacing-xl) !important;
 }
 
+ .modal-body .text-modal p {
+    text-align: justify;
+}
+
 .modal-body .historia-contenido {
   background-color: var(--color-bg-light);
   padding: var(--spacing-lg);
@@ -275,6 +279,7 @@ body {
   margin: 0;
   line-height: 1.7;
   font-size: 1.1rem;
+  text-align: justify;
   color: var(--color-text);
 }
 
