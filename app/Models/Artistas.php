@@ -17,7 +17,6 @@ class artistas extends Model
         'telefono',
         'imagen',
         'descripcion',
-        'fecharegistro',
         'estado',
     ];
     // Relación con la tabla eventos (un artista pertenece a un evento)
