@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Controller as BaseController;
 
+
 class EventosController extends BaseController
 {
 
@@ -48,7 +49,7 @@ public function store(EventosRequest $request)
         return response()->json($evento);
     }
 
-   public function update(EventosRequest $request, $id)
+  public function update(EventosRequest $request, $id)
 {
     DB::beginTransaction();
     try {
@@ -57,6 +58,11 @@ public function store(EventosRequest $request)
         $datos = $request->only(['evento', 'fechainicial', 'fechafinal', 'estado']);
 
         if ($request->hasFile('imagen')) {
+            // Eliminar la imagen anterior
+            if ($evento->imagen && Storage::disk('public')->exists($evento->imagen)) {
+                Storage::disk('public')->delete($evento->imagen);
+            }
+
             $imagen = $request->file('imagen');
             $extension = $imagen->getClientOriginalExtension();
             $nombreHash = Str::uuid() . '.' . $extension;
@@ -73,6 +79,7 @@ public function store(EventosRequest $request)
         return response()->json(['error' => 'Error al actualizar el evento.'], 500);
     }
 }
+
 
     public function destroy($id)
     {
