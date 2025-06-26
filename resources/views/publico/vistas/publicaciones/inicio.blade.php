@@ -200,7 +200,7 @@
                     </div>
                     <div class="card-historia-body">
                         <h5 class="card-title">{{ $publicacion->titulo }}</h5>
-                        <a href="{{ route('publica.eventos.index') }}" class="btn btn-outline-primary mt-2">Ver todos los
+                        <a href="{{ route('publicaciones.indexpublicacionespublico') }}" class="btn btn-outline-primary mt-2">Ver todos los
                             eventos</a>
                     </div>
                 </div>

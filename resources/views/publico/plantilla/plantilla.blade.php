@@ -75,7 +75,7 @@
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('inicio.index') }}" id="inicio">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('quienessomos.index') }}" id="quienesSomos">Quienes somos</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="{{ route('quienessomos.index') }}" id="quienesSomos">Quienes Somos</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary d-flex gap-2" href="{{ route('historia.index') }}" id="historia">Historia
@@ -136,7 +136,7 @@
         </li>
 
         <li class="mb-1">
-          <a href="{{ route('historia.index') }} class="px-0 fs-4 d-flex align-items-center justify-content-start gap-2 w-100 py-2 text-dark link-primary">
+          <a href="{{ route('historia.index') }}" class="px-0 fs-4 d-flex align-items-center justify-content-start gap-2 w-100 py-2 text-dark link-primary">
             Historia
           </a>
         </li>

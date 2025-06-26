@@ -17,7 +17,7 @@
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Quienes somos</a>
+              <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary" href="#">Quienes Somos</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link fs-4 px-6 fw-bold text-dark link-primary d-flex gap-2" href="#">Historia
