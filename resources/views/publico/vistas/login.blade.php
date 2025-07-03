@@ -60,7 +60,6 @@
                       Recuerdame
                     </label>
                   </div>
-                  <a class="text-primary fw-bold" href="{{ route('password.request') }}">Olvidaste tu Contraseña ?</a>
                 </div>
                 <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Iniciar Sesion</a>
 
