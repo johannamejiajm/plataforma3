@@ -26,7 +26,7 @@ class InscripcionesRequest extends FormRequest
                 'identidad' => 'required|string|max:20|unique:artistas,identidad',
                 'nombre' => 'required|string|max:255',
                 'email' => 'required|email',
-                'telefono' => 'required|string|max:20',
+                'telefono' => 'required|regex:/^\+?[0-9]{7,20}$/',
                 'imagen' => 'required|image|max:2048',
                 'descripcion' => 'required|string',
                 'estado' => 'required|in:1,0', 
@@ -50,9 +50,10 @@ class InscripcionesRequest extends FormRequest
             'email.required' => 'El correo es obligatorio.',
             'email.email' => 'El correo debe tener la siguiente estructura ejemplo@ejem.ejem.',
 
+            'telefono.required' => 'El teléfono no puede tener letras.',
             'telefono.required' => 'El teléfono es obligatorio.',
-            'telefono.string' => 'El teléfono debe ser texto.',
-            'telefono.max' => 'El teléfono no debe tener más de 20 caracteres.',
+            'telefono.digits' => 'El teléfono debe tener exactamente 10 dígitos.',
+
 
             'imagen.required' => 'La imagen es obligatoria.',
             'imagen.image' => 'El archivo debe ser una imagen.',
