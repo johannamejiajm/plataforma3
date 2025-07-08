@@ -15,7 +15,7 @@ class UserController extends BaseController
 {
     public function __construct()
     {
-        $this->middleware('permission:manage_users');
+        //$this->middleware('permission:manage_users');
     }
 
     public function index(Request $request)

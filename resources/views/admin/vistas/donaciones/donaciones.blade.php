@@ -58,16 +58,16 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    @if ($donacion->idtipo == 0)
+                                    @if ($donacion->estado == 0)
                                         <div class="d-flex gap-2 d-md-block">
                                             <button type="button" class="btn btn-success btn-sm"
                                                 onclick="confirmarEstado({{ $donacion->id }}, 1)">Aprobar</button>
                                             <button type="button" class="btn btn-danger btn-sm"
                                                 onclick="confirmarEstado({{ $donacion->id }}, 2)">Denegar</button>
                                         </div>
-                                    @elseif ($donacion->idtipo == 1)
+                                    @elseif ($donacion->estado == 1)
                                        <p class="badge bg-success" >Aprobado</p>
-                                    @elseif($donacion->idtipo == 2)
+                                    @elseif($donacion->estado == 2)
                                          <p class="badge bg-danger" >Denegado</p>
                                     @endif
                                 </td>

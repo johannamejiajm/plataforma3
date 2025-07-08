@@ -15,9 +15,6 @@
                 var telefono = $("#telefono").val();
                 var donacion = $("#donacion").val();
                 var tipodonacion = $("#tipodonacion").val();
-
-
-
                 $.ajax({
                     method: "POST",
                     url: "/donaciones",
@@ -40,7 +37,8 @@
                         }).then(() => {
                             const donante = nombre + " " + apellido;
                             const mensaje = encodeURIComponent(`Hola, soy ${donante} y quiero hacer una donación`);
-                            const url = `https://wa.me/573118883105?text=${mensaje}`;
+                            const telefonoContacto = "{{ $contacto->telefono1 }}";
+                            const url = `https://wa.me/57${telefonoContacto}?text=${mensaje}`;
 
                             // Generar el código QR
                             $("#qrcode").html(""); // Limpiar QR anterior si existe
