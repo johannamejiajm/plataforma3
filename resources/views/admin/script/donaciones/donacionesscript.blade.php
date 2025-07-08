@@ -28,6 +28,16 @@
             formData.append("estado", 1); // nombre igual al que usas en el controlador
             formData.append("soporte", soporte); // nombre del campo file
 
+            // Mostrar mensaje de carga
+            Swal.fire({
+            title: 'Cargando...',
+            text: 'Por favor, espere mientras se procesa la solicitud.',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+            });
+
             $.ajax({
             method: "POST",
             url: "{{ url('/admin/donaciones/update_estado') }}",
@@ -35,28 +45,28 @@
             processData: false,
             contentType: false,
             success: function(msg) {
-                $('#Modalaprobado').modal('hide');
-                Swal.fire({
-                title: '¡Actualización estado exitosa!',
-                text: msg.mensaje,
-                icon: 'success',
-                confirmButtonText: 'OK'
-                }).then(() => {
-                    location.reload();
-                });
+            $('#Modalaprobado').modal('hide');
+            Swal.fire({
+            title: '¡Actualización estado exitosa!',
+            text: msg.mensaje,
+            icon: 'success',
+            confirmButtonText: 'OK'
+            }).then(() => {
+                location.reload();
+            });
             },
             error: function(xhr, status, error) {
-                let mensaje = 'Ocurrió un problema al enviar el archivo.';
-                if (xhr.status === 422 && xhr.responseJSON && xhr.responseJSON.errors) {
-                // Concatenar todos los mensajes de error de validación
-                mensaje = Object.values(xhr.responseJSON.errors).flat().join('\n');
-                }
-                Swal.fire({
-                title: 'Error',
-                text: mensaje,
-                icon: 'error',
-                confirmButtonText: 'OK'
-                });
+            let mensaje = 'Ocurrió un problema al enviar el archivo.';
+            if (xhr.status === 422 && xhr.responseJSON && xhr.responseJSON.errors) {
+            // Concatenar todos los mensajes de error de validación
+            mensaje = Object.values(xhr.responseJSON.errors).flat().join('\n');
+            }
+            Swal.fire({
+            title: 'Error',
+            text: mensaje,
+            icon: 'error',
+            confirmButtonText: 'OK'
+            });
             }
             });
         }
