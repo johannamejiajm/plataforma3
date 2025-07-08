@@ -36,7 +36,7 @@
                             confirmButtonText: 'Continuar'
                         }).then(() => {
                             const donante = nombre + " " + apellido;
-                            const mensaje = encodeURIComponent(`Hola, soy ${donante} y quiero hacer una donación`);
+                            const mensaje = encodeURIComponent(`Hola, mi nombre es ${donante} y quiero hacer una donación a la fundación. Por favor, contáctenme para coordinar los detalles.`);
                             const telefonoContacto = "{{ $contacto->telefono1 }}";
                             const url = `https://wa.me/57${telefonoContacto}?text=${mensaje}`;
 
