@@ -174,7 +174,7 @@
           </a>
         </li>
         <li class="mt-3">
-          <a href="/login" class="btn btn-primary w-100">Admin</a>
+          <a href="{{ route('admin.publicaciones.eventos.index') }}" class="btn btn-primary w-100">Admin</a>
         </li>
       </ul>
     </div>

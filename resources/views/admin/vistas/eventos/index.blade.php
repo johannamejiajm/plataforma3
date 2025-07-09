@@ -13,38 +13,40 @@
         <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#eventoModal">Agregar Evento</button>
 
         <!-- Tabla -->
-        <table class="table table-striped table-bordered" id="tablaeventos">
-            <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Evento</th>
-                    <th>Inicio</th>
-                    <th>Fin</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($eventos as $evento)
-                <tr>
-                    <td>{{ $evento->id }}</td>
-                    <td>{{ $evento->evento }}</td>
-                    <td>{{ $evento->fechainicial }}</td>
-                    <td>{{ $evento->fechafinal }}</td>
-                    <td>
-                        <span class="badge bg-{{ $evento->estado == '1' ? 'success' : 'secondary' }}">
-                            {{ $evento->estado == '1' ? 'Activo' : 'Inactivo' }}
-                        </span>
-                    </td>
-                    <td>
-                        <!-- Botón Editar -->
-                        <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editModal" onclick="cargarDatos({{ $evento->id }})">Editar</button>
-                        <button type="submit" class="btn btn-sm btn-danger" onclick="eliminarEvento({{ $evento->id }})">Eliminar</button>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered" id="tablaeventos">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Evento</th>
+                        <th>Inicio</th>
+                        <th>Fin</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($eventos as $evento)
+                    <tr>
+                        <td>{{ $evento->id }}</td>
+                        <td>{{ $evento->evento }}</td>
+                        <td>{{ $evento->fechainicial }}</td>
+                        <td>{{ $evento->fechafinal }}</td>
+                        <td>
+                            <span class="badge bg-{{ $evento->estado == '1' ? 'success' : 'secondary' }}">
+                                {{ $evento->estado == '1' ? 'Activo' : 'Inactivo' }}
+                            </span>
+                        </td>
+                        <td>
+                            <!-- Botón Editar -->
+                            <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editModal" onclick="cargarDatos({{ $evento->id }})">Editar</button>
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="eliminarEvento({{ $evento->id }})">Eliminar</button>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

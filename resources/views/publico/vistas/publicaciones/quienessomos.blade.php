@@ -22,7 +22,7 @@
             <h1 class="mb-3">{{ $informacion->tipo->tipo }}</h1>
 
             {{-- Mostrar contenido --}}
-            <p>{{ $informacion->contenido }}</p>
+            <p style="text-align: justify">{{ $informacion->contenido }}</p>
 
             {{-- Mostrar foto si existe --}}
             @if ($informacion->foto)
